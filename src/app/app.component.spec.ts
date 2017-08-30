@@ -1,11 +1,15 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
+import { AppRoutingModule} from './app-routes.module';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [
+        AppRoutingModule
+      ],
       declarations: [
         AppComponent
       ],

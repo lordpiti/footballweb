@@ -2,25 +2,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
-
+import { AppRoutingModule} from './app-routes.module';
 import { AppComponent } from './app.component';
 import { SubrouteComponent } from './subroute/subroute.component';
-
-import { ROUTES } from './app.routes';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SubrouteComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES)
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
