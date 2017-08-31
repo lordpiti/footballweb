@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SubrouteComponent } from './subroute/subroute.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
+import { TeamModule } from './team/team.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule, TeamModule
   ],
   providers: [],
   bootstrap: [AppComponent]
