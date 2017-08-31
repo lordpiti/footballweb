@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TeamService } from '../team.service';
 
 @Component({
   selector: 'app-overview',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor() { }
+private _teamList: any;
+
+  constructor(private _teamService : TeamService) { }
 
   ngOnInit() {
+    this._teamService.getAllTeams().subscribe(
+      (data: any) => {
+          this._teamList = data;
+          console.log(data);
+          //this.surveyService.setProjectFollowerData(data);
+      },
+      (err: any) => {
+      }
+  );
   }
 
 }

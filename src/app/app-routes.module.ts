@@ -19,6 +19,7 @@ const appRoutes: Routes = [
   { path: 'HomeComponent', component: HomeComponent },
   { path: 'subrouteComponent', component: SubrouteComponent },
   { path: '',   redirectTo: '/subrouteComponent', pathMatch: 'full' },
+  { path: 'teams', loadChildren: './team/team.module#TeamModule' },
   { path: '**', component: PageNotFoundComponent }
 ];
 @NgModule({
