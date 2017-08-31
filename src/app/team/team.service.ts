@@ -24,7 +24,13 @@ export class TeamService {
   getAllTeams() {
     var url = this._apiUrl+"/api/player/teams";
 
+    return this.http.get(url, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
 
+  getTeamDetails(id: number) {
+    var url = this._apiUrl+"/api/player/teams/"+id+"/year/2009";
+    
     return this.http.get(url, this._requestOptions)
         .map((res: Response) => res.json());
   }
