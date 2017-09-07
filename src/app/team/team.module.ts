@@ -5,6 +5,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { RouterModule, Routes } from '@angular/router';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
+import { TeamDetailsEditModalComponent } from './team-edit-modal/team-edit-modal.component';
 
 const teamRoutes: Routes = [
   { path: 'overview',  component: OverviewComponent },
@@ -21,12 +22,15 @@ const teamRoutes: Routes = [
     
   OverviewComponent,ImageCropperComponent,
     
-  TeamDetailComponent], 
+  TeamDetailComponent,
+    
+  TeamDetailsEditModalComponent], 
   providers: [
     TeamService
   ],
   exports: [
     RouterModule
-  ]
+  ],
+  entryComponents: [TeamDetailsEditModalComponent]
 })
 export class TeamModule { }

@@ -8,6 +8,8 @@ import { SubrouteComponent } from './subroute/subroute.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { TeamModule } from './team/team.module';
+import { ModalModule } from 'ngx-modialog';
+import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,10 @@ import { TeamModule } from './team/team.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule, TeamModule
+    AppRoutingModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule,
+    TeamModule
   ],
   providers: [],
   bootstrap: [AppComponent]
