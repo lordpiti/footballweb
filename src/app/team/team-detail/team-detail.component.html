@@ -3,8 +3,18 @@
 </p>
 
 <div *ngIf="teamDetails">
-    {{teamDetails | json}}
+    {{teamDetails.playerList | json}}
+
+    {{teamDetails.name}}
 </div>
 
+<form #hiveMatchingCriteriaForm="ngForm" id="hiveMatchingCriteriaForm" name="hiveMatchingCriteriaForm">
+  <div class="form-group row margin-top1">
+    <div class="col-md-12">
+        <input required type="text" [(ngModel)]="teamDetails.name" #Name="ngModel" name="name" id="name" />
+    </div>
+  </div>
+</form>
 
+<button (click)="saveTeamDetails(teamDetails, hiveMatchingCriteriaForm)">Save changes!</button>
 <button (click)="showModalEvent(teamDetails)">BRRR</button>

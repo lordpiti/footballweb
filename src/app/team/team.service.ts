@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import { Team } from '../common/interfaces/team.interface';
 
 @Injectable()
 export class TeamService {
@@ -32,6 +33,13 @@ export class TeamService {
     var url = this._apiUrl+"/api/player/teams/"+id+"/year/2009";
     
     return this.http.get(url, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
+
+  saveTeamDetails(teamDetails: Team) {
+    var url = this._apiUrl+"/api/player/saveTeamDetails";
+    
+    return this.http.post(url, teamDetails, this._requestOptions)
         .map((res: Response) => res.json());
   }
 

@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
 import { TeamDetailsEditModalComponent } from './team-edit-modal/team-edit-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const teamRoutes: Routes = [
   { path: 'overview',  component: OverviewComponent },
@@ -16,7 +17,9 @@ const teamRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(teamRoutes)
+    RouterModule.forChild(teamRoutes),
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     

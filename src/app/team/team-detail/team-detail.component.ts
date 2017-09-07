@@ -6,6 +6,7 @@ import 'rxjs/add/operator/switchMap';
 import { Overlay, overlayConfigFactory } from 'ngx-modialog';
 import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { TeamDetailsEditModalComponent } from '../team-edit-modal/team-edit-modal.component';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-team-detail',
@@ -20,7 +21,7 @@ export class TeamDetailComponent implements OnInit {
 
   constructor(private router: Router, private _teamService: TeamService, 
     private route: ActivatedRoute, public modal: Modal){
-
+      this.teamDetails = { Name:"", Id: 0, PlayerList:[], PictureUrl:""};
   }
 
 
@@ -43,35 +44,21 @@ export class TeamDetailComponent implements OnInit {
     this.getData(changes.newid.currentValue);
   }
 
-
-  onClick() {
-    
-    // const dialogRef = this.modal.alert()
-    //     .size('lg')
-    //     .showClose(true)
-    //     .title('A simple Alert style modal window')
-    //     .body(`
-    //         <h4>Alert is a classic (title/body/footer) 1 button modal window that 
-    //         does not block.</h4>
-    //         <b>Configuration:</b>
-    //         <ul>
-    //             <li>Non blocking (click anywhere outside to dismiss)</li>
-    //             <li>Size large</li>
-    //             <li>Dismissed with default keyboard key (ESC)</li>
-    //             <li>Close wth button click</li>
-    //             <li>HTML content</li>
-    //         </ul>`)
-    //     .open();
-
-    //     dialogRef
-    //     .then( dialogRef => {
-    //         dialogRef.result.then( result => alert(`The result is: ${result}`));
-    //       }
-    //     );
-  }
-
   showModalEvent(team: Team) {
     this.modal.open(TeamDetailsEditModalComponent, overlayConfigFactory({ teamDetails: team }, BSModalContext));
+  }
+
+  saveTeamDetails(team: Team, form: NgForm){
+    
+    if (form.valid){
+      this._teamService.saveTeamDetails(team).subscribe(
+        (data: boolean) => {
+            console.log(data);
+        },
+        (err: any) => {
+        }
+      );
+    }
   }
 
   private getData(id: number):void{
@@ -79,6 +66,7 @@ export class TeamDetailComponent implements OnInit {
     this._teamService.getTeamDetails(id).subscribe(
       (data: Team) => {
           this.teamDetails = data;
+          console.log(this.teamDetails);
           //this.surveyService.setProjectFollowerData(data);
       },
       (err: any) => {
