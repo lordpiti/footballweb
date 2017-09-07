@@ -4,13 +4,7 @@
 
 <div *ngIf="teamDetails">
     {{teamDetails | json}}
-
-    <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
-    <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
 </div>
 
-<button (click)="hahaha()">UPLOAD to blob storage</button>
-
-<button (click)="updatePicture()">UPDATE IN DB</button>
 
 <button (click)="showModalEvent(teamDetails)">BRRR</button>

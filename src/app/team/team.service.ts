@@ -36,7 +36,7 @@ export class TeamService {
   }
 
   addBase64Image(image: string, fileName: string) {
-    var url = this._apiUrl+"/api/player/UploadBase64Image";
+    var url = this._apiUrl+"/api/GlobalMedia/UploadBase64Image";
     
     return this.http.post(url, { Base64String:image, FileName: fileName }, this._requestOptions)
         .map((res: Response) => res.json());

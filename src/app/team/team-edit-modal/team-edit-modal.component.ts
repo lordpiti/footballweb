@@ -4,6 +4,8 @@ import { BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Player } from '../../common/interfaces/player.interface';
 import { Team } from '../../common/interfaces/team.interface';
+import { CropperSettings } from 'ng2-img-cropper';
+import { TeamService} from '../team.service';
 
 //import { ShareDataService } from '../../../services/shareData.component.service';
 
@@ -23,6 +25,10 @@ export class TeamDetailsEditModalWindowData extends BSModalContext {
 })
 export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetailsEditModalWindowData> {
     context: TeamDetailsEditModalWindowData;
+
+    public teamDetails: Team;
+    private cropperSettings: CropperSettings;
+
     public data: any;
     public published: boolean = false;
     public model: Team = { Id: 0, PictureUrl:"", Name:"", PlayerList :[] };
@@ -30,7 +36,7 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
     public displayErrors: boolean = false;
     public isEditing: boolean = false;
 
-    constructor(public dialog: DialogRef<TeamDetailsEditModalWindowData>, public modal: Modal) {
+    constructor(public dialog: DialogRef<TeamDetailsEditModalWindowData>, public modal: Modal, private _teamService: TeamService) {
         this.context = dialog.context;
         if (dialog.context.teamDetails) {
             this.teamSelected = dialog.context.teamDetails;
@@ -39,6 +45,13 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
         }
         this.context.dialogClass = "modal-dialog modal-lg";
 
+        this.cropperSettings = new CropperSettings();
+        this.cropperSettings.width = 100;
+        this.cropperSettings.height = 100;
+        this.cropperSettings.croppedWidth =100;
+        this.cropperSettings.croppedHeight = 100;
+        this.cropperSettings.canvasWidth = 400;
+        this.cropperSettings.canvasHeight = 300;
 
         this.data = {};
     };
@@ -53,6 +66,26 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
             if (callBack) callBack();
         });
     };
+
+    hahaha(){
+        this._teamService.addBase64Image(this.data.image, 'testTeam.jpg').subscribe(
+          (data: any) => {
+            console.log(this.data);
+          },
+          (err: any) => {
+          }
+        );
+      }
+    
+      updatePicture(){
+        this._teamService.updateTeamImage(this.teamDetails.Id, { FileName: 'testTeam.jpg' } ).subscribe(
+          (data: any) => {
+            console.log(this.data);
+          },
+          (err: any) => {
+          }
+        );
+      }
 
 
     // notifyImageUploaded(mediaItem: any)

@@ -2,3 +2,16 @@
   team-edit-modal works!
 </p>
 {{model | json}}
+
+<div *ngIf="teamSelected">
+
+  <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
+  <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+</div>
+
+
+<button class="btn btn-primary" (click)="hahaha()">UPLOAD to blob storage</button>
+
+<button class="btn btn-primary" (click)="updatePicture()">UPDATE IN DB</button>
+
+<button class="btn btn-primary" (click)="closeDialog()">CLOSE</button>
