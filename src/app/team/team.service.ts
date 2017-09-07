@@ -35,4 +35,18 @@ export class TeamService {
         .map((res: Response) => res.json());
   }
 
+  addBase64Image(image: string, fileName: string) {
+    var url = this._apiUrl+"/api/player/UploadBase64Image";
+    
+    return this.http.post(url, { Base64String:image, FileName: fileName }, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
+
+  updateTeamImage(teamId: number, mediaItem: any){
+    var url = this._apiUrl+"/api/player/UpdateTeamPicture/"+teamId;
+    
+    return this.http.post(url, mediaItem, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
+
 }

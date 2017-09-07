@@ -10,20 +10,27 @@ import { Team } from '../../common/interfaces/team.interface';
 })
 export class OverviewComponent implements OnInit {
 
-public teamList: Array<Team>;
+  public teamList: Array<Team>;
 
-  constructor(private _teamService : TeamService) { }
+  public selectedTeamId: number;
+
+  constructor(private _teamService : TeamService) { 
+
+  }
 
   ngOnInit() {
     this._teamService.getAllTeams().subscribe(
       (data: Array<Team>) => {
           this.teamList = data;
-          console.log(data);
           //this.surveyService.setProjectFollowerData(data);
       },
       (err: any) => {
       }
-  );
+    );
+  }
+
+  public setSelectedTeamId(id: number){
+    this.selectedTeamId = id;
   }
 
 }

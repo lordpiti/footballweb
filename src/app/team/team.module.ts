@@ -4,6 +4,7 @@ import { TeamService } from './team.service';
 import { OverviewComponent } from './overview/overview.component';
 import { RouterModule, Routes } from '@angular/router';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
+import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
 
 const teamRoutes: Routes = [
   { path: 'overview',  component: OverviewComponent },
@@ -18,7 +19,7 @@ const teamRoutes: Routes = [
   ],
   declarations: [
     
-  OverviewComponent,
+  OverviewComponent,ImageCropperComponent,
     
   TeamDetailComponent], 
   providers: [
