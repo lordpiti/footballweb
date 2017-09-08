@@ -4,6 +4,7 @@ import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { Team } from '../common/interfaces/team.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class TeamService {
@@ -19,46 +20,46 @@ export class TeamService {
     this._requestOptions = new RequestOptions({
         headers: myHeaders
     });
-    this._apiUrl = "http://localhost:57543";
+    this._apiUrl = environment.api_url;//"http://localhost:57543/api/";
   }
 
   getAllTeams() {
-    var url = this._apiUrl+"/api/player/teams";
+    var url = this._apiUrl+"player/teams";
 
     return this.http.get(url, this._requestOptions)
         .map((res: Response) => res.json());
   }
 
   getTeamDetails(id: number) {
-    var url = this._apiUrl+"/api/player/teams/"+id+"/year/2009";
+    var url = this._apiUrl+"player/teams/"+id+"/year/2009";
     
     return this.http.get(url, this._requestOptions)
         .map((res: Response) => res.json());
   }
 
   saveTeamDetails(teamDetails: Team) {
-    var url = this._apiUrl+"/api/player/saveTeamDetails";
+    var url = this._apiUrl+"player/saveTeamDetails";
     
     return this.http.post(url, teamDetails, this._requestOptions)
         .map((res: Response) => res.json());
   }
 
   addBase64Image(image: string, fileName: string) {
-    var url = this._apiUrl+"/api/GlobalMedia/UploadBase64Image";
+    var url = this._apiUrl+"GlobalMedia/UploadBase64Image";
     
     return this.http.post(url, { Base64String:image, FileName: fileName }, this._requestOptions)
         .map((res: Response) => res.json());
   }
 
   updateTeamImage(teamId: number, mediaItem: any){
-    var url = this._apiUrl+"/api/player/UpdateTeamPicture/"+teamId;
+    var url = this._apiUrl+"player/UpdateTeamPicture/"+teamId;
     
     return this.http.post(url, mediaItem, this._requestOptions)
         .map((res: Response) => res.json());
   }
 
   getClasification(teamId: number, competitionName: string, season: string) {
-    var url = this._apiUrl+"/api/player/clasification/"+teamId+
+    var url = this._apiUrl+"player/clasification/"+teamId+
     "/competition/"+competitionName+"/season/"+season;
     
     return this.http.get(url, this._requestOptions)
