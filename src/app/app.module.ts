@@ -11,6 +11,7 @@ import { TeamModule } from './team/team.module';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
+
 @NgModule({
   declarations: [
     AppComponent,

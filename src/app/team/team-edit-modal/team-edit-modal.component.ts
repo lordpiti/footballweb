@@ -31,8 +31,8 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
 
     public data: any;
     public published: boolean = false;
-    public model: Team = { Id: 0, PictureUrl:"", Name:"", PlayerList :[] };
-    public teamSelected: Team = { Id: 0, PictureUrl:"", Name:"", PlayerList :[] };
+    public model: Team = { id: 0, pictureUrl:"", name:"", playerList :[] };
+    public teamSelected: Team = { id: 0, pictureUrl:"", name:"", playerList :[] };
     public displayErrors: boolean = false;
     public isEditing: boolean = false;
 
@@ -78,7 +78,7 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
       }
     
       updatePicture(){
-        this._teamService.updateTeamImage(this.teamDetails.Id, { FileName: 'testTeam.jpg' } ).subscribe(
+        this._teamService.updateTeamImage(this.teamDetails.id, { FileName: 'testTeam.jpg' } ).subscribe(
           (data: any) => {
             console.log(this.data);
           },
