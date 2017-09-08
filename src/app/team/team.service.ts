@@ -57,4 +57,36 @@ export class TeamService {
         .map((res: Response) => res.json());
   }
 
+  getClasification(teamId: number, competitionName: string, season: string) {
+    var url = this._apiUrl+"/api/player/clasification/"+teamId+
+    "/competition/"+competitionName+"/season/"+season;
+    
+    return this.http.get(url, this._requestOptions)
+        .map((res: Response) => this.convertToChartData(res.json()));
+  }
+
+  private convertToChartData(data: any) {
+    let positionList = [],
+    goalsForList = [],
+    goalsAgainstList = [],
+    roundList= [];
+
+    data.clasificationSeasonData.forEach(element => {
+      positionList.push(element.position);
+      goalsForList.push(element.goalsFor);
+      goalsAgainstList.push(element.goalsAgainst);
+      roundList.push(element.round);
+    });
+
+    let lineChartData = {
+      positions: { label: 'Position', data: positionList },
+      goalsForList: { label: 'Goals For', data: goalsForList },
+      goalsAgainstList: { label: 'Goals Against', data: goalsAgainstList },
+      roundList: roundList,
+      teamName: data.teamName
+    };
+
+    return lineChartData;
+  }
+
 }

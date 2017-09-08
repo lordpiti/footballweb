@@ -9,6 +9,8 @@ import { TeamDetailsEditModalComponent } from './team-edit-modal/team-edit-modal
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { ChartsModule } from 'ng2-charts';
+import { TeamChartComponent } from './team-chart/team-chart.component';
 
 const DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -31,7 +33,9 @@ const teamRoutes: Routes = [
     RouterModule.forChild(teamRoutes),
     FormsModule,
     ReactiveFormsModule,
-    DropzoneModule.forChild(), ImageCropperModule
+    DropzoneModule.forChild(), 
+    ImageCropperModule,
+    ChartsModule
   ],
   declarations: [
     
@@ -39,7 +43,9 @@ const teamRoutes: Routes = [
     
   TeamDetailComponent,
     
-  TeamDetailsEditModalComponent], 
+  TeamDetailsEditModalComponent,
+    
+  TeamChartComponent], 
   providers: [
     TeamService
   ],

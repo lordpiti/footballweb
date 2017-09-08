@@ -2,12 +2,6 @@
   team-detail works!
 </p>
 
-<div *ngIf="teamDetails">
-    {{teamDetails.playerList | json}}
-
-    {{teamDetails.name}}
-</div>
-
 <form #hiveMatchingCriteriaForm="ngForm" id="hiveMatchingCriteriaForm" name="hiveMatchingCriteriaForm">
   <div class="form-group row margin-top1">
     <div class="col-md-12">
@@ -20,3 +14,12 @@
 
 <button (click)="saveTeamDetails(teamDetails, hiveMatchingCriteriaForm)">Save changes!</button>
 <button (click)="showModalEvent(teamDetails)">BRRR</button>
+
+<div *ngIf="teamDetails">
+  {{teamDetails.playerList | json}}
+
+  {{teamDetails.name}}
+
+  <team-chart teamId="{{newid}}"></team-chart>
+</div>
+
