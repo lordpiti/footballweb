@@ -8,6 +8,7 @@ import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { TeamDetailsEditModalComponent } from '../team-edit-modal/team-edit-modal.component';
 import { NgForm } from '@angular/forms';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-team-detail',
@@ -18,7 +19,7 @@ export class TeamDetailComponent implements OnInit {
 
   public config: DropzoneConfigInterface = {
     // Change this to your upload POST address:
-    url: 'http://localhost:57543/api/globalmedia/UploadDocument',
+    url: environment.api_url+'globalmedia/UploadDocument',
     maxFilesize: 50,
     acceptedFiles: 'image/*',
     paramName: 'files'
@@ -35,7 +36,7 @@ export class TeamDetailComponent implements OnInit {
 
   constructor(private router: Router, private _teamService: TeamService, 
     private route: ActivatedRoute, public modal: Modal){
-      this.teamDetails = { name:"", id: 0, playerList:[], pictureUrl:""};
+      this.teamDetails = { name:"", id: 0, playerList:[], pictureLogo: {}};
   }
 
 

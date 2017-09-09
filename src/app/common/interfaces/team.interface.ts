@@ -4,5 +4,5 @@ export interface Team {
     id: number;
     playerList: Array<Player>;
     name: string;
-    pictureUrl: string;
+    pictureLogo: any;
 }

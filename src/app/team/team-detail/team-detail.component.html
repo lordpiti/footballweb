@@ -1,6 +1,7 @@
 
 <div *ngIf="teamDetails">
   {{teamDetails.name}}
+  <img src="{{teamDetails.pictureLogo.url}}" width="100" height="100">
 
   <form #hiveMatchingCriteriaForm="ngForm" id="hiveMatchingCriteriaForm" name="hiveMatchingCriteriaForm">
     <div class="form-group row margin-top1">
