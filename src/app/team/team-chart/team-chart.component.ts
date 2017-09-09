@@ -83,9 +83,9 @@ export class TeamChartComponent {
   }
 
   private loadChartData(teamId: number, competitionName: string, season: string){
-    this.lineChartData = [];
     this._teamService.getClasification(teamId, competitionName,season).subscribe(
       (data: any) => {
+        this.lineChartData = [];
         this.lineChartData.push(data.positions),
         this.lineChartData.push(data.goalsForList),
         this.lineChartData.push(data.goalsAgainstList);
