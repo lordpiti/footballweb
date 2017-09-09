@@ -9,6 +9,7 @@ import { TeamDetailsEditModalComponent } from '../team-edit-modal/team-edit-moda
 import { NgForm } from '@angular/forms';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { environment } from '../../../environments/environment';
+import { ShareDataService } from '../../shared/services/shared-data.service';
 
 @Component({
   selector: 'app-team-detail',
@@ -18,7 +19,6 @@ import { environment } from '../../../environments/environment';
 export class TeamDetailComponent implements OnInit {
 
   public config: DropzoneConfigInterface = {
-    // Change this to your upload POST address:
     url: environment.api_url+'globalmedia/UploadDocument',
     maxFilesize: 50,
     acceptedFiles: 'image/*',
@@ -28,6 +28,7 @@ export class TeamDetailComponent implements OnInit {
   public teamDetails: Team;
   public competitions: any;
   public seasons: any;
+  public teamLogo: any;
 
   public selectedCompetition:string;
   public selectedSeason: string;
@@ -35,7 +36,8 @@ export class TeamDetailComponent implements OnInit {
   @Input() newid: number = null;
 
   constructor(private router: Router, private _teamService: TeamService, 
-    private route: ActivatedRoute, public modal: Modal){
+    private route: ActivatedRoute, public modal: Modal,
+    private modalCropperService: ShareDataService){
       this.teamDetails = { name:"", id: 0, playerList:[], pictureLogo: {}};
   }
 
@@ -48,24 +50,33 @@ export class TeamDetailComponent implements OnInit {
         this.newid = +params['id']; // (+) converts string 'id' to a number
 
         this.getData(this.newid);
+
+        this.modalCropperService.getData().subscribe((media: any) => {
+          console.log('ha llegao');
+          console.log(media);
+          this.teamLogo = media;
+        });
       });
     }
     else{
       this.getData(this.newid);
     }
   }
+  
 
   ngOnChanges(changes:any){
     this.getData(changes.newid.currentValue);
   }
 
   showModalEvent(team: Team) {
-    this.modal.open(TeamDetailsEditModalComponent, overlayConfigFactory({ teamDetails: team }, BSModalContext));
+    this.modal.open(TeamDetailsEditModalComponent, 
+      overlayConfigFactory({ teamDetails: team }, BSModalContext));
   }
 
   saveTeamDetails(team: Team, form: NgForm){
     
     if (form.valid){
+      team.pictureLogo = this.teamLogo;
       this._teamService.saveTeamDetails(team).subscribe(
         (data: boolean) => {
             console.log(data);
@@ -97,6 +108,7 @@ export class TeamDetailComponent implements OnInit {
     this._teamService.getTeamDetails(id).subscribe(
       (teamData: Team) => {
           this.teamDetails = teamData;
+          this.teamLogo = teamData.pictureLogo;
           this._teamService.getTeamCompetitions(id).subscribe(
             (competitionsData: any) => {
                 this.competitions = competitionsData.filter(x=>x.type=="Liga");

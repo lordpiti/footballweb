@@ -8,6 +8,7 @@ import { SubrouteComponent } from './subroute/subroute.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { TeamModule } from './team/team.module';
+import { SharedModule } from './shared/shared.module';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
@@ -27,7 +28,8 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
     AppRoutingModule,
     ModalModule.forRoot(),
     BootstrapModalModule,
-    TeamModule
+    TeamModule, 
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

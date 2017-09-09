@@ -6,6 +6,7 @@ import { Player } from '../../common/interfaces/player.interface';
 import { Team } from '../../common/interfaces/team.interface';
 import { CropperSettings } from 'ng2-img-cropper';
 import { TeamService} from '../team.service';
+import { ShareDataService } from '../../shared/services/shared-data.service';
 
 //import { ShareDataService } from '../../../services/shareData.component.service';
 
@@ -36,7 +37,8 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
     public displayErrors: boolean = false;
     public isEditing: boolean = false;
 
-    constructor(public dialog: DialogRef<TeamDetailsEditModalWindowData>, public modal: Modal, private _teamService: TeamService) {
+    constructor(public dialog: DialogRef<TeamDetailsEditModalWindowData>, public modal: Modal, 
+        private _teamService: TeamService, private shareDataService : ShareDataService) {
         this.context = dialog.context;
         if (dialog.context.teamDetails) {
             this.teamSelected = dialog.context.teamDetails;
@@ -67,10 +69,16 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
         });
     };
 
-    hahaha(){
-        this._teamService.addBase64Image(this.data.image, 'testTeam.jpg').subscribe(
+    updateTeamLogo(){
+        let cropperImageName = Math.floor(Math.random() * 2000).toString()+'.jpg';
+        this._teamService.addBase64Image(this.data.image, cropperImageName).subscribe(
           (data: any) => {
-            console.log(this.data);
+              console.log(this.data);
+
+            this.shareDataService.setData({ fileName: data.fileName, url: data.url });
+            this.dialog.close();
+            this.dialog.onDestroy.subscribe((value: any) => {
+            });
           },
           (err: any) => {
           }

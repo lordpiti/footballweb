@@ -1,17 +1,20 @@
-<p>
-  team-edit-modal works!
-</p>
-{{model | json}}
+<div class="container-fluid custom-modal-container cropper-modal">
+  <div class="row modal-header">
+    <div class="col-sm-12">
+        <div class="gray-light pull-right pointer xxl" (click)="closeDialog(null)" >×</div>
+        <label class="lg">Upload and crop your photo</label>
+    </div>
+  </div>
 
-<div *ngIf="teamSelected">
+  <div class="row" *ngIf="teamSelected">
+    <div class="col-sm-6">
+        <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+    </div>
+    <div class="col-sm-6">
+        <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+    </div>
+  </div>
 
-  <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
-  <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+  <button class="btn btn-primary" (click)="closeDialog(null)">CLOSE</button>
+  <button class="btn btn-primary" (click)="updateTeamLogo()">UPLOAD to blob storage</button>
 </div>
-
-
-<button class="btn btn-primary" (click)="hahaha()">UPLOAD to blob storage</button>
-
-<button class="btn btn-primary" (click)="updatePicture()">UPDATE IN DB</button>
-
-<button class="btn btn-primary" (click)="closeDialog(null)">CLOSE</button>
