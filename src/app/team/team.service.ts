@@ -97,4 +97,16 @@ export class TeamService {
     return lineChartData;
   }
 
+  public currentTeam: any;
+  private currentTeamSubject: Subject<any> = new Subject<any>();
+
+
+  public setCurrentTeam(_data: any) {
+      this.currentTeam = _data;
+      this.currentTeamSubject.next(_data)
+  };
+  public getCurrentTeam(): Observable<any> {
+      return this.currentTeamSubject.asObservable();
+  };
+
 }

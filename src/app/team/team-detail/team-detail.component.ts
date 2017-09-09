@@ -52,8 +52,6 @@ export class TeamDetailComponent implements OnInit {
         this.getData(this.newid);
 
         this.modalCropperService.getData().subscribe((media: any) => {
-          console.log('ha llegao');
-          console.log(media);
           this.teamLogo = media;
         });
       });
@@ -108,6 +106,7 @@ export class TeamDetailComponent implements OnInit {
     this._teamService.getTeamDetails(id).subscribe(
       (teamData: Team) => {
           this.teamDetails = teamData;
+          this._teamService.setCurrentTeam(teamData);
           this.teamLogo = teamData.pictureLogo;
           this._teamService.getTeamCompetitions(id).subscribe(
             (competitionsData: any) => {

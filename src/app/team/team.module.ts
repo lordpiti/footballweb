@@ -11,6 +11,7 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { ChartsModule } from 'ng2-charts';
 import { TeamChartComponent } from './team-chart/team-chart.component';
+import { SquadComponent } from './squad/squad.component';
 
 const DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -23,7 +24,9 @@ const DROPZONE_CONFIG: DropzoneConfigInterface = {
 
 const teamRoutes: Routes = [
   { path: 'overview',  component: OverviewComponent },
-  { path: 'detail/:id', component: TeamDetailComponent },
+  { path: 'detail/:id', component: TeamDetailComponent, children: [
+    { path:'squad', component: SquadComponent }
+  ] },
   { path: '**',  component: OverviewComponent }
 ];
 
@@ -45,7 +48,9 @@ const teamRoutes: Routes = [
     
   TeamDetailsEditModalComponent,
     
-  TeamChartComponent], 
+  TeamChartComponent,
+    
+  SquadComponent], 
   providers: [
     TeamService
   ],
