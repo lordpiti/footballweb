@@ -1,25 +1,58 @@
-<p>
-  team-detail works!
-</p>
-
-<form #hiveMatchingCriteriaForm="ngForm" id="hiveMatchingCriteriaForm" name="hiveMatchingCriteriaForm">
-  <div class="form-group row margin-top1">
-    <div class="col-md-12">
-        <input required type="text" [(ngModel)]="teamDetails.name" #Name="ngModel" name="name" id="name" />
-    </div>
-  </div>
-</form>
-
-<dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
-
-<button (click)="saveTeamDetails(teamDetails, hiveMatchingCriteriaForm)">Save changes!</button>
-<button (click)="showModalEvent(teamDetails)">BRRR</button>
 
 <div *ngIf="teamDetails">
-  {{teamDetails.playerList | json}}
-
   {{teamDetails.name}}
 
-  <team-chart teamId="{{newid}}"></team-chart>
+  <form #hiveMatchingCriteriaForm="ngForm" id="hiveMatchingCriteriaForm" name="hiveMatchingCriteriaForm">
+    <div class="form-group row margin-top1">
+      <div class="col-md-12">
+          <input required type="text" [(ngModel)]="teamDetails.name" #Name="ngModel" name="name" id="name" />
+      </div>
+    </div>
+  </form>
+
+  <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
+  
+  <button class="btn btn-primary" (click)="saveTeamDetails(teamDetails, hiveMatchingCriteriaForm)">Save changes!</button>
+  <button class="btn btn-primary" (click)="showModalEvent(teamDetails)">Open popup</button>
+
+  <div class="row">
+    <div class="col-sm-4">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Position</th>
+                <th>Age</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of teamDetails.playerList">
+                <td>{{item.name}}</td>
+                <td>{{item.surname}}</td>
+                <td>xx</td>
+                <td>11</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="col-sm-8" *ngIf="selectedCompetition && selectedSeason">
+      <team-chart teamId="{{newid}}" season="{{selectedSeason}}" competitionName="{{selectedCompetition}}"></team-chart>
+
+      <select id="competition" name="competition" (change)="onChangeCompetition($event.target.value)">
+        <option *ngFor="let competition of competitions" value="{{competition.competitionName}}" >
+            {{competition.competitionName}}
+        </option>
+      </select>
+      
+      <select id="season" name="season" (change)="onChangeSeason($event.target.value)">
+          <option *ngFor="let season of seasons" value="{{season}}" >
+              {{season}}
+          </option>
+        </select>
+    </div>
+  </div>
+
+  
 </div>
 

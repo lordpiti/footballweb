@@ -37,6 +37,13 @@ export class TeamService {
         .map((res: Response) => res.json());
   }
 
+  getTeamCompetitions(id: number) {
+    var url = this._apiUrl+"player/competitions/"+id;
+    
+    return this.http.get(url, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
+
   saveTeamDetails(teamDetails: Team) {
     var url = this._apiUrl+"player/saveTeamDetails";
     

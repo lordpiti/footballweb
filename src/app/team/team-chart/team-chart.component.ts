@@ -8,6 +8,8 @@ import { TeamService} from '../team.service';
 export class TeamChartComponent {
 
   @Input() teamId: number = null;
+  @Input() competitionName: string = null;
+  @Input() season: string = null;
 
   constructor(private _teamService: TeamService){
 
@@ -56,16 +58,16 @@ export class TeamChartComponent {
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
 
-  public randomize():void {
-    let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-      }
-    }
-    this.lineChartData = _lineChartData;
-  }
+  // public randomize():void {
+  //   let _lineChartData:Array<any> = new Array(this.lineChartData.length);
+  //   for (let i = 0; i < this.lineChartData.length; i++) {
+  //     _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
+  //     for (let j = 0; j < this.lineChartData[i].data.length; j++) {
+  //       _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
+  //     }
+  //   }
+  //   this.lineChartData = _lineChartData;
+  // }
 
   // events
   public chartClicked(e:any):void {
@@ -77,8 +79,12 @@ export class TeamChartComponent {
   }
 
   ngOnInit() {
-    // In a real app: dispatch action to load the details here.
-    this._teamService.getClasification(this.teamId,'LFP','2007-2008').subscribe(
+    this.loadChartData(this.teamId, this.competitionName,this.season);
+  }
+
+  private loadChartData(teamId: number, competitionName: string, season: string){
+    this.lineChartData = [];
+    this._teamService.getClasification(teamId, competitionName,season).subscribe(
       (data: any) => {
         this.lineChartData.push(data.positions),
         this.lineChartData.push(data.goalsForList),
@@ -89,5 +95,10 @@ export class TeamChartComponent {
       (err: any) => {
       }
     );
+  }
+
+  ngOnChanges(changes:any){
+    console.log(changes);
+    this.loadChartData(this.teamId, this.competitionName, changes.season.currentValue);
   }
 }

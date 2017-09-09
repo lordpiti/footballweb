@@ -1,5 +1,5 @@
 <div class="row" *ngIf="lineChartData && lineChartData.length>0">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div style="display: block;">
     <canvas baseChart width="400" height="400"
                 [datasets]="lineChartData"
@@ -12,7 +12,7 @@
                 (chartClick)="chartClicked($event)"></canvas>
     </div>
   </div>
-  <div class="col-md-6" style="margin-bottom: 10px">
+  <!-- <div class="col-md-6" style="margin-bottom: 10px">
     <table class="table table-responsive table-condensed">
       <tr>
         <th *ngFor="let label of lineChartLabels">{{label}}</th>
@@ -22,5 +22,5 @@
       </tr>
     </table>
     <button (click)="randomize()">CLICK</button>
-  </div>
+  </div> -->
 </div>
