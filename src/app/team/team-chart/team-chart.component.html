@@ -1,3 +1,22 @@
+<div class="row">
+    <div class="col-sm-4">
+
+    </div>
+    <div class="col-sm-8" *ngIf="selectedCompetition && selectedSeason">
+      <select id="competition" name="competition" (change)="onChangeCompetition($event.target.value)">
+        <option *ngFor="let competition of competitions" value="{{competition.competitionName}}" >
+            {{competition.competitionName}}
+        </option>
+      </select>
+      
+      <select id="season" name="season" (change)="onChangeSeason($event.target.value)">
+          <option *ngFor="let season of seasons" value="{{season}}" >
+              {{season}}
+          </option>
+        </select>
+    </div>
+  </div>
+
 <div class="row" *ngIf="lineChartData && lineChartData.length>0">
   <div class="col-md-12">
     <div style="display: block;">

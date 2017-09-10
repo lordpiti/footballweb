@@ -11,10 +11,6 @@
     </div>
   </div>
 
-
-
-
-
   <div class="row">
       <div class="col-sm-3">
           <a href="#" class="nav-tabs-dropdown btn btn-block btn-primary">Tabs</a>
@@ -31,44 +27,10 @@
           </ul>
       </div>
       <div class="col-sm-9">
-
+          <router-outlet></router-outlet>
       </div>
   </div>
-  <!-- <div class="row">
-      <div class="col-sm-12">
-          <h2>Nav-tabs Dropdown <small>Horizontal</small></h2>
-          <p class="lead">Dropdown appears at width less than or equal to 768px</p>
-          <a href="#" class="nav-tabs-dropdown btn btn-block btn-primary">Tabs</a>
-          <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-tabs-horizontal">
-            <li class="active"><a href="#htab1" data-toggle="tab">Tab 1</a></li>
-            <li><a href="#htab2" data-toggle="tab">Tab 2</a></li>
-            <li><a href="#htab3" data-toggle="tab">Tab 3</a></li>
-          </ul>
-          <div class="tab-content">
-              <div role="tabpanel" class="tab-pane fade in active" id="htab1">
-                  <h3>Tab 1</h3>
-                  <p>Add the class <code>.nav-tabs-horizontal</code> to the tabs list for the dropdown to work with horizontal tabs.
-                  <pre>
-                      <code class="language-html" data-lang="html">
-                         <p><span><</span>a <span style="color: #4f9fcf">href=</span><span style="color: #d44950;">"#"</span> <span style="color: #4f9fcf">class=</span><span style="color: #d44950;">"nav-tabs-dropdown btn btn-block btn-primary"</span><span>></span>Tabs<span><span><</span>/<span>a></span></span><br /><span><span><</span>ul</span> <span style="color: #4f9fcf">id=</span><span style="color: #d44950;">"nav-tabs-wrapper"</span> <span style="color: #4f9fcf">class=</span><span style="color: #d44950;">"nav nav-tabs nav-tabs-horizontal"</span><span>></span></p>
-                      </code>  
-                  </pre>
-              </div>
-              <div role="tabpanel" class="tab-pane fade" id="htab2">
-                  <h3>Tab 2</h3>
-                  <p> Mauris imperdiet dignissim ante, in efficitur mauris elementum sed. Cras vulputate malesuada magna. Morbi tincidunt eros a dui cursus, vitae dignissim nulla scelerisque. Duis pharetra scelerisque mi vel luctus. Cras eu purus efficitur, blandit nisi id, fringilla nulla.</p>
-              </div>
-              <div role="tabpanel" class="tab-pane fade in" id="htab3">
-                  <h3>Tab 3</h3>
-                  <p>Etiam id pharetra quam. Morbi tristique nunc vel sapien dapibus, sit amet imperdiet quam venenatis. Vestibulum et suscipit urna. Suspendisse volutpat quis est eu volutpat. Nulla non tortor venenatis turpis congue aliquet. Vivamus at elit vel massa elementum tempor sit amet sed odio. Nullam placerat, arcu sed ullamcorper ornare, erat erat placerat quam, in feugiat nulla purus in nunc. Maecenas vitae erat auctor, aliquam tellus et, vulputate eros.</p>
-              </div>
-          </div>
-      </div>
-  </div> -->
 
-  <div class="row">
-    <router-outlet></router-outlet>
-  </div>
 
   <form #hiveMatchingCriteriaForm="ngForm" id="hiveMatchingCriteriaForm" name="hiveMatchingCriteriaForm">
     <div class="form-group row margin-top1">
@@ -81,27 +43,6 @@
   <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
   
   <button class="btn btn-primary" (click)="saveTeamDetails(teamDetails, hiveMatchingCriteriaForm)">Save changes!</button>
-
-  <div class="row">
-    <div class="col-sm-4">
-
-    </div>
-    <div class="col-sm-8" *ngIf="selectedCompetition && selectedSeason">
-      <team-chart teamId="{{newid}}" season="{{selectedSeason}}" competitionName="{{selectedCompetition}}"></team-chart>
-
-      <select id="competition" name="competition" (change)="onChangeCompetition($event.target.value)">
-        <option *ngFor="let competition of competitions" value="{{competition.competitionName}}" >
-            {{competition.competitionName}}
-        </option>
-      </select>
-      
-      <select id="season" name="season" (change)="onChangeSeason($event.target.value)">
-          <option *ngFor="let season of seasons" value="{{season}}" >
-              {{season}}
-          </option>
-        </select>
-    </div>
-  </div>
 
   
 </div>

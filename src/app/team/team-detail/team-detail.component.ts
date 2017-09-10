@@ -27,12 +27,8 @@ export class TeamDetailComponent implements OnInit {
   };
 
   public teamDetails: Team;
-  public competitions: any;
-  public seasons: any;
-  public teamLogo: any;
 
-  public selectedCompetition:string;
-  public selectedSeason: string;
+  public teamLogo: any;
 
   @Input() newid: number = null;
 
@@ -96,32 +92,12 @@ export class TeamDetailComponent implements OnInit {
 
   }
 
-  onChangeCompetition(competitionName: string){
-    this.seasons = this.competitions.filter(x=>x.competitionName == competitionName).map(x=>x.season);
-    this.selectedCompetition = competitionName;
-    this.onChangeSeason(this.seasons[0]);
-  }
-
-  onChangeSeason(season:string){
-    this.selectedSeason = season;
-  }
-
   private getData(id: number):void{
     this._teamService.getTeamDetails(id).subscribe(
       (teamData: Team) => {
           this.teamDetails = teamData;
           this._teamService.setCurrentTeam(teamData);
           this.teamLogo = teamData.pictureLogo;
-          this._teamService.getTeamCompetitions(id).subscribe(
-            (competitionsData: any) => {
-                this.competitions = competitionsData.filter(x=>x.type=="Liga");
-                if (this.competitions.length>0){
-                  this.onChangeCompetition(this.competitions[0].competitionName);
-                }
-            },
-            (err: any) => {
-            }
-          );
       },
       (err: any) => {
       }

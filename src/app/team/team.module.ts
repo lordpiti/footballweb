@@ -18,7 +18,8 @@ import { SquadComponent } from './squad/squad.component';
 const teamRoutes: Routes = [
   { path: 'overview',  component: OverviewComponent },
   { path: 'detail/:id', component: TeamDetailComponent, children: [
-    { path:'squad', component: SquadComponent }
+    { path:'squad', component: SquadComponent },
+    { path:'competitions', component: TeamChartComponent }
   ] },
   { path: '**',  component: OverviewComponent }
 ];

@@ -7,9 +7,12 @@ import { TeamService} from '../team.service';
 })
 export class TeamChartComponent {
 
-  @Input() teamId: number = null;
-  @Input() competitionName: string = null;
-  @Input() season: string = null;
+  public teamId: number = null;
+  public competitions: any;
+  public seasons: any;
+
+  public selectedCompetition:string;
+  public selectedSeason: string;
 
   constructor(private _teamService: TeamService){
 
@@ -58,16 +61,6 @@ export class TeamChartComponent {
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
 
-  // public randomize():void {
-  //   let _lineChartData:Array<any> = new Array(this.lineChartData.length);
-  //   for (let i = 0; i < this.lineChartData.length; i++) {
-  //     _lineChartData[i] = {data: new Array(this.lineChartData[i].data.length), label: this.lineChartData[i].label};
-  //     for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-  //       _lineChartData[i].data[j] = Math.floor((Math.random() * 100) + 1);
-  //     }
-  //   }
-  //   this.lineChartData = _lineChartData;
-  // }
 
   // events
   public chartClicked(e:any):void {
@@ -79,7 +72,19 @@ export class TeamChartComponent {
   }
 
   ngOnInit() {
-    this.loadChartData(this.teamId, this.competitionName,this.season);
+
+    //Preguntar como hacer esto solamente con subscribe ... no parece q se pueda
+    if (this._teamService.currentTeam){
+      this.teamId = this._teamService.currentTeam.id;
+      this.loadCompetitions();
+      
+    }
+
+    this._teamService.getCurrentTeam().subscribe(data => {
+      this.teamId = data.id;
+      this.loadCompetitions();
+    });
+
   }
 
   private loadChartData(teamId: number, competitionName: string, season: string){
@@ -97,8 +102,29 @@ export class TeamChartComponent {
     );
   }
 
-  ngOnChanges(changes:any){
-    console.log(changes);
-    this.loadChartData(this.teamId, this.competitionName, changes.season.currentValue);
+  loadCompetitions(){
+    this._teamService.getTeamCompetitions(this.teamId).subscribe(
+      (competitionsData: any) => {
+          this.competitions = competitionsData.filter(x=>x.type=="Liga");
+          if (this.competitions.length>0){
+            this.onChangeCompetition(this.competitions[0].competitionName);
+          }
+          this.loadChartData(this.teamId, this.selectedCompetition,this.selectedSeason);
+      },
+      (err: any) => {
+      }
+    );
   }
+
+  onChangeCompetition(competitionName: string){
+    this.seasons = this.competitions.filter(x=>x.competitionName == competitionName).map(x=>x.season);
+    this.selectedCompetition = competitionName;
+    this.onChangeSeason(this.seasons[0]);
+  }
+
+  onChangeSeason(season:string){
+    this.selectedSeason = season;
+    this.loadChartData(this.teamId, this.selectedCompetition, this.selectedSeason);
+  }
+
 }
