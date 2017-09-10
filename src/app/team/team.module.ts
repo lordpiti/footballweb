@@ -12,12 +12,17 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { ChartsModule } from 'ng2-charts';
 import { TeamChartComponent } from './team-chart/team-chart.component';
 import { SquadComponent } from './squad/squad.component';
+import { BasicInfoComponent } from './basic-info/basic-info.component';
+import { GooglemapsService } from './googlemaps.service';
+import { AgmCoreModule } from '@agm/core';
 
 
 
 const teamRoutes: Routes = [
   { path: 'overview',  component: OverviewComponent },
   { path: 'detail/:id', component: TeamDetailComponent, children: [
+    { path: '',   redirectTo: 'summary', pathMatch: 'full' },
+    { path:'summary', component: BasicInfoComponent },
     { path:'squad', component: SquadComponent },
     { path:'competitions', component: TeamChartComponent }
   ] },
@@ -32,7 +37,10 @@ const teamRoutes: Routes = [
     ReactiveFormsModule,
     DropzoneModule.forChild(), 
     ImageCropperModule,
-    ChartsModule
+    ChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAhnlVo62cLGyWwCM6JS3I32hZE5AoBfHI'
+    })
   ],
   declarations: [
     
@@ -44,9 +52,12 @@ const teamRoutes: Routes = [
     
   TeamChartComponent,
     
-  SquadComponent], 
+  SquadComponent,
+    
+  BasicInfoComponent], 
   providers: [
-    TeamService
+    TeamService, 
+    GooglemapsService
   ],
   exports: [
     RouterModule

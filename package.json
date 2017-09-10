@@ -36,7 +36,8 @@
     "ngx-modialog": "^3.0.4",
     "ngx-dropzone-wrapper": "^4.6.0",
     "ng2-charts": "^1.6.0",
-    "ng2-toastr": "^4.1.2"
+    "ng2-toastr": "^4.1.2",
+    "@agm/core":"^1.0.0-beta.1"
   },
   "devDependencies": {
     "@types/jasmine": "~2.5.53",
