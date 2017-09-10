@@ -84,16 +84,6 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
           }
         );
       }
-    
-      updatePicture(){
-        this._teamService.updateTeamImage(this.teamDetails.id, { FileName: 'testTeam.jpg' } ).subscribe(
-          (data: any) => {
-            console.log(this.data);
-          },
-          (err: any) => {
-          }
-        );
-      }
 
 
     // notifyImageUploaded(mediaItem: any)

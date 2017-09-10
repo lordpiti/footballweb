@@ -24,28 +24,28 @@ export class TeamService {
   }
 
   getAllTeams() {
-    var url = this._apiUrl+"player/teams";
+    var url = this._apiUrl+"team/teams";
 
     return this.http.get(url, this._requestOptions)
         .map((res: Response) => res.json());
   }
 
   getTeamDetails(id: number) {
-    var url = this._apiUrl+"player/teams/"+id+"/year/2009";
+    var url = this._apiUrl+"team/teams/"+id+"/year/2009";
     
     return this.http.get(url, this._requestOptions)
         .map((res: Response) => res.json());
   }
 
   getTeamCompetitions(id: number) {
-    var url = this._apiUrl+"player/competitions/"+id;
+    var url = this._apiUrl+"team/competitions/"+id;
     
     return this.http.get(url, this._requestOptions)
         .map((res: Response) => res.json());
   }
 
   saveTeamDetails(teamDetails: Team) {
-    var url = this._apiUrl+"player/saveTeamDetails";
+    var url = this._apiUrl+"team/saveTeamDetails";
     
     return this.http.post(url, teamDetails, this._requestOptions)
         .map((res: Response) => res.json());
@@ -58,15 +58,8 @@ export class TeamService {
         .map((res: Response) => res.json());
   }
 
-  updateTeamImage(teamId: number, mediaItem: any){
-    var url = this._apiUrl+"player/UpdateTeamPicture/"+teamId;
-    
-    return this.http.post(url, mediaItem, this._requestOptions)
-        .map((res: Response) => res.json());
-  }
-
   getClasification(teamId: number, competitionName: string, season: string) {
-    var url = this._apiUrl+"player/clasification/"+teamId+
+    var url = this._apiUrl+"team/clasification/"+teamId+
     "/competition/"+competitionName+"/season/"+season;
     
     return this.http.get(url, this._requestOptions)

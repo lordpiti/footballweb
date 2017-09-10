@@ -13,13 +13,6 @@ import { ChartsModule } from 'ng2-charts';
 import { TeamChartComponent } from './team-chart/team-chart.component';
 import { SquadComponent } from './squad/squad.component';
 
-const DROPZONE_CONFIG: DropzoneConfigInterface = {
-  // Change this to your upload POST address:
-  url: 'http://localhost:57543/api/globalmedia/UploadDocument',
-  maxFilesize: 50,
-  acceptedFiles: 'image/*',
-  paramName: 'files'
-};
 
 
 const teamRoutes: Routes = [

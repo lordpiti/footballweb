@@ -8,7 +8,7 @@ import { TeamService} from '../team.service';
 })
 export class SquadComponent implements OnInit {
 
-private playerList: any;
+  public playerList: any;
 
   constructor(private _teamService: TeamService) { 
 

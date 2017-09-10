@@ -11,6 +11,8 @@ import { TeamModule } from './team/team.module';
 import { SharedModule } from './shared/shared.module';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
@@ -29,7 +32,8 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
     ModalModule.forRoot(),
     BootstrapModalModule,
     TeamModule, 
-    SharedModule
+    SharedModule, 
+    ToastModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

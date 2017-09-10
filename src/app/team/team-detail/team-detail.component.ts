@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { Team } from '../../common/interfaces/team.interface';
 import { TeamService} from '../team.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -10,6 +10,7 @@ import { NgForm } from '@angular/forms';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { environment } from '../../../environments/environment';
 import { ShareDataService } from '../../shared/services/shared-data.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-team-detail',
@@ -37,12 +38,15 @@ export class TeamDetailComponent implements OnInit {
 
   constructor(private router: Router, private _teamService: TeamService, 
     private route: ActivatedRoute, public modal: Modal,
-    private modalCropperService: ShareDataService){
+    private modalCropperService: ShareDataService,
+    public toastr: ToastsManager, vcr: ViewContainerRef){
+      this.toastr.setRootViewContainerRef(vcr);
       this.teamDetails = { name:"", id: 0, playerList:[], pictureLogo: {}};
   }
 
 
   ngOnInit() {
+
     if (!this.newid){
       //let id = this.route.snapshot.params['id'];
 
@@ -77,7 +81,7 @@ export class TeamDetailComponent implements OnInit {
       team.pictureLogo = this.teamLogo;
       this._teamService.saveTeamDetails(team).subscribe(
         (data: boolean) => {
-            console.log(data);
+          this.toastr.success('Team details successfully saved', 'Success!');
         },
         (err: any) => {
         }
