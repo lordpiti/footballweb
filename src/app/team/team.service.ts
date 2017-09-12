@@ -58,9 +58,17 @@ export class TeamService {
         .map((res: Response) => res.json());
   }
 
-  getClasification(teamId: number, competitionName: string, season: string) {
+  getChartData(teamId: number, competitionName: string, season: string) {
     var url = this._apiUrl+"team/clasification/"+teamId+
     "/competition/"+competitionName+"/season/"+season;
+    
+    return this.http.get(url, this._requestOptions)
+        .map((res: Response) => this.convertToChartData(res.json()));
+  }
+
+  getClasificationData(competitionId: number, round: string) {
+    var url = this._apiUrl+"team/clasification/"+competitionId+
+    "/round/"+round;
     
     return this.http.get(url, this._requestOptions)
         .map((res: Response) => this.convertToChartData(res.json()));
