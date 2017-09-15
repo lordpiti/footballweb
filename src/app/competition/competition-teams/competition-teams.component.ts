@@ -8,8 +8,8 @@ import { CompetitionService } from '../competition.service';
   styleUrls: ['./competition-teams.component.scss']
 })
 export class CompetitionTeamsComponent implements OnInit {
-
-  private teamList:any;
+ i
+  public teamList:any;
   private competitionId: number;
 
   constructor(private _competitionService: CompetitionService) { }
