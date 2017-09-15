@@ -71,7 +71,7 @@ export class TeamService {
     "/round/"+round;
     
     return this.http.get(url, this._requestOptions)
-        .map((res: Response) => this.convertToChartData(res.json()));
+        .map((res: Response) => res.json());
   }
 
   private convertToChartData(data: any) {

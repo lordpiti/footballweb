@@ -8,6 +8,8 @@ import { SubrouteComponent } from './subroute/subroute.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { TeamModule } from './team/team.module';
+import { CompetitionModule } from './competition/competition.module';
+import { PlayerModule } from './player/player.module';
 import { SharedModule } from './shared/shared.module';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
@@ -31,6 +33,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppRoutingModule,
     ModalModule.forRoot(),
     BootstrapModalModule,
+    CompetitionModule,
     TeamModule, 
     SharedModule, 
     ToastModule.forRoot()

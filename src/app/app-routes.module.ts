@@ -1,13 +1,3 @@
-// import { Routes, RouterModule } from '@angular/router';
-// import { HomeComponent } from './home/home.component';
-// import { SubrouteComponent } from './subroute/subroute.component';
-
-
-// export const ROUTES: Routes = [
-//   { path: '', component: HomeComponent },
-//   { path: 'subroute', component: SubrouteComponent }
-// ];
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes }  from '@angular/router';
@@ -20,6 +10,7 @@ const appRoutes: Routes = [
   { path: 'subrouteComponent', component: SubrouteComponent },
   { path: '',   redirectTo: '/teams', pathMatch: 'full' },
   { path: 'teams', loadChildren: './team/team.module#TeamModule' },
+  { path: 'competitions', loadChildren: './competition/competition.module#CompetitionModule' },
   { path: '**', component: PageNotFoundComponent }
 ];
 @NgModule({
