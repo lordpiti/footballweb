@@ -6,6 +6,7 @@ import { CompetitionOverviewComponent } from './competition-overview/competition
 import { CompetitionDetailComponent } from './competition-detail/competition-detail.component';
 import { CompetitionBasicInfoComponent } from './competition-basic-info/competition-basic-info.component';
 import { CompetitionTeamsComponent } from './competition-teams/competition-teams.component';
+import { CompetitionService } from '../competition/competition.service';
 
 const competitionRoutes: Routes = [
   { path: 'competitions',  component: CompetitionOverviewComponent },
@@ -22,6 +23,10 @@ const competitionRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(competitionRoutes),
   ],
-  declarations: [CompetitionRoundComponent, CompetitionOverviewComponent, CompetitionDetailComponent, CompetitionBasicInfoComponent, CompetitionTeamsComponent]
+  providers: [
+    CompetitionService
+  ],
+  declarations: [CompetitionRoundComponent, CompetitionOverviewComponent, CompetitionDetailComponent, 
+    CompetitionBasicInfoComponent, CompetitionTeamsComponent]
 })
 export class CompetitionModule { }

@@ -6,9 +6,9 @@ import { SubrouteComponent } from './subroute/subroute.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
-  { path: 'HomeComponent', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'subrouteComponent', component: SubrouteComponent },
-  { path: '',   redirectTo: '/teams', pathMatch: 'full' },
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: 'teams', loadChildren: './team/team.module#TeamModule' },
   { path: 'competitions', loadChildren: './competition/competition.module#CompetitionModule' },
   { path: '**', component: PageNotFoundComponent }

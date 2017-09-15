@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CompetitionService } from '../competition.service'; 
 
 @Component({
   selector: 'app-competition-overview',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompetitionOverviewComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  public competitionList: Array<any>;
+   
+    constructor(private _competitionService : CompetitionService) { 
+  
+    }
+  
+    ngOnInit() {
+      this._competitionService.getAllCompetitions().subscribe(
+        (data: Array<any>) => {
+            this.competitionList = data;
+            //this.surveyService.setProjectFollowerData(data);
+        },
+        (err: any) => {
+        }
+      );
+    }
 
 }
+
