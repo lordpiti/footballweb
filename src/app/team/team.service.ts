@@ -23,8 +23,8 @@ export class TeamService {
     this._apiUrl = environment.api_url;//"http://localhost:57543/api/";
   }
 
-  getAllTeams() {
-    var url = this._apiUrl+"team/teams";
+  getTeams(competitionId: number) {
+    var url = this._apiUrl+"team/teams/"+(competitionId?competitionId:'') ;
 
     return this.http.get(url, this._requestOptions)
         .map((res: Response) => res.json());

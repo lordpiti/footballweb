@@ -13,7 +13,7 @@ const competitionRoutes: Routes = [
   { path: 'detail/:id', component: CompetitionDetailComponent, children: [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
     { path:'summary', component: CompetitionBasicInfoComponent },
-    { path:'teams/:season', component: CompetitionTeamsComponent }
+    { path:'teams', component: CompetitionTeamsComponent }
   ] },
   { path: '**',  component: CompetitionOverviewComponent }
 ];

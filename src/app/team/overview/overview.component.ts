@@ -19,7 +19,7 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._teamService.getAllTeams().subscribe(
+    this._teamService.getTeams(null).subscribe(
       (data: Array<Team>) => {
           this.teamList = data;
           //this.surveyService.setProjectFollowerData(data);

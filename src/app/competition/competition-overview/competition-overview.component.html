@@ -5,7 +5,7 @@
 
 <ul>
   <li *ngFor="let item of competitionList;let i=index">
-    <a routerLink="/competition/detail/{{item.id}}" routerLinkActive="active">{{item.name}}</a>
+    <a routerLink="/competitions/detail/{{item.id}}" routerLinkActive="active">{{item.name}}</a>
     <!-- <button class="btn btn-default" (click)="setSelectedTeamId(item.id)">select</button> -->
   </li>
 </ul>

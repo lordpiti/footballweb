@@ -30,4 +30,30 @@ export class CompetitionService {
         .map((res: Response) => res.json());
   }
 
+  public getTeams(competitionId: number) {
+    var url = this._apiUrl+"team/teams/"+competitionId;
+
+    return this.http.get(url, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
+
+  public currentCompetition: any;
+  private currentCompetitionSubject: Subject<any> = new Subject<any>();
+
+
+  public setCurrentCompetition(_data: any) {
+      this.currentCompetition = _data;
+      this.currentCompetitionSubject.next(_data)
+  };
+  public getCurrentCompetition(): Observable<any> {
+      return this.currentCompetitionSubject.asObservable();
+  };
+
+  public getCompetitionDetails(id: number) {
+    var url = this._apiUrl+"competition/"+id;
+    
+    return this.http.get(url, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
+
 }

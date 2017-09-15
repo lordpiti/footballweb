@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CompetitionService } from '../competition.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-competition-detail',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompetitionDetailComponent implements OnInit {
 
-  constructor() { }
+private competitionDetails: any;
+
+  private competitionId: number = null;
+
+  constructor(private router: Router,private _competitionService: CompetitionService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.competitionId = +params['id']; // (+) converts string 'id' to a number
+
+      this._competitionService.setCurrentCompetition(this.competitionId);
+    });
   }
 
 }
