@@ -107,8 +107,9 @@ export class TeamChartComponent {
       (competitionsData: any) => {
           this.competitions = competitionsData.filter(x=>x.type=="Liga");
           if (this.competitions.length>0){
-            this.onChangeCompetition(this.competitions[0].competitionName);
+            this.onChangeCompetition(this.competitions[0].name);
           }
+          debugger;
           this.loadChartData(this.teamId, this.selectedCompetition,this.selectedSeason);
       },
       (err: any) => {
@@ -117,7 +118,7 @@ export class TeamChartComponent {
   }
 
   onChangeCompetition(competitionName: string){
-    this.seasons = this.competitions.filter(x=>x.competitionName == competitionName).map(x=>x.season);
+    this.seasons = this.competitions.filter(x=>x.name == competitionName).map(x=>x.season);
     this.selectedCompetition = competitionName;
     this.onChangeSeason(this.seasons[0]);
   }

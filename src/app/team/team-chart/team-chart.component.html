@@ -4,8 +4,8 @@
     </div>
     <div class="col-sm-8" *ngIf="selectedCompetition && selectedSeason">
       <select id="competition" name="competition" (change)="onChangeCompetition($event.target.value)">
-        <option *ngFor="let competition of competitions" value="{{competition.competitionName}}" >
-            {{competition.competitionName}}
+        <option *ngFor="let competition of competitions" value="{{competition.name}}" >
+            {{competition.name}}
         </option>
       </select>
       
