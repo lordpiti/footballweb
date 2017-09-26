@@ -19,7 +19,7 @@ import { AgmCoreModule } from '@agm/core';
 
 
 const teamRoutes: Routes = [
-  { path: 'overview',  component: OverviewComponent },
+  { path: '',  component: OverviewComponent },
   { path: 'detail/:id', component: TeamDetailComponent, children: [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
     { path:'summary', component: BasicInfoComponent },

@@ -11,6 +11,7 @@ const appRoutes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: 'teams', loadChildren: './team/team.module#TeamModule' },
   { path: 'competitions', loadChildren: './competition/competition.module#CompetitionModule' },
+  { path: 'players', loadChildren: './player/player.module#PlayerModule' },
   { path: '**', component: PageNotFoundComponent }
 ];
 @NgModule({

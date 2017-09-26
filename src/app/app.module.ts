@@ -34,6 +34,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ModalModule.forRoot(),
     BootstrapModalModule,
     CompetitionModule,
+    PlayerModule,
     TeamModule, 
     SharedModule, 
     ToastModule.forRoot()

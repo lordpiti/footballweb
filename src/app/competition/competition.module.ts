@@ -10,7 +10,7 @@ import { CompetitionService } from '../competition/competition.service';
 
 
 const competitionRoutes: Routes = [
-  { path: 'competitions',  component: CompetitionOverviewComponent },
+  { path: '',  component: CompetitionOverviewComponent },
   { path: 'detail/:id', component: CompetitionDetailComponent, children: [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
     { path:'summary', component: CompetitionBasicInfoComponent },

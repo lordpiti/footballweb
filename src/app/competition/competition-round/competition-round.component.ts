@@ -10,7 +10,7 @@ export class CompetitionRoundComponent implements OnInit {
 
 
   private competitionId: number;
-  private roundData: any;
+  public roundData: any;
   
   constructor(private _competitionService: CompetitionService) { }
 
