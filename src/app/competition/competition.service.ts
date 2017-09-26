@@ -12,6 +12,9 @@ export class CompetitionService {
   private _apiUrl: string;
   private _requestOptions: RequestOptions;
   
+  public currentCompetition: any;
+  private currentCompetitionSubject: Subject<any> = new Subject<any>();
+  
   constructor(public http: Http) {
     let myHeaders: Headers = new Headers();
     myHeaders.append('Accept', 'q=0.8;application/json;q=0.9'); //This was needed for firefox, because apparently it doesn't add the "Accept application/json" header automatically
@@ -22,6 +25,7 @@ export class CompetitionService {
     });
     this._apiUrl = environment.api_url;
   }
+
 
   getAllCompetitions() {
     var url = this._apiUrl+"competition";
@@ -37,10 +41,6 @@ export class CompetitionService {
         .map((res: Response) => res.json());
   }
 
-  public currentCompetition: any;
-  private currentCompetitionSubject: Subject<any> = new Subject<any>();
-
-
   public setCurrentCompetition(_data: any) {
       this.currentCompetition = _data;
       this.currentCompetitionSubject.next(_data)
@@ -51,6 +51,13 @@ export class CompetitionService {
 
   public getCompetitionDetails(id: number) {
     var url = this._apiUrl+"competition/"+id;
+    
+    return this.http.get(url, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
+
+  public getCompetitionRoundGames(competitionId: number, round: string) {
+    var url = this._apiUrl+"competition/"+competitionId+"/round/"+round;
     
     return this.http.get(url, this._requestOptions)
         .map((res: Response) => res.json());
