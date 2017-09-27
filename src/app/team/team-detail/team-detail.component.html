@@ -1,6 +1,5 @@
 
-<div *ngIf="teamDetails">
-
+<div *ngIf="teamDetails" [ngBusy]="busy">
   <div class="row">
     <div class="col-sm-9">
       <h3>{{teamDetails.name}}</h3>

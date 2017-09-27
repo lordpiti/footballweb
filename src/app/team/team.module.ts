@@ -15,6 +15,7 @@ import { SquadComponent } from './squad/squad.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { GooglemapsService } from './googlemaps.service';
 import { AgmCoreModule } from '@agm/core';
+import { BusyModule } from 'angular2-busy';
 
 
 
@@ -40,7 +41,8 @@ const teamRoutes: Routes = [
     ChartsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAhnlVo62cLGyWwCM6JS3I32hZE5AoBfHI'
-    })
+    }),
+    BusyModule
   ],
   declarations: [
     

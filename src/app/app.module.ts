@@ -13,8 +13,8 @@ import { PlayerModule } from './player/player.module';
 import { SharedModule } from './shared/shared.module';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({

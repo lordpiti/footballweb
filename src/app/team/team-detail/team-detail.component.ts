@@ -11,6 +11,7 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { environment } from '../../../environments/environment';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-team-detail',
@@ -31,6 +32,8 @@ export class TeamDetailComponent implements OnInit {
   public teamLogo: any;
 
   @Input() newid: number = null;
+
+  busy: Subscription;
 
   constructor(private router: Router, private _teamService: TeamService, 
     private route: ActivatedRoute, public modal: Modal,
@@ -93,7 +96,7 @@ export class TeamDetailComponent implements OnInit {
   }
 
   private getData(id: number):void{
-    this._teamService.getTeamDetails(id).subscribe(
+    this.busy = this._teamService.getTeamDetails(id).subscribe(
       (teamData: Team) => {
           this.teamDetails = teamData;
           this._teamService.setCurrentTeam(teamData);
