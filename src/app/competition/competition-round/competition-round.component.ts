@@ -12,7 +12,9 @@ export class CompetitionRoundComponent implements OnInit {
   private competitionId: number;
   public roundData: any;
   
-  constructor(private _competitionService: CompetitionService) { }
+  constructor(private _competitionService: CompetitionService) { 
+
+  }
 
   ngOnInit() {
     
