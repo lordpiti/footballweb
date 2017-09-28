@@ -7,6 +7,8 @@ import { CompetitionBasicInfoComponent } from './competition-basic-info/competit
 import { CompetitionTeamsComponent } from './competition-teams/competition-teams.component';
 import { CompetitionRoundComponent } from './competition-round/competition-round.component';
 import { CompetitionService } from '../competition/competition.service';
+import { SharedModule } from '../shared/shared.module';
+import { MatchComponent } from '../shared/components/match/match.component';
 
 
 const competitionRoutes: Routes = [
@@ -15,6 +17,7 @@ const competitionRoutes: Routes = [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
     { path:'summary', component: CompetitionBasicInfoComponent },
     { path:'rounds', component: CompetitionRoundComponent },
+    { path:'match/:id', component: MatchComponent },
     { path:'teams', component: CompetitionTeamsComponent }
   ] },
   { path: '**',  component: CompetitionOverviewComponent }
@@ -22,7 +25,7 @@ const competitionRoutes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule, SharedModule,
     RouterModule.forChild(competitionRoutes),
   ],
   providers: [

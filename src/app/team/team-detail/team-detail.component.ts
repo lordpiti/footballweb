@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
-import { Team } from '../../common/interfaces/team.interface';
+import { Team } from '../../shared/interfaces/team.interface';
 import { TeamService} from '../team.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';

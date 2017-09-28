@@ -4,7 +4,7 @@ import { TeamService } from './team.service';
 import { OverviewComponent } from './overview/overview.component';
 import { RouterModule, Routes } from '@angular/router';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
-import {ImageCropperComponent, CropperSettings, ImageCropperModule} from 'ng2-img-cropper';
+import { ImageCropperComponent, CropperSettings, ImageCropperModule } from 'ng2-img-cropper';
 import { TeamDetailsEditModalComponent } from './team-edit-modal/team-edit-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
@@ -15,7 +15,7 @@ import { SquadComponent } from './squad/squad.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { GooglemapsService } from './googlemaps.service';
 import { AgmCoreModule } from '@agm/core';
-import { BusyModule } from 'angular2-busy';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -42,7 +42,7 @@ const teamRoutes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAhnlVo62cLGyWwCM6JS3I32hZE5AoBfHI'
     }),
-    BusyModule
+    SharedModule
   ],
   declarations: [
     

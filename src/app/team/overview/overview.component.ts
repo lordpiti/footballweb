@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../team.service';
-import { Player } from '../../common/interfaces/player.interface';
-import { Team } from '../../common/interfaces/team.interface';
+import { Player } from '../../shared/interfaces/player.interface';
+import { Team } from '../../shared/interfaces/team.interface';
 
 @Component({
   selector: 'app-overview',

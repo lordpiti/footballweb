@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Team } from '../../common/interfaces/team.interface';
+import { Team } from '../../shared/interfaces/team.interface';
 import { CompetitionService } from '../competition.service';
 
 @Component({

@@ -1,0 +1,20 @@
+<p>
+  match works!
+</p>
+
+<div class="row" *ngIf="matchDetails">
+  <div class="col-sm-6">
+    <div class="">
+      <div *ngFor="let player of matchDetails.players | filterBy: { teamId: matchDetails.matchGeneralInfo.localTeam.id }; let i=index;">
+        {{player|json}}
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="">
+      <div *ngFor="let player of matchDetails.players | filterBy: { teamId: matchDetails.matchGeneralInfo.visitorTeam.id }; let i=index;">
+        {{player|json}}
+      </div>
+    </div>
+  </div>
+</div>

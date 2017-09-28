@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GooglemapsService } from '../googlemaps.service';
 import {TeamService} from '../team.service';
-import { marker } from '../../common/interfaces/marker.interface';
+import { marker } from '../../shared/interfaces/marker.interface';
 import { AgmMap, AgmMarker, MapsAPILoader } from '@agm/core';
 
 @Component({

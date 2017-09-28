@@ -3,7 +3,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-import { Team } from '../common/interfaces/team.interface';
+import { Team } from '../shared/interfaces/team.interface';
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -59,6 +59,13 @@ export class CompetitionService {
   public getCompetitionRoundGames(competitionId: number, round: string) {
     var url = this._apiUrl+"competition/"+competitionId+"/round/"+round;
     
+    return this.http.get(url, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
+
+  public getMatch(matchId:number) {
+    var url = this._apiUrl+'competition/match/'+matchId;
+
     return this.http.get(url, this._requestOptions)
         .map((res: Response) => res.json());
   }

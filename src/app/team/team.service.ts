@@ -3,7 +3,7 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-import { Team } from '../common/interfaces/team.interface';
+import { Team } from '../shared/interfaces/team.interface';
 import { environment } from '../../environments/environment';
 
 @Injectable()
