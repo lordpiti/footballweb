@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+  <div class="panel-heading">{{team.name}}</div>
+  <div class="panel-body">
+    <div *ngFor="let player of players | filterBy: { teamId: team.id }; let i=index;">
+      <div class="row">
+        <div class="col-sm-1">{{player.dorsal}}</div>
+        <div class="col-sm-8">{{player.name}} {{player.surname}}</div>
+        <div class="col-sm-3"></div>
+      </div>
+    </div>
+  </div>
+</div>

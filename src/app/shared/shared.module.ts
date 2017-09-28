@@ -9,6 +9,7 @@ import { AgmCoreModule } from '@agm/core';
 import { DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { ChartsModule } from 'ng2-charts';
 import { ImageCropperComponent, CropperSettings, ImageCropperModule } from 'ng2-img-cropper';
+import { MatchPlayersComponent } from './components/match/match-players/match-players.component';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { ImageCropperComponent, CropperSettings, ImageCropperModule } from 'ng2-
     ChartsModule,
     ImageCropperModule,
   ],
-  declarations: [MatchComponent, Ng2FilterPipe],
+  declarations: [MatchComponent, Ng2FilterPipe, MatchPlayersComponent],
   providers: [
     ShareDataService, MatchService
   ],
