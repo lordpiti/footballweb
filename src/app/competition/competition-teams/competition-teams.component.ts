@@ -10,26 +10,26 @@ import { CompetitionService } from '../competition.service';
 export class CompetitionTeamsComponent implements OnInit {
  i
   public teamList:any;
-  private competitionId: number;
+  private competitionData: any;
 
   constructor(private _competitionService: CompetitionService) { }
 
   ngOnInit() {
 
     if (this._competitionService.currentCompetition){
-      this.competitionId = this._competitionService.currentCompetition;
+      this.competitionData = this._competitionService.currentCompetition;
       this.loadTeams();
     }
     
     this._competitionService.getCurrentCompetition().subscribe(data => {
-      this.competitionId = data;
+      this.competitionData = data;
       this.loadTeams();
     });
 
   }
 
   private loadTeams(){
-    this._competitionService.getTeams(this.competitionId).subscribe(
+    this._competitionService.getTeams(this.competitionData.id).subscribe(
       (data: Array<Team>) => {
           this.teamList = data;
       },

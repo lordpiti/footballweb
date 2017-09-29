@@ -26,7 +26,26 @@ export class MatchService {
     var url = this._apiUrl+'competition/match/'+matchId;
 
     return this.http.get(url, this._requestOptions)
-        .map((res: Response) => res.json());
+        .map((res: Response) => this.convertToMatchData(res.json()));
+  }
+
+  private convertToMatchData(matchData: any):any {
+
+    matchData.players.forEach(player=> {
+      player.goals = [];
+      player.bookings = [];
+      let booking = matchData.statisticsIncidences.bookings.find(booking=>booking.player.playerId == player.playerId);
+      if (booking){
+        player.bookings.push(booking);
+      }
+      let goal = matchData.statisticsIncidences.goals.find(goal=>goal.player.playerId == player.playerId);
+      if (goal){
+        player.goals.push(goal);
+      }
+    });
+
+    debugger;
+    return matchData;
   }
 
 }

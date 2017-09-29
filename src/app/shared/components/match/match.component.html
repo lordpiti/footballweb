@@ -1,12 +1,18 @@
-<p>
-  match works!
-</p>
 
 <div class="row" *ngIf="matchDetails">
-  <div class="col-sm-6">   
-      <app-match-players [players]="matchDetails.players" [team]="matchDetails.matchGeneralInfo.localTeam"></app-match-players>
+  <div class="col-sm-4">
+    <div class="text-center" style="background-color:blueviolet; color:white;">
+      <h1>{{matchDetails.matchGeneralInfo.localTeam.name}}</h1>
+    </div>  
+    <app-match-players [players]="matchDetails.players" [team]="matchDetails.matchGeneralInfo.localTeam"></app-match-players>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-2 text-center">
+      <h1 style="background-color:black;color:white;">{{matchDetails.matchGeneralInfo.goalsLocal}} - {{matchDetails.matchGeneralInfo.goalsVisitor}}</h1>
+  </div>
+  <div class="col-sm-4">
+    <div class="text-center" style="background-color:blueviolet; color:white;">
+      <h1>{{matchDetails.matchGeneralInfo.visitorTeam.name}}</h1>
+    </div>  
     <app-match-players [players]="matchDetails.players" [team]="matchDetails.matchGeneralInfo.visitorTeam"></app-match-players>
   </div>
 </div>

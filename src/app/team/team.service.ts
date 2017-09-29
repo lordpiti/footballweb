@@ -74,7 +74,7 @@ export class TeamService {
         .map((res: Response) => res.json());
   }
 
-  private convertToChartData(data: any) {
+  private convertToChartData(data: any):any {
     let positionList = [],
     goalsForList = [],
     goalsAgainstList = [],

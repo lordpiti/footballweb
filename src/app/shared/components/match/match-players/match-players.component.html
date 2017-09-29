@@ -4,8 +4,20 @@
     <div *ngFor="let player of players | filterBy: { teamId: team.id }; let i=index;">
       <div class="row">
         <div class="col-sm-1">{{player.dorsal}}</div>
-        <div class="col-sm-8">{{player.name}} {{player.surname}}</div>
-        <div class="col-sm-3"></div>
+        <div class="col-sm-5">{{player.name}} {{player.surname}}</div>
+        <div class="col-sm-3">
+          <div *ngFor="let booking of player.bookings" >
+            <img *ngIf="booking.type=='Amarilla'" src="/assets/img/yellow_card-512.png" width="20" height="20"/>
+            <img *ngIf="booking.type!='Amarilla'" src="/assets/img/red_card-512.png" width="20" height="20"/>
+            <label class="small">{{booking.minute}}</label>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <span *ngFor="let goal of player.goals">
+              <img src="/assets/img/ball.png" width="20" height="20"/>
+              <label class="small">{{goal.minute}}</label>
+          </span>
+        </div>
       </div>
     </div>
   </div>

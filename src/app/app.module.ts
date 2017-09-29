@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule} from './app-routes.module';
 import { AppComponent } from './app.component';
-import { SubrouteComponent } from './subroute/subroute.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { TeamModule } from './team/team.module';
@@ -20,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    SubrouteComponent,
     HomeComponent,
     PageNotFoundComponent
   ],

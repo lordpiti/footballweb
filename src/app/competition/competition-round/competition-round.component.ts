@@ -9,7 +9,7 @@ import { CompetitionService } from '../competition.service';
 export class CompetitionRoundComponent implements OnInit {
 
 
-  private competitionId: number;
+  private competitionData: any;
   public roundData: any;
   
   constructor(private _competitionService: CompetitionService) { 
@@ -19,19 +19,19 @@ export class CompetitionRoundComponent implements OnInit {
   ngOnInit() {
     
     if (this._competitionService.currentCompetition){
-      this.competitionId = this._competitionService.currentCompetition;
+      this.competitionData = this._competitionService.currentCompetition;
       this.loadRound();
     }
     
     this._competitionService.getCurrentCompetition().subscribe(data => {
-      this.competitionId = data;
+      this.competitionData = data;
       this.loadRound();
     });
 
   }
 
   private loadRound(){
-    this._competitionService.getCompetitionRoundGames(this.competitionId, "1").subscribe(
+    this._competitionService.getCompetitionRoundGames(this.competitionData.id, "1").subscribe(
       (data: any) => {
           this.roundData = data;
       },
