@@ -98,15 +98,15 @@ export class TeamService {
     return lineChartData;
   }
 
-  public currentTeam: any;
-  private currentTeamSubject: Subject<any> = new Subject<any>();
+  public currentTeam: Team;
+  private currentTeamSubject: Subject<Team> = new Subject<Team>();
 
 
-  public setCurrentTeam(_data: any) {
+  public setCurrentTeam(_data: Team) {
       this.currentTeam = _data;
       this.currentTeamSubject.next(_data)
   };
-  public getCurrentTeam(): Observable<any> {
+  public getCurrentTeam(): Observable<Team> {
       return this.currentTeamSubject.asObservable();
   };
 

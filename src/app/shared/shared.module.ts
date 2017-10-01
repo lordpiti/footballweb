@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShareDataService } from './services/shared-data.service';
 import { MatchService } from './services/match.service';
 import { MatchComponent } from './components/match/match.component';
 import { Ng2FilterPipe } from 'ng2-filter-pipe';
@@ -10,6 +9,7 @@ import { DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { ChartsModule } from 'ng2-charts';
 import { ImageCropperComponent, CropperSettings, ImageCropperModule } from 'ng2-img-cropper';
 import { MatchPlayersComponent } from './components/match/match-players/match-players.component';
+import { ShareDataService } from './services/shared-data.service';
 
 
 @NgModule({
@@ -22,9 +22,17 @@ import { MatchPlayersComponent } from './components/match/match-players/match-pl
     ImageCropperModule,
   ],
   declarations: [MatchComponent, Ng2FilterPipe, MatchPlayersComponent],
-  providers: [
-    ShareDataService, MatchService
+  providers: [ 
   ],
   exports: [Ng2FilterPipe, BusyModule, AgmCoreModule, ChartsModule, DropzoneModule, ImageCropperModule]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot() {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        ShareDataService, MatchService
+      ]
+    };
+  }
+ }

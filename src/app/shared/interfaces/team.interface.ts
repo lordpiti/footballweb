@@ -5,4 +5,5 @@ export interface Team {
     playerList: Array<Player>;
     name: string;
     pictureLogo: any;
+    stadium: any;
 }

@@ -15,6 +15,8 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+//import { ShareDataService } from './shared/services/shared-data.service';
+
 
 @NgModule({
   declarations: [
@@ -34,8 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CompetitionModule,
     PlayerModule,
     TeamModule, 
-    SharedModule, 
-    ToastModule.forRoot()
+    SharedModule.forRoot(), 
+    ToastModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
