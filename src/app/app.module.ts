@@ -36,7 +36,7 @@ import { ShareDataService } from './shared/services/shared-data.service';
     CompetitionModule,
     PlayerModule,
     TeamModule, 
-    SharedModule,//.forRoot(), 
+    //SharedModule,//.forRoot(), 
     ToastModule.forRoot(),
   ],
   providers: [ShareDataService],
