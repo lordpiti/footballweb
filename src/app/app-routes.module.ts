@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes }  from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { TeamModule } from './team/team.module';
+import { CompetitionModule } from './competition/competition.module';
+import { PlayerModule } from './player/player.module';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
