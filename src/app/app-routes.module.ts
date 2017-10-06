@@ -7,9 +7,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
-  { path: 'teams', loadChildren: './team/team.module#TeamModule' },
-  { path: 'competitions', loadChildren: './competition/competition.module#CompetitionModule' },
-  { path: 'players', loadChildren: './player/player.module#PlayerModule' },
+  { path: 'teams', loadChildren: 'app/team/team.module#TeamModule' },
+  { path: 'competitions', loadChildren: 'app/competition/competition.module#CompetitionModule' },
+  { path: 'players', loadChildren: 'app/player/player.module#PlayerModule' },
   { path: '**', component: PageNotFoundComponent }
 ];
 @NgModule({
