@@ -32,8 +32,8 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
 
     public data: any;
     public published: boolean = false;
-    public model: Team = { id: 0, pictureLogo:{}, name:"", playerList :[], stadium: null };
-    public teamSelected: Team = { id: 0, pictureLogo:{}, name:"", playerList :[], stadium: null };
+    public model: Team = { id: 0, pictureLogo:{}, name:"", playerList :[], stadium: {} };
+    public teamSelected: Team = { id: 0, pictureLogo:{}, name:"", playerList :[], stadium: {} };
     public displayErrors: boolean = false;
     public isEditing: boolean = false;
 
