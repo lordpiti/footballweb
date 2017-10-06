@@ -40,7 +40,7 @@ export class TeamDetailComponent implements OnInit {
     private modalCropperService: ShareDataService,
     public toastr: ToastsManager, vcr: ViewContainerRef){
       this.toastr.setRootViewContainerRef(vcr);
-      this.teamDetails = { name:"", id: 0, playerList:[], pictureLogo: {}};
+      this.teamDetails = { name:"", id: 0, playerList:[], pictureLogo: {}, stadium: {}};
   }
 
 

@@ -37,7 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PlayerModule,
     TeamModule, 
     SharedModule.forRoot(), 
-    ToastModule.forRoot(),
+    ToastModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
