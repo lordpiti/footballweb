@@ -10,8 +10,8 @@ import { PlayerModule } from './player/player.module';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
-  // { path: 'teams', loadChildren: './team/team.module#TeamModule' },
-  // { path: 'competitions', loadChildren: './competition/competition.module#CompetitionModule' },
+  { path: 'teams', loadChildren: './team/team.module#TeamModule' },
+  { path: 'competitions', loadChildren: './competition/competition.module#CompetitionModule' },
   { path: 'players', loadChildren: './player/player.module#PlayerModule' },
   { path: '**', component: PageNotFoundComponent }
 ];
