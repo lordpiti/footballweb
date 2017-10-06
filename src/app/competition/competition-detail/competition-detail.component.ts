@@ -9,7 +9,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class CompetitionDetailComponent implements OnInit {
 
-  private competitionDetails: any;
+  public competitionDetails: any;
 
   constructor(private router: Router,private _competitionService: CompetitionService,
     private route: ActivatedRoute) { }

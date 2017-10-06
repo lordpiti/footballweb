@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatchService } from './services/match.service';
 import { MatchComponent } from './components/match/match.component';
-import { Ng2FilterPipe } from 'ng2-filter-pipe';
+import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { BusyModule, BusyDirective } from 'angular2-busy';
 import { AgmCoreModule } from '@agm/core';
 import { DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
@@ -19,12 +19,12 @@ import { ShareDataService } from './services/shared-data.service';
     }),
     DropzoneModule.forChild(),
     ChartsModule,
-    ImageCropperModule,
+    ImageCropperModule, Ng2FilterPipeModule
   ],
-  declarations: [MatchComponent, Ng2FilterPipe, MatchPlayersComponent],
+  declarations: [MatchComponent, MatchPlayersComponent],
   providers: [ 
   ],
-  exports: [Ng2FilterPipe, BusyModule, AgmCoreModule, ChartsModule, DropzoneModule, ImageCropperModule]
+  exports: [BusyModule, AgmCoreModule, ChartsModule, DropzoneModule, ImageCropperModule]
 })
 export class SharedModule {
   static forRoot() {
