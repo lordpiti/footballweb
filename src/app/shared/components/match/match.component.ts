@@ -10,16 +10,16 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class MatchComponent implements OnInit {
 
   public matchDetails:any;
-  private _matchId: number;
+  public matchId: number;
 
   constructor(private router: Router, private _matchService: MatchService, 
     private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this._matchId = +params['id']; // (+) converts string 'id' to a number
+      this.matchId = +params['id']; // (+) converts string 'id' to a number
 
-      this.getData(this._matchId);
+      this.getData(this.matchId);
 
     });
   }

@@ -11,10 +11,19 @@ export class MatchPlayersComponent implements OnInit {
 
   @Input() players: Array<Player>;
   @Input() team: Team;
+  @Input() matchId: number;
+  public selectedPlayerId: number;
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit() {
+    debugger;
+    console.log(this.matchId);
+  }
+
+  selectPlayer(playerId: number){
+    this.selectedPlayerId = playerId;
   }
 
 }

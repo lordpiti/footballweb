@@ -4,7 +4,9 @@
     <div *ngFor="let player of players | filterBy: { teamId: team.id }; let i=index;">
       <div class="row">
         <div class="col-sm-1">{{player.dorsal}}</div>
-        <div class="col-sm-5">{{player.name}} {{player.surname}}</div>
+        <div class="col-sm-5" [popover]="myPopover" (click)="selectPlayer(player.playerId)">
+          {{player.name}} {{player.surname}}
+        </div>
         <div class="col-sm-3">
           <div *ngFor="let booking of player.bookings" >
             <img *ngIf="booking.type=='Amarilla'" src="/assets/img/yellow_card-512.png" width="20" height="20"/>
@@ -22,3 +24,10 @@
     </div>
   </div>
 </div>
+
+<popover-content #myPopover title="this header can be omitted" placement="bottom" [closeOnClickOutside]="true">
+  <b>Very</b> <span style="color: #C21F39">Dynamic</span> <span style="color: #00b3ee">Reusable</span>
+  <b><i><span style="color: #ffc520">Popover With</span></i></b> <small>Html support</small>. Click outside of this popover and it will be dismissed automatically.
+  <u (click)="myPopover.hide()">Or click here to close it</u>.
+  <app-match-player-statistics [matchId]="matchId" [playerId]="selectedPlayerId"></app-match-player-statistics>
+</popover-content>

@@ -29,6 +29,13 @@ export class MatchService {
         .map((res: Response) => this.convertToMatchData(res.json()));
   }
 
+  public getMatchPlayerStatistics(playerId: number, matchId:number) {
+    var url = this._apiUrl+'player/'+playerId+'/MatchPlayedStatistics/'+matchId;
+
+    return this.http.get(url, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
+
   private convertToMatchData(matchData: any):any {
 
     matchData.players.forEach(player=> {
@@ -44,8 +51,6 @@ export class MatchService {
       }
     });
 
-    debugger;
     return matchData;
   }
-
 }
