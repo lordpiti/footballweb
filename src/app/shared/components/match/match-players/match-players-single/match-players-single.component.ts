@@ -8,7 +8,7 @@ import { Player } from '../../../../interfaces/player.interface';
 })
 export class MatchPlayersSingleComponent implements OnInit {
 
-  @Input() player: Player;
+  @Input() player: any;
   @Input() matchId: number;
   public selectPlayer:boolean;
 

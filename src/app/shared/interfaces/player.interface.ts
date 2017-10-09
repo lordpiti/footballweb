@@ -1,5 +1,6 @@
 export interface Player {
-    Name: string;
-    Surname: string;
-    TeamName: string;
+    name: string;
+    surname: string;
+    teamName: string;
+    dorsal:number;
 }

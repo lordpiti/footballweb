@@ -9,7 +9,7 @@ import { Team } from '../../../interfaces/team.interface';
 })
 export class MatchPlayersComponent implements OnInit {
 
-  @Input() players: Array<Player>;
+  @Input() players: Array<any>;
   @Input() team: Team;
   @Input() matchId: number;
 
