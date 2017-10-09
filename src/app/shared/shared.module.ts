@@ -11,6 +11,7 @@ import { ChartsModule } from 'ng2-charts';
 import { MatchPlayersComponent } from './components/match/match-players/match-players.component';
 import {PopoverModule} from "ngx-popover";
 import { MatchPlayerStatisticsComponent } from './components/match-player-statistics/match-player-statistics.component';
+import { MatchPlayersSingleComponent } from './components/match/match-players/match-players-single/match-players-single.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { MatchPlayerStatisticsComponent } from './components/match-player-statis
     Ng2FilterPipeModule,
     PopoverModule
   ],
-  declarations: [MatchComponent, MatchPlayersComponent, MatchPlayerStatisticsComponent],
+  declarations: [MatchComponent, MatchPlayersComponent, MatchPlayerStatisticsComponent, MatchPlayersSingleComponent],
   providers: [ 
     MatchService
   ],

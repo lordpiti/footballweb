@@ -12,17 +12,12 @@ export class MatchPlayersComponent implements OnInit {
   @Input() players: Array<Player>;
   @Input() team: Team;
   @Input() matchId: number;
-  public selectedPlayerId: number;
 
   constructor() { 
   }
 
   ngOnInit() {
 
-  }
-
-  selectPlayer(playerId: number){
-    this.selectedPlayerId = playerId;
   }
 
 }
