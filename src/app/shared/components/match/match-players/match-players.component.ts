@@ -18,8 +18,7 @@ export class MatchPlayersComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
-    console.log(this.matchId);
+
   }
 
   selectPlayer(playerId: number){

@@ -49,6 +49,14 @@ export class MatchService {
       if (goal){
         player.goals.push(goal);
       }
+      let substitutionIn = matchData.statisticsIncidences.substitutions.find(substitution=>substitution.playerIn.playerId == player.playerId);
+      if (substitutionIn){
+        player.substitutionIn = substitutionIn;
+      }
+      let substitutionOut = matchData.statisticsIncidences.substitutions.find(substitution=>substitution.playerOut.playerId == player.playerId);
+      if (substitutionOut){
+        player.substitutionOut = substitutionOut;
+      }
     });
 
     return matchData;
