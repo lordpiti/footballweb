@@ -3,10 +3,16 @@
 </p>
 <div *ngIf="roundData">
   <div class="row">
-    <select id="dddd" name="sgsd">
-      <option *ngFor="let item of competitionData.roundList" value="{{item}}">{{item}}</option>
-    </select>
+    <div class="col-sm-3">
+      Select round
+    </div>
+    <div class="col-sm-3">
+      <select id="dddd" name="sgsd" [(ngModel)]="roundId" (change)="changeSelectedRound($event)">
+        <option *ngFor="let item of competitionData.roundList" value="{{item}}">{{item}}</option>
+      </select>
+    </div>
   </div>
+  <br/>
   <div class="row">
     <div class="col-sm-5">
       <div class="panel panel-default">
@@ -15,7 +21,7 @@
           <div class="row small" *ngFor="let match of roundData.matchList">
             <div class="col-sm-5">{{match.localTeam.name}}</div>
             <div class="col-sm-2">
-              <a routerLink="../match/{{match.matchId}}">{{match.goalsLocal}}-{{match.goalsVisitor}}</a>
+              <a routerLink="../../match/{{match.matchId}}">{{match.goalsLocal}}-{{match.goalsVisitor}}</a>
             </div>
             <div class="col-sm-5">{{match.visitorTeam.name}}</div>
           </div>

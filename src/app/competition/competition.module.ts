@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompetitionOverviewComponent } from './competition-overview/competition-overview.component';
 import { CompetitionDetailComponent } from './competition-detail/competition-detail.component';
 import { CompetitionBasicInfoComponent } from './competition-basic-info/competition-basic-info.component';
@@ -16,7 +17,6 @@ const competitionRoutes: Routes = [
   { path: 'detail/:id', component: CompetitionDetailComponent, children: [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
     { path:'summary', component: CompetitionBasicInfoComponent },
-    { path:'rounds', component: CompetitionRoundComponent },
     { path:'rounds/:id', component: CompetitionRoundComponent },
     { path:'match/:id', component: MatchComponent },
     { path:'teams', component: CompetitionTeamsComponent }
@@ -28,6 +28,8 @@ const competitionRoutes: Routes = [
   imports: [
     CommonModule, SharedModule,
     RouterModule.forChild(competitionRoutes),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     CompetitionService
