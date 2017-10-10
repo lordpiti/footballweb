@@ -3,6 +3,11 @@
 </p>
 <div *ngIf="roundData">
   <div class="row">
+    <select id="dddd" name="sgsd">
+      <option *ngFor="let item of competitionData.roundList" value="{{item}}">{{item}}</option>
+    </select>
+  </div>
+  <div class="row">
     <div class="col-sm-5">
       <div class="panel panel-default">
         <div class="panel-heading">Games</div>
