@@ -13,6 +13,7 @@ export class CompetitionRoundComponent implements OnInit {
   private competitionData: any;
   public roundData: any;
   public roundId: string;
+  public p: number = 1;
   
   constructor(private _competitionService: CompetitionService, private router: Router, private route: ActivatedRoute) { 
 

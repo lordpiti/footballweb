@@ -9,7 +9,8 @@ import { DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { ChartsModule } from 'ng2-charts';
  import { ImageCropperComponent, CropperSettings, ImageCropperModule } from 'ng2-img-cropper';
 import { MatchPlayersComponent } from './components/match/match-players/match-players.component';
-import {PopoverModule} from "ngx-popover";
+import { PopoverModule } from "ngx-popover";
+import { NgxPaginationModule } from 'ngx-pagination';
 import { MatchPlayerStatisticsComponent } from './components/match-player-statistics/match-player-statistics.component';
 import { MatchPlayersSingleComponent } from './components/match/match-players/match-players-single/match-players-single.component';
 
@@ -24,7 +25,8 @@ import { MatchPlayersSingleComponent } from './components/match/match-players/ma
     ChartsModule,
      ImageCropperModule, 
     Ng2FilterPipeModule,
-    PopoverModule
+    PopoverModule, 
+    NgxPaginationModule
   ],
   declarations: [MatchComponent, MatchPlayersComponent, MatchPlayerStatisticsComponent, MatchPlayersSingleComponent],
   providers: [ 
@@ -35,7 +37,7 @@ import { MatchPlayersSingleComponent } from './components/match/match-players/ma
     AgmCoreModule, 
     ChartsModule, 
     DropzoneModule, 
-    ImageCropperModule
+    ImageCropperModule, NgxPaginationModule
   ]
 })
 export class SharedModule {

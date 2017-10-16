@@ -21,7 +21,7 @@
           <div class="row small" *ngFor="let match of roundData.matchList">
             <div class="col-sm-5">{{match.localTeam.name}}</div>
             <div class="col-sm-2">
-              <a routerLink="../../match/{{match.matchId}}">{{match.goalsLocal}}-{{match.goalsVisitor}}</a>
+              <a routerLink="../match/{{match.matchId}}">{{match.goalsLocal}}-{{match.goalsVisitor}}</a>
             </div>
             <div class="col-sm-5">{{match.visitorTeam.name}}</div>
           </div>
@@ -55,6 +55,29 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>Player</td>
+            <td>Team</td>
+            <td>Goals</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let scorer of roundData.scorers  | paginate: { itemsPerPage: 10, currentPage: p }">
+            <td>{{scorer.player.name}} {{scorer.player.surname}}</td>
+            <td>
+              {{scorer.player.teamName}}
+            </td>
+            <td>{{scorer.goals}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>
