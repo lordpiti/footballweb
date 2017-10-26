@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs/Rx';
+import { AppAreas } from '../enums/app-areas';
 
 @Injectable()
 export class ShareDataService {
     public data: any;
     private subject: Subject<any> = new Subject<any>();
 
+    public currentArea: AppAreas; 
+    private currentAreaSubject: Subject<AppAreas> = new Subject<AppAreas>();
 
     public setData(_data: any) {
         this.data = _data;
@@ -13,5 +16,13 @@ export class ShareDataService {
     };
     public getData(): Observable<any> {
         return this.subject.asObservable();
+    };
+
+    public setCurrentArea(_data: AppAreas) {
+        this.data = _data;
+        this.currentAreaSubject.next(_data)
+    };
+    public getCurrentArea(): Observable<AppAreas> {
+        return this.currentAreaSubject.asObservable();
     };
 }

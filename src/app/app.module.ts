@@ -15,7 +15,7 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShareDataService } from './shared/services/shared-data.service';
-
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,8 @@ import { ShareDataService } from './shared/services/shared-data.service';
     PlayerModule,
     TeamModule, 
     //SharedModule, 
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [ShareDataService],
   bootstrap: [AppComponent]

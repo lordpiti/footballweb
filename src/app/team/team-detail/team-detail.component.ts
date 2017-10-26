@@ -12,6 +12,7 @@ import { environment } from '../../../environments/environment';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Subscription } from 'rxjs';
+import { AppAreas } from '../../shared/enums/app-areas';
 
 @Component({
   selector: 'app-team-detail',
@@ -45,6 +46,9 @@ export class TeamDetailComponent implements OnInit {
 
 
   ngOnInit() {
+     setTimeout(()=>{    //<<<---    using ()=> syntax
+       this.modalCropperService.setCurrentArea(AppAreas.Teams);
+     },0);
 
     if (!this.newid){
       //let id = this.route.snapshot.params['id'];

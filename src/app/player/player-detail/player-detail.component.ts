@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ShareDataService } from '../../shared/services/shared-data.service';
+import { AppAreas } from '../../shared/enums/app-areas';
 
 @Component({
   selector: 'app-player-detail',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayerDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sharedService: ShareDataService) { }
 
   ngOnInit() {
+    setTimeout(()=>{    //<<<---    using ()=> syntax
+      this.sharedService.setCurrentArea(AppAreas.Players);
+    },0);  
   }
 
 }

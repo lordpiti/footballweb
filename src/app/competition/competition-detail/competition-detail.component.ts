@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CompetitionService } from '../competition.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ShareDataService } from '../../shared/services/shared-data.service';
+import { AppAreas } from '../../shared/enums/app-areas';
 
 @Component({
   selector: 'app-competition-detail',
@@ -12,9 +14,14 @@ export class CompetitionDetailComponent implements OnInit {
   public competitionDetails: any;
 
   constructor(private router: Router,private _competitionService: CompetitionService,
+    private sharedService: ShareDataService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    setTimeout(()=>{    //<<<---    using ()=> syntax
+      this.sharedService.setCurrentArea(AppAreas.Competitions);
+    },0);  
+
     this.route.params.subscribe(params => {
       let competitionId = +params['id']; // (+) converts string 'id' to a number
 
