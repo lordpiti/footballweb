@@ -1,3 +1,10 @@
-<p>
-  player-overview works!
-</p>
+<div *ngFor="let player of playerList | paginate: { itemsPerPage: 10, currentPage: p }" class="row">
+  <div class="col-sm-6">
+    <a routerLink="./detail/{{player.teamId}}">{{player.name}} {{player.surname}}</a>
+  </div>
+  <div class="col-sm-6">
+    <a routerLink="/teams/detail/{{player.teamId}}">{{player.teamName}}</a>
+  </div>
+</div>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

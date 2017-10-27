@@ -68,7 +68,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let scorer of roundData.scorers  | paginate: { itemsPerPage: 10, currentPage: p }">
+          <tr *ngFor="let scorer of roundData.scorers | paginate: { itemsPerPage: 10, currentPage: p }">
             <td>{{scorer.player.name}} {{scorer.player.surname}}</td>
             <td>
               {{scorer.player.teamName}}

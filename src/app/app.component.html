@@ -13,29 +13,14 @@
   
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <!-- <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Link</a></li>
-          <li class="dropdown" >
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
-        </ul> -->
+
         <ul class="btn-group nav navbar-nav" *ngIf="appArea != 'Teams'">
-          <li><a routerLink="/teams">Teams</a></li>
+          <li [ngClass]="{'btn-primary': appArea == 'Teams' }"><a routerLink="/teams">Teams</a></li>
         </ul>
         
         <ul class="btn-group nav navbar-nav" dropdown *ngIf="appArea == 'Teams'">
-          <li dropdownToggle class="dropdown-toggle" style="cursor: pointer">
-            <a>Teams<span class="caret"></span></a>
+          <li dropdownToggle class="dropdown-toggle btn-primary" style="cursor: pointer">
+            <a style="color:white">Teams<span class="caret"></span></a>
           </li>
           <ul *dropdownMenu class="dropdown-menu" role="menu">
             <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
@@ -47,13 +32,13 @@
           </ul>
         </ul>
 
-        <ul class="btn-group nav navbar-nav" *ngIf="appArea != 'Competitions'">
+        <ul class="btn-group nav navbar-nav" *ngIf="appArea !== 'Competitions'">
           <li><a routerLink="/competitions">Competitions</a></li>
         </ul>
 
-        <ul class="btn-group nav navbar-nav" dropdown *ngIf="appArea == 'Competitions'">
-          <li dropdownToggle class="dropdown-toggle" style="cursor: pointer">
-            <a>Competitions<span class="caret"></span></a>
+        <ul class="btn-group nav navbar-nav" dropdown *ngIf="appArea === 'Competitions'">
+          <li dropdownToggle class="dropdown-toggle btn-primary" style="cursor: pointer">
+            <a style="color:white">Competitions<span class="caret"></span></a>
           </li>
           <ul *dropdownMenu class="dropdown-menu" role="menu">
             <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
@@ -68,8 +53,8 @@
           <li><a routerLink="/players">Players</a></li>
         </ul>
         <ul class="btn-group nav navbar-nav" dropdown *ngIf="appArea == 'Players'">
-          <li dropdownToggle class="dropdown-toggle" style="cursor: pointer">
-            <a>Players<span class="caret"></span></a>
+          <li dropdownToggle class="dropdown-toggle btn-primary" style="cursor: pointer">
+            <a style="color:white">Players<span class="caret"></span></a>
           </li>
           <ul *dropdownMenu class="dropdown-menu" role="menu">
             <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
@@ -82,16 +67,6 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Link</a></li>
-          <!-- <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-            </ul>
-          </li> -->
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

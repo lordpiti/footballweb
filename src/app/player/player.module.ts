@@ -6,6 +6,7 @@ import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { PlayerBasicInfoComponent } from './player-basic-info/player-basic-info.component';
 import { PlayerStatisticsComponent } from './player-statistics/player-statistics.component';
 import { PlayerService } from './player.service';
+import { SharedModule } from '../shared/shared.module';
 
 
 const playerRoutes: Routes = [
@@ -22,6 +23,7 @@ const playerRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(playerRoutes),
   ],
   providers: [

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../team.service';
 import { Player } from '../../shared/interfaces/player.interface';
 import { Team } from '../../shared/interfaces/team.interface';
+import { ShareDataService } from '../../shared/services/shared-data.service';
+import { AppAreas } from '../../shared/enums/app-areas';
 
 @Component({
   selector: 'app-overview',
@@ -14,15 +16,17 @@ export class OverviewComponent implements OnInit {
 
   public selectedTeamId: number;
 
-  constructor(private _teamService : TeamService) { 
+  constructor(private _teamService : TeamService, private sharedService: ShareDataService) { 
 
   }
 
   ngOnInit() {
+    setTimeout(()=>{
+      this.sharedService.setCurrentArea(AppAreas.Teams);
+    },0);
     this._teamService.getTeams(null).subscribe(
       (data: Array<Team>) => {
           this.teamList = data;
-          //this.surveyService.setProjectFollowerData(data);
       },
       (err: any) => {
       }

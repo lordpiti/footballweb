@@ -3,4 +3,5 @@ export interface Player {
     surname: string;
     teamName: string;
     dorsal:number;
+    teamId: number;
 }
