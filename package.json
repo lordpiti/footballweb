@@ -42,7 +42,8 @@
     "ng2-filter-pipe": "^0.1.10",
     "ngx-popover": "^0.0.16",
     "ngx-pagination": "^3.0.1",
-    "ngx-bootstrap": "^1.9.3"
+    "ngx-bootstrap": "^1.9.3",
+    "ngx-facebook": "^2.4.0"
   },
   "devDependencies": {
     "@types/jasmine": "~2.5.53",

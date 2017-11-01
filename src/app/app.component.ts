@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShareDataService } from './shared/services/shared-data.service';
 import { AppAreas } from './shared/enums/app-areas';
+import { FacebookService, LoginResponse, InitParams } from 'ngx-facebook';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,16 @@ export class AppComponent implements OnInit {
 
   public appArea: AppAreas;
 
-  constructor(private sharedService: ShareDataService){
+  constructor(private sharedService: ShareDataService, private fb: FacebookService){
       this.sharedService.setCurrentArea(AppAreas.Start);
+
+      let initParams: InitParams = {
+        appId: '1624861777576849',
+        xfbml: true,
+        version: 'v2.8'
+      };
+  
+      fb.init(initParams);
   }
 
   ngOnInit() {
@@ -20,4 +29,12 @@ export class AppComponent implements OnInit {
       this.appArea = data;
     });
   }
+
+  loginWithFacebook(): void {
+    
+      this.fb.login()
+        .then((response: LoginResponse) => console.log(response))
+        .catch((error: any) => console.error(error));
+  
+    }
 }

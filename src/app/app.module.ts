@@ -13,6 +13,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShareDataService } from './shared/services/shared-data.service';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { FacebookModule } from 'ngx-facebook';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BsDropdownModule } from 'ngx-bootstrap';
     BootstrapModalModule,
     //SharedModule, 
     ToastModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    FacebookModule.forRoot()
   ],
   providers: [ShareDataService],
   bootstrap: [AppComponent]
