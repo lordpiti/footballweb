@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShareDataService } from './shared/services/shared-data.service';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { FacebookModule } from 'ngx-facebook';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FacebookModule } from 'ngx-facebook';
     //SharedModule, 
     ToastModule.forRoot(),
     BsDropdownModule.forRoot(),
-    FacebookModule.forRoot()
+    FacebookModule.forRoot(),
+    UserModule
   ],
   providers: [ShareDataService],
   bootstrap: [AppComponent]

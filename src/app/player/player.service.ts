@@ -4,22 +4,14 @@ import { Observable, Subject } from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
+import { BaseService } from '../shared/services/base.service';
 
 @Injectable()
-export class PlayerService {
+export class PlayerService extends BaseService {
 
-  private _apiUrl: string;
-  private _requestOptions: RequestOptions;
   
   constructor(public http: Http) {
-    let myHeaders: Headers = new Headers();
-    myHeaders.append('Accept', 'q=0.8;application/json;q=0.9'); //This was needed for firefox, because apparently it doesn't add the "Accept application/json" header automatically
-    myHeaders.set('Content-Type', 'application/json');
-    // myHeaders.set('authenticationToken', this.Token);
-    this._requestOptions = new RequestOptions({
-        headers: myHeaders
-    });
-    this._apiUrl = environment.api_url;//"http://localhost:57543/api/";
+    super(http);
   }
 
   getPlayers() {

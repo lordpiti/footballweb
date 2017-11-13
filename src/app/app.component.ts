@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShareDataService } from './shared/services/shared-data.service';
 import { AppAreas } from './shared/enums/app-areas';
 import { FacebookService, LoginResponse, InitParams } from 'ngx-facebook';
+import { UserService } from './user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
 
   public appArea: AppAreas;
 
-  constructor(private sharedService: ShareDataService, private fb: FacebookService){
+  constructor(private sharedService: ShareDataService, private fb: FacebookService, private userService: UserService){
       this.sharedService.setCurrentArea(AppAreas.Start);
 
       let initParams: InitParams = {
@@ -28,6 +29,10 @@ export class AppComponent implements OnInit {
     this.sharedService.getCurrentArea().subscribe(data => {
       this.appArea = data;
     });
+
+    this.userService.getAllUsers().subscribe(data=> {
+      console.log(data);
+    })
   }
 
   loginWithFacebook(): void {
