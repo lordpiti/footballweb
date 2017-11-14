@@ -31,4 +31,11 @@ export class UserService {
     return this.http.get(url, this._requestOptions)
         .map((res: Response) => res.json());
   }
+
+  getUserInfo(userId: string, accessToken: string) {
+    var url = this._apiUrl+"user/Login";
+
+    return this.http.post(url, { userId: userId, accessToken: accessToken }, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
 }
