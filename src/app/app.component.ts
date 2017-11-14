@@ -12,6 +12,7 @@ import { UserService } from './user/user.service';
 export class AppComponent implements OnInit {
 
   public appArea: AppAreas;
+  public loggedIn: boolean = false;
 
   constructor(private sharedService: ShareDataService, private fb: FacebookService, private userService: UserService){
       this.sharedService.setCurrentArea(AppAreas.Start);
@@ -37,9 +38,25 @@ export class AppComponent implements OnInit {
 
   loginWithFacebook(): void {
     
-      this.fb.login()
-        .then((response: LoginResponse) => console.log(response))
-        .catch((error: any) => console.error(error));
-  
-    }
+    this.fb.login()
+      .then((response: LoginResponse) => {
+        console.log(response);
+        this.loggedIn = true;
+        this.getProfile();
+      })
+      .catch((error: any) => console.error(error));
+
+  }
+
+  getProfile() {
+    this.fb.api('/me')
+      .then((res: any) => {
+        console.log('Got the users profile', res);
+      })
+      .catch(this.handleError);
+  }
+
+  private handleError(error) {
+    console.error('Error processing action', error);
+  }
 }
