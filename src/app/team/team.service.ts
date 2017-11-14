@@ -6,33 +6,31 @@ import 'rxjs/add/operator/map';
 import { Team } from '../shared/interfaces/team.interface';
 import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
+import { ShareDataService } from '../shared/services/shared-data.service';
 
 @Injectable()
 export class TeamService extends BaseService {
   
-  constructor(public http: Http) {
-    super(http);
+  constructor(public http: Http, public sharedService: ShareDataService) {
+    super(http, sharedService);
   }
 
   getTeams(competitionId: number) {
-    var url = this._apiUrl+"team/teams/"+(competitionId?competitionId:'') ;
+    var url = "team/teams/"+(competitionId?competitionId:'') ;
 
-    return this.http.get(url, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.get(url);
   }
 
   getTeamDetails(id: number) {
-    var url = this._apiUrl+"team/teams/"+id+"/year/2009";
+    var url = "team/teams/"+id+"/year/2009";
     
-    return this.http.get(url, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.get(url);
   }
 
   getTeamCompetitions(id: number) {
-    var url = this._apiUrl+"competition/team/"+id;
+    var url = "competition/team/"+id;
     
-    return this.http.get(url, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.get(url);
   }
 
   saveTeamDetails(teamDetails: Team) {
@@ -50,19 +48,19 @@ export class TeamService extends BaseService {
   }
 
   getChartData(teamId: number, competitionName: string, season: string) {
-    var url = this._apiUrl+"team/clasification/"+teamId+
+
+    var url = "team/clasification/"+teamId+
     "/competition/"+competitionName+"/season/"+season;
     
-    return this.http.get(url, this._requestOptions)
-        .map((res: Response) => this.convertToChartData(res.json()));
+    return this.get(url)
+        .map((res: Response) => this.convertToChartData(res));
   }
 
   getClasificationData(competitionId: number, round: string) {
-    var url = this._apiUrl+"team/clasification/"+competitionId+
+    var url = "team/clasification/"+competitionId+
     "/round/"+round;
     
-    return this.http.get(url, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.get(url);
   }
 
   private convertToChartData(data: any):any {

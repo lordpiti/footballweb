@@ -5,13 +5,14 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
+import { ShareDataService } from '../shared/services/shared-data.service';
 
 @Injectable()
 export class PlayerService extends BaseService {
 
   
-  constructor(public http: Http) {
-    super(http);
+  constructor(public http: Http, public sharedService: ShareDataService) {
+    super(http, sharedService);
   }
 
   getPlayers() {

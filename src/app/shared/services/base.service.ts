@@ -4,6 +4,7 @@ import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment';
+import { ShareDataService } from './shared-data.service';
 
 @Injectable()
 export class BaseService {
@@ -11,15 +12,34 @@ export class BaseService {
   protected _apiUrl: string;
   protected _requestOptions: RequestOptions;
   
-  constructor(public http: Http) {
-    let myHeaders: Headers = new Headers();
-    myHeaders.append('Accept', 'q=0.8;application/json;q=0.9'); //This was needed for firefox, because apparently it doesn't add the "Accept application/json" header automatically
-    myHeaders.set('Content-Type', 'application/json');
-    // myHeaders.set('authenticationToken', this.Token);
-    this._requestOptions = new RequestOptions({
-        headers: myHeaders
-    });
+  constructor(public http: Http, public shareDataService: ShareDataService) {
     this._apiUrl = environment.api_url;
   }
+
+  public get(url: string) {
+    const headers = new Headers();
+    const options = new RequestOptions({ headers: this.appendToken(headers) });
+    return this.http.get(this._apiUrl + url, options)
+      .map((response: Response) => response.json());
+  }
+
+  public post(url: string, data: any) {
+    const headers = new Headers();
+    const options = new RequestOptions({ headers: this.appendToken(headers) });
+    return this.http.post(this._apiUrl + url, data, options)
+      .map((response: Response) => response.json());
+  }
+
+  private appendToken(headers: Headers): Headers {
+    const token = this.shareDataService.authenticationToken;
+    if (token) {
+      headers.append('authenticationToken', token);
+    }
+    return headers;
+  }
+
+  // public setAuthenticationToken(_data: string) {
+  //   this._requestOptions.headers.set('authenticationToken', _data);
+  // };
 
 }

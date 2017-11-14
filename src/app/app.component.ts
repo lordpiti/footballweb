@@ -50,6 +50,7 @@ export class AppComponent implements OnInit {
         console.log(response);
         this.userService.getUserInfo(response.authResponse.userID, response.authResponse.accessToken)
           .subscribe(data => {
+            this.sharedService.authenticationToken = response.authResponse.accessToken;
             console.log(data);
           });
         this.loggedIn = true;

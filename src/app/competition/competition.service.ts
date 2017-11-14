@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { Team } from '../shared/interfaces/team.interface';
 import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
+import { ShareDataService } from '../shared/services/shared-data.service';
 
 @Injectable()
 export class CompetitionService extends BaseService {
@@ -13,23 +14,21 @@ export class CompetitionService extends BaseService {
   public currentCompetition: any;
   private currentCompetitionSubject: Subject<any> = new Subject<any>();
   
-  constructor(public http: Http) {
-    super(http);
+  constructor(public http: Http, public sharedService: ShareDataService) {
+    super(http, sharedService);
   }
 
 
   getAllCompetitions() {
-    var url = this._apiUrl+"competition";
+    var url = "competition";
 
-    return this.http.get(url, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.get(url);
   }
 
   public getTeams(competitionId: number) {
-    var url = this._apiUrl+"team/teams/"+competitionId;
+    var url = "team/teams/"+competitionId;
 
-    return this.http.get(url, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.get(url);
   }
 
   public setCurrentCompetition(_data: any) {
@@ -41,24 +40,21 @@ export class CompetitionService extends BaseService {
   };
 
   public getCompetitionDetails(id: number) {
-    var url = this._apiUrl+"competition/"+id;
+    var url = "competition/"+id;
     
-    return this.http.get(url, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.get(url);
   }
 
   public getCompetitionRoundGames(competitionId: number, round: string) {
-    var url = this._apiUrl+"competition/"+competitionId+"/round/"+round;
+    var url = "competition/"+competitionId+"/round/"+round;
     
-    return this.http.get(url, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.get(url);
   }
 
   public getMatch(matchId:number) {
-    var url = this._apiUrl+'competition/match/'+matchId;
+    var url = 'competition/match/'+matchId;
 
-    return this.http.get(url, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.get(url);
   }
 
 }

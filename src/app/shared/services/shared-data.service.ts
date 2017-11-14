@@ -25,4 +25,6 @@ export class ShareDataService {
     public getCurrentArea(): Observable<AppAreas> {
         return this.currentAreaSubject.asObservable();
     };
+
+    public authenticationToken: string;
 }

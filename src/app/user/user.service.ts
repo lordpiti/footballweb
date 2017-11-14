@@ -4,25 +4,14 @@ import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
+import { ShareDataService } from '../shared/services/shared-data.service';
+import { BaseService } from '../shared/services/base.service';
 
 @Injectable()
-export class UserService {
-
-  private _apiUrl: string;
-  private _requestOptions: RequestOptions;
+export class UserService extends BaseService {
   
-  public currentCompetition: any;
-  private currentCompetitionSubject: Subject<any> = new Subject<any>();
-  
-  constructor(public http: Http) {
-    let myHeaders: Headers = new Headers();
-    myHeaders.append('Accept', 'q=0.8;application/json;q=0.9'); //This was needed for firefox, because apparently it doesn't add the "Accept application/json" header automatically
-    myHeaders.set('Content-Type', 'application/json');
-    // myHeaders.set('authenticationToken', this.Token);
-    this._requestOptions = new RequestOptions({
-        headers: myHeaders
-    });
-    this._apiUrl = environment.api_url;
+  constructor(public http: Http, public sharedService: ShareDataService) {
+    super(http, sharedService);
   }
 
   getAllUsers() {
