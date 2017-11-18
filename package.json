@@ -43,7 +43,8 @@
     "ngx-popover": "^0.0.16",
     "ngx-pagination": "^3.0.1",
     "ngx-bootstrap": "^1.9.3",
-    "ngx-facebook": "^2.4.0"
+    "ngx-facebook": "^2.4.0",
+    "angular2-google-login":"^1.0.9"
   },
   "devDependencies": {
     "@types/jasmine": "~2.5.53",

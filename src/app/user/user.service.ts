@@ -21,10 +21,17 @@ export class UserService extends BaseService {
         .map((res: Response) => res.json());
   }
 
-  getUserInfo(userId: string, accessToken: string) {
+  loginUserFacebook(userId: string, accessToken: string) {
     var url = this._apiUrl+"user/Login";
 
     return this.http.post(url, { userId: userId, accessToken: accessToken }, this._requestOptions)
+        .map((res: Response) => res.json());
+  }
+
+  loginUserGoogle(accessToken: string) {
+    var url = this._apiUrl+"user/LoginGoogle";
+
+    return this.http.post(url, { userId: '', accessToken: accessToken }, this._requestOptions)
         .map((res: Response) => res.json());
   }
 }

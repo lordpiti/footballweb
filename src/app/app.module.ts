@@ -15,6 +15,7 @@ import { ShareDataService } from './shared/services/shared-data.service';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { FacebookModule } from 'ngx-facebook';
 import { UserModule } from './user/user.module';
+import { AuthService } from 'angular2-google-login';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { UserModule } from './user/user.module';
     FacebookModule.forRoot(),
     UserModule
   ],
-  providers: [ShareDataService],
+  providers: [ShareDataService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
