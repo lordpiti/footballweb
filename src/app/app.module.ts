@@ -15,7 +15,8 @@ import { ShareDataService } from './shared/services/shared-data.service';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { FacebookModule } from 'ngx-facebook';
 import { UserModule } from './user/user.module';
-import { AuthService } from 'angular2-google-login';
+import { AuthenticationModule } from './authentication/authentication.module';
+import { AuthService } from './authentication/auth.service';
 
 @NgModule({
   declarations: [
@@ -36,9 +37,10 @@ import { AuthService } from 'angular2-google-login';
     ToastModule.forRoot(),
     BsDropdownModule.forRoot(),
     FacebookModule.forRoot(),
-    UserModule
+    UserModule, 
+    AuthenticationModule
   ],
-  providers: [ShareDataService, AuthService],
+  providers: [ShareDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,8 +4,9 @@ import { AppAreas } from './shared/enums/app-areas';
 import { FacebookService, LoginResponse, InitParams } from 'ngx-facebook';
 import { UserService } from './user/user.service';
 import { LoginOptions } from 'ngx-facebook/dist/esm/models/login-options';
-import { AuthService, AppGlobals } from 'angular2-google-login';
-import { AfterViewInit } from 'angular2-google-login/node_modules/@angular/core/src/metadata/lifecycle_hooks';
+import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { AuthService } from './authentication/auth.service';
+import { AppGlobals } from './authentication/app-globals';
 
 @Component({
   selector: 'app-root',
@@ -78,7 +79,9 @@ export class AppComponent implements AfterViewInit {
             localStorage.setItem('authenticationType', '1');
 
             this.token = response.authResponse.accessToken;
-            console.log(data);
+            this.imageURL = '';
+            this.name = data.name;
+            this.email = data.email;
           });
         this.getProfile();
       })
