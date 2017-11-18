@@ -69,9 +69,17 @@ export class AppComponent implements AfterViewInit {
         this.userService.loginUserFacebook(response.authResponse.userID, response.authResponse.accessToken)
           .subscribe(data => {
             this.sharedService.authenticationToken = response.authResponse.accessToken;
+
+            //Setting data to localstorage.
+            localStorage.setItem('token', response.authResponse.accessToken);
+            localStorage.setItem('image', '');
+            localStorage.setItem('name', data.name);
+            localStorage.setItem('email', data.email);
+            localStorage.setItem('authenticationType', '1');
+
+            this.token = response.authResponse.accessToken;
             console.log(data);
           });
-        this.loggedIn = true;
         this.getProfile();
       })
       .catch((error: any) => console.error(error));
@@ -89,7 +97,7 @@ export class AppComponent implements AfterViewInit {
   loginWithGoogle():void {
     setTimeout(() => {  
       this._googleAuth.authenticateUser((result) => {
-        debugger;
+        localStorage.setItem('authenticationType', '2');
         //Using Angular2 Zone dependency to manage the scope of variables
         this.zone.run(() => {
           this.getData();
@@ -138,5 +146,6 @@ export class AppComponent implements AfterViewInit {
     localStorage.removeItem('image');
     localStorage.removeItem('name');
     localStorage.removeItem('email');
+    localStorage.removeItem('authenticationType');
   }
 }

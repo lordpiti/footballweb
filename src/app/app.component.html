@@ -1,13 +1,12 @@
-<button class="btn btn-primary" *ngIf="!loggedIn" (click)="loginWithFacebook()" >Facebook Sign-In</button>
-
 <section class="google-login-page">
+  <button class="btn btn-primary" *ngIf="!token" (click)="loginWithFacebook()" >Facebook Sign-In</button>  
   <button *ngIf="!token" id="google-login-button" class="btn btn-primary" (click)="loginWithGoogle()">Google Sign-In</button>
 
   <div *ngIf="token">
     <img src="{{imageURL}}">
     <br>
-    <b>TOKEN: </b>
-    <p>{{token}}</p>
+    <!-- <b>TOKEN: </b>
+    <p>{{token}}</p> -->
     <b>NAME: </b>
     <p>{{name}}</p>
     <b>EMAIL: </b>

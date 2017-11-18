@@ -31,9 +31,17 @@ export class BaseService {
   }
 
   private appendToken(headers: Headers): Headers {
-    const token = this.shareDataService.authenticationToken;
+    const token = localStorage.getItem('token');
+    const authenticationType = localStorage.getItem('authenticationType');
+
+    let tokenAndType = {
+      token: token, 
+      authenticationType: authenticationType
+    }
+
+    let tokenAndTypeJSON = JSON.stringify(tokenAndType);
     if (token) {
-      headers.append('authenticationToken', token);
+      headers.append('authenticationToken', tokenAndTypeJSON);
     }
     return headers;
   }
