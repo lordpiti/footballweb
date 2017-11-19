@@ -27,6 +27,32 @@
           </div>
         </div>
       </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">Scorers</div>
+        <div class="panel-body">
+          <div class="small">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <td>Player</td>
+                    <td>Team</td>
+                    <td>Goals</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let scorer of roundData.scorers | paginate: { itemsPerPage: 10, currentPage: p }">
+                    <td>{{scorer.player.name}} {{scorer.player.surname}}</td>
+                    <td>
+                      {{scorer.player.teamName}}
+                    </td>
+                    <td>{{scorer.goals}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-sm-7">
       <table class="table table-striped">
@@ -55,29 +81,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <td>Player</td>
-            <td>Team</td>
-            <td>Goals</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let scorer of roundData.scorers | paginate: { itemsPerPage: 10, currentPage: p }">
-            <td>{{scorer.player.name}} {{scorer.player.surname}}</td>
-            <td>
-              {{scorer.player.teamName}}
-            </td>
-            <td>{{scorer.goals}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>
