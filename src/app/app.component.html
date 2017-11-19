@@ -1,20 +1,4 @@
-<section class="google-login-page">
-  <button class="btn btn-primary" *ngIf="!token" (click)="loginWithFacebook()" >Facebook Sign-In</button>  
-  <button *ngIf="!token" id="google-login-button" class="btn btn-primary" (click)="loginWithGoogle()">Google Sign-In</button>
-
-  <div *ngIf="token">
-    <img src="{{imageURL}}">
-    <br>
-    <!-- <b>TOKEN: </b>
-    <p>{{token}}</p> -->
-    <b>NAME: </b>
-    <p>{{name}}</p>
-    <b>EMAIL: </b>
-    <p>{{email}}</p>
-
-    <button class="btn btn-danger" id="google-login-button" (click)="logout()">Logout</button>
-  </div>
-</section>
+<app-login></app-login>
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">

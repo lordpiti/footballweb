@@ -14,9 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShareDataService } from './shared/services/shared-data.service';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { FacebookModule } from 'ngx-facebook';
-import { UserModule } from './user/user.module';
 import { AuthenticationModule } from './authentication/authentication.module';
-import { AuthService } from './authentication/auth.service';
+import { LoginComponent } from './authentication/login/login.component';
+import { UserService } from './user/user.service';
 
 @NgModule({
   declarations: [
@@ -37,10 +37,9 @@ import { AuthService } from './authentication/auth.service';
     ToastModule.forRoot(),
     BsDropdownModule.forRoot(),
     FacebookModule.forRoot(),
-    UserModule, 
     AuthenticationModule
   ],
-  providers: [ShareDataService],
+  providers: [ShareDataService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

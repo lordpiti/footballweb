@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AppGlobals } from './app-globals';
+import { environment } from '../../environments/environment';
 
 declare const gapi: any;
 
@@ -54,7 +55,7 @@ export class AuthService {
    */
   userLogout(callback) {
     //You will be redirected to this URL after logging out from Google.
-    let homeUrl = "http://localhost:4200";
+    let homeUrl = environment.home_url;
     let logoutUrl = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=" + homeUrl;
     document.location.href = logoutUrl;
     callback();
