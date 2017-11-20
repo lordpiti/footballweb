@@ -17,6 +17,7 @@ import { FacebookModule } from 'ngx-facebook';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { LoginComponent } from './authentication/login/login.component';
 import { UserService } from './user/user.service';
+import { TeamModule } from './team/team.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UserService } from './user/user.service';
     ToastModule.forRoot(),
     BsDropdownModule.forRoot(),
     FacebookModule.forRoot(),
-    AuthenticationModule
+    AuthenticationModule, 
+    TeamModule //Needed here for the modal popup
   ],
   providers: [ShareDataService, UserService],
   bootstrap: [AppComponent]
