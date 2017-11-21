@@ -2,12 +2,11 @@ import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { Team } from '../../shared/interfaces/team.interface';
 import { TeamService} from '../team.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-//import 'rxjs/add/operator/switchMap';
 import { Overlay, overlayConfigFactory } from 'ngx-modialog';
 import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { TeamDetailsEditModalComponent } from '../team-edit-modal/team-edit-modal.component';
 import { NgForm } from '@angular/forms';
-import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+//import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { environment } from '../../../environments/environment';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -21,12 +20,12 @@ import { AppAreas } from '../../shared/enums/app-areas';
 })
 export class TeamDetailComponent implements OnInit {
 
-  public config: DropzoneConfigInterface = {
-    url: environment.api_url+'globalmedia/UploadDocument',
-    maxFilesize: 50,
-    acceptedFiles: 'image/*',
-    paramName: 'files'
-  };
+  // public config: DropzoneConfigInterface = {
+  //   url: environment.api_url+'globalmedia/UploadDocument',
+  //   maxFilesize: 50,
+  //   acceptedFiles: 'image/*',
+  //   paramName: 'files'
+  // };
 
   public teamDetails: Team;
 

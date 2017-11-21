@@ -5,7 +5,7 @@ import { MatchComponent } from './components/match/match.component';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 //import { BusyModule, BusyDirective } from 'angular2-busy';
 import { AgmCoreModule } from '@agm/core';
-import { DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+//import { DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { ChartsModule } from 'ng2-charts';
  import { ImageCropperComponent, CropperSettings, ImageCropperModule } from 'ng2-img-cropper';
 import { MatchPlayersComponent } from './components/match/match-players/match-players.component';
@@ -21,7 +21,7 @@ import { MatchPlayersSingleComponent } from './components/match/match-players/ma
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAhnlVo62cLGyWwCM6JS3I32hZE5AoBfHI'
     }),
-    DropzoneModule,
+    //DropzoneModule,
     ChartsModule,
      ImageCropperModule, 
     Ng2FilterPipeModule,
@@ -36,7 +36,7 @@ import { MatchPlayersSingleComponent } from './components/match/match-players/ma
     // BusyModule, 
     AgmCoreModule, 
     ChartsModule, 
-    DropzoneModule, 
+    //DropzoneModule, 
     ImageCropperModule, NgxPaginationModule
   ]
 })
