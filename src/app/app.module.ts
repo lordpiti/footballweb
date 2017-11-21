@@ -18,6 +18,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { LoginComponent } from './authentication/login/login.component';
 import { UserService } from './user/user.service';
 import { TeamModule } from './team/team.module';
+import { SampleService } from 'angular-piti-module-test';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { TeamModule } from './team/team.module';
     AuthenticationModule, 
     TeamModule //Needed here for the modal popup
   ],
-  providers: [ShareDataService, UserService],
+  providers: [ShareDataService, UserService, SampleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

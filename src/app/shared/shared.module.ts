@@ -21,7 +21,7 @@ import { MatchPlayersSingleComponent } from './components/match/match-players/ma
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAhnlVo62cLGyWwCM6JS3I32hZE5AoBfHI'
     }),
-    DropzoneModule.forChild(),
+    DropzoneModule,
     ChartsModule,
      ImageCropperModule, 
     Ng2FilterPipeModule,

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import {Observable, Subject} from 'rxjs/Rx';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
 import { Team } from '../shared/interfaces/team.interface';
 import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
 import { ShareDataService } from '../shared/services/shared-data.service';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TeamService extends BaseService {

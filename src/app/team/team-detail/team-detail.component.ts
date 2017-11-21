@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { Team } from '../../shared/interfaces/team.interface';
 import { TeamService} from '../team.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+//import 'rxjs/add/operator/switchMap';
 import { Overlay, overlayConfigFactory } from 'ngx-modialog';
 import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { TeamDetailsEditModalComponent } from '../team-edit-modal/team-edit-modal.component';

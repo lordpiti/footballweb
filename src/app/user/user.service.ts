@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import {Observable, Subject} from 'rxjs/Rx';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/toPromise';
+// import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
 import { ShareDataService } from '../shared/services/shared-data.service';
 import { BaseService } from '../shared/services/base.service';
