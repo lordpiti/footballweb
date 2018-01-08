@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { PlayerService } from '../player.service';
 import { ActivatedRoute } from '@angular/router';
+import { Player } from '../../shared/interfaces/player.interface';
+import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
+import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 
 @Component({
   selector: 'app-player-detail',
@@ -11,26 +14,65 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PlayerDetailComponent implements OnInit {
 
-  constructor(private sharedService: ShareDataService, private playerService: PlayerService, private route: ActivatedRoute) { }
+  public playerDetails: Player;
+
+  public playerPicture: any;
+
+  @Input() newid: number = null;
+
+  constructor(private sharedService: ShareDataService, private playerService: PlayerService, 
+    private route: ActivatedRoute, public toastr: ToastsManager) { }
 
   ngOnInit() {
     setTimeout(()=>{    //<<<---    using ()=> syntax
       this.sharedService.setCurrentArea(AppAreas.Players);
     },0);
 
-    // this.route.params.subscribe(params => {
-    //   let playerId = +params['id']; // (+) converts string 'id' to a number
+ 
+     if (!this.newid){
+       //let id = this.route.snapshot.params['id'];
+ 
+       this.route.params.subscribe(params => {
+         this.newid = +params['id']; // (+) converts string 'id' to a number
+ 
+         this.getData(this.newid);
 
-    //   this.playerService.getPlayers(playerId).subscribe(
-    //     (playerData: any) => {
-    //         this.competitionDetails = competitionData;
-    //         this._competitionService.setCurrentCompetition(competitionData);
-    //     },
-    //     (err: any) => {
-    //     }
-    //   );
-    // });
-
+       });
+     }
+     else{
+       this.getData(this.newid);
+     }
   }
+
+  ngOnChanges(changes:any){
+    this.getData(changes.newid.currentValue);
+  }
+
+
+  savePlayerDetails(player: Player, form: NgForm){
+    
+    if (form.valid){
+      //player.pictureLogo = this.teamLogo;
+      this.playerService.savePlayerDetails(player).subscribe(
+        (data: boolean) => {
+          this.toastr.success('Player details successfully saved', 'Success!');
+        },
+        (err: any) => {
+        }
+      );
+    }
+  }
+
+  private getData(id: number):void{
+    this.playerService.getPlayerDetails(id).subscribe(
+      (playerData: Player) => {
+          this.playerDetails = playerData;
+          this.playerService.setCurrentPlayer(playerData);
+      },
+      (err: any) => {
+      }
+    );
+  }
+
 
 }

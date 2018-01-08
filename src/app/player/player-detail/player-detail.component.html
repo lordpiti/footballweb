@@ -1,3 +1,39 @@
-<p>
-  player-detail works!
-</p>
+
+<div *ngIf="playerDetails" >
+  <div class="row">
+    <div class="col-sm-9">
+      <h3>{{playerDetails.name}}</h3>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-sm-3">
+          <a href="#" class="nav-tabs-dropdown btn btn-block btn-primary">Players</a>
+          <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
+            <li routerLinkActive="active">
+              <a routerLink="summary">Summary</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="statistics" routerLinkActive="active">Statistics</a>
+            </li>
+          </ul>
+      </div>
+      <div class="col-sm-9">
+          <router-outlet></router-outlet>
+      </div>
+  </div>
+
+
+  <!-- <form #hiveMatchingCriteriaForm="ngForm" id="hiveMatchingCriteriaForm" name="hiveMatchingCriteriaForm">
+    <div class="form-group row margin-top1">
+      <div class="col-md-12">
+          <input required type="text" [(ngModel)]="teamDetails.name" #Name="ngModel" name="name" id="name" />
+      </div>
+    </div>
+  </form> 
+
+  <button class="btn btn-primary" (click)="saveTeamDetails(teamDetails, hiveMatchingCriteriaForm)">Save changes!</button>
+-->
+  
+</div>
+

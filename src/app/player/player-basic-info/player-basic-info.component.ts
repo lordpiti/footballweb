@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PlayerService } from '../player.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr/src/toast-manager';
+import { Player } from '../../shared/interfaces/player.interface';
 
 @Component({
   selector: 'app-player-basic-info',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayerBasicInfoComponent implements OnInit {
 
-  constructor() { }
+  currentPlayer : Player = null;
+
+  constructor( private playerService: PlayerService, 
+    private route: ActivatedRoute, public toastr: ToastsManager) { }
 
   ngOnInit() {
+
+    if (this.playerService.currentPlayer){
+      this.currentPlayer = this.playerService.currentPlayer;
+    }
+
+    this.playerService.getCurrentPlayer().subscribe(data => {
+      this.currentPlayer = this.playerService.currentPlayer;
+    });
+
+
   }
+  
 
 }
