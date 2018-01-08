@@ -43,7 +43,7 @@ export class PlayerService extends BaseService {
   }
 
   savePlayerDetails(playerDetails: Player) {
-    var url = this._apiUrl+"player/save";
+    var url = this._apiUrl+"player/savePlayerDetails";
     
     return this.http.post(url, playerDetails, this._requestOptions)
         .map((res: Response) => res.json());
@@ -55,6 +55,7 @@ export class PlayerService extends BaseService {
 
   public setCurrentPlayer(_data: Player) {
       this.currentPlayer = _data;
+      console.log(_data);
       this.currentPlayerSubject.next(_data)
   };
   public getCurrentPlayer(): Observable<Player> {

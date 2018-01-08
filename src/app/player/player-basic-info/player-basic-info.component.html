@@ -1,3 +1,17 @@
 <p>
   player-basic-info works!
 </p>
+
+<form #playerForm="ngForm" id="playerForm" name="playerForm">
+  <div class="row form-group">
+    <div class="col-md-6">
+      Name
+    </div>
+    <div class="col-md-6">
+      <input [(ngModel)]="playerDetails.name" required type="text"  name="name" id="name">
+    </div>
+  </div>
+</form>
+
+<button class="btn btn-primary" (click)="savePlayerDetails(playerDetails, playerForm)">Save changes!</button>
+

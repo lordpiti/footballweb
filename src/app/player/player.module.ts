@@ -7,6 +7,7 @@ import { PlayerBasicInfoComponent } from './player-basic-info/player-basic-info.
 import { PlayerStatisticsComponent } from './player-statistics/player-statistics.component';
 import { PlayerService } from './player.service';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 const playerRoutes: Routes = [
@@ -23,6 +24,8 @@ const playerRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     RouterModule.forChild(playerRoutes),
   ],

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { PlayerService } from '../player.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { Player } from '../../shared/interfaces/player.interface';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-player-basic-info',
@@ -11,22 +12,37 @@ import { Player } from '../../shared/interfaces/player.interface';
 })
 export class PlayerBasicInfoComponent implements OnInit {
 
-  currentPlayer : Player = null;
+  playerDetails : Player = null;
 
   constructor( private playerService: PlayerService, 
-    private route: ActivatedRoute, public toastr: ToastsManager) { }
+    private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef) { 
+      this.toastr.setRootViewContainerRef(vcr);
+    }
 
   ngOnInit() {
 
     if (this.playerService.currentPlayer){
-      this.currentPlayer = this.playerService.currentPlayer;
+      this.playerDetails = this.playerService.currentPlayer;
     }
 
     this.playerService.getCurrentPlayer().subscribe(data => {
-      this.currentPlayer = this.playerService.currentPlayer;
+      this.playerDetails = this.playerService.currentPlayer;
     });
 
 
+  }
+
+  savePlayerDetails(player: Player, form: NgForm){
+    
+    if (form.valid){
+      this.playerService.savePlayerDetails(player).subscribe(
+        (data: boolean) => {
+          this.toastr.success('Player details successfully saved', 'Success!');
+        },
+        (err: any) => {
+        }
+      );
+    }
   }
   
 
