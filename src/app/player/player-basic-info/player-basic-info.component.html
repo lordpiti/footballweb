@@ -4,11 +4,17 @@
 
 <form #playerForm="ngForm" id="playerForm" name="playerForm">
   <div class="row form-group">
-    <div class="col-md-6">
+    <div class="col-md-4">
       Name
     </div>
-    <div class="col-md-6">
-      <input [(ngModel)]="playerDetails.name" required type="text"  name="name" id="name">
+    <div class="col-md-4">
+      <input #playerName="ngModel" [(ngModel)]="playerDetails.name" required type="text"  name="name" id="name">
+    </div>
+    <div class="col-md-4">
+      {{playerName.invalid && playerName.errors.required}}
+      <div *ngIf="playerName.invalid && playerName.touched">
+        <label>Please select at least one category</label>
+      </div>
     </div>
   </div>
 </form>
