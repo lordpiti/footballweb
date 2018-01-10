@@ -5,7 +5,9 @@
   </div>
   <div class="col-sm-1">
       <span *ngIf="player.substitutionIn" class="glyphicon glyphicon-arrow-left"></span>
+      <span *ngIf="player.substitutionIn">{{player.substitutionIn.minute}}</span>
       <span *ngIf="player.substitutionOut" class="glyphicon glyphicon-arrow-right"></span>
+      <span *ngIf="player.substitutionOut">{{player.substitutionOut.minute}}</span>
   </div>
   <div class="col-sm-2">
     <div *ngFor="let booking of player.bookings" >

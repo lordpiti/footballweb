@@ -11,7 +11,7 @@ import { SquadComponent } from './squad/squad.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { GooglemapsService } from './googlemaps.service';
 import { SharedModule } from '../shared/shared.module';
-
+import { HttpClientModule } from '@angular/common/http'; 
 
 
 const teamRoutes: Routes = [
@@ -29,6 +29,7 @@ const teamRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(teamRoutes),
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule

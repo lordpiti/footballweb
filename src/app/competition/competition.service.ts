@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
 import { ShareDataService } from '../shared/services/shared-data.service';
 import { Subject } from 'rxjs/Subject';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class CompetitionService extends BaseService {
@@ -13,8 +14,8 @@ export class CompetitionService extends BaseService {
   public currentCompetition: any;
   private currentCompetitionSubject: Subject<any> = new Subject<any>();
   
-  constructor(public http: Http, public sharedService: ShareDataService) {
-    super(http, sharedService);
+  constructor(public http: Http, public sharedService: ShareDataService, public httpClient: HttpClient) {
+    super(http, sharedService, httpClient);
   }
 
 

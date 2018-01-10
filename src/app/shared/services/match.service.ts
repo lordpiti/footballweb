@@ -5,12 +5,13 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { environment } from '../../../environments/environment';
 import { BaseService } from './base.service';
 import { ShareDataService } from './shared-data.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class MatchService extends BaseService {
   
-  constructor(public http: Http, sharedService: ShareDataService) {
-    super(http, sharedService);
+  constructor(public http: Http, sharedService: ShareDataService, public httpNew:HttpClient) {
+    super(http, sharedService, httpNew);
   }
 
   public getMatch(matchId:number) {

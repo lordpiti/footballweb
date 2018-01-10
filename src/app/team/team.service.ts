@@ -8,13 +8,14 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable()
 export class TeamService extends BaseService {
   
-  constructor(public http: Http, public sharedService: ShareDataService) {
-    super(http, sharedService);
+  constructor(public http: Http, public sharedService: ShareDataService, public httpNew:HttpClient) {
+    super(http, sharedService, httpNew);
   }
 
   getTeams(competitionId: number) {

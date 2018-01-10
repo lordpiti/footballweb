@@ -5,12 +5,13 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { ShareDataService } from '../shared/services/shared-data.service';
 import { BaseService } from '../shared/services/base.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class UserService extends BaseService {
   
-  constructor(public http: Http, public sharedService: ShareDataService) {
-    super(http, sharedService);
+  constructor(public http: Http, public sharedService: ShareDataService, public httpNew:HttpClient) {
+    super(http, sharedService, httpNew);
   }
 
   getAllUsers() {

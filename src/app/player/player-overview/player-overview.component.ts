@@ -21,7 +21,7 @@ export class PlayerOverviewComponent implements OnInit {
       this.sharedService.setCurrentArea(AppAreas.Players);
     },0);
 
-    this.playerService.getPlayers().subscribe(
+    this.playerService.getPlayers2().subscribe(
       (data: Array<Player>) => {
           this.playerList = data;
       },
