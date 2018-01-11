@@ -14,7 +14,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class PlayerService extends BaseService {
 
-  
+  public currentPlayer: Player;
+  private currentPlayerSubject: Subject<Player> = new Subject<Player>();
+
   constructor(public http: Http, public sharedService: ShareDataService, public httpNew:HttpClient) {
     super(http, sharedService, httpNew);
   }
@@ -23,7 +25,7 @@ export class PlayerService extends BaseService {
   //   var url = this._apiUrl+"player/";
 
   //   return this.http.get(url, this._requestOptions)
-  //       .map((res: Response) => res.json().sort(function(a, b) {
+  //       .map((res: Response) => (res.json() as Player[]).sort(function(a, b) {
   //         var nameA = a.surname.toUpperCase(); // ignore upper and lowercase
   //         var nameB = b.surname.toUpperCase(); // ignore upper and lowercase
   //         if (nameA < nameB) {
@@ -41,8 +43,8 @@ export class PlayerService extends BaseService {
   getPlayers2() {
     var url = this._apiUrl+"player/";
 
-    return this.httpNew.get(url, { headers: this._headers })
-      .map((res: Array<Player>) => res.sort(function(a, b) {
+    return this.httpNew.get<Array<Player>>(url)
+      .map(res => res.sort(function(a, b) {
       var nameA = a.surname.toUpperCase(); // ignore upper and lowercase
       var nameB = b.surname.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
@@ -60,7 +62,7 @@ export class PlayerService extends BaseService {
   getPlayerDetails(id: number) {
     var url = "player/"+id;
     
-    return this.get(url);
+    return this.httpNew.get<Player>(url, { headers: this._headers });
   }
 
   savePlayerDetails(playerDetails: Player) {
@@ -70,15 +72,13 @@ export class PlayerService extends BaseService {
         .map((res: Response) => res.json());
   }
 
-  public currentPlayer: Player;
-  private currentPlayerSubject: Subject<Player> = new Subject<Player>();
-
 
   public setCurrentPlayer(_data: Player) {
       this.currentPlayer = _data;
 
       this.currentPlayerSubject.next(_data)
   };
+
   public getCurrentPlayer(): Observable<Player> {
       return this.currentPlayerSubject.asObservable();
   };  

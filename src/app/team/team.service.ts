@@ -19,15 +19,15 @@ export class TeamService extends BaseService {
   }
 
   getTeams(competitionId: number) {
-    var url = "team/teams/"+(competitionId?competitionId:'') ;
+    var url = this._apiUrl+"team/teams/"+(competitionId?competitionId:'') ;
 
-    return this.get(url);
+    return this.httpNew.get<Team[]>(url);
   }
 
   getTeamDetails(id: number) {
-    var url = "team/teams/"+id+"/year/2009";
+    var url = this._apiUrl+"team/teams/"+id+"/year/2009";
     
-    return this.get(url);
+    return this.httpNew.get<Team>(url);
   }
 
   getTeamCompetitions(id: number) {

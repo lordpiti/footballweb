@@ -109,7 +109,6 @@ export class TeamChartComponent {
           if (this.competitions.length>0){
             this.onChangeCompetition(this.competitions[0].name);
           }
-          debugger;
           this.loadChartData(this.teamId, this.selectedCompetition,this.selectedSeason);
       },
       (err: any) => {

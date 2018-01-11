@@ -10,7 +10,6 @@ import { CompetitionRoundComponent } from './competition-round/competition-round
 import { CompetitionService } from '../competition/competition.service';
 import { SharedModule } from '../shared/shared.module';
 import { MatchComponent } from '../shared/components/match/match.component';
-import { HttpClientModule } from '@angular/common/http'; 
 
 
 const competitionRoutes: Routes = [
@@ -30,8 +29,7 @@ const competitionRoutes: Routes = [
     CommonModule, SharedModule,
     RouterModule.forChild(competitionRoutes),
     FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    ReactiveFormsModule
   ],
   providers: [
     CompetitionService
