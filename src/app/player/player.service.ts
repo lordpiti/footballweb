@@ -60,7 +60,7 @@ export class PlayerService extends BaseService {
   }
 
   getPlayerDetails(id: number) {
-    var url = "player/"+id;
+    var url = this._apiUrl+"player/"+id;
     
     return this.httpNew.get<Player>(url, { headers: this._headers });
   }

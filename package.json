@@ -43,7 +43,9 @@
     "ngx-pagination": "^3.0.3",
     "ngx-bootstrap": "^2.0.0-beta.8",
     "ngx-facebook": "^2.4.0",
-    "angular-piti-module-test": "0.1.0"
+    "angular-piti-module-test": "0.1.0",
+    "msgpack5": "^4.0.1",
+    "@aspnet/signalr-client": "1.0.0-alpha2-final"
   },
   "devDependencies": {
     "@angular/cli": "^1.5.3",

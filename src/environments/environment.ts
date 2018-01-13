@@ -8,5 +8,6 @@ export const environment = {
   api_url: 'http://localhost:57544/api/',
   FACEBOOK_APP_ID: '2050633918500176',
   GOOGLE_CLIENT_ID: '357813264391-bc51b2u0ohaeb6v78k2b2tpr5pdi6c09.apps.googleusercontent.com',   
-  home_url: 'http://localhost:4200'
+  home_url: 'http://localhost:4200',
+  hubUrl: 'http://localhost:57544'
 };
