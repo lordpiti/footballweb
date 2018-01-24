@@ -7,5 +7,6 @@ export interface Match {
     goalsLocal: number,
     goalsVisitor: number,
     matchEvents: MatchEvent[],
-    id: number
+    id: number,
+    finished: boolean
 }

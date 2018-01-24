@@ -4,6 +4,7 @@ import { HubConnection } from '@aspnet/signalr-client';
 import { environment } from '../../../environments/environment';
 import { MatchEvent } from '../../shared/interfaces/match-event.interface';
 import { Match } from '../../shared/interfaces/match.interface';
+import { MatchEventTypes } from '../../shared/enums/match-event-types';
 
 @Component({
   selector: 'app-player-statistics',
@@ -36,31 +37,45 @@ ngOnInit() {
         const received = `Received: ${data}`;
         this.messages.push(received);
 
-        if (data.matchId){
-            if (this.matches.find(match => match.id == data.matchId)==undefined){
-                //create the new match object
-                let newMatch: Match = { 
-                    id: data.matchId, 
-                    local: 3, 
-                    visitor: 4, 
-                    goalsLocal: 2,
-                    goalsVisitor: 3,
-                    matchEvents: []
-                };
-                this.matches.push(newMatch);
-                console.log(data);
-            }
-        }
+        //look for match in the list and push the event to the list
+        let eventMatch = this.matches.find(match => match.id == data.matchId);
+        eventMatch.matchEvents.push(data);
 
-        if (data.matchEventType){
-            //look for match in the list and push the event to the list
-            let eventMatch = this.matches.find(match => match.id == data.matchId);
-            eventMatch.matchEvents.push(data);
+        switch (data.matchEventType){
+            case MatchEventTypes.GameFinished:
+                eventMatch.finished = true;
+                break;
+            case MatchEventTypes.Goal:
+                //find team for the player and increase goals
+            default:
+                break;
         }
-        else{
-            console.log(data);
-            
-        }
+        
+    });
+
+    this._hubConnection.on('SendCreateMatch', (data: any) => {
+        const received = `Received: ${data}`;
+        this.messages.push(received);
+
+        if (data.matchId){
+            let existingMatch = this.matches.find(match => match.id == data.matchId);
+            //create the new match object
+            let newMatch: Match = { 
+                id: data.matchId, 
+                local: 3, 
+                visitor: 4, 
+                goalsLocal: 0,
+                goalsVisitor: 0,
+                matchEvents: [],
+                finished: false
+            };
+            if (existingMatch == undefined){
+                this.matches.push(newMatch);
+            }
+            else{
+                existingMatch = newMatch;
+            }
+        }        
     });
 
     this._hubConnection.start()
