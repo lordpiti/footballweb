@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from './auth.service';
+import { GoogleAuthService } from './google-auth.service';
 import { LoginComponent } from './login/login.component';
 import { ModuleWithProviders } from '@angular/core/src/metadata/ng_module';
 
@@ -8,7 +8,7 @@ import { ModuleWithProviders } from '@angular/core/src/metadata/ng_module';
   imports: [
     CommonModule
   ],
-  providers: [ AuthService],
+  providers: [ GoogleAuthService],
   declarations: [ LoginComponent ],
   exports: [ LoginComponent ]
 })

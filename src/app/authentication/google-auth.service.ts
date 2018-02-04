@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
 declare const gapi: any;
 
 @Injectable()
-export class AuthService {
+export class GoogleAuthService {
   constructor() { }
 
   /**
@@ -35,13 +35,6 @@ export class AuthService {
           localStorage.setItem('name', profile.getName());
           localStorage.setItem('email', profile.getEmail());
 
-          //Alternatively you can create an object and return it like that -
-          // result = {
-          //   token: userDetails.getAuthResponse().id_token,
-          //   name: profile.getName(),
-          //   image: profile.getImageUrl(),
-          //   email: profile.getEmail(),
-          // };
           callback(true);
         }, function (error) {
           this.error = (JSON.stringify(error, undefined, 2));

@@ -1,9 +1,8 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { InitParams } from 'ngx-facebook/dist/esm/models/init-params';
-import { ShareDataService } from '../../shared/services/shared-data.service';
 import { FacebookService } from 'ngx-facebook/dist/esm/providers/facebook';
-import { AuthService } from '../auth.service';
+import { GoogleAuthService } from '../google-auth.service';
 import { UserService } from '../../user/user.service';
 import { AppGlobals } from '../app-globals';
 import { LoginOptions } from 'ngx-facebook/dist/esm/models/login-options';
@@ -21,9 +20,11 @@ export class LoginComponent implements AfterViewInit {
   email: string;
   name: string;
   token: string;
+  authenticationType: string;
+  role: string;
 
-  constructor(private sharedService: ShareDataService, private fb: FacebookService,
-    private userService: UserService, private _googleAuth: AuthService, private zone: NgZone) { 
+  constructor(private fb: FacebookService,
+    private userService: UserService, private _googleAuth: GoogleAuthService, private zone: NgZone) { 
     let initParams: InitParams = {
       appId: environment.FACEBOOK_APP_ID,
       xfbml: true,
@@ -60,7 +61,6 @@ export class LoginComponent implements AfterViewInit {
         console.log(response);
         this.userService.loginUserFacebook(response.authResponse.userID, response.authResponse.accessToken)
           .subscribe(data => {
-            this.sharedService.authenticationToken = response.authResponse.accessToken;
 
             //Setting data to localstorage.
             localStorage.setItem('token', response.authResponse.accessToken);
@@ -68,11 +68,13 @@ export class LoginComponent implements AfterViewInit {
             localStorage.setItem('name', data.name);
             localStorage.setItem('email', data.email);
             localStorage.setItem('authenticationType', '1');
+            localStorage.setItem('role', data.role);
 
             this.token = response.authResponse.accessToken;
             this.imageURL = '';
             this.name = data.name;
             this.email = data.email;
+            this.role = data.role;
           });
         this.getProfile();
       })
@@ -110,11 +112,13 @@ export class LoginComponent implements AfterViewInit {
       this.imageURL = localStorage.getItem('image');
       this.name = localStorage.getItem('name');
       this.email = localStorage.getItem('email');
+      this.authenticationType = localStorage.getItem('authenticationType');
 
       if (this.token){
         this.userService.loginUserGoogle(this.token)
         .subscribe(data => {
-          this.sharedService.authenticationToken = this.token;
+          debugger;
+          this.role = data.role;
           console.log(data);
         });
       }
@@ -126,10 +130,19 @@ export class LoginComponent implements AfterViewInit {
    * Logout user and calls function to clear the localstorage
    */
   logout() {
-    let scopeReference = this;
-    this._googleAuth.userLogout(function () {
-      scopeReference.clearLocalStorage();
-    });
+    debugger;
+    if (this.authenticationType == '2'){
+      let scopeReference = this;
+      this._googleAuth.userLogout(function () {
+        scopeReference.clearLocalStorage();
+      });
+    }
+    else {
+      this.fb.logout().then(data => {
+        this.clearLocalStorage();
+      })
+    }
+
   }
 
   /**
@@ -141,6 +154,7 @@ export class LoginComponent implements AfterViewInit {
     localStorage.removeItem('name');
     localStorage.removeItem('email');
     localStorage.removeItem('authenticationType');
+    localStorage.removeItem('role');
   }
 
 }
