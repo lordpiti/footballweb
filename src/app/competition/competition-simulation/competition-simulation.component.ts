@@ -7,11 +7,11 @@ import { Match } from '../../shared/interfaces/match.interface';
 import { MatchEventTypes } from '../../shared/enums/match-event-types';
 
 @Component({
-  selector: 'app-player-statistics',
-  templateUrl: './player-statistics.component.html',
-  styleUrls: ['./player-statistics.component.scss']
+  selector: 'app-competition-simulation',
+  templateUrl: './competition-simulation.component.html',
+  styleUrls: ['./competition-simulation.component.scss']
 })
-export class PlayerStatisticsComponent implements OnInit {
+export class CompetitionSimulationComponent implements OnInit {
 
 private _hubConnection: HubConnection;
 public async: any;

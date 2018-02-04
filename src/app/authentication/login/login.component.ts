@@ -117,7 +117,6 @@ export class LoginComponent implements AfterViewInit {
       if (this.token){
         this.userService.loginUserGoogle(this.token)
         .subscribe(data => {
-          debugger;
           this.role = data.role;
           console.log(data);
         });
@@ -130,7 +129,6 @@ export class LoginComponent implements AfterViewInit {
    * Logout user and calls function to clear the localstorage
    */
   logout() {
-    debugger;
     if (this.authenticationType == '2'){
       let scopeReference = this;
       this._googleAuth.userLogout(function () {

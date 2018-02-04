@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Team } from '../shared/interfaces/team.interface';
 import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
@@ -14,56 +13,54 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class TeamService extends BaseService {
   
-  constructor(public http: Http, public sharedService: ShareDataService, public httpNew:HttpClient) {
-    super(http, sharedService, httpNew);
+  constructor(public sharedService: ShareDataService, public httpNew:HttpClient) {
+    super( sharedService, httpNew);
   }
 
   getTeams(competitionId: number) {
     var url = this._apiUrl+"team/teams/"+(competitionId?competitionId:'') ;
 
-    return this.httpNew.get<Team[]>(url);
+    return this.httpNew.get<Team[]>(url, { headers: this._headers });
   }
 
   getTeamDetails(id: number) {
     var url = this._apiUrl+"team/teams/"+id+"/year/2009";
     
-    return this.httpNew.get<Team>(url);
+    return this.httpNew.get<Team>(url, { headers: this._headers });
   }
 
   getTeamCompetitions(id: number) {
-    var url = "competition/team/"+id;
+    var url = this._apiUrl+"competition/team/"+id;
     
-    return this.get(url);
+    return this.httpNew.get(url, { headers: this._headers });
   }
 
   saveTeamDetails(teamDetails: Team) {
     var url = this._apiUrl+"team/saveTeamDetails";
     
-    return this.http.post(url, teamDetails, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.httpNew.post(url, teamDetails, { headers: this._headers });
   }
 
   addBase64Image(image: string, fileName: string) {
     var url = this._apiUrl+"GlobalMedia/UploadBase64Image";
     
-    return this.http.post(url, { Base64String:image, FileName: fileName }, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.httpNew.post(url, { Base64String:image, FileName: fileName }, { headers: this._headers });
   }
 
   getChartData(teamId: number, competitionName: string, season: string) {
 
-    var url = "team/clasification/"+teamId+
+    var url = this._apiUrl+"team/clasification/"+teamId+
     "/competition/"+competitionName+"/season/"+season;
     
-    return this.get(url)
-        .map((res: Response) => this.convertToChartData(res));
+    return this.httpNew.get(url, { headers: this._headers })
+    .map(res => this.convertToChartData(res));
   }
 
   getClasificationData(competitionId: number, round: string) {
-    var url = "team/clasification/"+competitionId+
+    var url = this._apiUrl+"team/clasification/"+competitionId+
     "/round/"+round;
     
-    return this.get(url);
+    return this.httpNew.get(url, { headers: this._headers });
   }
 
   private convertToChartData(data: any):any {

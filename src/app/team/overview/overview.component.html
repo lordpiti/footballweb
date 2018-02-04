@@ -1,13 +1,13 @@
-<p>
-  overview works!
-</p>
-
-
-<ul>
-  <li *ngFor="let item of teamList;let i=index">
-    <a routerLink="/teams/detail/{{item.id}}" routerLinkActive="active">{{item.name}}</a>
-    <button class="btn btn-default" (click)="setSelectedTeamId(item.id)">select</button>
-  </li>
-</ul>
-{{selectedTeamId}}
-<app-team-detail *ngIf="selectedTeamId" newid="{{selectedTeamId}}"></app-team-detail>
+<div class="panel panel-default">
+  <div class="panel-heading">Teams overview</div>
+  <div class="panel-body">
+      <ul>
+        <li *ngFor="let item of teamList;let i=index">
+          <a routerLink="/teams/detail/{{item.id}}" routerLinkActive="active">{{item.name}}</a>
+          <!-- <button class="btn btn-default" (click)="setSelectedTeamId(item.id)">select</button> -->
+        </li>
+      </ul>
+      <!-- {{selectedTeamId}}
+      <app-team-detail *ngIf="selectedTeamId" newid="{{selectedTeamId}}"></app-team-detail> -->
+  </div>
+</div>

@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
-// import 'rxjs/add/operator/toPromise';
-// import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment';
 import { BaseService } from './base.service';
 import { ShareDataService } from './shared-data.service';
@@ -10,25 +7,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class MatchService extends BaseService {
   
-  constructor(public http: Http, sharedService: ShareDataService, public httpNew:HttpClient) {
-    super(http, sharedService, httpNew);
+  constructor(sharedService: ShareDataService, public httpNew:HttpClient) {
+    super(sharedService, httpNew);
   }
 
   public getMatch(matchId:number) {
-    var url = 'competition/match/'+matchId;
+    var url = this._apiUrl+'competition/match/'+matchId;
 
-    return this.get(url)
-        .map((res: Response) => this.convertToMatchData(res));
+    return this.httpNew.get(url, { headers: this._headers })
+      .map(data => this.convertToMatchData(data));
   }
 
   public getMatchPlayerStatistics(playerId: number, matchId:number) {
-    var url = 'player/'+playerId+'/MatchPlayedStatistics/'+matchId;
+    var url = this._apiUrl+'player/'+playerId+'/MatchPlayedStatistics/'+matchId;
 
-    return this.http.get(url);
+    return this.httpNew.get(url, { headers: this._headers });
   }
 
   private convertToMatchData(matchData: any):any {
-
     matchData.players.forEach(player=> {
       player.goals = [];
       player.bookings = [];

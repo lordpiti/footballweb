@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
 import { PlayerDetailComponent } from './player-detail/player-detail.component';
 import { PlayerBasicInfoComponent } from './player-basic-info/player-basic-info.component';
-import { PlayerStatisticsComponent } from './player-statistics/player-statistics.component';
 import { PlayerService } from './player.service';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,8 +13,7 @@ const playerRoutes: Routes = [
   { path: '',  component: PlayerOverviewComponent },
   { path: 'detail/:id', component: PlayerDetailComponent, children: [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
-    { path:'summary', component: PlayerBasicInfoComponent },
-    { path:'statistics', component: PlayerStatisticsComponent }
+    { path:'summary', component: PlayerBasicInfoComponent }
   ] },
   { path: '**',  component: PlayerOverviewComponent }
 ];
@@ -33,7 +31,7 @@ const playerRoutes: Routes = [
     PlayerService
   ],
   declarations: [PlayerOverviewComponent, PlayerDetailComponent, 
-    PlayerBasicInfoComponent, PlayerStatisticsComponent]
+    PlayerBasicInfoComponent]
 })
 export class PlayerModule { }
 

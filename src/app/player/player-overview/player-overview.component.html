@@ -1,10 +1,15 @@
-<div *ngFor="let player of playerList | paginate: { itemsPerPage: 10, currentPage: p }" class="row">
-  <div class="col-sm-6">
-    <a routerLink="./detail/{{player.teamId}}">{{player.name}} {{player.surname}}</a>
-  </div>
-  <div class="col-sm-6">
-    <a routerLink="/teams/detail/{{player.teamId}}">{{player.teamName}}</a>
+<div class="panel panel-default">
+  <div class="panel-heading">Players overview</div>
+  <div class="panel-body">
+    <div *ngFor="let player of playerList | paginate: { itemsPerPage: 10, currentPage: p }" class="row">
+        <div class="col-sm-6">
+          <a routerLink="./detail/{{player.teamId}}">{{player.name}} {{player.surname}}</a>
+        </div>
+        <div class="col-sm-6">
+          <a routerLink="/teams/detail/{{player.teamId}}">{{player.teamName}}</a>
+        </div>
+      </div>
+      
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>
-
-<pagination-controls (pageChange)="p = $event"></pagination-controls>

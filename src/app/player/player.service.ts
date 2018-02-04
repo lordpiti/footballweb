@@ -17,30 +17,11 @@ export class PlayerService extends BaseService {
   public currentPlayer: Player;
   private currentPlayerSubject: Subject<Player> = new Subject<Player>();
 
-  constructor(public http: Http, public sharedService: ShareDataService, public httpNew:HttpClient) {
-    super(http, sharedService, httpNew);
+  constructor(public sharedService: ShareDataService, public httpNew:HttpClient) {
+    super(sharedService, httpNew);
   }
 
-  // getPlayers() {
-  //   var url = this._apiUrl+"player/";
-
-  //   return this.http.get(url, this._requestOptions)
-  //       .map((res: Response) => (res.json() as Player[]).sort(function(a, b) {
-  //         var nameA = a.surname.toUpperCase(); // ignore upper and lowercase
-  //         var nameB = b.surname.toUpperCase(); // ignore upper and lowercase
-  //         if (nameA < nameB) {
-  //           return -1;
-  //         }
-  //         if (nameA > nameB) {
-  //           return 1;
-  //         }
-        
-  //         // names must be equal
-  //         return 0;
-  //       }));
-  // }
-
-  getPlayers2() {
+  getPlayers() {
     var url = this._apiUrl+"player/";
 
     return this.httpNew.get<Array<Player>>(url)
@@ -68,10 +49,8 @@ export class PlayerService extends BaseService {
   savePlayerDetails(playerDetails: Player) {
     var url = this._apiUrl+"player/savePlayerDetails";
     
-    return this.http.post(url, playerDetails, this._requestOptions)
-        .map((res: Response) => res.json());
+    return this.httpNew.post(url, playerDetails, { headers: this._headers });
   }
-
 
   public setCurrentPlayer(_data: Player) {
       this.currentPlayer = _data;

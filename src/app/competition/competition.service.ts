@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import { Team } from '../shared/interfaces/team.interface';
 import { environment } from '../../environments/environment';
@@ -14,21 +13,21 @@ export class CompetitionService extends BaseService {
   public currentCompetition: any;
   private currentCompetitionSubject: Subject<any> = new Subject<any>();
   
-  constructor(public http: Http, public sharedService: ShareDataService, public httpClient: HttpClient) {
-    super(http, sharedService, httpClient);
+  constructor(public sharedService: ShareDataService, public httpClient: HttpClient) {
+    super(sharedService, httpClient);
   }
 
 
   getAllCompetitions() {
-    var url = "competition";
+    var url = this._apiUrl+"competition";
 
-    return this.get(url);
+    return this.httpNew.get(url, { headers: this._headers });
   }
 
   public getTeams(competitionId: number) {
-    var url = "team/teams/"+competitionId;
+    var url = this._apiUrl+"team/teams/"+competitionId;
 
-    return this.get(url);
+    return this.httpNew.get(url, { headers: this._headers });
   }
 
   public setCurrentCompetition(_data: any) {
@@ -40,21 +39,21 @@ export class CompetitionService extends BaseService {
   };
 
   public getCompetitionDetails(id: number) {
-    var url = "competition/"+id;
+    var url = this._apiUrl+"competition/"+id;
     
-    return this.get(url);
+    return this.httpNew.get(url, { headers: this._headers });
   }
 
   public getCompetitionRoundGames(competitionId: number, round: string) {
-    var url = "competition/"+competitionId+"/round/"+round;
+    var url = this._apiUrl+"competition/"+competitionId+"/round/"+round;
     
-    return this.get(url);
+    return this.httpNew.get(url, { headers: this._headers });
   }
 
   public getMatch(matchId:number) {
-    var url = 'competition/match/'+matchId;
+    var url = this._apiUrl+'competition/match/'+matchId;
 
-    return this.get(url);
+    return this.httpNew.get(url, { headers: this._headers });
   }
 
 }
