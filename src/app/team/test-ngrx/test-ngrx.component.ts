@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo } from '../todo';
+import { TodoDataService } from '../todo-data.service';
 
 @Component({
   selector: 'app-test-ngrx',
@@ -7,9 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestNgrxComponent implements OnInit {
 
-  constructor() { }
+  newTodo: Todo = new Todo();
 
-  ngOnInit() {
+  constructor(private todoDataService: TodoDataService) {}
+
+  public ngOnInit(){
+
+  }
+
+  public addTodo(): void {
+    this.todoDataService.addTodo(this.newTodo);
+    this.newTodo = new Todo();
+  }
+
+  public toggleTodoComplete({ id }): void {
+    this.todoDataService.toggleTodoComplete(id);
+  }
+  public removeTodo({ id }): void {
+    this.todoDataService.deleteTodoById(id);
+  }
+
+  public allTodos(): number {
+    return this.incompleteTodos.length + this.completeTodos.length;
+  }
+  public get incompleteTodos(): Array<Todo> {
+    return this.todoDataService.getIncompleteTodos();
+  }
+
+  public get completeTodos(): Array<Todo> {
+    return this.todoDataService.getCompleteTodos();
   }
 
 }

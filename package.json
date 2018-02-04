@@ -45,7 +45,8 @@
     "angular-piti-module-test": "0.1.0",
     "msgpack5": "^4.0.1",
     "@aspnet/signalr-client": "1.0.0-alpha2-final",
-    "@ngrx/store":"^5.0.0"
+    "@ngrx/store": "^5.0.0",
+    "@ngrx/store-devtools": "^5.0.1"
   },
   "devDependencies": {
     "@angular/cli": "^1.6.7",

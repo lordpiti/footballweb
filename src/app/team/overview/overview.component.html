@@ -1,6 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">Teams overview</div>
   <div class="panel-body">
+      <a class="btn btn-primary" routerLink="./test-ngrx">Ngrx test</a>
       <ul>
         <li *ngFor="let item of teamList;let i=index">
           <a routerLink="/teams/detail/{{item.id}}" routerLinkActive="active">{{item.name}}</a>

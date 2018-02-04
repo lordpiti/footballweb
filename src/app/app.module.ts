@@ -21,6 +21,9 @@ import { TeamModule } from './team/team.module';
 import { SampleService } from 'angular-piti-module-test';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AuthInterceptor } from './authentication/authInterceptor';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { todos } from './redux/reducer';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,11 @@ import { AuthInterceptor } from './authentication/authInterceptor';
     BsDropdownModule.forRoot(),
     FacebookModule.forRoot(),
     AuthenticationModule, 
-    TeamModule //Needed here for the modal popup
+    TeamModule, //Needed here for the modal popup
+    StoreModule.forRoot({ todos }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25 //  Retains last 25 states
+    })
   ],
   providers: [ShareDataService, UserService, SampleService, {
     provide: HTTP_INTERCEPTORS,

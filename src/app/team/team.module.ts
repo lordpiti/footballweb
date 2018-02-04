@@ -12,6 +12,7 @@ import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { GooglemapsService } from './googlemaps.service';
 import { SharedModule } from '../shared/shared.module';
 import { TestNgrxComponent } from './test-ngrx/test-ngrx.component';
+import { TodoDataService } from './todo-data.service';
 
 
 const teamRoutes: Routes = [
@@ -51,7 +52,8 @@ const teamRoutes: Routes = [
   TestNgrxComponent], 
   providers: [
     TeamService, 
-    GooglemapsService
+    GooglemapsService,
+    TodoDataService
   ],
   exports: [
     RouterModule
