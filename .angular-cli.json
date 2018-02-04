@@ -21,8 +21,7 @@
       "styles": [
         "styles.scss",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
-        "../node_modules/angular2-busy/build/style/busy.css"
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

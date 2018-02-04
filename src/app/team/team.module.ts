@@ -11,6 +11,7 @@ import { SquadComponent } from './squad/squad.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { GooglemapsService } from './googlemaps.service';
 import { SharedModule } from '../shared/shared.module';
+import { TestNgrxComponent } from './test-ngrx/test-ngrx.component';
 
 
 const teamRoutes: Routes = [
@@ -21,6 +22,7 @@ const teamRoutes: Routes = [
     { path:'squad', component: SquadComponent },
     { path:'competitions', component: TeamChartComponent }
   ] },
+  { path: 'test-ngrx',  component: TestNgrxComponent },
   { path: '**',  component: OverviewComponent }
 ];
 
@@ -44,7 +46,9 @@ const teamRoutes: Routes = [
     
   SquadComponent,
     
-  BasicInfoComponent], 
+  BasicInfoComponent,
+    
+  TestNgrxComponent], 
   providers: [
     TeamService, 
     GooglemapsService
