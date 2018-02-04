@@ -1,4 +1,7 @@
 import { AngularCliHerokuPage } from './app.po';
+import { ElementFinder } from 'protractor/built/element';
+import { browser } from 'protractor';
+
 
 describe('angular-cli-heroku App', () => {
   let page: AngularCliHerokuPage;
@@ -9,6 +12,7 @@ describe('angular-cli-heroku App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    page.clickButton();
+    expect(browser.getCurrentUrl()).toMatch(`/teams`);
   });
 });
