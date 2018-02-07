@@ -13,10 +13,14 @@ import { PopoverModule } from "ngx-popover";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatchPlayerStatisticsComponent } from './components/match-player-statistics/match-player-statistics.component';
 import { MatchPlayersSingleComponent } from './components/match/match-players/match-players-single/match-players-single.component';
+import { CustomFormInputComponent } from './components/custom-form-input/custom-form-input.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule, 
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     // BusyModule, 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAhnlVo62cLGyWwCM6JS3I32hZE5AoBfHI'
@@ -28,7 +32,13 @@ import { MatchPlayersSingleComponent } from './components/match/match-players/ma
     PopoverModule, 
     NgxPaginationModule
   ],
-  declarations: [MatchComponent, MatchPlayersComponent, MatchPlayerStatisticsComponent, MatchPlayersSingleComponent],
+  declarations: [
+    MatchComponent, 
+    MatchPlayersComponent, 
+    MatchPlayerStatisticsComponent, 
+    MatchPlayersSingleComponent, 
+    CustomFormInputComponent
+  ],
   providers: [ 
     MatchService
   ],
@@ -37,7 +47,9 @@ import { MatchPlayersSingleComponent } from './components/match/match-players/ma
     AgmCoreModule, 
     ChartsModule, 
     //DropzoneModule, 
-    ImageCropperModule, NgxPaginationModule
+    ImageCropperModule, 
+    NgxPaginationModule, 
+    CustomFormInputComponent
   ]
 })
 export class SharedModule {

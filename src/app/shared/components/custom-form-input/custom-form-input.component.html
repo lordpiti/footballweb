@@ -1,0 +1,16 @@
+<div class="row form-group">
+  <div class="col-md-4">
+    Name
+  </div>
+  <div class="col-md-4">
+    <input class="form-control" 
+    [(ngModel)]="propertyName" #propertyNameAttached="ngModel" required type="text" 
+    name="name" id="name" >
+  </div>
+  <div class="col-md-4">
+    {{propertyNameAttached.invalid && propertyNameAttached.errors.required}}
+    <div *ngIf="propertyNameAttached.invalid && propertyNameAttached.touched">
+      <label>Please select at least one category</label>
+    </div>
+  </div>
+</div>

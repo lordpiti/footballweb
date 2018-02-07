@@ -45,5 +45,8 @@ export class PlayerBasicInfoComponent implements OnInit {
     }
   }
   
+  test(data: any){
+    this.playerDetails.name = data.target.value;
+  }
 
 }

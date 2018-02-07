@@ -3,12 +3,15 @@
 </p>
 
 <form #playerForm="ngForm" id="playerForm" name="playerForm">
-  <div class="row form-group">
+  <app-custom-form-input [propertyName]="playerDetails.name" (change)="test($event)">
+
+  </app-custom-form-input>
+  <!-- <div class="row form-group">
     <div class="col-md-4">
       Name
     </div>
     <div class="col-md-4">
-      <input #playerName="ngModel" [(ngModel)]="playerDetails.name" required type="text"  name="name" id="name">
+      <input class="form-control" #playerName="ngModel" [(ngModel)]="playerDetails.name" required type="text"  name="name" id="name">
     </div>
     <div class="col-md-4">
       {{playerName.invalid && playerName.errors.required}}
@@ -16,7 +19,7 @@
         <label>Please select at least one category</label>
       </div>
     </div>
-  </div>
+  </div> -->
 </form>
 
 <button class="btn btn-primary" (click)="savePlayerDetails(playerDetails, playerForm)">Save changes!</button>
