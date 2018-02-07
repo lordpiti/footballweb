@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Team } from '../shared/interfaces/team.interface';
 import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
-import { ShareDataService } from '../shared/services/shared-data.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
@@ -13,8 +12,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class TeamService extends BaseService {
   
-  constructor(public sharedService: ShareDataService, public httpNew:HttpClient) {
-    super( sharedService, httpNew);
+  constructor(public httpNew:HttpClient) {
+    super(httpNew);
   }
 
   getTeams(competitionId: number) {

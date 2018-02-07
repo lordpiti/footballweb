@@ -13,8 +13,8 @@ export class CompetitionService extends BaseService {
   public currentCompetition: any;
   private currentCompetitionSubject: Subject<any> = new Subject<any>();
   
-  constructor(public sharedService: ShareDataService, public httpClient: HttpClient) {
-    super(sharedService, httpClient);
+  constructor(public httpClient: HttpClient) {
+    super(httpClient);
   }
 
 

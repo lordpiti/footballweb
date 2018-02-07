@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { ShareDataService } from './shared-data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class BaseService {
@@ -9,9 +9,19 @@ export class BaseService {
   protected _apiUrl: string;
   protected _headers: HttpHeaders;
   
-  constructor(public shareDataService: ShareDataService, public httpNew:HttpClient) {
+  constructor(public httpNew:HttpClient) {
+    debugger;
     this._apiUrl = environment.api_url;
     this._headers = this.appendTokenNew();
+  }
+
+  public post<T>(url:string, data: any):Observable<T>{
+    return this.httpNew.post<T>(this._apiUrl+url, data, { headers: this._headers });
+  }
+
+  public get<T>(url:string):Observable<T>{
+    console.log(this._apiUrl);
+    return this.httpNew.get<T>(this._apiUrl+url, { headers: this._headers });
   }
 
   private appendTokenNew(): HttpHeaders {

@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { BaseService } from './base.service';
-import { ShareDataService } from './shared-data.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class MatchService extends BaseService {
   
-  constructor(sharedService: ShareDataService, public httpNew:HttpClient) {
-    super(sharedService, httpNew);
+  constructor(public httpNew:HttpClient) {
+    super(httpNew);
   }
 
   public getMatch(matchId:number) {

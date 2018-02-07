@@ -8,7 +8,7 @@ import { ShareDataService } from '../shared/services/shared-data.service';
 import { Player } from '../shared/interfaces/player.interface';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -17,14 +17,14 @@ export class PlayerService extends BaseService {
   public currentPlayer: Player;
   private currentPlayerSubject: Subject<Player> = new Subject<Player>();
 
-  constructor(public sharedService: ShareDataService, public httpNew:HttpClient) {
-    super(sharedService, httpNew);
+  constructor(public httpNew:HttpClient) {
+    super(httpNew);
   }
 
-  getPlayers() {
-    var url = this._apiUrl+"player/";
+  getPlayers():Observable<Player[]> {
+    var url = "player/";
 
-    return this.httpNew.get<Array<Player>>(url)
+    return this.get<Array<Player>>(url)
       .map(res => res.sort(function(a, b) {
       var nameA = a.surname.toUpperCase(); // ignore upper and lowercase
       var nameB = b.surname.toUpperCase(); // ignore upper and lowercase
@@ -40,16 +40,16 @@ export class PlayerService extends BaseService {
     }));
   }
 
-  getPlayerDetails(id: number) {
-    var url = this._apiUrl+"player/"+id;
+  getPlayerDetails(id: number): Observable<Player> {
+    var url = "player/"+id;
     
-    return this.httpNew.get<Player>(url, { headers: this._headers });
+    return this.get<Player>(url);
   }
 
   savePlayerDetails(playerDetails: Player) {
-    var url = this._apiUrl+"player/savePlayerDetails";
+    var url = "player/savePlayerDetails";
     
-    return this.httpNew.post(url, playerDetails, { headers: this._headers });
+    return this.post<any>(url, playerDetails);
   }
 
   public setCurrentPlayer(_data: Player) {

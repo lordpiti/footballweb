@@ -3,7 +3,7 @@
   <div class="panel-body">
     <div *ngFor="let player of playerList | paginate: { itemsPerPage: 10, currentPage: p }" class="row">
         <div class="col-sm-6">
-          <a routerLink="./detail/{{player.teamId}}">{{player.name}} {{player.surname}}</a>
+          <a routerLink="/players/detail/{{player.teamId}}">{{player.name}} {{player.surname}}</a>
         </div>
         <div class="col-sm-6">
           <a routerLink="/teams/detail/{{player.teamId}}">{{player.teamName}}</a>
