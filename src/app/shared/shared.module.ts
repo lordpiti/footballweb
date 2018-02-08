@@ -15,6 +15,7 @@ import { MatchPlayerStatisticsComponent } from './components/match-player-statis
 import { MatchPlayersSingleComponent } from './components/match/match-players/match-players-single/match-players-single.component';
 import { CustomFormInputComponent } from './components/custom-form-input/custom-form-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomFormSelectComponent } from './components/custom-form-select/custom-form-select.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatchPlayersComponent, 
     MatchPlayerStatisticsComponent, 
     MatchPlayersSingleComponent, 
-    CustomFormInputComponent
+    CustomFormInputComponent, CustomFormSelectComponent
   ],
   providers: [ 
     MatchService
@@ -49,7 +50,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     //DropzoneModule, 
     ImageCropperModule, 
     NgxPaginationModule, 
-    CustomFormInputComponent
+    CustomFormInputComponent, CustomFormSelectComponent
   ]
 })
 export class SharedModule {

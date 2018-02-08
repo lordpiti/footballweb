@@ -14,6 +14,8 @@ export class PlayerBasicInfoComponent implements OnInit {
 
   playerDetails : Player = null;
 
+  positions: Array<any>= [{ value: 'Defender', text: 'Defender'}, { value: 'Striker', text: 'Striker'}];
+
   constructor( private playerService: PlayerService, 
     private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef) { 
       this.toastr.setRootViewContainerRef(vcr);
@@ -23,10 +25,12 @@ export class PlayerBasicInfoComponent implements OnInit {
 
     if (this.playerService.currentPlayer){
       this.playerDetails = this.playerService.currentPlayer;
+      this.playerDetails.position = 'Striker';
     }
 
     this.playerService.getCurrentPlayer().subscribe(data => {
       this.playerDetails = this.playerService.currentPlayer;
+      this.playerDetails.position = 'Striker';
     });
 
 
@@ -45,8 +49,15 @@ export class PlayerBasicInfoComponent implements OnInit {
     }
   }
   
-  test(data: any){
-    this.playerDetails.name = data.target.value;
+  updatePlayerName(data: any){
+    this.playerDetails.name = data;
   }
 
+  updatePlayerSurname(data: any){
+    this.playerDetails.surname = data;
+  }
+
+  updatePlayerPosition(data: any){
+    this.playerDetails.position = data;
+  }
 }

@@ -1,16 +1,16 @@
 <div class="row form-group">
   <div class="col-md-4">
-    Name
+    {{label}}
   </div>
   <div class="col-md-4">
     <input class="form-control" 
-    [(ngModel)]="propertyName" #propertyNameAttached="ngModel" required type="text" 
-    name="name" id="name" >
+    [ngModel]=model (ngModelChange)="updateData($event)" #propertyNameAttached="ngModel" required type="text" 
+    [attr.name]="label" [attr.id]="label" >
   </div>
   <div class="col-md-4">
-    {{propertyNameAttached.invalid && propertyNameAttached.errors.required}}
+    <!-- {{propertyNameAttached.invalid && propertyNameAttached.errors.required}} -->
     <div *ngIf="propertyNameAttached.invalid && propertyNameAttached.touched">
-      <label>Please select at least one category</label>
+      <label>Please enter a valid {{label}}</label>
     </div>
   </div>
 </div>

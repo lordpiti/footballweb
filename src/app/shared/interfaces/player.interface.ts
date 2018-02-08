@@ -5,4 +5,5 @@ export interface Player {
     dorsal:number;
     teamId: number;
     playerId: number;
+    position: string;
 }

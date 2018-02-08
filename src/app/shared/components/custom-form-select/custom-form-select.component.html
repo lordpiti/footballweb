@@ -1,0 +1,12 @@
+<div class="row form-group">
+  <div class="col-md-4">
+    {{label}}
+  </div>
+  <div class="col-md-4">
+    <select class="form-control" [ngModel]=model (ngModelChange)="updateData($event)" [attr.name]="label" [attr.id]="label">
+      <option *ngFor="let item of collection" [attr.value]="item.value" [attr.selected]="model.value == item.value ? true : null">
+        {{item.text}}
+      </option>
+    </select>
+  </div>
+</div>

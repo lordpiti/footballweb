@@ -1,15 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
 
 @Component({
-  selector: 'app-custom-form-input',
-  templateUrl: './custom-form-input.component.html',
-  styleUrls: ['./custom-form-input.component.scss']
+  selector: 'app-custom-form-select',
+  templateUrl: './custom-form-select.component.html',
+  styleUrls: ['./custom-form-select.component.scss']
 })
-export class CustomFormInputComponent implements OnInit {
+export class CustomFormSelectComponent implements OnInit {
 
   @Input() model:string;
+  @Input() collection:Array<any>;
   @Input() label:string;
   @Output() modelChange = new EventEmitter<string>();
 

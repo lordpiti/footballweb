@@ -1,25 +1,15 @@
-<p>
-  player-basic-info works!
-</p>
+<h1>Player basic info</h1>
 
 <form #playerForm="ngForm" id="playerForm" name="playerForm">
-  <app-custom-form-input [propertyName]="playerDetails.name" (change)="test($event)">
-
+  <app-custom-form-input [label]="'Name'" [model]="playerDetails.name" 
+    (modelChange)="updatePlayerName($event)">
   </app-custom-form-input>
-  <!-- <div class="row form-group">
-    <div class="col-md-4">
-      Name
-    </div>
-    <div class="col-md-4">
-      <input class="form-control" #playerName="ngModel" [(ngModel)]="playerDetails.name" required type="text"  name="name" id="name">
-    </div>
-    <div class="col-md-4">
-      {{playerName.invalid && playerName.errors.required}}
-      <div *ngIf="playerName.invalid && playerName.touched">
-        <label>Please select at least one category</label>
-      </div>
-    </div>
-  </div> -->
+  <app-custom-form-input [label]="'Surname'" [model]="playerDetails.surname" 
+  (modelChange)="updatePlayerSurname($event)">
+</app-custom-form-input>
+  <app-custom-form-select [label]="'Position'" [model]="playerDetails.position" 
+    [collection]="positions" (modelChange)="updatePlayerPosition($event)">
+  </app-custom-form-select>
 </form>
 
 <button class="btn btn-primary" (click)="savePlayerDetails(playerDetails, playerForm)">Save changes!</button>
