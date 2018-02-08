@@ -10,7 +10,6 @@ export class BaseService {
   protected _headers: HttpHeaders;
   
   constructor(public httpNew:HttpClient) {
-    debugger;
     this._apiUrl = environment.api_url;
     this._headers = this.appendTokenNew();
   }

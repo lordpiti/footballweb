@@ -33,7 +33,6 @@ export class TodoDataService {
     });
   }
   public toggleTodoComplete(todoId: number): void {
-    debugger;
     this._store.dispatch({
       type: 'TOGGLE_COMPLETE',
       payload: { id: todoId }

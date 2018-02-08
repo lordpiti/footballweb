@@ -62,19 +62,26 @@ export class LoginComponent implements AfterViewInit {
         this.userService.loginUserFacebook(response.authResponse.userID, response.authResponse.accessToken)
           .subscribe(data => {
 
-            //Setting data to localstorage.
-            localStorage.setItem('token', response.authResponse.accessToken);
-            localStorage.setItem('image', '');
-            localStorage.setItem('name', data.name);
-            localStorage.setItem('email', data.email);
-            localStorage.setItem('authenticationType', '1');
-            localStorage.setItem('role', data.role);
+            if (data){
+              //Setting data to localstorage.
+              localStorage.setItem('token', response.authResponse.accessToken);
+              localStorage.setItem('image', '');
+              localStorage.setItem('name', data.name);
+              localStorage.setItem('email', data.email);
+              localStorage.setItem('authenticationType', '1');
+              localStorage.setItem('role', data.role);
 
-            this.token = response.authResponse.accessToken;
-            this.imageURL = '';
-            this.name = data.name;
-            this.email = data.email;
-            this.role = data.role;
+              this.token = response.authResponse.accessToken;
+              this.imageURL = '';
+              this.name = data.name;
+              this.email = data.email;
+              this.role = data.role;
+            }
+            else {
+              this.token = null;
+              this.clearLocalStorage();
+            }
+
           });
         this.getProfile();
       })
@@ -117,8 +124,14 @@ export class LoginComponent implements AfterViewInit {
       if (this.token){
         this.userService.loginUserGoogle(this.token)
         .subscribe(data => {
-          this.role = data.role;
-          console.log(data);
+          if (data){
+            this.role = data.role;
+            localStorage.setItem('role', data.role);
+          }
+          else {
+            this.token = null;
+            this.clearLocalStorage();
+          }
         });
       }
 
