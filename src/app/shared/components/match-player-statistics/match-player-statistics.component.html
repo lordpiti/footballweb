@@ -1,3 +1,8 @@
 <div *ngIf="matchPlayerStatistics">
-  {{matchPlayerStatistics|json}}
+  <div *ngFor="let item of matchPlayerStatistics | values:true">
+    <div class="row">
+      <div class="col-sm-9">{{item.text}}</div>
+      <div class="col-sm-3">{{item.value}}</div>
+    </div>
+  </div>
 </div>

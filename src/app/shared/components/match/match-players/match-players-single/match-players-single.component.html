@@ -24,8 +24,8 @@
   </div>
 </div>
 <popover-content #myPopover title="Player statistics" placement="bottom" [closeOnClickOutside]="true">
-    <b>Very</b> <span style="color: #C21F39">Dynamic</span> <span style="color: #00b3ee">Reusable</span>
+    <!-- <b>Very</b> <span style="color: #C21F39">Dynamic</span> <span style="color: #00b3ee">Reusable</span>
     <b><i><span style="color: #ffc520">Popover With</span></i></b> <small>Html support</small>. Click outside of this popover and it will be dismissed automatically.
-    <u (click)="myPopover.hide()">Or click here to close it</u>.
+    <u (click)="myPopover.hide()">Or click here to close it</u>. -->
     <app-match-player-statistics *ngIf="selectPlayer" [matchId]="matchId" [playerId]="player.playerId"></app-match-player-statistics>
 </popover-content>

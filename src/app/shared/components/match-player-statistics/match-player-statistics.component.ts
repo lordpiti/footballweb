@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MatchService } from '../../services/match.service';
+import { MatchPlayedStatistics } from '../../interfaces/match-played-statistics.interface';
 
 @Component({
   selector: 'app-match-player-statistics',
@@ -10,7 +11,7 @@ export class MatchPlayerStatisticsComponent implements OnInit, OnChanges {
 
   @Input() matchId: number;
   @Input() playerId: number;
-  public matchPlayerStatistics: any;
+  public matchPlayerStatistics: MatchPlayedStatistics;
 
   constructor(private _matchService: MatchService) { }
 

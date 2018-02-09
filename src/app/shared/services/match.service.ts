@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';
+import { MatchPlayedStatistics } from '../interfaces/match-played-statistics.interface';
 
 @Injectable()
 export class MatchService extends BaseService {
@@ -18,9 +19,9 @@ export class MatchService extends BaseService {
   }
 
   public getMatchPlayerStatistics(playerId: number, matchId: number) {
-    const url = this._apiUrl + 'player/' + playerId + '/MatchPlayedStatistics/' + matchId;
+    const url = 'player/' + playerId + '/MatchPlayedStatistics/' + matchId;
 
-    return this.get<any>(url);
+    return this.get<MatchPlayedStatistics>(url);
   }
 
   private convertToMatchData(matchData: any): any {
