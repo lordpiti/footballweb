@@ -13,17 +13,17 @@ export class CompetitionDetailComponent implements OnInit {
 
   public competitionDetails: any;
 
-  constructor(private router: Router,private _competitionService: CompetitionService,
+  constructor(private router: Router, private _competitionService: CompetitionService,
     private sharedService: ShareDataService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    setTimeout(()=>{    //<<<---    using ()=> syntax
+    setTimeout(() => {
       this.sharedService.setCurrentArea(AppAreas.Competitions);
-    },0);  
+    }, 0);
 
     this.route.params.subscribe(params => {
-      let competitionId = +params['id']; // (+) converts string 'id' to a number
+      const competitionId = +params['id']; // (+) converts string 'id' to a number
 
       this._competitionService.getCompetitionDetails(competitionId).subscribe(
         (competitionData: any) => {

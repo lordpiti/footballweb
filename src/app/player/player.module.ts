@@ -13,7 +13,7 @@ const playerRoutes: Routes = [
   { path: '',  component: PlayerOverviewComponent },
   { path: 'detail/:id', component: PlayerDetailComponent, children: [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
-    { path:'summary', component: PlayerBasicInfoComponent }
+    { path: 'summary', component: PlayerBasicInfoComponent }
   ] },
   { path: '**',  component: PlayerOverviewComponent }
 ];
@@ -30,7 +30,7 @@ const playerRoutes: Routes = [
   providers: [
     PlayerService
   ],
-  declarations: [PlayerOverviewComponent, PlayerDetailComponent, 
+  declarations: [PlayerOverviewComponent, PlayerDetailComponent,
     PlayerBasicInfoComponent]
 })
 export class PlayerModule { }

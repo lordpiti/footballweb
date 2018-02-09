@@ -12,14 +12,14 @@ import { Player } from '../../shared/interfaces/player.interface';
 export class PlayerOverviewComponent implements OnInit {
 
   public playerList: Array<Player>;
-  public p: number = 1;
+  public p = 1;
 
-  constructor(private sharedService: ShareDataService, private playerService:PlayerService) { }
+  constructor(private sharedService: ShareDataService, private playerService: PlayerService) { }
 
   ngOnInit() {
-    setTimeout(()=>{
+    setTimeout(() => {
       this.sharedService.setCurrentArea(AppAreas.Players);
-    },0);
+    }, 0);
 
     this.playerService.getPlayers().subscribe(
       (data: Array<Player>) => {

@@ -10,7 +10,7 @@ export class MatchPlayersSingleComponent implements OnInit {
 
   @Input() player: any;
   @Input() matchId: number;
-  public selectPlayer:boolean;
+  public selectPlayer: boolean;
 
   constructor() { }
 
@@ -18,7 +18,7 @@ export class MatchPlayersSingleComponent implements OnInit {
     this.selectPlayer = false;
   }
 
-  loadData(){
+  loadData() {
     this.selectPlayer = true;
   }
 

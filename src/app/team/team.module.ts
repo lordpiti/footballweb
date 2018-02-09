@@ -19,9 +19,9 @@ const teamRoutes: Routes = [
   { path: '',  component: OverviewComponent },
   { path: 'detail/:id', component: TeamDetailComponent, children: [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
-    { path:'summary', component: BasicInfoComponent },
-    { path:'squad', component: SquadComponent },
-    { path:'competitions', component: TeamChartComponent }
+    { path: 'summary', component: BasicInfoComponent },
+    { path: 'squad', component: SquadComponent },
+    { path: 'competitions', component: TeamChartComponent }
   ] },
   { path: 'test-ngrx',  component: TestNgrxComponent },
   { path: '**',  component: OverviewComponent }
@@ -36,22 +36,16 @@ const teamRoutes: Routes = [
     SharedModule
   ],
   declarations: [
-    
-  OverviewComponent,
-    
-  TeamDetailComponent,
-    
-  TeamDetailsEditModalComponent,
-    
-  TeamChartComponent,
-    
-  SquadComponent,
-    
-  BasicInfoComponent,
-    
-  TestNgrxComponent], 
+    OverviewComponent,
+    TeamDetailComponent,
+    TeamDetailsEditModalComponent,
+    TeamChartComponent,
+    SquadComponent,
+    BasicInfoComponent,
+    TestNgrxComponent
+  ],
   providers: [
-    TeamService, 
+    TeamService,
     GooglemapsService,
     TodoDataService
   ],

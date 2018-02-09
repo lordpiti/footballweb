@@ -17,18 +17,18 @@ export class AuthInterceptor implements HttpInterceptor {
     const token = localStorage.getItem('token');
     const authenticationType = localStorage.getItem('authenticationType');
 
-    let tokenAndType = {
-      token: token, 
+    const tokenAndType = {
+      token: token,
       authenticationType: authenticationType
-    }
+    };
 
-    let tokenAndTypeJSON = JSON.stringify(tokenAndType);
+    const tokenAndTypeJSON = JSON.stringify(tokenAndType);
 
-    let headers = token? new HttpHeaders({ 
+    const headers = token ? new HttpHeaders({
         'Content-Type': 'application/json',
         'authenticationToken': tokenAndTypeJSON
-      }): 
-      new HttpHeaders({ 
+      }) :
+      new HttpHeaders({
         'Content-Type': 'application/json'
       });
 

@@ -41,13 +41,13 @@ import { todos } from './redux/reducer';
     AppRoutingModule,
     ModalModule.forRoot(),
     BootstrapModalModule,
-    //SharedModule, 
+    // SharedModule,
     ToastModule.forRoot(),
     BsDropdownModule.forRoot(),
     FacebookModule.forRoot(),
-    AuthenticationModule, 
-    TeamModule, //Needed here for the modal popup
-    //https://blog.angularindepth.com/making-your-angular-2-library-statically-analyzable-for-aot-e1c6f3ebedd5
+    AuthenticationModule,
+    TeamModule, // Needed here for the modal popup
+    // https://blog.angularindepth.com/making-your-angular-2-library-statically-analyzable-for-aot-e1c6f3ebedd5
     StoreModule.forRoot({ todos }),
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states

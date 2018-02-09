@@ -10,7 +10,7 @@ export class CompetitionBasicInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+
   }
 
 }

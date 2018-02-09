@@ -9,8 +9,8 @@ import { NgForm } from '@angular/forms';
 })
 export class CustomFormInputComponent implements OnInit {
 
-  @Input() model:string;
-  @Input() label:string;
+  @Input() model: string;
+  @Input() label: string;
   @Output() modelChange = new EventEmitter<string>();
 
   constructor() { }
@@ -18,7 +18,7 @@ export class CustomFormInputComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateData($event){
+  updateData($event) {
     this.model = $event;
     this.modelChange.emit($event);
   }

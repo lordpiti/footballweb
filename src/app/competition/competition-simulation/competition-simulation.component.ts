@@ -18,7 +18,7 @@ public async: any;
 message = '';
 messages: string[] = [];
 
-public matches: Match[] =[];
+public matches: Match[] = [];
 
 constructor() {
 }
@@ -31,59 +31,58 @@ public sendMessage(): void {
 }
 
 ngOnInit() {
-    this._hubConnection = new HubConnection(environment.hubUrl+'/loopy');
+    this._hubConnection = new HubConnection(environment.hubUrl + '/loopy');
 
     this._hubConnection.on('Send', (data: any) => {
         const received = `Received: ${data}`;
         this.messages.push(received);
 
-        //look for match in the list and push the event to the list
-        let eventMatch = this.matches.find(match => match.id == data.matchId);
+        // look for match in the list and push the event to the list
+        const eventMatch = this.matches.find(match => match.id === data.matchId);
         eventMatch.matchEvents.push(data);
 
-        switch (data.matchEventType){
+        switch (data.matchEventType) {
             case MatchEventTypes.GameFinished:
                 eventMatch.finished = true;
                 break;
             case MatchEventTypes.Goal:
-                //find team for the player and increase goals
+                // find team for the player and increase goals
             default:
                 break;
         }
-        
+
     });
 
     this._hubConnection.on('SendCreateMatch', (data: any) => {
         const received = `Received: ${data}`;
         this.messages.push(received);
 
-        if (data.matchId){
-            let existingMatch = this.matches.find(match => match.id == data.matchId);
-            //create the new match object
-            let newMatch: Match = { 
-                id: data.matchId, 
-                local: 3, 
-                visitor: 4, 
+        if (data.matchId) {
+            let existingMatch = this.matches.find(match => match.id === data.matchId);
+            // create the new match object
+            const newMatch: Match = {
+                id: data.matchId,
+                local: 3,
+                visitor: 4,
                 goalsLocal: 0,
                 goalsVisitor: 0,
                 matchEvents: [],
                 finished: false
             };
-            if (existingMatch == undefined){
+            if (existingMatch === undefined) {
                 this.matches.push(newMatch);
-            }
-            else{
+            } else {
                 existingMatch = newMatch;
             }
-        }        
+        }
     });
 
     this._hubConnection.start()
         .then(() => {
-            console.log('Hub connection started')
+            console.log('Hub connection started');
         })
         .catch(err => {
-            console.log('Error while establishing connection')
+            console.log('Error while establishing connection');
         });
 }
 

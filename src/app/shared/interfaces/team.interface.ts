@@ -1,4 +1,4 @@
-import { Player } from './player.interface'
+import { Player } from './player.interface';
 
 export interface Team {
     id: number;

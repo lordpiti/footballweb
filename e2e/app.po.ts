@@ -10,7 +10,7 @@ export class AngularCliHerokuPage {
   }
 
   clickButton() {
-    let buttonFound = element(by.id('linkManageTeams'));
+    const buttonFound = element(by.id('linkManageTeams'));
     buttonFound.click();
   }
 }

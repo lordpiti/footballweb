@@ -9,10 +9,10 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class MatchComponent implements OnInit {
 
-  public matchDetails:any;
+  public matchDetails: any;
   public matchId: number;
 
-  constructor(private router: Router, private _matchService: MatchService, 
+  constructor(private router: Router, private _matchService: MatchService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class MatchComponent implements OnInit {
     });
   }
 
-  private getData(id: number):void{
+  private getData(id: number): void {
     this._matchService.getMatch(id).subscribe(
       (matchData: any) => {
           this.matchDetails = matchData;

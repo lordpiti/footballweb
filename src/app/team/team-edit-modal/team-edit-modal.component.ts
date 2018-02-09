@@ -8,11 +8,10 @@ import { CropperSettings } from 'ng2-img-cropper';
 import { TeamService} from '../team.service';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 
-//import { ShareDataService } from '../../../services/shareData.component.service';
 
 declare var toastr: any;
 
-/////for make the context of your modal strongly type, in this case I use a MediaItem
+// for make the context of your modal strongly type, in this case I use a MediaItem
 export class TeamDetailsEditModalWindowData extends BSModalContext {
     constructor(public teamDetails: Team) {
         super();
@@ -31,46 +30,43 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
     private cropperSettings: CropperSettings;
 
     public data: any;
-    public published: boolean = false;
-    public model: Team = { id: 0, pictureLogo:{}, name:"", playerList :[], stadium: {} };
-    public teamSelected: Team = { id: 0, pictureLogo:{}, name:"", playerList :[], stadium: {} };
-    public displayErrors: boolean = false;
-    public isEditing: boolean = false;
+    public published = false;
+    public model: Team = { id: 0, pictureLogo: {}, name: '', playerList : [], stadium: {} };
+    public teamSelected: Team = { id: 0, pictureLogo: {}, name: '', playerList : [], stadium: {} };
+    public displayErrors = false;
+    public isEditing = false;
 
-    constructor(public dialog: DialogRef<TeamDetailsEditModalWindowData>, public modal: Modal, 
-        private _teamService: TeamService, private shareDataService : ShareDataService) {
+    constructor(public dialog: DialogRef<TeamDetailsEditModalWindowData>, public modal: Modal,
+        private _teamService: TeamService, private shareDataService: ShareDataService) {
         this.context = dialog.context;
         if (dialog.context.teamDetails) {
             this.teamSelected = dialog.context.teamDetails;
             Object.assign(this.model, this.teamSelected);
             this.isEditing = true;
         }
-        this.context.dialogClass = "modal-dialog modal-lg";
+        this.context.dialogClass = 'modal-dialog modal-lg';
 
         this.cropperSettings = new CropperSettings();
         this.cropperSettings.width = 100;
         this.cropperSettings.height = 100;
-        this.cropperSettings.croppedWidth =100;
+        this.cropperSettings.croppedWidth = 100;
         this.cropperSettings.croppedHeight = 100;
         this.cropperSettings.canvasWidth = 400;
         this.cropperSettings.canvasHeight = 300;
 
         this.data = {};
-    };
-
-    ngOnInit() {
-
     }
+
     closeDialog(callBack: any) {
 
         this.dialog.close();
         this.dialog.onDestroy.subscribe((value: any) => {
-            if (callBack) callBack();
+            if (callBack) { callBack(); }
         });
-    };
+    }
 
-    updateTeamLogo(){
-        let cropperImageName = Math.floor(Math.random() * 2000).toString()+'.jpg';
+    updateTeamLogo() {
+        const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
         this._teamService.addBase64Image(this.data.image, cropperImageName).subscribe(
           (data: any) => {
               console.log(this.data);
@@ -113,7 +109,7 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
     //                 } else {
     //                     for (var attr in _data) {
     //                         this.eventSelected[attr] = _data[attr];
-    //                     } 
+    //                     }
     //                 }
     //                 this.closeDialog(function () { });
     //                 toastr.options = { "timeOut": "3000" };
@@ -127,7 +123,6 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
 
     //         this.displayErrors = true;
     //     }
-        
     // }
 
 }

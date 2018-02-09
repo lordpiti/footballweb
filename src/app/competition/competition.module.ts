@@ -17,12 +17,12 @@ const competitionRoutes: Routes = [
   { path: '',  component: CompetitionOverviewComponent },
   { path: 'detail/:id', component: CompetitionDetailComponent, children: [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
-    { path:'summary', component: CompetitionBasicInfoComponent },
-    { path:'rounds', component: CompetitionRoundComponent },
-    { path:'match/:id', component: MatchComponent },
-    { path:'teams', component: CompetitionTeamsComponent }
+    { path: 'summary', component: CompetitionBasicInfoComponent },
+    { path: 'rounds', component: CompetitionRoundComponent },
+    { path: 'match/:id', component: MatchComponent },
+    { path: 'teams', component: CompetitionTeamsComponent }
   ] },
-  { path:'simulation', component: CompetitionSimulationComponent },
+  { path: 'simulation', component: CompetitionSimulationComponent },
   { path: '**',  component: CompetitionOverviewComponent }
 ];
 
@@ -36,7 +36,7 @@ const competitionRoutes: Routes = [
   providers: [
     CompetitionService
   ],
-  declarations: [CompetitionRoundComponent, CompetitionOverviewComponent, CompetitionDetailComponent, 
+  declarations: [CompetitionRoundComponent, CompetitionOverviewComponent, CompetitionDetailComponent,
     CompetitionBasicInfoComponent, CompetitionTeamsComponent, CompetitionSimulationComponent]
 })
 export class CompetitionModule { }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MatchService } from '../../services/match.service';
 
 @Component({
@@ -6,11 +6,11 @@ import { MatchService } from '../../services/match.service';
   templateUrl: './match-player-statistics.component.html',
   styleUrls: ['./match-player-statistics.component.scss']
 })
-export class MatchPlayerStatisticsComponent implements OnInit {
+export class MatchPlayerStatisticsComponent implements OnInit, OnChanges {
 
   @Input() matchId: number;
   @Input() playerId: number;
-  public matchPlayerStatistics : any;
+  public matchPlayerStatistics: any;
 
   constructor(private _matchService: MatchService) { }
 
@@ -18,12 +18,12 @@ export class MatchPlayerStatisticsComponent implements OnInit {
     this.getData();
   }
 
-  ngOnChanges(changes:any){
+  ngOnChanges(changes: any) {
     this.getData();
   }
 
-  private getData(){
-    if (this.matchId && this.playerId){
+  private getData() {
+    if (this.matchId && this.playerId) {
       this._matchService.getMatchPlayerStatistics(this.playerId, this.matchId).subscribe(
         (matchData: any) => {
             this.matchPlayerStatistics = matchData;

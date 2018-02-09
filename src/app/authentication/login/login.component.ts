@@ -14,7 +14,7 @@ import { environment } from '../../../environments/environment';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent implements AfterViewInit, OnInit {
 
   imageURL: string;
   email: string;
@@ -24,8 +24,8 @@ export class LoginComponent implements AfterViewInit {
   role: string;
 
   constructor(private fb: FacebookService,
-    private userService: UserService, private _googleAuth: GoogleAuthService, private zone: NgZone) { 
-    let initParams: InitParams = {
+    private userService: UserService, private _googleAuth: GoogleAuthService, private zone: NgZone) {
+    const initParams: InitParams = {
       appId: environment.FACEBOOK_APP_ID,
       xfbml: true,
       version: 'v2.8'
@@ -36,16 +36,16 @@ export class LoginComponent implements AfterViewInit {
   }
 
   ngOnInit() {
-    AppGlobals.GOOGLE_CLIENT_ID = environment.GOOGLE_CLIENT_ID;   
-  
-    this.userService.getAllUsers().subscribe(data=> {
+    AppGlobals.GOOGLE_CLIENT_ID = environment.GOOGLE_CLIENT_ID;
+
+    this.userService.getAllUsers().subscribe(data => {
       console.log(data);
-    })
+    });
   }
 
   ngAfterViewInit() {
     this.getData();
-    this.loginWithGoogle() 
+    this.loginWithGoogle();
   }
 
   loginWithFacebook(): void {
@@ -62,8 +62,8 @@ export class LoginComponent implements AfterViewInit {
         this.userService.loginUserFacebook(response.authResponse.userID, response.authResponse.accessToken)
           .subscribe(data => {
 
-            if (data){
-              //Setting data to localstorage.
+            if (data) {
+              // Setting data to localstorage.
               localStorage.setItem('token', response.authResponse.accessToken);
               localStorage.setItem('image', '');
               localStorage.setItem('name', data.name);
@@ -76,8 +76,7 @@ export class LoginComponent implements AfterViewInit {
               this.name = data.name;
               this.email = data.email;
               this.role = data.role;
-            }
-            else {
+            } else {
               this.token = null;
               this.clearLocalStorage();
             }
@@ -97,11 +96,11 @@ export class LoginComponent implements AfterViewInit {
       .catch(this.handleError);
   }
 
-  loginWithGoogle():void {
-    setTimeout(() => {  
+  loginWithGoogle(): void {
+    setTimeout(() => {
       this._googleAuth.authenticateUser((result) => {
         localStorage.setItem('authenticationType', '2');
-        //Using Angular2 Zone dependency to manage the scope of variables
+        // Using Angular2 Zone dependency to manage the scope of variables
         this.zone.run(() => {
           this.getData();
         });
@@ -114,21 +113,20 @@ export class LoginComponent implements AfterViewInit {
   }
 
   getData() {
-    setTimeout(() => { 
+    setTimeout(() => {
       this.token = localStorage.getItem('token');
       this.imageURL = localStorage.getItem('image');
       this.name = localStorage.getItem('name');
       this.email = localStorage.getItem('email');
       this.authenticationType = localStorage.getItem('authenticationType');
 
-      if (this.token){
+      if (this.token) {
         this.userService.loginUserGoogle(this.token)
         .subscribe(data => {
-          if (data){
+          if (data) {
             this.role = data.role;
             localStorage.setItem('role', data.role);
-          }
-          else {
+          } else {
             this.token = null;
             this.clearLocalStorage();
           }
@@ -142,16 +140,15 @@ export class LoginComponent implements AfterViewInit {
    * Logout user and calls function to clear the localstorage
    */
   logout() {
-    if (this.authenticationType == '2'){
-      let scopeReference = this;
+    if (this.authenticationType === '2') {
+      const scopeReference = this;
       this._googleAuth.userLogout(function () {
         scopeReference.clearLocalStorage();
       });
-    }
-    else {
+    } else {
       this.fb.logout().then(data => {
         this.clearLocalStorage();
-      })
+      });
     }
 
   }

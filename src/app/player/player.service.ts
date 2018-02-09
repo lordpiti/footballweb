@@ -17,50 +17,48 @@ export class PlayerService extends BaseService {
   public currentPlayer: Player;
   private currentPlayerSubject: Subject<Player> = new Subject<Player>();
 
-  constructor(public httpNew:HttpClient) {
+  constructor(public httpNew: HttpClient) {
     super(httpNew);
   }
 
-  getPlayers():Observable<Player[]> {
-    var url = "player/";
+  getPlayers(): Observable<Player[]> {
+    const url = 'player/';
 
     return this.get<Array<Player>>(url)
       .map(res => res.sort(function(a, b) {
-      var nameA = a.surname.toUpperCase(); // ignore upper and lowercase
-      var nameB = b.surname.toUpperCase(); // ignore upper and lowercase
+      const nameA = a.surname.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.surname.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
         return -1;
       }
       if (nameA > nameB) {
         return 1;
       }
-    
+
       // names must be equal
       return 0;
     }));
   }
 
   getPlayerDetails(id: number): Observable<Player> {
-    var url = "player/"+id;
-    
+    const url = 'player/' + id;
+
     return this.get<Player>(url);
   }
 
   savePlayerDetails(playerDetails: Player) {
-    var url = "player/savePlayerDetails";
-    
+    const url = 'player/savePlayerDetails';
+
     return this.post<any>(url, playerDetails);
   }
 
   public setCurrentPlayer(_data: Player) {
       this.currentPlayer = _data;
 
-      this.currentPlayerSubject.next(_data)
-  };
+      this.currentPlayerSubject.next(_data);
+  }
 
   public getCurrentPlayer(): Observable<Player> {
       return this.currentPlayerSubject.asObservable();
-  };  
-  
-
+  }
 }

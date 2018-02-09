@@ -16,14 +16,14 @@ export class OverviewComponent implements OnInit {
 
   public selectedTeamId: number;
 
-  constructor(private _teamService : TeamService, private sharedService: ShareDataService) { 
+  constructor(private _teamService: TeamService, private sharedService: ShareDataService) {
 
   }
 
   ngOnInit() {
-    setTimeout(()=>{
+    setTimeout(() => {
       this.sharedService.setCurrentArea(AppAreas.Teams);
-    },0);
+    }, 0);
     this._teamService.getTeams(null).subscribe(
       (data: Array<Team>) => {
           this.teamList = data;
@@ -33,7 +33,7 @@ export class OverviewComponent implements OnInit {
     );
   }
 
-  public setSelectedTeamId(id: number){
+  public setSelectedTeamId(id: number) {
     this.selectedTeamId = id;
   }
 

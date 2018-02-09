@@ -11,9 +11,9 @@ import { SampleService } from 'angular-piti-module-test';
 export class AppComponent implements OnInit {
 
   public appArea: AppAreas;
-  public loggedIn: boolean = false;
+  public loggedIn = false;
 
-  constructor(private sharedService: ShareDataService, private externalService: SampleService){
+  constructor(private sharedService: ShareDataService, private externalService: SampleService) {
       this.sharedService.setCurrentArea(AppAreas.Start);
       this.externalService.testMethod();
   }

@@ -13,7 +13,7 @@ export class TestNgrxComponent implements OnInit {
 
   constructor(private todoDataService: TodoDataService) {}
 
-  public ngOnInit(){
+  public ngOnInit() {
 
   }
 

@@ -9,49 +9,50 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class CompetitionService extends BaseService {
-  
+
   public currentCompetition: any;
   private currentCompetitionSubject: Subject<any> = new Subject<any>();
-  
+
   constructor(public httpClient: HttpClient) {
     super(httpClient);
   }
 
 
   getAllCompetitions() {
-    var url = this._apiUrl+"competition";
+    const url = this._apiUrl + 'competition';
 
     return this.httpNew.get(url, { headers: this._headers });
   }
 
   public getTeams(competitionId: number) {
-    var url = this._apiUrl+"team/teams/"+competitionId;
+    const url = this._apiUrl + 'team/teams/' + competitionId;
 
     return this.httpNew.get(url, { headers: this._headers });
   }
 
   public setCurrentCompetition(_data: any) {
       this.currentCompetition = _data;
-      this.currentCompetitionSubject.next(_data)
-  };
+      this.currentCompetitionSubject.next(_data);
+  }
+
   public getCurrentCompetition(): Observable<any> {
       return this.currentCompetitionSubject.asObservable();
-  };
+  }
 
   public getCompetitionDetails(id: number) {
-    var url = this._apiUrl+"competition/"+id;
-    
+    const url = this._apiUrl + 'competition/' + id;
+
     return this.httpNew.get(url, { headers: this._headers });
   }
 
   public getCompetitionRoundGames(competitionId: number, round: string) {
-    var url = this._apiUrl+"competition/"+competitionId+"/round/"+round;
-    
+    const url = this._apiUrl + 'competition/' + competitionId + '/round/' + round;
+
     return this.httpNew.get(url, { headers: this._headers });
   }
 
-  public getMatch(matchId:number) {
-    var url = this._apiUrl+'competition/match/'+matchId;
+  public getMatch(matchId: number) {
+    const url = this._apiUrl + 'competition/match/' + matchId;
 
     return this.httpNew.get(url, { headers: this._headers });
   }

@@ -7,9 +7,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CustomFormSelectComponent implements OnInit {
 
-  @Input() model:string;
-  @Input() collection:Array<any>;
-  @Input() label:string;
+  @Input() model: string;
+  @Input() collection: Array<any>;
+  @Input() label: string;
   @Output() modelChange = new EventEmitter<string>();
 
   constructor() { }
@@ -17,7 +17,7 @@ export class CustomFormSelectComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateData($event){
+  updateData($event) {
     this.model = $event;
     this.modelChange.emit($event);
   }

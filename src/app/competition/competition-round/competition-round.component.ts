@@ -13,29 +13,29 @@ export class CompetitionRoundComponent implements OnInit {
   private competitionData: any;
   public roundData: any;
   public roundId: string;
-  public p: number = 1;
-  
-  constructor(private _competitionService: CompetitionService, private router: Router, private route: ActivatedRoute) { 
+  public p = 1;
+
+  constructor(private _competitionService: CompetitionService, private router: Router, private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-    this.roundId = "1";
+    this.roundId = '1';
 
-    if (this._competitionService.currentCompetition){
+    if (this._competitionService.currentCompetition) {
       this.competitionData = this._competitionService.currentCompetition;
       this.loadRound(this.roundId);
     }
-    
+
     this._competitionService.getCurrentCompetition().subscribe(data => {
       this.competitionData = data;
       this.loadRound(this.roundId);
     });
   }
 
-  private loadRound(roundId: string){
-    if (!roundId){
-      roundId = "1";
+  private loadRound(roundId: string) {
+    if (!roundId) {
+      roundId = '1';
       this.roundId = roundId;
     }
     this._competitionService.getCompetitionRoundGames(this.competitionData.id, roundId).subscribe(
@@ -47,9 +47,9 @@ export class CompetitionRoundComponent implements OnInit {
     );
   }
 
-  public changeSelectedRound(event:Event){
-    //let absoluteLink = '/competitions/detail/'+this.competitionData.id+'/rounds/' + this.roundId;
-    //this.router.navigate(absoluteLink);
+  public changeSelectedRound(event: Event) {
+    // let absoluteLink = '/competitions/detail/'+this.competitionData.id+'/rounds/' + this.roundId;
+    // this.router.navigate(absoluteLink);
 
     // let relativeLink = '../'+this.roundId;
     // this.router.navigate([relativeLink], {relativeTo: this.route});

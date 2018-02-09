@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 @Injectable()
 export class TodoDataService {
-  public lastId: number = 0;
+  public lastId = 0;
   public todos: Todo[] = [];
 
   constructor(private _store: Store<any>) {
@@ -49,7 +49,7 @@ export class TodoDataService {
 
   // Simulate PUT /todos/:id
   private _updateTodoById(id: number, values: Object = {}): Todo {
-    let todo = this._getTodoById(id);
+    const todo = this._getTodoById(id);
     if (!todo) {
       return null;
     }

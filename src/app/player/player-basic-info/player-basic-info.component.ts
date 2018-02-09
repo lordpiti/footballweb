@@ -12,18 +12,18 @@ import { NgForm } from '@angular/forms';
 })
 export class PlayerBasicInfoComponent implements OnInit {
 
-  playerDetails : Player = null;
+  playerDetails: Player = null;
 
-  positions: Array<any>= [{ value: 'Defender', text: 'Defender'}, { value: 'Striker', text: 'Striker'}];
+  positions: Array<any> = [{ value: 'Defender', text: 'Defender'}, { value: 'Striker', text: 'Striker'}];
 
-  constructor( private playerService: PlayerService, 
-    private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef) { 
+  constructor( private playerService: PlayerService,
+    private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef) {
       this.toastr.setRootViewContainerRef(vcr);
     }
 
   ngOnInit() {
 
-    if (this.playerService.currentPlayer){
+    if (this.playerService.currentPlayer) {
       this.playerDetails = this.playerService.currentPlayer;
       this.playerDetails.position = 'Striker';
     }
@@ -36,9 +36,9 @@ export class PlayerBasicInfoComponent implements OnInit {
 
   }
 
-  savePlayerDetails(player: Player, form: NgForm){
-    
-    if (form.valid){
+  savePlayerDetails(player: Player, form: NgForm) {
+
+    if (form.valid) {
       this.playerService.savePlayerDetails(player).subscribe(
         (data: boolean) => {
           this.toastr.success('Player details successfully saved', 'Success!');
@@ -48,16 +48,16 @@ export class PlayerBasicInfoComponent implements OnInit {
       );
     }
   }
-  
-  updatePlayerName(data: any){
+
+  updatePlayerName(data: any) {
     this.playerDetails.name = data;
   }
 
-  updatePlayerSurname(data: any){
+  updatePlayerSurname(data: any) {
     this.playerDetails.surname = data;
   }
 
-  updatePlayerPosition(data: any){
+  updatePlayerPosition(data: any) {
     this.playerDetails.position = data;
   }
 }

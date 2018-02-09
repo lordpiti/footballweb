@@ -13,7 +13,7 @@ export class MatchPlayersComponent implements OnInit {
   @Input() team: Team;
   @Input() matchId: number;
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit() {

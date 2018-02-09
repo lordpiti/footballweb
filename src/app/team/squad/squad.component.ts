@@ -10,13 +10,13 @@ export class SquadComponent implements OnInit {
 
   public playerList: any;
 
-  constructor(private _teamService: TeamService) { 
+  constructor(private _teamService: TeamService) {
 
   }
 
   ngOnInit() {
-    //Preguntar como hacer esto solamente con subscribe ... no parece q se pueda
-    if (this._teamService.currentTeam){
+    // Preguntar como hacer esto solamente con subscribe ... no parece q se pueda
+    if (this._teamService.currentTeam) {
       this.playerList = this._teamService.currentTeam.playerList;
     }
 

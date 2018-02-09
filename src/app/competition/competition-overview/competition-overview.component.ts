@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompetitionService } from '../competition.service'; 
+import { CompetitionService } from '../competition.service';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 
@@ -11,19 +11,18 @@ import { AppAreas } from '../../shared/enums/app-areas';
 export class CompetitionOverviewComponent implements OnInit {
 
   public competitionList: Array<any>;
-   
-    constructor(private _competitionService : CompetitionService, private sharedService: ShareDataService) { 
-  
+
+    constructor(private _competitionService: CompetitionService, private sharedService: ShareDataService) {
+
     }
-  
+
     ngOnInit() {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.sharedService.setCurrentArea(AppAreas.Competitions);
-      },0);
+      }, 0);
       this._competitionService.getAllCompetitions().subscribe(
         (data: Array<any>) => {
             this.competitionList = data;
-            //this.surveyService.setProjectFollowerData(data);
         },
         (err: any) => {
         }
