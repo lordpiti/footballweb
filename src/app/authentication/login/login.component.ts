@@ -38,9 +38,9 @@ export class LoginComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     AppGlobals.GOOGLE_CLIENT_ID = environment.GOOGLE_CLIENT_ID;
 
-    this.userService.getAllUsers().subscribe(data => {
-      console.log(data);
-    });
+    // this.userService.getAllUsers().subscribe(data => {
+    //   console.log(data);
+    // });
   }
 
   ngAfterViewInit() {

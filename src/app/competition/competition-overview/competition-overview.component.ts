@@ -10,7 +10,7 @@ import { AppAreas } from '../../shared/enums/app-areas';
 })
 export class CompetitionOverviewComponent implements OnInit {
 
-  public competitionList: Array<any>;
+  public competitionList: any;
 
     constructor(private _competitionService: CompetitionService, private sharedService: ShareDataService) {
 
@@ -20,13 +20,16 @@ export class CompetitionOverviewComponent implements OnInit {
       setTimeout(() => {
         this.sharedService.setCurrentArea(AppAreas.Competitions);
       }, 0);
-      this._competitionService.getAllCompetitions().subscribe(
-        (data: Array<any>) => {
-            this.competitionList = data;
-        },
-        (err: any) => {
-        }
-      );
+
+      this.competitionList = this._competitionService.getAllCompetitions();
+
+      // this._competitionService.getAllCompetitions().subscribe(
+      //   (data: Array<any>) => {
+      //       this.competitionList = data;
+      //   },
+      //   (err: any) => {
+      //   }
+      // );
     }
 
 }

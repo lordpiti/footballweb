@@ -11,16 +11,16 @@ export class MatchService extends BaseService {
   }
 
   public getMatch(matchId: number) {
-    const url = this._apiUrl + 'competition/match/' + matchId;
+    const url = 'competition/match/' + matchId;
 
-    return this.httpNew.get(url, { headers: this._headers })
+    return this.get<any>(url)
       .map(data => this.convertToMatchData(data));
   }
 
   public getMatchPlayerStatistics(playerId: number, matchId: number) {
     const url = this._apiUrl + 'player/' + playerId + '/MatchPlayedStatistics/' + matchId;
 
-    return this.httpNew.get(url, { headers: this._headers });
+    return this.get<any>(url);
   }
 
   private convertToMatchData(matchData: any): any {

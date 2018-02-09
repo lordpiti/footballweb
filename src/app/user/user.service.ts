@@ -12,20 +12,20 @@ export class UserService extends BaseService {
   }
 
   getAllUsers() {
-    const url = this._apiUrl + 'user';
+    const url = 'user';
 
-    return this.httpNew.get(url, { headers: this._headers });
+    return this.get<any>(url);
   }
 
   loginUserFacebook(userId: string, accessToken: string): Observable<any> {
-    const url = this._apiUrl + 'user/Login';
+    const url = 'user/Login';
 
-    return this.httpNew.post(url, { userId: userId, accessToken: accessToken }, { headers: this._headers });
+    return this.post<any>(url, { userId: userId, accessToken: accessToken });
   }
 
   loginUserGoogle(accessToken: string): Observable<any> {
-    const url = this._apiUrl + 'user/LoginGoogle';
+    const url = 'user/LoginGoogle';
 
-    return this.httpNew.post(url, { userId: '', accessToken: accessToken }, { headers: this._headers });
+    return this.post<any>(url, { userId: '', accessToken: accessToken });
   }
 }

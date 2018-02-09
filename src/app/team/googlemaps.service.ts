@@ -12,10 +12,7 @@ export class GooglemapsService {
 
   constructor(public http: Http) {
     const myHeaders: Headers = new Headers();
-    // myHeaders.append('Accept', 'q=0.8;application/json;q=0.9');
-    // This was needed for firefox, because apparently it doesn't add the "Accept application/json" header automatically
-    // myHeaders.set('Content-Type', 'application/json');
-    // myHeaders.set('authenticationToken', this.Token);
+
     this._requestOptions = new RequestOptions({
         headers: myHeaders
     });

@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -20,49 +20,49 @@ export class TeamService extends BaseService {
   }
 
   getTeams(competitionId: number) {
-    const url = this._apiUrl + 'team/teams/' + (competitionId ? competitionId : '');
+    const url = 'team/teams/' + (competitionId ? competitionId : '');
 
-    return this.httpNew.get<Team[]>(url, { headers: this._headers });
+    return this.get<Team[]>(url);
   }
 
   getTeamDetails(id: number) {
-    const url = this._apiUrl + 'team/teams/' + id + '/year/2009';
+    const url = 'team/teams/' + id + '/year/2009';
 
-    return this.httpNew.get<Team>(url, { headers: this._headers });
+    return this.get<Team>(url);
   }
 
   getTeamCompetitions(id: number) {
-    const url = this._apiUrl + 'competition/team/' + id;
+    const url = 'competition/team/' + id;
 
-    return this.httpNew.get(url, { headers: this._headers });
+    return this.get<any>(url);
   }
 
   saveTeamDetails(teamDetails: Team) {
-    const url = this._apiUrl + 'team/saveTeamDetails';
+    const url = 'team/saveTeamDetails';
 
-    return this.httpNew.post(url, teamDetails, { headers: this._headers });
+    return this.post<any>(url, teamDetails);
   }
 
   addBase64Image(image: string, fileName: string) {
-    const url = this._apiUrl + 'GlobalMedia/UploadBase64Image';
+    const url = 'GlobalMedia/UploadBase64Image';
 
-    return this.httpNew.post(url, { Base64String: image, FileName: fileName }, { headers: this._headers });
+    return this.post<any>(url, { Base64String: image, FileName: fileName });
   }
 
   getChartData(teamId: number, competitionName: string, season: string) {
 
-    const url = this._apiUrl + 'team/clasification/' + teamId +
+    const url = 'team/clasification/' + teamId +
     '/competition/' + competitionName + '/season/' + season;
 
-    return this.httpNew.get(url, { headers: this._headers })
+    return this.get<any>(url)
     .map(res => this.convertToChartData(res));
   }
 
   getClasificationData(competitionId: number, round: string) {
-    const url = this._apiUrl + 'team/clasification/' + competitionId +
+    const url = 'team/clasification/' + competitionId +
     '/round/' + round;
 
-    return this.httpNew.get(url, { headers: this._headers });
+    return this.get<any>(url);
   }
 
   private convertToChartData(data: any): any {
