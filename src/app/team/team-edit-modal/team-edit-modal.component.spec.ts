@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TeamEditModalComponent } from './team-edit-modal.component';
+import { TeamDetailsEditModalWindowData } from './team-edit-modal.component';
 
 describe('TeamEditModalComponent', () => {
-  let component: TeamEditModalComponent;
-  let fixture: ComponentFixture<TeamEditModalComponent>;
+  let component: TeamDetailsEditModalWindowData;
+  let fixture: ComponentFixture<TeamDetailsEditModalWindowData>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TeamEditModalComponent ]
+      declarations: [ TeamDetailsEditModalWindowData ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TeamEditModalComponent);
+    fixture = TestBed.createComponent(TeamDetailsEditModalWindowData);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
