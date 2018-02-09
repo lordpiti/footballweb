@@ -24,6 +24,7 @@ import { AuthInterceptor } from './authentication/authInterceptor';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { todos } from './redux/reducer';
+import { AuthGuard } from './authentication/auth-guard';
 
 @NgModule({
   declarations: [
@@ -53,11 +54,16 @@ import { todos } from './redux/reducer';
       maxAge: 25 //  Retains last 25 states
     })
   ],
-  providers: [ShareDataService, UserService, SampleService, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
+  providers: [
+    ShareDataService,
+    UserService,
+    SampleService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
