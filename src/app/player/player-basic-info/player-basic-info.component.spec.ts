@@ -3,11 +3,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PlayerBasicInfoComponent } from './player-basic-info.component';
 import { HttpHandler, HttpClient } from '@angular/common/http';
 import { PlayerService } from '../player.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Injectable, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { CustomFormInputComponent } from '../../shared/components/custom-form-input/custom-form-input.component';
+import { CustomFormSelectComponent } from '../../shared/components/custom-form-select/custom-form-select.component';
+import { SharedModule } from '../../shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 @Injectable()
 export class ActivatedRouteStub {
@@ -37,7 +41,7 @@ export class ToastManagerStub {
 
   }
 
-  success(texto: string){
+  success(texto: string) {
 
   }
 }
@@ -58,6 +62,15 @@ fdescribe('PlayerBasicInfoComponent', () => {
   let component: PlayerBasicInfoComponent;
   let fixture: ComponentFixture<PlayerBasicInfoComponent>;
   let mockActivatedRoute, mockToastManager, mockViewContainerRef;
+  const playerMock = {
+    name: 'jaja',
+    surname: 'zeta',
+    teamName: '',
+    dorsal: 2,
+    teamId: 2,
+    playerId: 4,
+    position: 'Striker'
+  };
 
   beforeEach(async(() => {
     mockActivatedRoute = new ActivatedRouteStub();
@@ -65,6 +78,9 @@ fdescribe('PlayerBasicInfoComponent', () => {
     mockViewContainerRef = new ViewContainerRefStub();
 
     TestBed.configureTestingModule({
+      imports: [    CommonModule,
+        FormsModule,
+        ReactiveFormsModule, SharedModule],
       declarations: [ PlayerBasicInfoComponent ],
       providers: [
         HttpHandler,
@@ -81,9 +97,12 @@ fdescribe('PlayerBasicInfoComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlayerBasicInfoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+
+      fixture = TestBed.createComponent(PlayerBasicInfoComponent);
+      component = fixture.componentInstance;
+      component.playerDetails = playerMock;
+      fixture.detectChanges();
+
   });
 
   it('should be created', () => {
@@ -100,19 +119,11 @@ fdescribe('PlayerBasicInfoComponent', () => {
       valid: true
     };
 
-    const playerMock = {
-      name: 'jaja',
-      surname: 'zeta',
-      teamName: '',
-      dorsal: 2,
-      teamId: 2,
-      playerId: 4,
-      position: 'Striker'
-    };
-
     const jejejeje = Observable.of(new Object()).mapTo(true);
+    const currentPlayer = Observable.of(new Object()).mapTo(playerMock);
 
     spyOn(testForm, 'valid').and.returnValue(true);
+    spyOn(component.playerService, 'getCurrentPlayer').and.returnValue(currentPlayer);
     spyOn(component.playerService, 'savePlayerDetails').and.returnValue(jejejeje);
     spyOn(component.toastr, 'success');
 
