@@ -16,7 +16,7 @@ export class PlayerBasicInfoComponent implements OnInit {
 
   positions: Array<any> = [{ value: 'Defender', text: 'Defender'}, { value: 'Striker', text: 'Striker'}];
 
-  constructor( private playerService: PlayerService,
+  constructor( public playerService: PlayerService,
     private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef) {
       this.toastr.setRootViewContainerRef(vcr);
     }

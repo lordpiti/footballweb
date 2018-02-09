@@ -4,7 +4,7 @@ import { PlayerService } from './player.service';
 import { Player } from '../shared/interfaces/player.interface';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 
-fdescribe('PlayerService', () => {
+describe('PlayerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [HttpHandler, HttpClient, PlayerService]
