@@ -10,7 +10,7 @@ export class ValuesPipe implements PipeTransform {
             dataArr = [];
 
         keyArr.forEach((key: any) => {
-            if (value[key]){
+            if (value[key]) {
                 dataArr.push({ text: key, value: value[key]});
             }
         });

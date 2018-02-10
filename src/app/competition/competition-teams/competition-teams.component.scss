@@ -1,0 +1,14 @@
+.competition-teams-component {
+    .selectableTeam {
+        cursor: pointer;
+
+        &:hover {
+            background-color: gainsboro
+        }
+
+        &.selectedTeam {
+            background-color: lightblue;
+            font-weight: bold;
+        }
+    }
+}

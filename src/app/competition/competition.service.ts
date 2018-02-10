@@ -57,4 +57,37 @@ export class CompetitionService extends BaseService {
     return this.get<any>(url);
   }
 
+  getChartDataTeamCompetition(teamId: number, competitionId: number) {
+
+    const url = 'team/clasification/' + teamId +
+    '/competition/' + competitionId;
+
+    return this.get<any>(url)
+    .map(res => this.convertToChartData(res));
+  }
+
+  private convertToChartData(data: any): any {
+    const positionList = [],
+    goalsForList = [],
+    goalsAgainstList = [],
+    roundList = [];
+
+    data.clasificationSeasonData.forEach(element => {
+      positionList.push(element.position);
+      goalsForList.push(element.goalsFor);
+      goalsAgainstList.push(element.goalsAgainst);
+      roundList.push(element.round);
+    });
+
+    const lineChartData = {
+      positions: { label: 'Position', data: positionList },
+      goalsForList: { label: 'Goals For', data: goalsForList },
+      goalsAgainstList: { label: 'Goals Against', data: goalsAgainstList },
+      roundList: roundList,
+      teamName: data.teamName
+    };
+
+    return lineChartData;
+  }
+
 }

@@ -11,6 +11,7 @@ import { CompetitionService } from '../competition/competition.service';
 import { SharedModule } from '../shared/shared.module';
 import { MatchComponent } from '../shared/components/match/match.component';
 import { CompetitionSimulationComponent } from './competition-simulation/competition-simulation.component';
+import { CompetitionChartComponent } from './competition-chart/competition-chart.component';
 
 
 const competitionRoutes: Routes = [
@@ -37,6 +38,6 @@ const competitionRoutes: Routes = [
     CompetitionService
   ],
   declarations: [CompetitionRoundComponent, CompetitionOverviewComponent, CompetitionDetailComponent,
-    CompetitionBasicInfoComponent, CompetitionTeamsComponent, CompetitionSimulationComponent]
+    CompetitionBasicInfoComponent, CompetitionTeamsComponent, CompetitionSimulationComponent, CompetitionChartComponent]
 })
 export class CompetitionModule { }

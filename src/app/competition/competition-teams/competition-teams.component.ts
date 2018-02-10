@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Team } from '../../shared/interfaces/team.interface';
 import { CompetitionService } from '../competition.service';
+import { Observable, Subject } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-competition-teams',
@@ -11,6 +12,12 @@ export class CompetitionTeamsComponent implements OnInit {
 
   public teamList: any;
   private competitionData: any;
+  public selectedTeamId: number;
+
+
+  public setSelectedTeam(teamId: number) {
+    this.selectedTeamId = teamId;
+  }
 
   constructor(private _competitionService: CompetitionService) { }
 

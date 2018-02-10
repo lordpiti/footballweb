@@ -1,0 +1,8 @@
+.match-player-single {
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f5f5f5;
+        border-color: #ddd;
+    }
+}

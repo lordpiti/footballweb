@@ -1,6 +1,4 @@
-<p>
-  squad works!
-</p>
+<h1>Squad</h1>
 
 <table class="table table-striped">
     <thead>
@@ -15,8 +13,8 @@
       <tr *ngFor="let item of playerList">
         <td>{{item.name}}</td>
         <td>{{item.surname}}</td>
-        <td>xx</td>
-        <td>11</td>
+        <td>{{item.position}}</td>
+        <td>{{today | amDifference: item.birthDate :'years' : false}} years</td>
       </tr>
     </tbody>
   </table>

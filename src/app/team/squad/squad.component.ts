@@ -9,6 +9,7 @@ import { TeamService} from '../team.service';
 export class SquadComponent implements OnInit {
 
   public playerList: any;
+  public today: Date = new Date();
 
   constructor(private _teamService: TeamService) {
 
