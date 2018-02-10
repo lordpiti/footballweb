@@ -14,7 +14,8 @@
                             {{event.minute}}
                         </div>
                         <div class="col-sm-9">
-                            {{event | json}}
+                            <!-- {{event | json}} -->
+                            <app-competition-simulation-event [matchEvent]="event"></app-competition-simulation-event>
                         </div>
                     </div>
                     <div class="row" *ngIf="match.finished">

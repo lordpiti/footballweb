@@ -1,0 +1,18 @@
+<div [ngSwitch]="matchEvent.matchEventType">
+  <div *ngSwitchCase="1">
+    {{matchEvent.description}} {{matchEvent.player1.name}} {{matchEvent.player1.surname}}
+  </div>
+  <div *ngSwitchCase="3">
+    {{matchEvent.description}} {{matchEvent.player1.name}} {{matchEvent.player1.surname}}
+  </div>
+  <div *ngSwitchCase="4">
+    {{matchEvent.description}} {{matchEvent.player1.name}} {{matchEvent.player1.surname}}
+  </div>
+  <div *ngSwitchCase="2">
+    {{matchEvent.description}} {{matchEvent.player1.name}} {{matchEvent.player1.surname}} retires and {{matchEvent.player2.name}} {{matchEvent.player2.surname}} joins the game
+  </div>
+  <div *ngSwitchCase="5">
+    Finished
+  </div>
+  <div *ngSwitchDefault>NO HANDLER</div>
+</div>

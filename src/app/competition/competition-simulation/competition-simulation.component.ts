@@ -33,7 +33,7 @@ public sendMessage(): void {
 ngOnInit() {
     this._hubConnection = new HubConnection(environment.hubUrl + '/loopy');
 
-    this._hubConnection.on('Send', (data: any) => {
+    this._hubConnection.on('Send', (data: MatchEvent) => {
         const received = `Received: ${data}`;
         this.messages.push(received);
 
@@ -51,6 +51,10 @@ ngOnInit() {
                 break;
         }
 
+    });
+
+    this._hubConnection.on('StartSimulation', (data: any) => {
+        this.matches = [];
     });
 
     this._hubConnection.on('SendCreateMatch', (data: any) => {

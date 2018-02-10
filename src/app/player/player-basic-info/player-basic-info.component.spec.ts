@@ -62,6 +62,8 @@ fdescribe('PlayerBasicInfoComponent', () => {
   let component: PlayerBasicInfoComponent;
   let fixture: ComponentFixture<PlayerBasicInfoComponent>;
   let mockActivatedRoute, mockToastManager, mockViewContainerRef;
+  const mockDate = new Date();
+
   const playerMock = {
     name: 'jaja',
     surname: 'zeta',
@@ -69,7 +71,8 @@ fdescribe('PlayerBasicInfoComponent', () => {
     dorsal: 2,
     teamId: 2,
     playerId: 4,
-    position: 'Striker'
+    position: 'Striker',
+    birthDate: mockDate
   };
 
   beforeEach(async(() => {

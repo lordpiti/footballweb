@@ -12,7 +12,7 @@ describe('PlayerService', () => {
   });
 
   it('should be created', inject([PlayerService], (service: PlayerService) => {
-
+    const mockDate = new Date();
     const response: Array<Player> = [
       {
         name: 'jaja',
@@ -21,7 +21,8 @@ describe('PlayerService', () => {
         dorsal: 2,
         teamId: 2,
         playerId: 4,
-        position: 'Striker'
+        position: 'Striker',
+        birthDate: mockDate
       },
       {
         name: 'jaja',
@@ -30,7 +31,9 @@ describe('PlayerService', () => {
         dorsal: 2,
         teamId: 2,
         playerId: 4,
-        position: 'Striker' },
+        position: 'Striker',
+        birthDate: mockDate
+       },
     ];
 
     const expected: Array<Player> = [
@@ -41,7 +44,8 @@ describe('PlayerService', () => {
         dorsal: 2,
         teamId: 2,
         playerId: 4,
-        position: 'Striker'
+        position: 'Striker',
+        birthDate: mockDate
       },
       {
         name: 'jaja',
@@ -50,7 +54,9 @@ describe('PlayerService', () => {
         dorsal: 2,
         teamId: 2,
         playerId: 4,
-        position: 'Striker' },
+        position: 'Striker',
+        birthDate: mockDate
+       },
     ];
 
     const test = Observable.of(new Object()).mapTo(response);
