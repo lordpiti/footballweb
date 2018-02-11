@@ -51,6 +51,12 @@ export class CompetitionService extends BaseService {
     return this.get<any>(url);
   }
 
+  public getCompetitionDraw(competitionId: number) {
+    const url = 'competition/' + competitionId + '/getDraw/';
+
+    return this.get<any>(url);
+  }
+
   public getMatch(matchId: number) {
     const url = 'competition/match/' + matchId;
 
