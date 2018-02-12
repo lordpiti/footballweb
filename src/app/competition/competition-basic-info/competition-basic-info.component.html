@@ -50,7 +50,7 @@
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>June 10, 2015 - 8:00 pm</span>
+                                <span>{{match.date | date:'MMM d, y, h:mm a'}}</span>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                                         <img width="25" height="25" src="{{match.localTeam.pictureLogo.url}}" alt="{{match.localTeam.name}}">
                                         <span>{{match.localTeam.name}}</span>
                                     </a>
-                                    <strong>4</strong>
+                                    <strong>{{match.goalsLocal}}</strong>
                                 </span>
                             </div>
                             <div class="m_segment m_botm loser" data-team-id="12">
@@ -73,11 +73,11 @@
                                         <img width="25" height="25" src="{{match.visitorTeam.pictureLogo.url}}" alt="{{match.visitorTeam.name}}">
                                         <span>{{match.visitorTeam.name}}</span>
                                     </a>
-                                    <strong>2</strong>
+                                    <strong>{{match.goalsVisitor}}</strong>
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>June 10, 2015 - 8:00 pm</span>
+                                <span>{{match.date | date:'MMM d, y, h:mm a'}}</span>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>June 10, 2015 - 8:00 pm</span>
+                                <span>{{draw.semifinalsLeft.date | date:'MMM d, y, h:mm a'}}</span>
                             </div>
                         </div>
                     </div>
@@ -141,35 +141,10 @@
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>June 10, 2015 - 8:00 pm</span>
+                                <span>{{draw.final.date | date:'MMM d, y, h:mm a'}}</span>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="mtch_container third_position">
-                        <div class="match_unit">
-                            <div class="m_segment m_botm winner third" data-team-id="16">
-                                <span>
-                                    <a href="#">
-                                        <img src="imgs/flags/England.png" alt="England">
-                                        <span>England</span>
-                                    </a>
-                                    <strong>3</strong>
-                                </span>
-                            </div>
-                            <div class="m_segment m_top losers fourth" data-team-id="8">
-                                <span>
-                                    <a href="#">
-                                        <img src="imgs/flags/Saudi-Arabia.png" alt="Saudi-Arabia">
-                                        <span>Saudi</span>
-                                    </a>
-                                    <strong>2</strong>
-                                </span>
-                            </div>
-                            <div class="m_dtls">
-                                <span>June 10, 2015 - 8:00 pm</span>
-                            </div>
-                        </div>
-                    </div> -->
                 </td>
                 <td class="round_column r_4 reversed">
                     <div class="mtch_container">
@@ -193,7 +168,7 @@
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>June 10, 2015 - 8:00 pm</span>
+                                <span>{{draw.semifinalsRight.date | date:'MMM d, y, h:mm a'}}</span>
                             </div>
                         </div>
                     </div>
@@ -207,7 +182,7 @@
                                         <img width="25" height="25" src="{{item.localTeam.pictureLogo.url}}" alt="{{item.localTeam.name}}">
                                         <span>{{item.localTeam.name}}</span>
                                     </a>
-                                    <strong>2</strong>
+                                    <strong>{{item.goalsLocal}}</strong>
                                 </span>
                             </div>
                             <div class="m_segment m_botm winner" data-team-id="2">
@@ -216,11 +191,11 @@
                                         <img width="25" height="25" src="{{item.visitorTeam.pictureLogo.url}}" alt="{{item.visitorTeam.name}}">
                                         <span>{{item.visitorTeam.name}}</span>
                                     </a>
-                                    <strong>3</strong>
+                                    <strong>{{item.goalsVisitor}}</strong>
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>June 10, 2015 - 8:00 pm</span>
+                                <span>{{item.date | date:'MMM d, y, h:mm a'}}</span>
                             </div>
                         </div>
                     </div>
@@ -247,7 +222,7 @@
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>June 10, 2015 - 8:00 pm</span>
+                                <span>{{item.date | date:'MMM d, y, h:mm a'}}</span>
                             </div>
                         </div>
                     </div>
