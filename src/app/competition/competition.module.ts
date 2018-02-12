@@ -12,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MatchComponent } from '../shared/components/match/match.component';
 import { CompetitionSimulationComponent } from './competition-simulation/competition-simulation.component';
 import { CompetitionChartComponent } from './competition-chart/competition-chart.component';
+// tslint:disable-next-line:max-line-length
 import { CompetitionSimulationEventComponent } from './competition-simulation/competition-simulation-event/competition-simulation-event.component';
 
 
@@ -39,6 +40,7 @@ const competitionRoutes: Routes = [
     CompetitionService
   ],
   declarations: [CompetitionRoundComponent, CompetitionOverviewComponent, CompetitionDetailComponent,
-    CompetitionBasicInfoComponent, CompetitionTeamsComponent, CompetitionSimulationComponent, CompetitionChartComponent, CompetitionSimulationEventComponent]
+    CompetitionBasicInfoComponent, CompetitionTeamsComponent, CompetitionSimulationComponent,
+    CompetitionChartComponent, CompetitionSimulationEventComponent]
 })
 export class CompetitionModule { }

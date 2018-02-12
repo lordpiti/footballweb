@@ -69,8 +69,6 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
         const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
         this._teamService.addBase64Image(this.data.image, cropperImageName).subscribe(
           (data: any) => {
-              console.log(this.data);
-
             this.shareDataService.setData({ fileName: data.fileName, url: data.url });
             this.dialog.close();
             this.dialog.onDestroy.subscribe((value: any) => {

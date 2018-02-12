@@ -18,7 +18,7 @@ import { AppAreas } from '../../shared/enums/app-areas';
   templateUrl: './team-detail.component.html',
   styleUrls: ['./team-detail.component.scss']
 })
-export class TeamDetailComponent implements OnInit, OnChanges {
+export class TeamDetailComponent implements OnInit {
 
   // public config: DropzoneConfigInterface = {
   //   url: environment.api_url+'globalmedia/UploadDocument',
@@ -28,8 +28,6 @@ export class TeamDetailComponent implements OnInit, OnChanges {
   // };
 
   public teamDetails: Team;
-
-  public teamLogo: any;
 
   @Input() newid: number = null;
 
@@ -45,9 +43,14 @@ export class TeamDetailComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {
-     setTimeout(() => {
-       this.modalCropperService.setCurrentArea(AppAreas.Teams);
-     }, 0);
+
+    // Use observables here because the team data lives on a service,
+    // and that's being modified via other components. We only want
+    // the data to be updated in this component when the data in the
+    // service changes
+    this._teamService.getCurrentTeam().subscribe(data => {
+      this.teamDetails = data;
+    });
 
     if (!this.newid) {
       // let id = this.route.snapshot.params['id'];
@@ -56,53 +59,17 @@ export class TeamDetailComponent implements OnInit, OnChanges {
         this.newid = +params['id']; // (+) converts string 'id' to a number
 
         this.getData(this.newid);
-
-        this.modalCropperService.getData().subscribe((media: any) => {
-          this.teamLogo = media;
-        });
       });
+
     } else {
       this.getData(this.newid);
     }
   }
 
-
-  ngOnChanges(changes: any) {
-    this.getData(changes.newid.currentValue);
-  }
-
-  showModalEvent(team: Team) {
-    this.modal.open(TeamDetailsEditModalComponent,
-      overlayConfigFactory({ teamDetails: team }, BSModalContext));
-  }
-
-  saveTeamDetails(team: Team, form: NgForm) {
-
-    if (form.valid) {
-      team.pictureLogo = this.teamLogo;
-      this._teamService.saveTeamDetails(team).subscribe(
-        (data: boolean) => {
-          this.toastr.success('Team details successfully saved', 'Success!');
-        },
-        (err: any) => {
-        }
-      );
-    }
-  }
-
-  onUploadError($event) {
-  }
-
-  onUploadSuccess($event) {
-
-  }
-
   private getData(id: number): void {
     this._teamService.getTeamDetails(id).subscribe(
       (teamData: Team) => {
-          this.teamDetails = teamData;
           this._teamService.setCurrentTeam(teamData);
-          this.teamLogo = teamData.pictureLogo;
       },
       (err: any) => {
       }
