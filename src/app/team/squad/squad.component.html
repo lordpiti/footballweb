@@ -3,16 +3,16 @@
 <table class="table table-striped">
     <thead>
       <tr>
-        <th>First name</th>
-        <th>Last name</th>
+        <th>Name</th>
         <th>Position</th>
         <th>Age</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of playerList">
-        <td>{{item.name}}</td>
-        <td>{{item.surname}}</td>
+        <td>
+          <a routerLink="/players/detail/{{item.playerId}}">{{item.name}} {{item.surname}}</a>
+        </td>
         <td>{{item.position}}</td>
         <td>{{today | amDifference: item.birthDate :'years' : false}} years</td>
       </tr>

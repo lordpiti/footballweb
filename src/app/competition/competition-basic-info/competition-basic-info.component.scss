@@ -1,7 +1,15 @@
 .brackets_container {
     padding: 10px;
     font-family: tahoma;
-    min-width: 550px
+    min-width: 550px;
+
+    .truncate {
+        width: 50px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display:inline-block;
+    }
 }
 
 .brackets_container a {

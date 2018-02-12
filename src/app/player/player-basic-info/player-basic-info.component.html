@@ -1,14 +1,12 @@
 <h1>Player basic info</h1>
 
 <form #playerForm="ngForm" id="playerForm" name="playerForm">
-  <app-custom-form-input [label]="'Name'" [model]="playerDetails.name" 
-    (modelChange)="updatePlayerName($event)">
+  <app-custom-form-input [label]="'Name'" [(model)]="playerDetails.name">
   </app-custom-form-input>
-  <app-custom-form-input [label]="'Surname'" [model]="playerDetails.surname" 
-  (modelChange)="updatePlayerSurname($event)">
+  <app-custom-form-input [label]="'Surname'" [(model)]="playerDetails.surname" >
 </app-custom-form-input>
-  <app-custom-form-select [label]="'Position'" [model]="playerDetails.position" 
-    [collection]="positions" (modelChange)="updatePlayerPosition($event)">
+  <app-custom-form-select [label]="'Position'" [(model)]="playerDetails.position" 
+    [collection]="positions">
   </app-custom-form-select> 
 </form>
 

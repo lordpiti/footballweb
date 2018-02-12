@@ -48,16 +48,4 @@ export class PlayerBasicInfoComponent implements OnInit {
       );
     }
   }
-
-  updatePlayerName(data: any) {
-    this.playerDetails.name = data;
-  }
-
-  updatePlayerSurname(data: any) {
-    this.playerDetails.surname = data;
-  }
-
-  updatePlayerPosition(data: any) {
-    this.playerDetails.position = data;
-  }
 }

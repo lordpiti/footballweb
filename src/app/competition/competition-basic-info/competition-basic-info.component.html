@@ -1,4 +1,5 @@
 <h1>Competition basic info</h1>
+
 <div *ngIf="draw" class="brackets_container" style="background-color: #f0f0f0">
     <table>
         <thead>
@@ -35,7 +36,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{match.localTeam.pictureLogo.url}}" alt="{{match.localTeam.name}}">
-                                        <span>{{match.localTeam.name}}</span>
+                                        <span class="truncate">{{match.localTeam.name}}</span>
                                     </a>
                                     <strong>{{match.goalsLocal}}</strong>
                                 </span>
@@ -44,7 +45,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{match.visitorTeam.pictureLogo.url}}" alt="{{match.visitorTeam.name}}">
-                                        <span>{{match.visitorTeam.name}}</span>
+                                        <span class="truncate">{{match.visitorTeam.name}}</span>
                                     </a>
                                     <strong>{{match.goalsVisitor}}</strong>
                                 </span>
@@ -62,7 +63,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{match.localTeam.pictureLogo.url}}" alt="{{match.localTeam.name}}">
-                                        <span>{{match.localTeam.name}}</span>
+                                        <span class="truncate">{{match.localTeam.name}}</span>
                                     </a>
                                     <strong>{{match.goalsLocal}}</strong>
                                 </span>
@@ -71,7 +72,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{match.visitorTeam.pictureLogo.url}}" alt="{{match.visitorTeam.name}}">
-                                        <span>{{match.visitorTeam.name}}</span>
+                                        <span class="truncate">{{match.visitorTeam.name}}</span>
                                     </a>
                                     <strong>{{match.goalsVisitor}}</strong>
                                 </span>
@@ -89,7 +90,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{draw.semifinalsLeft.localTeam.pictureLogo.url}}" alt="{{draw.semifinalsLeft.localTeam.name}}">
-                                        <span>{{draw.semifinalsLeft.localTeam.name}}</span>
+                                        <span class="truncate">{{draw.semifinalsLeft.localTeam.name}}</span>
                                     </a>
                                     <strong>{{draw.semifinalsLeft.goalsLocal}}</strong>
                                 </span>
@@ -98,7 +99,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{draw.semifinalsLeft.visitorTeam.pictureLogo.url}}" alt="{{draw.semifinalsLeft.visitorTeam.name}}">
-                                        <span>{{draw.semifinalsLeft.visitorTeam.name}}</span>
+                                        <span class="truncate">{{draw.semifinalsLeft.visitorTeam.name}}</span>
                                     </a>
                                     <strong>{{draw.semifinalsLeft.goalsVisitor}}</strong>
                                 </span>
@@ -126,7 +127,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{draw.final.localTeam.pictureLogo.url}}" alt="{{draw.final.localTeam.name}}">
-                                        <span>{{draw.final.localTeam.name}}</span>
+                                        <span class="truncate">{{draw.final.localTeam.name}}</span>
                                     </a>
                                     <strong>{{draw.final.goalsLocal}}</strong>
                                 </span>
@@ -135,7 +136,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{draw.final.visitorTeam.pictureLogo.url}}" alt="{{draw.final.visitorTeam.name}}">
-                                        <span>{{draw.final.visitorTeam.name}}</span>
+                                        <span class="truncate">{{draw.final.visitorTeam.name}}</span>
                                     </a>
                                     <strong>{{draw.final.goalsVisitor}}</strong>
                                 </span>
@@ -153,7 +154,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{draw.semifinalsRight.localTeam.pictureLogo.url}}" alt="{{draw.semifinalsRight.localTeam.name}}">
-                                        <span>{{draw.semifinalsRight.localTeam.name}}</span>
+                                        <span class="truncate">{{draw.semifinalsRight.localTeam.name}}</span>
                                     </a>
                                     <strong>{{draw.semifinalsRight.goalsLocal}}</strong>
                                 </span>
@@ -162,7 +163,7 @@
                                 <span>
                                     <a href="#">
                                             <img width="25" height="25" src="{{draw.semifinalsRight.visitorTeam.pictureLogo.url}}" alt="{{draw.semifinalsRight.visitorTeam.name}}">
-                                        <span>{{draw.semifinalsRight.visitorTeam.name}}</span>
+                                        <span class="truncate">{{draw.semifinalsRight.visitorTeam.name}}</span>
                                     </a>
                                     <strong>{{draw.semifinalsRight.goalsVisitor}}</strong>
                                 </span>
@@ -180,7 +181,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{item.localTeam.pictureLogo.url}}" alt="{{item.localTeam.name}}">
-                                        <span>{{item.localTeam.name}}</span>
+                                        <span class="truncate">{{item.localTeam.name}}</span>
                                     </a>
                                     <strong>{{item.goalsLocal}}</strong>
                                 </span>
@@ -189,7 +190,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{item.visitorTeam.pictureLogo.url}}" alt="{{item.visitorTeam.name}}">
-                                        <span>{{item.visitorTeam.name}}</span>
+                                        <span class="truncate">{{item.visitorTeam.name}}</span>
                                     </a>
                                     <strong>{{item.goalsVisitor}}</strong>
                                 </span>
@@ -207,7 +208,7 @@
                                 <span>
                                     <a href="#">
                                         <img width="25" height="25" src="{{item.localTeam.pictureLogo.url}}" alt="{{item.localTeam.name}}">
-                                        <span>{{item.localTeam.name}}</span>
+                                        <span class="truncate">{{item.localTeam.name}}</span>
                                     </a>
                                     <strong>{{item.goalsLocal}}</strong>
                                 </span>
@@ -216,7 +217,7 @@
                                 <span>
                                     <a href="#">
                                             <img width="25" height="25" src="{{item.visitorTeam.pictureLogo.url}}" alt="{{item.visitorTeam.name}}">
-                                        <span>{{item.visitorTeam.name}}</span>
+                                        <span class="truncate">{{item.visitorTeam.name}}</span>
                                     </a>
                                     <strong>{{item.goalsVisitor}}</strong>
                                 </span>
