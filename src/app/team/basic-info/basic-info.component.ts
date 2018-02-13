@@ -92,7 +92,9 @@ export class BasicInfoComponent implements OnInit {
     this._googlemapsService.getData(stadiumName).subscribe(
       (data: any) => {
         // console.log(data);
-        this.location = data.results[0].geometry.location;
+        if (data && data.results) {
+          this.location = data.results[0].geometry.location;
+        }
       }
     );
   }

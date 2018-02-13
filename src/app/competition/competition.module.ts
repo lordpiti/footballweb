@@ -14,14 +14,16 @@ import { CompetitionSimulationComponent } from './competition-simulation/competi
 import { CompetitionChartComponent } from './competition-chart/competition-chart.component';
 // tslint:disable-next-line:max-line-length
 import { CompetitionSimulationEventComponent } from './competition-simulation/competition-simulation-event/competition-simulation-event.component';
+import { CompetitionMatchesComponent } from './competition-matches/competition-matches.component';
+import { CompetitionSummaryComponent } from './competition-summary/competition-summary.component';
 
 
 const competitionRoutes: Routes = [
   { path: '',  component: CompetitionOverviewComponent },
   { path: 'detail/:id', component: CompetitionDetailComponent, children: [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
-    { path: 'summary', component: CompetitionBasicInfoComponent },
-    { path: 'rounds', component: CompetitionRoundComponent },
+    { path: 'summary', component: CompetitionSummaryComponent },
+    { path: 'rounds', component: CompetitionMatchesComponent },
     { path: 'match/:id', component: MatchComponent },
     { path: 'teams', component: CompetitionTeamsComponent }
   ] },
@@ -41,6 +43,10 @@ const competitionRoutes: Routes = [
   ],
   declarations: [CompetitionRoundComponent, CompetitionOverviewComponent, CompetitionDetailComponent,
     CompetitionBasicInfoComponent, CompetitionTeamsComponent, CompetitionSimulationComponent,
-    CompetitionChartComponent, CompetitionSimulationEventComponent]
+    CompetitionChartComponent, CompetitionSimulationEventComponent,
+    CompetitionMatchesComponent
+,
+    CompetitionSummaryComponent
+]
 })
 export class CompetitionModule { }

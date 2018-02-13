@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CompetitionService } from '../competition.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,15 +12,16 @@ export class CompetitionBasicInfoComponent implements OnInit {
   constructor(private _competitionService: CompetitionService, private route: ActivatedRoute) { }
 
   public draw: any;
-  private _competitionData: any;
+  @Input() competitionData: any;
 
   ngOnInit() {
 
-    this.route.parent.params.subscribe(params => {
-      const competitionId = +params['id']; // (+) converts string 'id' to a number
+    // this.route.parent.params.subscribe(params => {
+    //   const competitionId = +params['id']; // (+) converts string 'id' to a number
 
-      this.loadDraw(competitionId);
-    });
+    //   this.loadDraw(competitionId);
+    // });
+    this.loadDraw(this.competitionData.id);
   }
 
   loadDraw(competitionId: number) {

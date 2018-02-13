@@ -1,14 +1,23 @@
 <div class="panel panel-default">
   <div class="panel-heading">Teams overview</div>
   <div class="panel-body">
-      <a class="btn btn-primary" routerLink="./test-ngrx">Ngrx test</a>
-      <ul>
-        <li *ngFor="let item of teamList;let i=index">
-          <a routerLink="/teams/detail/{{item.id}}" routerLinkActive="active">{{item.name}}</a>
-          <!-- <button class="btn btn-default" (click)="setSelectedTeamId(item.id)">select</button> -->
-        </li>
-      </ul>
-      <!-- {{selectedTeamId}}
-      <app-team-detail *ngIf="selectedTeamId" newid="{{selectedTeamId}}"></app-team-detail> -->
+    <!-- <ul>
+      <li *ngFor="let item of teamList;let i=index">
+        <a routerLink="/teams/detail/{{item.id}}" routerLinkActive="active">{{item.name}}</a>
+      </li>
+    </ul> -->
+    <div class="row">
+      <div class="col-sm-2 text-center" *ngFor="let item of teamList;let i=index">
+        <a routerLink="/teams/detail/{{item.id}}" routerLinkActive="active">
+          <img src="{{item.pictureLogo.url}}" width="50" height="50"/>
+          <div>{{item.name}}</div>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <a class="btn btn-primary" routerLink="./test-ngrx">Ngrx test</a>
+      </div>     
+    </div>
   </div>
 </div>

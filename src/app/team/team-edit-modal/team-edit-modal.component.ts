@@ -20,7 +20,7 @@ export class TeamDetailsEditModalWindowData extends BSModalContext {
 
 
 @Component({
-    selector: 'team-details-edit-modal',
+    selector: 'app-team-details-edit-modal',
     templateUrl: './team-edit-modal.component.html',
 })
 export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetailsEditModalWindowData> {

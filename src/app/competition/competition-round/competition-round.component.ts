@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CompetitionService } from '../competition.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
@@ -10,10 +10,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class CompetitionRoundComponent implements OnInit {
 
 
-  private competitionData: any;
   public roundData: any;
   public roundId: string;
-  public p = 1;
+  @Input() competitionData: any;
 
   constructor(private _competitionService: CompetitionService, private router: Router, private route: ActivatedRoute) {
 
@@ -22,15 +21,7 @@ export class CompetitionRoundComponent implements OnInit {
   ngOnInit() {
     this.roundId = '1';
 
-    if (this._competitionService.currentCompetition) {
-      this.competitionData = this._competitionService.currentCompetition;
-      this.loadRound(this.roundId);
-    }
-
-    this._competitionService.getCurrentCompetition().subscribe(data => {
-      this.competitionData = data;
-      this.loadRound(this.roundId);
-    });
+    this.loadRound(this.roundId);
   }
 
   private loadRound(roundId: string) {

@@ -1,4 +1,4 @@
-<h1>Competition basic info</h1>
+<h3>Playoff</h3>
 
 <div *ngIf="draw" class="brackets_container" style="background-color: #f0f0f0">
     <table>
@@ -51,7 +51,9 @@
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>{{match.date | date:'MMM d, y, h:mm a'}}</span>
+                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{match.matchId}}">
+                                    <span>{{match.date | date:'MMM d, y, h:mm a'}}</span>
+                                </a>        
                             </div>
                         </div>
                     </div>
@@ -78,7 +80,9 @@
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>{{match.date | date:'MMM d, y, h:mm a'}}</span>
+                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{match.matchId}}">
+                                    <span>{{match.date | date:'MMM d, y, h:mm a'}}</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -105,7 +109,9 @@
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>{{draw.semifinalsLeft.date | date:'MMM d, y, h:mm a'}}</span>
+                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{draw.semifinalsLeft.matchId}}">
+                                    <span>{{draw.semifinalsLeft.date | date:'MMM d, y, h:mm a'}}</span>
+                                </a>    
                             </div>
                         </div>
                     </div>
@@ -114,7 +120,7 @@
                     <div class="winner_team">
                         <span>WINNER
                             <a href="#">
-                                <img width="25" height="25" src="{{draw.final.localTeam.pictureLogo.url}}" alt="{{draw.final.localTeam.name}}">
+                                <img width="25" height="25" src="{{draw.final.goalsLocal>draw.final.goalsVisitor?draw.final.localTeam.pictureLogo.url:draw.final.visitorTeam.pictureLogo.url}}" alt="{{draw.final.localTeam.name}}">
                                 <span>
                                     {{draw.final.goalsLocal>draw.final.goalsVisitor?draw.final.localTeam.name:draw.final.visitorTeam.name}}
                                 </span>
@@ -142,7 +148,10 @@
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>{{draw.final.date | date:'MMM d, y, h:mm a'}}</span>
+                                
+                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{draw.final.matchId}}">
+                                    <span>{{draw.final.date | date:'MMM d, y, h:mm a'}}</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -168,8 +177,10 @@
                                     <strong>{{draw.semifinalsRight.goalsVisitor}}</strong>
                                 </span>
                             </div>
-                            <div class="m_dtls">
-                                <span>{{draw.semifinalsRight.date | date:'MMM d, y, h:mm a'}}</span>
+                            <div class="m_dtls">     
+                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{draw.semifinalsRight.matchId}}">
+                                    <span>{{draw.semifinalsRight.date | date:'MMM d, y, h:mm a'}}</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -196,7 +207,9 @@
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>{{item.date | date:'MMM d, y, h:mm a'}}</span>
+                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{item.matchId}}">
+                                    <span>{{item.date | date:'MMM d, y, h:mm a'}}</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -216,14 +229,16 @@
                             <div class="m_segment m_botm loser" data-team-id="4">
                                 <span>
                                     <a href="#">
-                                            <img width="25" height="25" src="{{item.visitorTeam.pictureLogo.url}}" alt="{{item.visitorTeam.name}}">
+                                        <img width="25" height="25" src="{{item.visitorTeam.pictureLogo.url}}" alt="{{item.visitorTeam.name}}">
                                         <span class="truncate">{{item.visitorTeam.name}}</span>
                                     </a>
                                     <strong>{{item.goalsVisitor}}</strong>
                                 </span>
                             </div>
                             <div class="m_dtls">
-                                <span>{{item.date | date:'MMM d, y, h:mm a'}}</span>
+                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{item.matchId}}">
+                                    <span>{{item.date | date:'MMM d, y, h:mm a'}}</span>
+                                </a>
                             </div>
                         </div>
                     </div>
