@@ -11,10 +11,17 @@
         <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper>
     </div>
     <div class="col-sm-6">
-        <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+      <div class="previewCroppedImage centeredContainer">
+        <div class="centeredItem">
+          <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+        </div>
+      </div>
     </div>
   </div>
-
-  <button class="btn btn-primary" (click)="closeDialog(null)">CLOSE</button>
-  <button class="btn btn-primary" (click)="updateTeamLogo()">UPLOAD to blob storage</button>
+  <div class="row margin-top1 margin-bottom1 text-right"> 
+    <div class="col-sm-12">
+      <button class="btn btn-danger" (click)="closeDialog(null)">Close</button>
+      <button class="btn btn-primary" (click)="updateTeamLogo()">Select</button>
+    </div>
+  </div>
 </div>

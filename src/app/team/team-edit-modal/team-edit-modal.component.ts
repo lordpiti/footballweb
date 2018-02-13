@@ -22,11 +22,11 @@ export class TeamDetailsEditModalWindowData extends BSModalContext {
 @Component({
     selector: 'app-team-details-edit-modal',
     templateUrl: './team-edit-modal.component.html',
+    styleUrls: ['./team-edit-modal.component.scss']
 })
 export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetailsEditModalWindowData> {
     context: TeamDetailsEditModalWindowData;
 
-    public teamDetails: Team;
     private cropperSettings: CropperSettings;
 
     public data: any;
@@ -54,7 +54,7 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
         this.cropperSettings.canvasWidth = 400;
         this.cropperSettings.canvasHeight = 300;
 
-        this.data = {};
+        this.data = { image: dialog.context.teamDetails.pictureLogo.url };
     }
 
     closeDialog(callBack: any) {

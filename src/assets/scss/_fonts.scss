@@ -1,0 +1,15 @@
+/* FONT PATH
+ * -------------------------- */
+
+ $sh-font-path: "/fonts";
+
+ @font-face {
+   font-family: "ArvoBold";
+   font-style: normal;
+   font-weight: normal;
+   src: url($sh-font-path+"/arvo-bold-webfont.eot?#iefix") format("embedded-opentype"), 
+        url($sh-font-path+"/arvo-bold-webfont.woff") format("woff"), 
+        url($sh-font-path+"/arvo-bold-webfont.ttf") format("truetype"), 
+        url($sh-font-path+"/arvo-bold-webfont.svg#ArvoBold") format("svg");
+ }
+ 

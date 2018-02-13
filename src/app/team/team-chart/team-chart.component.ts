@@ -3,7 +3,7 @@ import { TeamService} from '../team.service';
 import { OnChange } from 'ngx-bootstrap';
 
 @Component({
- selector: 'team-chart',
+ selector: 'app-team-chart',
  templateUrl: './team-chart.component.html'
 })
 export class TeamChartComponent implements OnInit {
