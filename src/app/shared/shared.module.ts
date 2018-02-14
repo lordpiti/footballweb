@@ -7,7 +7,7 @@ import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
 import { AgmCoreModule } from '@agm/core';
 // import { DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { ChartsModule } from 'ng2-charts';
- import { ImageCropperComponent, CropperSettings, ImageCropperModule } from 'ng2-img-cropper';
+ import { ImageCropperComponent, CropperSettings, ImageCropperModule } from 'ngx-img-cropper';
 import { MatchPlayersComponent } from './components/match/match-players/match-players.component';
 import { PopoverModule } from 'ngx-popover';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -34,7 +34,7 @@ import { OrderModule } from 'ngx-order-pipe';
      ImageCropperModule,
     Ng2FilterPipeModule,
     PopoverModule,
-    NgxPaginationModule, 
+    NgxPaginationModule,
     MomentModule,
     OrderModule
   ],

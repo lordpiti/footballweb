@@ -4,7 +4,7 @@ import { BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { FormGroup, FormControl, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Player } from '../../shared/interfaces/player.interface';
 import { Team } from '../../shared/interfaces/team.interface';
-import { CropperSettings } from 'ng2-img-cropper';
+import { CropperSettings } from 'ngx-img-cropper';
 import { TeamService} from '../team.service';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 
