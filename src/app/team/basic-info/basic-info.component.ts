@@ -59,7 +59,7 @@ export class BasicInfoComponent implements OnInit {
     public modal: Modal, private modalCropperService: ShareDataService, public toastr: ToastsManager,
     vcr: ViewContainerRef) {
       this.toastr.setRootViewContainerRef(vcr);
-      this.teamDetails = { name: '', id: 0, playerList: [], pictureLogo: {}, stadium: {}};
+      this.teamDetails = { name: '', id: 0, playerList: [], pictureLogo: {}, stadium: {}, city: null};
   }
 
   ngOnInit() {

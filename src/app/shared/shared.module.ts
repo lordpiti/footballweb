@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomFormSelectComponent } from './components/custom-form-select/custom-form-select.component';
 import { ValuesPipe } from './pipes/values.pipe';
 import { MomentModule } from 'angular2-moment';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   imports: [
@@ -33,7 +34,9 @@ import { MomentModule } from 'angular2-moment';
      ImageCropperModule,
     Ng2FilterPipeModule,
     PopoverModule,
-    NgxPaginationModule, MomentModule
+    NgxPaginationModule, 
+    MomentModule,
+    OrderModule
   ],
   declarations: [
     MatchComponent,
@@ -57,7 +60,8 @@ import { MomentModule } from 'angular2-moment';
     CustomFormInputComponent,
     CustomFormSelectComponent,
     ValuesPipe,
-    MomentModule
+    MomentModule,
+    OrderModule
   ]
 })
 export class SharedModule {

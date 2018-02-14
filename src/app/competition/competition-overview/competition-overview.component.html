@@ -4,8 +4,8 @@
     <a routerLink="./simulation" class="btn btn-primary" >Simulate competition round</a>
     
     <ul>
-      <li *ngFor="let item of competitionList | async;let i=index">
-        <a routerLink="/competitions/detail/{{item.id}}" routerLinkActive="active">{{item.name}}</a>
+      <li *ngFor="let item of competitionList | async | orderBy: 'season';let i=index">
+        <a routerLink="/competitions/detail/{{item.id}}" routerLinkActive="active">{{item.name}} {{item.season}}</a>
       </li>
     </ul>
   </div>

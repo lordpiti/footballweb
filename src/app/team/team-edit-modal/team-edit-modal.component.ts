@@ -31,8 +31,7 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
 
     public data: any;
     public published = false;
-    public model: Team = { id: 0, pictureLogo: {}, name: '', playerList : [], stadium: {} };
-    public teamSelected: Team = { id: 0, pictureLogo: {}, name: '', playerList : [], stadium: {} };
+    public model: Team = { id: 0, pictureLogo: {}, name: '', playerList : [], stadium: {}, city: null };
     public displayErrors = false;
     public isEditing = false;
 
@@ -40,8 +39,7 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
         private _teamService: TeamService, private shareDataService: ShareDataService) {
         this.context = dialog.context;
         if (dialog.context.teamDetails) {
-            this.teamSelected = dialog.context.teamDetails;
-            Object.assign(this.model, this.teamSelected);
+            Object.assign(this.model, dialog.context.teamDetails);
             this.isEditing = true;
         }
         this.context.dialogClass = 'modal-dialog modal-lg';

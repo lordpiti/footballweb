@@ -23,13 +23,6 @@ export class CompetitionOverviewComponent implements OnInit {
 
       this.competitionList = this._competitionService.getAllCompetitions();
 
-      // this._competitionService.getAllCompetitions().subscribe(
-      //   (data: Array<any>) => {
-      //       this.competitionList = data;
-      //   },
-      //   (err: any) => {
-      //   }
-      // );
     }
 
 }

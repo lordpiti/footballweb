@@ -6,4 +6,5 @@ export interface Team {
     name: string;
     pictureLogo: any;
     stadium: any;
+    city: string;
 }

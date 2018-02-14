@@ -44,8 +44,7 @@ const competitionRoutes: Routes = [
   declarations: [CompetitionRoundComponent, CompetitionOverviewComponent, CompetitionDetailComponent,
     CompetitionBasicInfoComponent, CompetitionTeamsComponent, CompetitionSimulationComponent,
     CompetitionChartComponent, CompetitionSimulationEventComponent,
-    CompetitionMatchesComponent
-,
+    CompetitionMatchesComponent,
     CompetitionSummaryComponent
 ]
 })
