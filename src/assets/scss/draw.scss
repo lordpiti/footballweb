@@ -1,0 +1,451 @@
+.brackets_container {
+  padding: 10px;
+  font-family: tahoma;
+  min-width: 550px;
+
+  .truncate {
+      width: 50px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display:inline-block;
+  }
+}
+
+.brackets_container a {
+  text-decoration: none;
+  color: #000
+}
+
+.brackets_container a:hover {
+  background-color: #fff
+}
+
+.brackets_container table {
+  width: 100%
+}
+
+.brackets_container th {
+  font-size: 13px;
+  padding: 10px 0;
+  width: 10%;
+  font-weight: normal;
+  color: #777
+}
+
+.round_column {
+  padding: 10px 5px;
+  box-shadow: 0 -3px 0 rgba(0,0,0,.07)
+}
+
+.round_column.focus,.round_column:hover {
+  box-shadow: 0 -3px 0 #c00
+}
+
+.r_16 .mtch_container {
+  padding: 20px 0
+}
+
+.r_16 .m_segment {
+  height: 45px
+}
+
+.r_8 .mtch_container {
+  padding: 50px 0
+}
+
+.r_8 .m_segment {
+  height: 80px
+}
+
+.r_4 .mtch_container {
+  padding: 80px 0
+}
+
+.r_4 .m_segment {
+  height: 145px
+}
+
+.match_unit {
+  position: relative
+}
+
+.match_unit:hover {
+  box-shadow: 0 0 0 2px rgba(0,0,0,.15)
+}
+
+.match_unit:hover .m_dtls span {
+  visibility: visible
+}
+
+.match_unit:after {
+  position: absolute;
+  content: '';
+  width: 15px;
+  height: 2px;
+  background-color: #fff;
+  top: 50%;
+  right: -13px
+}
+
+.match_unit.highlight:after {
+  background-color: #c00
+}
+
+.match_unit .highlight.loser:after {
+  position: absolute;
+  content: '';
+  width: 15px;
+  height: 2px;
+  background-color: #fff;
+  right: -15px;
+  z-index: 99
+}
+
+.match_unit .m_top.highlight.loser:after {
+  bottom: -2px
+}
+
+.match_unit .m_bottom.highlight.loser:after {
+  top: 0
+}
+
+.match_unit .m_top,.match_unit .m_botm {
+  position: relative;
+  width: 100%
+}
+
+.match_unit .m_top.winner:hover,.match_unit .m_botm.winner:hover {
+  border-right-color: #c00
+}
+
+.match_unit .m_segment {
+  border-right: solid 2px #fff
+}
+
+.match_unit .m_segment:hover>span {
+  background-color: #c00;
+  color: #fff
+}
+
+.match_unit .m_segment:hover.loser,.match_unit .m_segment.highlight .loser {
+  border-right: solid 2px #fff
+}
+
+.match_unit .m_segment.winner.highlight {
+  border-right-color: #c00
+}
+
+.match_unit .m_segment.loser.highlight {
+  border-right-color: #fff
+}
+
+.match_unit .m_segment>span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: block;
+  background: #fff;
+  font-size: 13px;
+  z-index: 1;
+  height: 30px;
+  line-height: 29px;
+  padding: 0 2px;
+  cursor: default
+}
+
+.match_unit .m_segment.highlight>span {
+  background-color: #c00;
+  color: #fff;
+  box-shadow: 2px 0 0 #c00
+}
+
+.m_segment>span a {
+  float: left;
+  display: inline;
+  padding: 0 3px;
+  border-radius: 2px;
+  height: 26px;
+  line-height: 25px;
+  margin-top: 2px
+}
+
+.match_unit .m_segment.highlight>span a {
+  color: #fff
+}
+
+.match_unit .m_segment.highlight>span a:hover {
+  color: #c00
+}
+
+.match_unit .m_segment>span strong {
+  float: right;
+  color: #c00;
+  font-size: 13px;
+  padding: 0 4px
+}
+
+.match_unit .m_segment.highlight>span strong {
+  color: #fff
+}
+
+.match_unit .m_segment>span img,.match_unit .m_segment>span span {
+  vertical-align: middle
+}
+
+.match_unit .m_top span {
+  top: 0
+}
+
+.match_unit .m_botm span {
+  bottom: 0
+}
+
+.m_dtls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  padding: 0 5px
+}
+
+.m_dtls span {
+  font-size: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  display: block;
+  visibility: hidden;
+  width: 93%;
+  text-align: center
+}
+
+.final {
+  position: relative
+}
+
+.final .match_unit {
+  display: flex;
+  background-color: #fff
+}
+
+.final .match_unit .m_segment {
+  width: 50%;
+  height: 75px;
+  display: inline-flex;
+  border: 0;
+  text-align: center
+}
+
+.final .m_segment span {
+  height: 100%;
+  display: block;
+  line-height: normal;
+  padding-bottom: 3px
+}
+
+.final .match_unit .m_segment>span strong {
+  display: block;
+  padding: 5px;
+  float: none
+}
+
+.final .m_segment span a {
+  float: none;
+  display: block;
+  height: auto
+}
+
+.final .m_dtls {
+  bottom: -20px;
+  top: auto;
+  overflow: visible
+}
+
+.final .match_unit .highlight.loser:after {
+  display: none
+}
+
+.final .match_unit .m_segment.loser.highlight {
+  border: 0
+}
+
+.final .match_unit .m_segment.highlight>span {
+  box-shadow: none
+}
+
+.winner_team {
+  position: absolute;
+  top: 25px;
+  text-align: center;
+  right: 0;
+  left: 0
+}
+
+.winner_team>span {
+  font-size: 11px;
+  color: #777;
+  display: block
+}
+
+.focus .winner_team>span {
+  color: #c00
+}
+
+.winner_team>span a {
+  display: block;
+  padding: 10px;
+  margin: 10px auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.1)
+}
+
+.focus .winner_team>span a {
+  box-shadow: 0 0 0 2px #c00
+}
+
+.winner_team>span a img {
+  display: block;
+  margin: auto
+}
+
+.m_segment.first:after,.m_segment.second:after,.m_segment.third:after,.m_segment.fourth:after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  border: solid 7px transparent;
+  border-top-color: #bbb;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0;
+  height: 0
+}
+
+.m_segment.first:before,.m_segment.second:before,.m_segment.third:before,.m_segment.fourth:before {
+  position: absolute;
+  top: -30px;
+  padding: 5px;
+  font-size: 11px;
+  color: #fff;
+  background-color: #bbb;
+  left: 0;
+  right: 0;
+  margin: 0 7%;
+  display: inline
+}
+
+.m_segment:hover:before,.m_segment.highlight:before {
+  background-color: #444
+}
+
+.m_segment:hover:after,.m_segment.highlight:after {
+  border-top-color: #444
+}
+
+.m_segment.first:before {
+  content: '1st'
+}
+
+.m_segment.second:before {
+  content: '2nd'
+}
+
+.m_segment.third:before {
+  content: '3rd'
+}
+
+.m_segment.fourth:before {
+  content: '4th'
+}
+
+.third_position {
+  position: absolute;
+  bottom: 20px;
+  width: 94%;
+  padding: 0
+}
+
+.third_position .match_unit:after {
+  display: none
+}
+
+.reversed .match_unit:after {
+  right: auto;
+  left: -13px
+}
+
+.reversed .match_unit .m_segment {
+  border-left: solid 2px #fff;
+  border-right: 0
+}
+
+.reversed .match_unit .m_segment:hover.loser,.reversed .match_unit .m_segment.highlight .loser {
+  border-left: solid 2px #fff;
+  border-right: 0
+}
+
+.reversed .match_unit .m_segment:hover.winner,.reversed .match_unit .m_segment.highlight .winner {
+  border-left: solid 2px #c00
+}
+
+.reversed .match_unit .highlight.loser:after {
+  right: auto;
+  left: -15px
+}
+
+.reversed .match_unit .m_segment.winner.highlight {
+  border-left-color: #c00
+}
+
+.reversed .match_unit .m_segment.loser.highlight {
+  border-left-color: #fff
+}
+
+.reversed .match_unit .m_segment>span strong {
+  float: left
+}
+
+.reversed .m_segment>span a,.reversed .m_segment>span img {
+  float: right
+}
+
+.reversed .m_segment>span img {
+  margin-right: 0;
+  margin-left: 3px
+}
+
+.reversed .match_unit .m_segment.highlight>span {
+  box-shadow: -2px 0 0 #c00
+}
+
+@media(max-width: 768px) {
+  .match_unit .m_segment>span span {
+      display:none
+  }
+
+  .brackets_container th {
+      font-size: 12px
+  }
+}
+
+@media(max-width: 900px) {
+  .match_unit .m_segment>span {
+      font-size:11px
+  }
+
+  .match_unit .m_dtls span {
+      display: none
+  }
+}
+
+.ie9 .final .match_unit .m_segment,.ie8 .final .match_unit .m_segment {
+  width: 48%;
+  display: inline-block
+}

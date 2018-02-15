@@ -16,6 +16,7 @@ import { CompetitionChartComponent } from './competition-chart/competition-chart
 import { CompetitionSimulationEventComponent } from './competition-simulation/competition-simulation-event/competition-simulation-event.component';
 import { CompetitionMatchesComponent } from './competition-matches/competition-matches.component';
 import { CompetitionSummaryComponent } from './competition-summary/competition-summary.component';
+import { DrawMatchComponent } from './competition-basic-info/draw-match/draw-match.component';
 
 
 const competitionRoutes: Routes = [
@@ -45,7 +46,7 @@ const competitionRoutes: Routes = [
     CompetitionBasicInfoComponent, CompetitionTeamsComponent, CompetitionSimulationComponent,
     CompetitionChartComponent, CompetitionSimulationEventComponent,
     CompetitionMatchesComponent,
-    CompetitionSummaryComponent
+    CompetitionSummaryComponent, DrawMatchComponent
 ]
 })
 export class CompetitionModule { }

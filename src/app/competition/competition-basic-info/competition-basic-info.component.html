@@ -30,91 +30,20 @@
         <tbody>
             <tr id="playground">
                 <td class="round_column r_16 ">
-                    <div *ngFor="let match of draw.eightLeft" class="mtch_container">
-                        <div class="match_unit">
-                            <div class="m_segment m_top winner" data-team-id="9">
-                                <span>
-                                    <a href="#">
-                                        <img width="25" height="25" src="{{match.localTeam.pictureLogo.url}}" alt="{{match.localTeam.name}}">
-                                        <span class="truncate">{{match.localTeam.name}}</span>
-                                    </a>
-                                    <strong>{{match.goalsLocal}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_segment m_botm loser" data-team-id="10">
-                                <span>
-                                    <a href="#">
-                                        <img width="25" height="25" src="{{match.visitorTeam.pictureLogo.url}}" alt="{{match.visitorTeam.name}}">
-                                        <span class="truncate">{{match.visitorTeam.name}}</span>
-                                    </a>
-                                    <strong>{{match.goalsVisitor}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_dtls">
-                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{match.matchId}}">
-                                    <span>{{match.date | date:'MMM d, y, h:mm a'}}</span>
-                                </a>        
-                            </div>
-                        </div>
+                    <div *ngFor="let match of draw.eightLeft">
+                        <app-draw-match [match]="match" [competitionData]="competitionData">
+                        </app-draw-match>
                     </div>
                 </td>
                 <td class="round_column r_8">
-                    <div *ngFor="let match of draw.quarterFinalsLeft" class="mtch_container">
-                        <div class="match_unit">
-                            <div class="m_segment m_top winner" data-team-id="9">
-                                <span>
-                                    <a href="#">
-                                        <img width="25" height="25" src="{{match.localTeam.pictureLogo.url}}" alt="{{match.localTeam.name}}">
-                                        <span class="truncate">{{match.localTeam.name}}</span>
-                                    </a>
-                                    <strong>{{match.goalsLocal}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_segment m_botm loser" data-team-id="12">
-                                <span>
-                                    <a href="#">
-                                        <img width="25" height="25" src="{{match.visitorTeam.pictureLogo.url}}" alt="{{match.visitorTeam.name}}">
-                                        <span class="truncate">{{match.visitorTeam.name}}</span>
-                                    </a>
-                                    <strong>{{match.goalsVisitor}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_dtls">
-                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{match.matchId}}">
-                                    <span>{{match.date | date:'MMM d, y, h:mm a'}}</span>
-                                </a>
-                            </div>
-                        </div>
+                    <div *ngFor="let match of draw.quarterFinalsLeft">
+                        <app-draw-match [match]="match" [competitionData]="competitionData">
+                        </app-draw-match>
                     </div>
                 </td>
                 <td class="round_column r_4">
-                    <div class="mtch_container">
-                        <div class="match_unit">
-                            <div class="m_segment m_top winner" data-team-id="9">
-                                <span>
-                                    <a href="#">
-                                        <img width="25" height="25" src="{{draw.semifinalsLeft.localTeam.pictureLogo.url}}" alt="{{draw.semifinalsLeft.localTeam.name}}">
-                                        <span class="truncate">{{draw.semifinalsLeft.localTeam.name}}</span>
-                                    </a>
-                                    <strong>{{draw.semifinalsLeft.goalsLocal}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_segment m_botm loser" data-team-id="16">
-                                <span>
-                                    <a href="#">
-                                        <img width="25" height="25" src="{{draw.semifinalsLeft.visitorTeam.pictureLogo.url}}" alt="{{draw.semifinalsLeft.visitorTeam.name}}">
-                                        <span class="truncate">{{draw.semifinalsLeft.visitorTeam.name}}</span>
-                                    </a>
-                                    <strong>{{draw.semifinalsLeft.goalsVisitor}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_dtls">
-                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{draw.semifinalsLeft.matchId}}">
-                                    <span>{{draw.semifinalsLeft.date | date:'MMM d, y, h:mm a'}}</span>
-                                </a>    
-                            </div>
-                        </div>
-                    </div>
+                    <app-draw-match [match]="draw.semifinalsLeft" [competitionData]="competitionData">
+                    </app-draw-match>
                 </td>
                 <td class="round_column r_2 final">
                     <div class="winner_team">
@@ -157,90 +86,19 @@
                     </div>
                 </td>
                 <td class="round_column r_4 reversed">
-                    <div class="mtch_container">
-                        <div class="match_unit">
-                            <div class="m_segment m_top winner" data-team-id="2">
-                                <span>
-                                    <a href="#">
-                                        <img width="25" height="25" src="{{draw.semifinalsRight.localTeam.pictureLogo.url}}" alt="{{draw.semifinalsRight.localTeam.name}}">
-                                        <span class="truncate">{{draw.semifinalsRight.localTeam.name}}</span>
-                                    </a>
-                                    <strong>{{draw.semifinalsRight.goalsLocal}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_segment m_botm loser" data-team-id="8">
-                                <span>
-                                    <a href="#">
-                                            <img width="25" height="25" src="{{draw.semifinalsRight.visitorTeam.pictureLogo.url}}" alt="{{draw.semifinalsRight.visitorTeam.name}}">
-                                        <span class="truncate">{{draw.semifinalsRight.visitorTeam.name}}</span>
-                                    </a>
-                                    <strong>{{draw.semifinalsRight.goalsVisitor}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_dtls">     
-                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{draw.semifinalsRight.matchId}}">
-                                    <span>{{draw.semifinalsRight.date | date:'MMM d, y, h:mm a'}}</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <app-draw-match [match]="draw.semifinalsRight" [competitionData]="competitionData">
+                    </app-draw-match>
                 </td>
                 <td class="round_column r_8 reversed">
-                    <div *ngFor="let item of draw.quarterFinalsRight" class="mtch_container">
-                        <div class="match_unit">
-                            <div class="m_segment m_top loser" data-team-id="3">
-                                <span>
-                                    <a href="#">
-                                        <img width="25" height="25" src="{{item.localTeam.pictureLogo.url}}" alt="{{item.localTeam.name}}">
-                                        <span class="truncate">{{item.localTeam.name}}</span>
-                                    </a>
-                                    <strong>{{item.goalsLocal}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_segment m_botm winner" data-team-id="2">
-                                <span>
-                                    <a href="#">
-                                        <img width="25" height="25" src="{{item.visitorTeam.pictureLogo.url}}" alt="{{item.visitorTeam.name}}">
-                                        <span class="truncate">{{item.visitorTeam.name}}</span>
-                                    </a>
-                                    <strong>{{item.goalsVisitor}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_dtls">
-                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{item.matchId}}">
-                                    <span>{{item.date | date:'MMM d, y, h:mm a'}}</span>
-                                </a>
-                            </div>
-                        </div>
+                    <div *ngFor="let item of draw.quarterFinalsRight">
+                        <app-draw-match [match]="item" [competitionData]="competitionData">
+                        </app-draw-match>
                     </div>
                 </td>
                 <td class="round_column r_16 reversed">
-                    <div *ngFor="let item of draw.eightRight" class="mtch_container">
-                        <div class="match_unit">
-                            <div class="m_segment m_top winner" data-team-id="3">
-                                <span>
-                                    <a href="#">
-                                        <img width="25" height="25" src="{{item.localTeam.pictureLogo.url}}" alt="{{item.localTeam.name}}">
-                                        <span class="truncate">{{item.localTeam.name}}</span>
-                                    </a>
-                                    <strong>{{item.goalsLocal}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_segment m_botm loser" data-team-id="4">
-                                <span>
-                                    <a href="#">
-                                        <img width="25" height="25" src="{{item.visitorTeam.pictureLogo.url}}" alt="{{item.visitorTeam.name}}">
-                                        <span class="truncate">{{item.visitorTeam.name}}</span>
-                                    </a>
-                                    <strong>{{item.goalsVisitor}}</strong>
-                                </span>
-                            </div>
-                            <div class="m_dtls">
-                                <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{item.matchId}}">
-                                    <span>{{item.date | date:'MMM d, y, h:mm a'}}</span>
-                                </a>
-                            </div>
-                        </div>
+                    <div *ngFor="let item of draw.eightRight">
+                        <app-draw-match [match]="item" [competitionData]="competitionData">
+                        </app-draw-match>
                     </div>
                 </td>
             </tr>

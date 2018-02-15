@@ -1,0 +1,27 @@
+<div class="mtch_container">
+    <div class="match_unit">
+        <div class="m_segment m_top winner" data-team-id="9">
+            <span>
+                <a href="#">
+                    <img width="25" height="25" src="{{match.localTeam.pictureLogo.url}}" alt="{{match.localTeam.name}}">
+                    <span class="truncate">{{match.localTeam.name}}</span>
+                </a>
+                <strong>{{match.goalsLocal}}</strong>
+            </span>
+        </div>
+        <div class="m_segment m_botm loser" data-team-id="10">
+            <span>
+                <a href="#">
+                    <img width="25" height="25" src="{{match.visitorTeam.pictureLogo.url}}" alt="{{match.visitorTeam.name}}">
+                    <span class="truncate">{{match.visitorTeam.name}}</span>
+                </a>
+                <strong>{{match.goalsVisitor}}</strong>
+            </span>
+        </div>
+        <div class="m_dtls">
+            <a routerLink="/competitions/detail/{{competitionData.id}}/match/{{match.matchId}}">
+                <span>{{match.date | date:'MMM d, y, h:mm a'}}</span>
+            </a>        
+        </div>
+    </div>
+</div>
