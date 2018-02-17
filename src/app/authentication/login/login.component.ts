@@ -3,11 +3,11 @@ import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { InitParams } from 'ngx-facebook/dist/esm/models/init-params';
 import { FacebookService } from 'ngx-facebook/dist/esm/providers/facebook';
 import { GoogleAuthService } from '../google-auth.service';
-import { UserService } from '../../user/user.service';
 import { AppGlobals } from '../app-globals';
 import { LoginOptions } from 'ngx-facebook/dist/esm/models/login-options';
 import { LoginResponse } from 'ngx-facebook/dist/esm/models/login-response';
 import { environment } from '../../../environments/environment';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',

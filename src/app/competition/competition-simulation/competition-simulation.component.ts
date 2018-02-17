@@ -71,7 +71,11 @@ ngOnInit() {
                 goalsLocal: 0,
                 goalsVisitor: 0,
                 matchEvents: [],
-                finished: false
+                finished: false,
+                date: data.date,
+                localTeam: data.localTeam,
+                visitorTeam: data.visitorTeam,
+                matchId: data.matchId
             };
             if (existingMatch === undefined) {
                 this.matches.push(newMatch);

@@ -9,4 +9,8 @@ export interface Match {
     matchEvents: MatchEvent[];
     id: number;
     finished: boolean;
+    localTeam: Team;
+    visitorTeam: Team;
+    matchId: number;
+    date: Date;
 }

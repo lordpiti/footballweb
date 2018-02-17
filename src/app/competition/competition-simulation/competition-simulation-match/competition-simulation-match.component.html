@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+      {{match.id}}-<span>{{match.localTeam.name}}</span>
+      <span>{{match.visitorTeam.name}}</span>
+  </div>
+  <div class="panel-body">
+      <div class="row" *ngFor="let event of match.matchEvents">
+          <div class="col-sm-3">
+              {{event.minute}}
+          </div>
+          <div class="col-sm-9">
+              <!-- {{event | json}} -->
+              <app-competition-simulation-event [matchEvent]="event"></app-competition-simulation-event>
+          </div>
+      </div>
+      <div class="row" *ngIf="match.finished">
+          <div class="col-sm-12">
+              FINISHED
+          </div>
+      </div>
+  </div>
+</div>

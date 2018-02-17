@@ -16,7 +16,6 @@ import { BsDropdownModule } from 'ngx-bootstrap';
 import { FacebookModule } from 'ngx-facebook';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { LoginComponent } from './authentication/login/login.component';
-import { UserService } from './user/user.service';
 import { TeamModule } from './team/team.module';
 import { SampleService } from 'angular-piti-module-test';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -56,7 +55,6 @@ import { AuthGuard } from './authentication/auth-guard';
   ],
   providers: [
     ShareDataService,
-    UserService,
     SampleService, {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
