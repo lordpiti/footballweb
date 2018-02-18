@@ -63,6 +63,12 @@ export class CompetitionService extends BaseService {
     return this.get<any>(url);
   }
 
+  getTeamDetails(id: number) {
+    const url = 'team/teams/' + id + '/year/2009';
+
+    return this.get<Team>(url);
+  }
+
   getChartDataTeamCompetition(teamId: number, competitionId: number) {
 
     const url = 'team/clasification/' + teamId +

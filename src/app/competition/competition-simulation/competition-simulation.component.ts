@@ -33,26 +33,6 @@ public sendMessage(): void {
 ngOnInit() {
     this._hubConnection = new HubConnection(environment.hubUrl + '/loopy');
 
-    this._hubConnection.on('Send', (data: MatchEvent) => {
-        const received = `Received: ${data}`;
-        this.messages.push(received);
-
-        // look for match in the list and push the event to the list
-        const eventMatch = this.matches.find(match => match.id === data.matchId);
-        eventMatch.matchEvents.push(data);
-
-        switch (data.matchEventType) {
-            case MatchEventTypes.GameFinished:
-                eventMatch.finished = true;
-                break;
-            case MatchEventTypes.Goal:
-                // find team for the player and increase goals
-            default:
-                break;
-        }
-
-    });
-
     this._hubConnection.on('StartSimulation', (data: any) => {
         this.matches = [];
     });
@@ -66,13 +46,13 @@ ngOnInit() {
             // create the new match object
             const newMatch: Match = {
                 id: data.matchId,
-                local: 3,
-                visitor: 4,
+                local: data.matchToCreate.partido.cod_Local,
+                visitor: data.matchToCreate.partido.cod_Visitante,
                 goalsLocal: 0,
                 goalsVisitor: 0,
                 matchEvents: [],
                 finished: false,
-                date: data.date,
+                date: data.matchToCreate.partido.fecha,
                 localTeam: data.localTeam,
                 visitorTeam: data.visitorTeam,
                 matchId: data.matchId

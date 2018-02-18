@@ -1,7 +1,10 @@
 <div class="panel panel-default">
-  <div class="panel-heading">
-      {{match.id}}-<span>{{match.localTeam.name}}</span>
-      <span>{{match.visitorTeam.name}}</span>
+  <div class="panel-heading"> 
+    {{match.id}}-<span *ngIf="teamLocal | async; let ti">{{ti.name}}</span> - 
+    <span>{{goalsLocal}}</span>-
+    <span>{{goalsVisitor}}</span>
+    <span *ngIf="teamVisitor | async; let ti">{{ti.name}}</span>
+    <span>{{match.date | date:'MMM d, y, h:mm a'}}</span>
   </div>
   <div class="panel-body">
       <div class="row" *ngFor="let event of match.matchEvents">
