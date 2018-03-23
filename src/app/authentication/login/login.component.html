@@ -2,16 +2,20 @@
   <button class="btn btn-primary" *ngIf="!token" (click)="loginWithFacebook()" >Facebook Sign-In</button>  
   <button *ngIf="!token" id="google-login-button" class="btn btn-primary" (click)="loginWithGoogle()">Google Sign-In</button>
 
-  <div *ngIf="token">
-    <img src="{{imageURL}}">
-    <br>
-    <!-- <b>TOKEN: </b>
-    <p>{{token}}</p> -->
-    <b>NAME: </b>
-    <p>{{name}}</p>
-    <b>EMAIL: </b>
-    <p>{{email}}</p>
-
-    <button class="btn btn-danger" id="google-login-button" (click)="logout()">Logout</button>
+  <div class="row" *ngIf="token">
+    <div class="col-sm-6">
+        <img class="loginImage" src="{{imageURL}}">
+        <!-- <b>TOKEN: </b>
+        <p>{{token}}</p>
+        <b>NAME: </b>
+        
+        <b>EMAIL: </b>
+        <p>{{email}}</p> -->
+    </div>
+    <div class="col-sm-6">
+      <p>{{name}}</p>
+      <button class="btn btn-danger" id="google-login-button" (click)="logout()">Logout</button>
+    </div>
   </div>
+
 </section>
