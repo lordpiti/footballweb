@@ -1,19 +1,30 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Angular Heroku</title>
-  <base href="/">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Heroku</title>
+    <base href="/">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-</head>
-<script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js"></script>
-
-<body>
-  <div class="container">
-    <app-root></app-root>
-  </div>
-</body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="theme-color" content="#673ab7">
+    <link rel="manifest" href="manifest.json">
+  </head>
+  <script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js"></script>
+  <noscript>
+    <h3 style="color: #673ab7; font-family: Helvetica; margin: 2rem;">
+        Sorry, but app is not available without javascript
+    </h3>
+  </noscript>
+  <body>
+    <div class="container">
+      <app-root>
+        <nav 
+          style="background-color: #673ab7; height: 56px; width: 100%">
+        </nav>
+        <div id="loading">LOADING ...</div>
+      </app-root>
+    </div>
+  </body>
 </html>

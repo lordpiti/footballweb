@@ -30,6 +30,8 @@ import { authorFilter } from './team/blog-test/reducers/authorFilter';
 import { AuthorService } from './team/blog-test/services/author.service';
 import { BlogService } from './team/blog-test/services/blog.service';
 import { BlogActions } from './team/blog-test/actions/blogAction';
+import { environment } from '../environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,8 @@ import { BlogActions } from './team/blog-test/actions/blogAction';
     EffectsModule.forRoot([BlogEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
-    })
+    }),
+    environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
   ],
   providers: [
     ShareDataService,
