@@ -17,6 +17,7 @@ import { CompetitionSimulationEventComponent } from './competition-simulation/co
 import { CompetitionMatchesComponent } from './competition-matches/competition-matches.component';
 import { CompetitionSummaryComponent } from './competition-summary/competition-summary.component';
 import { DrawMatchComponent } from './competition-basic-info/draw-match/draw-match.component';
+// tslint:disable-next-line:max-line-length
 import { CompetitionSimulationMatchComponent } from './competition-simulation/competition-simulation-match/competition-simulation-match.component';
 
 

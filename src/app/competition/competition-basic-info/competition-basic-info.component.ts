@@ -15,12 +15,6 @@ export class CompetitionBasicInfoComponent implements OnInit {
   @Input() competitionData: any;
 
   ngOnInit() {
-
-    // this.route.parent.params.subscribe(params => {
-    //   const competitionId = +params['id']; // (+) converts string 'id' to a number
-
-    //   this.loadDraw(competitionId);
-    // });
     this.loadDraw(this.competitionData.id);
   }
 

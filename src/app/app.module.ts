@@ -22,8 +22,14 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { AuthInterceptor } from './authentication/authInterceptor';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { todos } from './redux/reducer';
 import { AuthGuard } from './authentication/auth-guard';
+import { BlogEffects } from './team/blog-test/effects/blogEffects';
+import { EffectsModule } from '@ngrx/effects';
+import { blog } from './team/blog-test//reducers/blog';
+import { authorFilter } from './team/blog-test/reducers/authorFilter';
+import { AuthorService } from './team/blog-test/services/author.service';
+import { BlogService } from './team/blog-test/services/blog.service';
+import { BlogActions } from './team/blog-test/actions/blogAction';
 
 @NgModule({
   declarations: [
@@ -48,7 +54,8 @@ import { AuthGuard } from './authentication/auth-guard';
     AuthenticationModule,
     TeamModule, // Needed here for the modal popup
     // https://blog.angularindepth.com/making-your-angular-2-library-statically-analyzable-for-aot-e1c6f3ebedd5
-    StoreModule.forRoot({ todos }),
+    StoreModule.forRoot({ blog, authorFilter }),
+    EffectsModule.forRoot([BlogEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
     })
@@ -60,7 +67,10 @@ import { AuthGuard } from './authentication/auth-guard';
       useClass: AuthInterceptor,
       multi: true
     },
-    AuthGuard
+    AuthGuard,
+    AuthorService,
+    BlogService,
+    BlogActions
   ],
   bootstrap: [AppComponent]
 })

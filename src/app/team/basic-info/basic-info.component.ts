@@ -30,24 +30,24 @@ export class BasicInfoComponent implements OnInit {
   location: any;
   stadium: any;
   markers: Marker[] = [
-  {
-    lat: 51.673858,
-    lng: 7.815982,
-    label: 'A',
-    draggable: true
-  },
-  {
-    lat: 51.373858,
-    lng: 7.215982,
-    label: 'B',
-    draggable: false
-  },
-  {
-    lat: 51.723858,
-    lng: 7.895982,
-    label: 'C',
-    draggable: true
-  }
+  // {
+  //   lat: 51.673858,
+  //   lng: 7.815982,
+  //   label: 'A',
+  //   draggable: true
+  // },
+  // {
+  //   lat: 51.373858,
+  //   lng: 7.215982,
+  //   label: 'B',
+  //   draggable: false
+  // },
+  // {
+  //   lat: 51.723858,
+  //   lng: 7.895982,
+  //   label: 'C',
+  //   draggable: true
+  // }
   ];
 
   public teamDetails: Team;
@@ -92,8 +92,16 @@ export class BasicInfoComponent implements OnInit {
     this._googlemapsService.getData(stadiumName).subscribe(
       (data: any) => {
         // console.log(data);
-        if (data && data.results) {
+        if (data && data.status === 'OK' && data.results) {
           this.location = data.results[0].geometry.location;
+          this.markers.push({
+            lat: this.location.lat,
+            lng: this.location.lng,
+            label: null, // this.teamDetails.stadium.name,
+            draggable: false
+          });
+        } else {
+          console.log('Google maps returned an error: ' + data.error_message);
         }
       }
     );

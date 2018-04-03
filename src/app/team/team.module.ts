@@ -11,8 +11,12 @@ import { SquadComponent } from './squad/squad.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { GooglemapsService } from './googlemaps.service';
 import { SharedModule } from '../shared/shared.module';
-import { TestNgrxComponent } from './test-ngrx/test-ngrx.component';
-import { TodoDataService } from './todo-data.service';
+import { BlogSectionComponent } from './blog-test/blog-section/blog-section.component';
+import { BlogListComponent } from './blog-test/blog-list/blog-list.component';
+import { AuthorSectionComponent } from './blog-test/author-section/author-section.component';
+import { HomeComponent } from './blog-test/home/home.component';
+import { AddBlogComponent } from './blog-test/add-blog/add-blog.component';
+import { BlogTestComponent } from './blog-test/blog-test.component';
 
 
 const teamRoutes: Routes = [
@@ -23,7 +27,7 @@ const teamRoutes: Routes = [
     { path: 'squad', component: SquadComponent },
     { path: 'competitions', component: TeamChartComponent }
   ] },
-  { path: 'test-ngrx',  component: TestNgrxComponent },
+  { path: 'blog-test-ngrx',  component: BlogTestComponent },
   { path: '**',  component: OverviewComponent }
 ];
 
@@ -42,12 +46,16 @@ const teamRoutes: Routes = [
     TeamChartComponent,
     SquadComponent,
     BasicInfoComponent,
-    TestNgrxComponent
+    BlogSectionComponent,
+    BlogListComponent,
+    BlogTestComponent,
+    HomeComponent,
+    AuthorSectionComponent,
+    AddBlogComponent
   ],
   providers: [
     TeamService,
-    GooglemapsService,
-    TodoDataService
+    GooglemapsService
   ],
   exports: [
     RouterModule
