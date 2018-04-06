@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Author } from '../shared/model/author';
 import 'rxjs/add/operator/map';
+import { Author } from '../../../core/model/author';
 
 
 @Injectable()

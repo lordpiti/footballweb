@@ -17,6 +17,7 @@ import { AuthorSectionComponent } from './blog-test/author-section/author-sectio
 import { HomeComponent } from './blog-test/home/home.component';
 import { AddBlogComponent } from './blog-test/add-blog/add-blog.component';
 import { BlogTestComponent } from './blog-test/blog-test.component';
+import { OverviewNgrxComponent } from './overview-ngrx/overview-ngrx.component';
 
 
 const teamRoutes: Routes = [
@@ -27,7 +28,7 @@ const teamRoutes: Routes = [
     { path: 'squad', component: SquadComponent },
     { path: 'competitions', component: TeamChartComponent }
   ] },
-  { path: 'blog-test-ngrx',  component: BlogTestComponent },
+  { path: 'blog-test-ngrx',  component: OverviewNgrxComponent },
   { path: '**',  component: OverviewComponent }
 ];
 
@@ -51,7 +52,8 @@ const teamRoutes: Routes = [
     BlogTestComponent,
     HomeComponent,
     AuthorSectionComponent,
-    AddBlogComponent
+    AddBlogComponent,
+    OverviewNgrxComponent
   ],
   providers: [
     TeamService,

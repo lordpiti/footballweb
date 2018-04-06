@@ -1,0 +1,19 @@
+<div class="panel panel-default" *ngIf="!(teams$ | async).loadingSpinner">
+  <div class="panel-heading">Teams overview NGRX</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-2 text-center" *ngFor="let item of (teams$ | async).data">
+        <a routerLink="/teams/detail/{{item.id}}" routerLinkActive="active">
+          <img src="{{item.pictureLogo.url}}" width="50" height="50"/>
+          <div>{{item.name}}</div>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <a class="btn btn-primary" routerLink="./blog-test-ngrx">Ngrx test</a>
+      </div>     
+    </div>
+  </div>
+</div>
+<div *ngIf="(teams$ | async).loadingSpinner">LOADING</div>

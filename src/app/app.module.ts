@@ -23,15 +23,18 @@ import { AuthInterceptor } from './authentication/authInterceptor';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { AuthGuard } from './authentication/auth-guard';
-import { BlogEffects } from './team/blog-test/effects/blogEffects';
+import { BlogEffects } from './core/effects/blogEffects';
 import { EffectsModule } from '@ngrx/effects';
-import { blog } from './team/blog-test//reducers/blog';
-import { authorFilter } from './team/blog-test/reducers/authorFilter';
+import { blog } from './core/reducers/blog';
+import { authorFilter } from './core/reducers/authorFilter';
+import { team } from './core/reducers/team';
 import { AuthorService } from './team/blog-test/services/author.service';
 import { BlogService } from './team/blog-test/services/blog.service';
-import { BlogActions } from './team/blog-test/actions/blogAction';
+import { BlogActions } from './core/actions/blogAction';
 import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { TeamActions } from './core/actions/teamAction';
+import { TeamEffects } from './core/effects/teamEffects';
 
 @NgModule({
   declarations: [
@@ -56,8 +59,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AuthenticationModule,
     TeamModule, // Needed here for the modal popup
     // https://blog.angularindepth.com/making-your-angular-2-library-statically-analyzable-for-aot-e1c6f3ebedd5
-    StoreModule.forRoot({ blog, authorFilter }),
-    EffectsModule.forRoot([BlogEffects]),
+    StoreModule.forRoot({ blog, authorFilter, team }),
+    EffectsModule.forRoot([BlogEffects, TeamEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
     }),
@@ -73,7 +76,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AuthGuard,
     AuthorService,
     BlogService,
-    BlogActions
+    BlogActions,
+    TeamActions
   ],
   bootstrap: [AppComponent]
 })

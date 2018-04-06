@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { EffectsTestingModule, EffectsRunner } from '@ngrx/effects/testing';
 import { BlogEffects } from '../effects/blogEffects';
-import { BlogService } from '../services/blog.service';
 import { Observable } from 'rxjs/Observable';
 import { BlogActions } from '../actions/blogAction';
 import 'rxjs/add/observable/of';
 import { Http } from '@angular/http';
+import { BlogService } from '../../team/blog-test/services/blog.service';
 
 describe('Blog Effect', () => {
     let runner: EffectsRunner;
@@ -18,7 +18,7 @@ describe('Blog Effect', () => {
         ],
         providers: [
             BlogEffects, BlogActions, BlogService,
-            { "provide": Http, "useValue": null }
+            { 'provide': Http, 'useValue': null }
         ]
     }));
     it('Call LOAD_BLOGS_SUCCESS action after REQUEST_BLOGS action',

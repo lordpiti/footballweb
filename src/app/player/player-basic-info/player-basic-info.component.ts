@@ -29,7 +29,7 @@ export class PlayerBasicInfoComponent implements OnInit {
     }
 
     this.playerService.getCurrentPlayer().subscribe(data => {
-      this.playerDetails = this.playerService.currentPlayer;
+      this.playerDetails = data;
       this.playerDetails.position = 'Striker';
     });
 

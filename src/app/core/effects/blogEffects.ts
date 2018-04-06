@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
 import { Action } from '@ngrx/store';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -8,9 +8,9 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
-import { BlogService } from '../services/blog.service';
 import { BlogActions } from '../actions/blogAction';
 import { ActionWithPayload } from '../actions/actionWithPayload';
+import { BlogService } from '../../team/blog-test/services/blog.service';
 
 @Injectable()
 export class BlogEffects {

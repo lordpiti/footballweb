@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
-import { Blog } from '../shared/model/blog';
 import { Observable } from 'rxjs/Observable';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Store } from '@ngrx/store';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/from';
-import { BlogActions } from '../actions/blogAction';
+import { BlogActions } from '../../../core/actions/blogAction';
+import { Blog } from '../../../core/model/blog';
 
 
 @Component({

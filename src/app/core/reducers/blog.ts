@@ -1,13 +1,13 @@
-import { Blog } from '../shared/model/blog';
+import { Blog } from '../model/blog';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export function blog(state: any = [], action) {
     switch (action.type) {
         case 'ADD_BLOG_SUCCESS': {
-            return { data: [...state.data, action.payload] }
+            return { data: [...state.data, action.payload] };
         }
         case 'LOAD_BLOGS_SUCCESS': {
-            return { ...state, data: action.payload }
+            return { ...state, data: action.payload };
         }
         case 'DELETE_BLOG_SUCCESS': {
             return {
@@ -20,7 +20,7 @@ export function blog(state: any = [], action) {
             return state;
         }
     }
-};
+}
 
 export const getBlog = createFeatureSelector<Blog>('blog');
 

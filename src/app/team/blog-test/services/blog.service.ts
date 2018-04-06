@@ -3,7 +3,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { Blog } from '../shared/model/blog';
+import { Blog } from '../../../core/model/blog';
 
 
 @Injectable()
