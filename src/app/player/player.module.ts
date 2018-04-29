@@ -7,6 +7,8 @@ import { PlayerBasicInfoComponent } from './player-basic-info/player-basic-info.
 import { PlayerService } from './player.service';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule, MatSortModule, MatButtonModule,
+  MatPaginatorModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 
 
 const playerRoutes: Routes = [
@@ -26,6 +28,12 @@ const playerRoutes: Routes = [
     ReactiveFormsModule,
     SharedModule,
     RouterModule.forChild(playerRoutes),
+    MatTableModule,
+    MatSortModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule, MatInputModule
   ],
   providers: [
     PlayerService

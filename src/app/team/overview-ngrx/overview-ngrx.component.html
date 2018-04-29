@@ -17,7 +17,9 @@
     </div>
   </div>
 </div>
-<div *ngIf="(teams$ | async).loadingSpinner">LOADING</div>
+<div *ngIf="(teams$ | async).loadingSpinner">
+  <mat-spinner></mat-spinner>
+</div>
 
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"

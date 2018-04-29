@@ -23,7 +23,9 @@ import {
   MatSidenavModule,
   MatCheckboxModule,
   MatButtonModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatProgressSpinnerModule,
+  MatCardModule
 } from '@angular/material';
 
 
@@ -49,7 +51,9 @@ const teamRoutes: Routes = [
     MatSidenavModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatProgressSpinnerModule,
+    MatCardModule
   ],
   declarations: [
     OverviewComponent,
