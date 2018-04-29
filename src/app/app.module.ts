@@ -35,6 +35,7 @@ import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { TeamActions } from './core/actions/teamAction';
 import { TeamEffects } from './core/effects/teamEffects';
+import { MatButtonModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { TeamEffects } from './core/effects/teamEffects';
     AuthenticationModule,
     TeamModule, // Needed here for the modal popup
     // https://blog.angularindepth.com/making-your-angular-2-library-statically-analyzable-for-aot-e1c6f3ebedd5
+    MatButtonModule,
     StoreModule.forRoot({ blog, authorFilter, team }),
     EffectsModule.forRoot([BlogEffects, TeamEffects]),
     StoreDevtoolsModule.instrument({

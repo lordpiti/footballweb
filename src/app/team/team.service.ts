@@ -25,6 +25,12 @@ export class TeamService extends BaseService {
     return this.get<Team[]>(url);
   }
 
+  getTeamsByName(name: string) {
+    const url = 'team/teams/';
+
+    return this.get<Team[]>(url).map(teamList => teamList.filter(y => y.name.includes(name)));
+  }
+
   getTeamDetails(id: number) {
     const url = 'team/teams/' + id + '/year/2009';
 

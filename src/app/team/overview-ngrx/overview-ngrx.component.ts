@@ -13,6 +13,10 @@ export class OverviewNgrxComponent implements OnInit {
 
   public teams$: Observable<Team[]>;
 
+  public textToSearch = '';
+
+  events = [];
+
   constructor(private store: Store<{ team: Team[] }>,
     private teamActions: TeamActions) { }
 
@@ -33,5 +37,10 @@ export class OverviewNgrxComponent implements OnInit {
 
   loadTeams() {
     this.store.dispatch(this.teamActions.loadTeams(1));
+  }
+
+  onSearchChange(searchString: string) {
+    this.store.dispatch(this.teamActions.searchTeams(searchString));
+    console.log(searchString);
   }
 }

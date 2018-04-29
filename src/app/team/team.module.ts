@@ -19,6 +19,13 @@ import { AddBlogComponent } from './blog-test/add-blog/add-blog.component';
 import { BlogTestComponent } from './blog-test/blog-test.component';
 import { OverviewNgrxComponent } from './overview-ngrx/overview-ngrx.component';
 
+import {
+  MatSidenavModule,
+  MatCheckboxModule,
+  MatButtonModule,
+  MatButtonToggleModule
+} from '@angular/material';
+
 
 const teamRoutes: Routes = [
   { path: '',  component: OverviewComponent },
@@ -28,7 +35,7 @@ const teamRoutes: Routes = [
     { path: 'squad', component: SquadComponent },
     { path: 'competitions', component: TeamChartComponent }
   ] },
-  { path: 'blog-test-ngrx',  component: OverviewNgrxComponent },
+  { path: 'test-ngrx',  component: OverviewNgrxComponent },
   { path: '**',  component: OverviewComponent }
 ];
 
@@ -38,7 +45,11 @@ const teamRoutes: Routes = [
     RouterModule.forChild(teamRoutes),
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatSidenavModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatButtonToggleModule
   ],
   declarations: [
     OverviewComponent,

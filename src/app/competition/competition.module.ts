@@ -19,7 +19,7 @@ import { CompetitionSummaryComponent } from './competition-summary/competition-s
 import { DrawMatchComponent } from './competition-basic-info/draw-match/draw-match.component';
 // tslint:disable-next-line:max-line-length
 import { CompetitionSimulationMatchComponent } from './competition-simulation/competition-simulation-match/competition-simulation-match.component';
-
+import { MatTableModule, MatSortModule, MatButtonModule } from '@angular/material';
 
 const competitionRoutes: Routes = [
   { path: '',  component: CompetitionOverviewComponent },
@@ -39,7 +39,10 @@ const competitionRoutes: Routes = [
     CommonModule, SharedModule,
     RouterModule.forChild(competitionRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatSortModule,
+    MatButtonModule
   ],
   providers: [
     CompetitionService

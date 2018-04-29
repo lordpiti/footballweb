@@ -1,12 +1,31 @@
 <div class="panel panel-default">
   <div class="panel-heading">Competitions overview</div>
   <div class="panel-body">
-    <a routerLink="./simulation" class="btn btn-primary" >Simulate competition round</a>
+    <button mat-raised-button color="primary" routerLink="./simulation" >Simulate competition round</button>
+
+    <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="competitionListForTable" *ngIf="competitionListForTable" matSort>
     
-    <ul>
-      <li *ngFor="let item of competitionList | async | orderBy: 'season';let i=index">
-        <a routerLink="/competitions/detail/{{item.id}}" routerLinkActive="active">{{item.name}} {{item.season}}</a>
-      </li>
-    </ul>
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <a routerLink="/competitions/detail/{{element.id}}" routerLinkActive="active">{{element.name}}</a>
+          </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="season">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Season </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.season}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="type">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
   </div>
 </div>

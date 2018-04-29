@@ -5,6 +5,7 @@ import { ActionWithPayload } from './actionWithPayload';
 export class TeamActions {
     static REQUEST_TEAMS = 'REQUEST_TEAMS';
     static LOAD_TEAMS_SUCCESS = 'LOAD_TEAMS_SUCCESS';
+    static SEARCH_TEAMS = 'SEARCH_TEAMS';
 
     loadTeams(filter): ActionWithPayload<any> {
         return {
@@ -13,7 +14,16 @@ export class TeamActions {
         };
     }
 
+    searchTeams(filter): ActionWithPayload<any> {
+        debugger;
+        return {
+            type: TeamActions.SEARCH_TEAMS,
+            payload: filter
+        };
+    }
+
     loadTeamsSuccess(teams):  ActionWithPayload<any> {
+        debugger;
         return {
             type: TeamActions.LOAD_TEAMS_SUCCESS,
             payload: teams

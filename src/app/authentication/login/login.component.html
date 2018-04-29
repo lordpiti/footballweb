@@ -1,6 +1,6 @@
 <section class="google-login-page">
-  <button class="btn btn-primary" *ngIf="!token" (click)="loginWithFacebook()" >Facebook Sign-In</button>  
-  <button *ngIf="!token" id="google-login-button" class="btn btn-primary" (click)="loginWithGoogle()">Google Sign-In</button>
+  <button mat-raised-button color="primary" *ngIf="!token" (click)="loginWithFacebook()" >Facebook Sign-In</button>  
+  <button *ngIf="!token" id="google-login-button" mat-raised-button color="primary" (click)="loginWithGoogle()">Google Sign-In</button>
 
   <div class="row" *ngIf="token">
     <div class="col-sm-6">

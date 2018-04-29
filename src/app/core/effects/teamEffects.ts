@@ -22,6 +22,15 @@ export class TeamEffects {
         .map((teams: any) => this.teamActions.loadTeamsSuccess(teams)
         );
 
+    @Effect()
+    searchTeams$: Observable<Action> = this.actions$
+        .ofType('SEARCH_TEAMS')
+        .switchMap(action => this.teamService.getTeamsByName(action.payload))
+        .map((teams: any) => {
+            return this.teamActions.loadTeamsSuccess(teams);
+         }
+        );
+
     constructor(
         private actions$: Actions<ActionWithPayload<any>>,
         private teamService: TeamService,

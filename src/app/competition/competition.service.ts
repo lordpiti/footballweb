@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { Team } from '../shared/interfaces/team.interface';
 import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
 import { ShareDataService } from '../shared/services/shared-data.service';
 import { Subject } from 'rxjs/Subject';
 import { HttpClient } from '@angular/common/http';
+import { Competition } from '../shared/interfaces/competition.interface';
 
 @Injectable()
 export class CompetitionService extends BaseService {
@@ -18,10 +19,10 @@ export class CompetitionService extends BaseService {
   }
 
 
-  getAllCompetitions() {
+  getAllCompetitions(): Observable<Competition[]> {
     const url = 'competition';
 
-    return this.get<any>(url);
+    return this.get<Competition[]>(url);
   }
 
   public getTeams(competitionId: number) {
