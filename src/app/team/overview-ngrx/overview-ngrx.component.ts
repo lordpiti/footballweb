@@ -15,6 +15,8 @@ export class OverviewNgrxComponent implements OnInit {
 
   public textToSearch = '';
 
+  opened: any;
+
   events = [];
 
   constructor(private store: Store<{ team: Team[] }>,
