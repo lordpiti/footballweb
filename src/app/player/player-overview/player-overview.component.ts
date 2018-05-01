@@ -23,26 +23,24 @@ export class PlayerOverviewComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  // name: string;
-  // surname: string;
-  // teamName: string;
-  // dorsal: number;
-  // teamId: number;
-  // playerId: number;
-  // position: string;
-  // birthDate: Date;
-
   ngOnInit() {
     setTimeout(() => {
       this.sharedService.setCurrentArea(AppAreas.Players);
     }, 0);
 
     this.playerService.getPlayers().subscribe(
-      (data: Array<Player>) => {
-          this.playerList = data;
-          this.playerListForTable = new MatTableDataSource(data);
+      (response: Array<Player>) => {
+          this.playerList = response;
+          this.playerListForTable = new MatTableDataSource(response);
           this.playerListForTable.sort = this.sort;
           this.playerListForTable.paginator = this.paginator;
+          this.playerListForTable.filterPredicate =
+          (data: Player, filter: string) => {
+            const trimmedLowerCasedFilterName = data.name.trim().toLowerCase();
+            const trimmedLowerCasedFilterSurname = data.surname.trim().toLowerCase();
+
+            return trimmedLowerCasedFilterName.includes(filter) || trimmedLowerCasedFilterSurname.includes(filter);
+          };
       },
       (err: any) => {
       }
@@ -52,6 +50,7 @@ export class PlayerOverviewComponent implements OnInit {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+
     this.playerListForTable.filter = filterValue;
   }
 

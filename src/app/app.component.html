@@ -1,8 +1,7 @@
-<div class="row margin-top1">
+<!-- <div class="row margin-top1">
   <div class="col-sm-10">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
@@ -12,8 +11,7 @@
           </button>
           <a class="navbar-brand" href="#">FootballWeb Reloaded</a>
         </div>
-    
-        <!-- Collect the nav links, forms, and other content for toggling -->
+
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   
           <ul class="btn-group nav navbar-nav" *ngIf="appArea != 'Teams'">
@@ -70,13 +68,25 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Link</a></li>
           </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
+        </div>
+      </div>
     </nav>
   </div>
   <div class="col-sm-2">
     <app-login></app-login>
   </div>
-</div>
+</div> -->
+
+<mat-toolbar color="primary">
+
+  <span>FootballWeb Reloaded</span>
+  <a mat-button color="currentColor" routerLink="/teams" >Teams</a>
+  <a mat-button routerLink="/competitions">Competitions</a>
+  <a mat-button routerLink="/players">Players</a>
+
+  <div class="example-spacer text-right">
+    <app-login></app-login>
+  </div>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
