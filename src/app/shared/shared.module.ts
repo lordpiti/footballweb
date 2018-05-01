@@ -19,6 +19,8 @@ import { CustomFormSelectComponent } from './components/custom-form-select/custo
 import { ValuesPipe } from './pipes/values.pipe';
 import { MomentModule } from 'angular2-moment';
 import { OrderModule } from 'ngx-order-pipe';
+import { DetailsLayoutComponent } from './components/details-layout/details-layout.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -36,7 +38,8 @@ import { OrderModule } from 'ngx-order-pipe';
     PopoverModule,
     NgxPaginationModule,
     MomentModule,
-    OrderModule
+    OrderModule,
+    RouterModule
   ],
   declarations: [
     MatchComponent,
@@ -45,7 +48,8 @@ import { OrderModule } from 'ngx-order-pipe';
     MatchPlayersSingleComponent,
     CustomFormInputComponent,
     CustomFormSelectComponent,
-    ValuesPipe
+    ValuesPipe,
+    DetailsLayoutComponent
   ],
   providers: [
     MatchService
@@ -59,6 +63,7 @@ import { OrderModule } from 'ngx-order-pipe';
     NgxPaginationModule,
     CustomFormInputComponent,
     CustomFormSelectComponent,
+    DetailsLayoutComponent,
     ValuesPipe,
     MomentModule,
     OrderModule

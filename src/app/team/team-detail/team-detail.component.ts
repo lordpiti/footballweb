@@ -12,6 +12,7 @@ import { ShareDataService } from '../../shared/services/shared-data.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 // import { Subscription } from 'rxjs';
 import { AppAreas } from '../../shared/enums/app-areas';
+import { DetailsMenuData } from '../../shared/interfaces/details-menu-data.interface';
 
 @Component({
   selector: 'app-team-detail',
@@ -28,6 +29,7 @@ export class TeamDetailComponent implements OnInit {
   // };
 
   public teamDetails: Team;
+  public teamDetailsMenuData: DetailsMenuData;
 
   @Input() newid: number = null;
 
@@ -50,6 +52,30 @@ export class TeamDetailComponent implements OnInit {
     // service changes
     this._teamService.getCurrentTeam().subscribe(data => {
       this.teamDetails = data;
+      this.teamDetailsMenuData = {
+        title: data.name,
+        imageUrl: data.pictureLogo,
+        entityName: 'Teams',
+        itemsList: [
+          {
+            title: 'Summary',
+            link: 'summary'
+          },
+          {
+            title: 'Squad',
+            link: 'squad'
+          },
+          {
+            title: 'Competitions',
+            link: 'competitions'
+          },
+          {
+            title: 'News',
+            link: 'news'
+          }
+        ],
+        dataLoaded: true
+      };
     });
 
     if (!this.newid) {
