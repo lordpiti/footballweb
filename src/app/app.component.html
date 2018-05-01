@@ -76,17 +76,18 @@
     <app-login></app-login>
   </div>
 </div> -->
+<div style="position: fixed; top: 0;width: 100%; z-index: 500">
+  <mat-toolbar color="primary" >
+    <span>FootballWeb Reloaded</span>
+    <a mat-button color="currentColor" routerLink="/teams" >Teams</a>
+    <a mat-button routerLink="/competitions">Competitions</a>
+    <a mat-button routerLink="/players">Players</a>
 
-<mat-toolbar color="primary">
-
-  <span>FootballWeb Reloaded</span>
-  <a mat-button color="currentColor" routerLink="/teams" >Teams</a>
-  <a mat-button routerLink="/competitions">Competitions</a>
-  <a mat-button routerLink="/players">Players</a>
-
-  <div class="example-spacer text-right">
-    <app-login></app-login>
-  </div>
-</mat-toolbar>
-
-<router-outlet></router-outlet>
+    <div class="example-spacer text-right">
+      <app-login></app-login>
+    </div>
+  </mat-toolbar>
+</div>
+<div style="margin-top:90px">
+  <router-outlet></router-outlet>
+</div>
