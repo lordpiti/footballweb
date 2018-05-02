@@ -1,21 +1,2 @@
-<div class="row" *ngIf="competitionDetails">
-  <div class="col-sm-3">
-    <img src="{{competitionDetails.logo.url}}" width="100" height="100" />
-    <label>{{competitionDetails.name}}</label>
-    <a href="#" class="nav-tabs-dropdown btn btn-block btn-primary">Competition details</a>
-    <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
-      <li routerLinkActive="active">
-        <a routerLink="summary">Summary</a>
-      </li>
-      <li routerLinkActive="active">
-        <a [routerLink]="['./rounds']">Rounds</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="teams">Teams</a>
-      </li>
-    </ul>
-  </div>
-  <div class="col-sm-9">
-      <router-outlet></router-outlet>
-  </div>
-</div>
+<app-details-layout *ngIf="competitionDetailsMenuData" [detailsMenuData]="competitionDetailsMenuData">
+</app-details-layout>

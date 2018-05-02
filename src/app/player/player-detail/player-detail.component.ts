@@ -6,6 +6,7 @@ import { Player } from '../../shared/interfaces/player.interface';
 import { Component, OnInit, Input, ViewContainerRef, OnChanges } from '@angular/core';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
+import { DetailsMenuData } from '../../shared/interfaces/details-menu-data.interface';
 
 @Component({
   selector: 'app-player-detail',
@@ -15,7 +16,7 @@ import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 export class PlayerDetailComponent implements OnInit, OnChanges {
 
   public playerDetails: Player;
-
+  public playerDetailsMenuData: DetailsMenuData;
   public playerPicture: any;
 
   @Input() newid: number = null;
@@ -67,6 +68,22 @@ export class PlayerDetailComponent implements OnInit, OnChanges {
       (playerData: Player) => {
           this.playerDetails = playerData;
           this.playerService.setCurrentPlayer(playerData);
+          this.playerDetailsMenuData = {
+            title: playerData.name + ' ' + playerData.surname,
+            imageUrl: '',
+            entityName: 'Players',
+            itemsList: [
+              {
+                title: 'Summary',
+                link: 'summary'
+              },
+              {
+                title: 'Statistics',
+                link: 'statistics'
+              }
+            ],
+            dataLoaded: true
+          };
       },
       (err: any) => {
       }

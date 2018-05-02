@@ -42,7 +42,8 @@ const competitionRoutes: Routes = [
     ReactiveFormsModule,
     MatTableModule,
     MatSortModule,
-    MatButtonModule
+    MatButtonModule,
+    SharedModule
   ],
   providers: [
     CompetitionService
