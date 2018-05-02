@@ -21,6 +21,7 @@ import { MomentModule } from 'angular2-moment';
 import { OrderModule } from 'ngx-order-pipe';
 import { DetailsLayoutComponent } from './components/details-layout/details-layout.component';
 import { RouterModule } from '@angular/router';
+import { MatListModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { RouterModule } from '@angular/router';
     NgxPaginationModule,
     MomentModule,
     OrderModule,
-    RouterModule
+    RouterModule,
+    MatListModule
   ],
   declarations: [
     MatchComponent,
@@ -66,7 +68,8 @@ import { RouterModule } from '@angular/router';
     DetailsLayoutComponent,
     ValuesPipe,
     MomentModule,
-    OrderModule
+    OrderModule,
+    MatListModule
   ]
 })
 export class SharedModule {

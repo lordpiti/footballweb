@@ -2,12 +2,15 @@
   <div class="sidenavJAJA">
     <img *ngIf="detailsMenuData.imageUrl" src="{{detailsMenuData.imageUrl.url}}" width="100" height="100" />
     <label>{{detailsMenuData.title}}</label>
-    <a href="#" class="nav-tabs-dropdown btn btn-block btn-primary">{{detailsMenuData.entityName}}</a>
+    <!-- <a href="#" class="nav-tabs-dropdown btn btn-block btn-primary">{{detailsMenuData.entityName}}</a>
     <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
       <li routerLinkActive="active" *ngFor="let item of detailsMenuData.itemsList">
         <a routerLink="{{item.link}}">{{item.title}}</a>
       </li>
-    </ul>
+    </ul> -->
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let item of detailsMenuData.itemsList" routerLink="{{item.link}}" routerLinkActive="activeJAJA" > {{ item.title }} </a>
+   </mat-nav-list>
   </div>
   <div class="mainJAJA">
     <router-outlet></router-outlet>
