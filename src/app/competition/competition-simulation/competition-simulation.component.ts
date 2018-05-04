@@ -65,6 +65,30 @@ ngOnInit() {
         }
     });
 
+    this._hubConnection.on('Send', (data: MatchEvent) => {
+
+        const matchToAddEvent = this.matches.find(x => x.matchId === data.matchId);
+
+        if (matchToAddEvent) {
+            matchToAddEvent.matchEvents.push(data);
+
+            switch (data.matchEventType) {
+                case MatchEventTypes.GameFinished:
+                matchToAddEvent.finished = true;
+                    break;
+                case MatchEventTypes.Goal:
+                    if (matchToAddEvent.local === data.team1.id) {
+                        matchToAddEvent.goalsLocal++;
+                    } else {
+                        matchToAddEvent.goalsVisitor++;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
+
     this._hubConnection.start()
         .then(() => {
             console.log('Hub connection started');
