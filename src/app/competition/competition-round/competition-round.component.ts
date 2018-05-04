@@ -39,6 +39,7 @@ export class CompetitionRoundComponent implements OnInit {
   }
 
   public changeSelectedRound(event: Event) {
+    debugger;
     // let absoluteLink = '/competitions/detail/'+this.competitionData.id+'/rounds/' + this.roundId;
     // this.router.navigate(absoluteLink);
 

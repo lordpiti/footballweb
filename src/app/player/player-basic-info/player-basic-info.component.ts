@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { PlayerService } from '../player.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Player } from '../../shared/interfaces/player.interface';
 import { NgForm } from '@angular/forms';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-player-basic-info',
@@ -16,7 +17,7 @@ export class PlayerBasicInfoComponent implements OnInit {
   positions: Array<any> = [{ value: 'Defender', text: 'Defender'}, { value: 'Striker', text: 'Striker'}];
 
   constructor( public playerService: PlayerService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, public dialog: MatDialog) {
 
     }
 
@@ -32,7 +33,6 @@ export class PlayerBasicInfoComponent implements OnInit {
       this.playerDetails.position = 'Striker';
     });
 
-
   }
 
   savePlayerDetails(player: Player, form: NgForm) {
@@ -47,4 +47,33 @@ export class PlayerBasicInfoComponent implements OnInit {
       );
     }
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialogComponent, {
+      width: '250px',
+      data: { name: 'bu', animal: 'bah' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
+  }
+}
+
+
+@Component({
+  selector: 'app-dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }
