@@ -54,6 +54,7 @@
     "ngx-pagination": "^3.1.0",
     "ngx-popover": "^0.0.16",
     "rxjs": "^6.1.0",
+    "rxjs-compat": "^6.1.0",
     "zone.js": "^0.8.26",
     "webpack": "4.7.0",
     "@angular-devkit/build-optimizer": "^0.6.0"
