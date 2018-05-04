@@ -10,8 +10,19 @@
 }
 
 .mainDetails {
-    margin-left: 300px; /* Same as the width of the sidebar */
     padding: 0px 20px;
+}
+
+@media only screen and (min-width: 600px) {
+    .mainDetails {
+        margin-left: 300px; /* Same as the width of the sidebar */
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .sidenavDetails {
+        margin-top: 120px; padding: 20px;
+    }
 }
 
 .activeDetailsNavOption {

@@ -1,16 +1,13 @@
 <div *ngIf="detailsMenuData.dataLoaded">
-  <div class="sidenavDetails">
+  <div class="sidenavDetails hidden-xs">
     <img *ngIf="detailsMenuData.imageUrl" src="{{detailsMenuData.imageUrl.url}}" width="100" height="100" />
     <label>{{detailsMenuData.title}}</label>
-    <!-- <a href="#" class="nav-tabs-dropdown btn btn-block btn-primary">{{detailsMenuData.entityName}}</a>
-    <ul id="nav-tabs-wrapper" class="nav nav-tabs nav-pills nav-stacked well">
-      <li routerLinkActive="active" *ngFor="let item of detailsMenuData.itemsList">
-        <a routerLink="{{item.link}}">{{item.title}}</a>
-      </li>
-    </ul> -->
     <mat-nav-list>
       <a mat-list-item *ngFor="let item of detailsMenuData.itemsList" routerLink="{{item.link}}" routerLinkActive="activeDetailsNavOption" > {{ item.title }} </a>
    </mat-nav-list>
+  </div>
+  <div class="visible-xs" style="margin-top: 120px; padding: 20px;">
+    HAHAHA VEAMOS
   </div>
   <div class="mainDetails">
     <router-outlet></router-outlet>

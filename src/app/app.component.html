@@ -79,13 +79,19 @@
 <div style="position: fixed; top: 0;width: 100%; z-index: 500">
   <mat-toolbar color="primary" >
     <span>FootballWeb Reloaded</span>
-    <a mat-button color="currentColor" routerLink="/teams" >Teams</a>
-    <a mat-button routerLink="/competitions">Competitions</a>
-    <a mat-button routerLink="/players">Players</a>
-
+    <div class="hidden-xs">
+      <a mat-button color="currentColor" routerLink="/teams" >Teams</a>
+      <a mat-button routerLink="/competitions">Competitions</a>
+      <a mat-button routerLink="/players">Players</a>
+    </div>
     <div class="example-spacer text-right">
       <app-login></app-login>
     </div>
+  </mat-toolbar>
+  <mat-toolbar color="primary" class="visible-xs" >
+    <a mat-button color="currentColor" routerLink="/teams" >Teams</a>
+    <a mat-button routerLink="/competitions">Competitions</a>
+    <a mat-button routerLink="/players">Players</a>
   </mat-toolbar>
 </div>
 <div style="margin-top:90px">
