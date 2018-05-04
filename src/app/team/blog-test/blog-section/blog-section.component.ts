@@ -1,10 +1,8 @@
 import { Component, OnInit, Input, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable ,  BehaviorSubject } from 'rxjs';
 import { Store } from '@ngrx/store';
-import 'rxjs/add/observable/combineLatest';
-import 'rxjs/add/observable/from';
+
+import { map, filter, catchError, mergeMap, switchMap, combineLatest } from 'rxjs/operators';
 import { BlogActions } from '../../../core/actions/blogAction';
 import { Blog } from '../../../core/model/blog';
 
@@ -27,12 +25,12 @@ export class BlogSectionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.blogs$ = Observable.combineLatest(
+    combineLatest(
       this.store.select(x => x.blog),
       this.store.select(x => x.authorFilter),
       (blogs: any, authorFilter: any) => {
-        console.log(blogs.data);
-        return blogs.data ? blogs.data.filter(authorFilter) : [];
+        // console.log(blogs.data);
+        this.blogs$ = blogs.data ? blogs.data.filter(authorFilter) : [];
       }
     );
 

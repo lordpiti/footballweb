@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PlayerService } from '../player.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { Player } from '../../shared/interfaces/player.interface';
 import { NgForm } from '@angular/forms';
 
@@ -17,8 +16,8 @@ export class PlayerBasicInfoComponent implements OnInit {
   positions: Array<any> = [{ value: 'Defender', text: 'Defender'}, { value: 'Striker', text: 'Striker'}];
 
   constructor( public playerService: PlayerService,
-    private route: ActivatedRoute, public toastr: ToastsManager, vcr: ViewContainerRef) {
-      this.toastr.setRootViewContainerRef(vcr);
+    private route: ActivatedRoute) {
+
     }
 
   ngOnInit() {
@@ -41,7 +40,7 @@ export class PlayerBasicInfoComponent implements OnInit {
     if (form.valid) {
       this.playerService.savePlayerDetails(player).subscribe(
         (data: boolean) => {
-          this.toastr.success('Player details successfully saved', 'Success!');
+          alert('Player details successfully saved');
         },
         (err: any) => {
         }

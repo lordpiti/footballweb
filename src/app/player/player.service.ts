@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions } from '@angular/http';
-// import 'rxjs/add/operator/toPromise';
-// import 'rxjs/add/operator/map';
+import { map, filter, catchError, mergeMap, switchMap, combineLatest } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
 import { ShareDataService } from '../shared/services/shared-data.service';
 import { Player } from '../shared/interfaces/player.interface';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { Subject ,  Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -24,8 +22,8 @@ export class PlayerService extends BaseService {
   getPlayers(): Observable<Player[]> {
     const url = 'player/';
 
-    return this.get<Array<Player>>(url)
-      .map(res => res.sort(function(a, b) {
+    return this.get<Array<Player>>(url).pipe(
+      map(res => res.sort(function(a, b) {
       const nameA = a.surname.toUpperCase(); // ignore upper and lowercase
       const nameB = b.surname.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
@@ -37,7 +35,7 @@ export class PlayerService extends BaseService {
 
       // names must be equal
       return 0;
-    }));
+    })));
   }
 
   getPlayerDetails(id: number): Observable<Player> {

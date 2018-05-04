@@ -9,7 +9,6 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShareDataService } from './shared/services/shared-data.service';
 import { BsDropdownModule } from 'ngx-bootstrap';
@@ -36,6 +35,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { TeamActions } from './core/actions/teamAction';
 import { TeamEffects } from './core/effects/teamEffects';
 import { MatButtonModule, MatToolbarModule } from '@angular/material';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -52,9 +52,9 @@ import { MatButtonModule, MatToolbarModule } from '@angular/material';
     HttpClientModule,
     AppRoutingModule,
     ModalModule.forRoot(),
+    OverlayModule,
     BootstrapModalModule,
     // SharedModule,
-    ToastModule.forRoot(),
     BsDropdownModule.forRoot(),
     FacebookModule.forRoot(),
     AuthenticationModule,

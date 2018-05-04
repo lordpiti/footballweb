@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AppAreas } from '../enums/app-areas';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { Subject ,  Observable } from 'rxjs';
 
 @Injectable()
 export class ShareDataService {

@@ -9,7 +9,6 @@ import { NgForm } from '@angular/forms';
 // import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { environment } from '../../../environments/environment';
 import { ShareDataService } from '../../shared/services/shared-data.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 // import { Subscription } from 'rxjs';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { DetailsMenuData } from '../../shared/interfaces/details-menu-data.interface';
@@ -37,9 +36,7 @@ export class TeamDetailComponent implements OnInit {
 
   constructor(private router: Router, private _teamService: TeamService,
     private route: ActivatedRoute, public modal: Modal,
-    private modalCropperService: ShareDataService,
-    public toastr: ToastsManager, vcr: ViewContainerRef) {
-      this.toastr.setRootViewContainerRef(vcr);
+    private modalCropperService: ShareDataService, vcr: ViewContainerRef) {
       this.teamDetails = { name: '', id: 0, playerList: [], pictureLogo: {}, stadium: {}, city: null };
   }
 

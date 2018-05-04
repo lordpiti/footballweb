@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HubConnection } from '@aspnet/signalr-client';
+import { HubConnection } from '@aspnet/signalr';
 import { environment } from '../../../../environments/environment';
 import { MatchEvent } from '../../../shared/interfaces/match-event.interface';
 import { MatchEventTypes } from '../../../shared/enums/match-event-types';

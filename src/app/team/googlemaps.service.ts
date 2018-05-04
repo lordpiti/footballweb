@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-// import 'rxjs/add/operator/toPromise';
-// import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
+import { map, filter, catchError, mergeMap, switchMap, combineLatest } from 'rxjs/operators';
 
 @Injectable()
 export class GooglemapsService {
@@ -23,6 +22,7 @@ export class GooglemapsService {
     const url = this._apiUrl + 'address=' + address;
 
     return this.http.get(url, this._requestOptions)
-        .map((res: Response) => res.json());
+    .pipe(
+        map((res: Response) => res.json()));
   }
 }

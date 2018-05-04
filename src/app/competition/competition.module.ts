@@ -49,10 +49,13 @@ const competitionRoutes: Routes = [
     CompetitionService
   ],
   declarations: [CompetitionRoundComponent, CompetitionOverviewComponent, CompetitionDetailComponent,
-    CompetitionBasicInfoComponent, CompetitionTeamsComponent, CompetitionSimulationComponent,
-    CompetitionChartComponent, CompetitionSimulationEventComponent,
+    CompetitionBasicInfoComponent, CompetitionTeamsComponent,
+    CompetitionSimulationComponent,
+    CompetitionChartComponent,
+    CompetitionSimulationEventComponent,
     CompetitionMatchesComponent,
-    CompetitionSummaryComponent, DrawMatchComponent, CompetitionSimulationMatchComponent
+    CompetitionSummaryComponent, DrawMatchComponent,
+    CompetitionSimulationMatchComponent
 ]
 })
 export class CompetitionModule { }

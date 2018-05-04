@@ -4,7 +4,7 @@ import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { Competition } from '../../shared/interfaces/competition.interface';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-competition-overview',

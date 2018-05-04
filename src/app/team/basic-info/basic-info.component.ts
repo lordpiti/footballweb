@@ -5,7 +5,6 @@ import { Marker } from '../../shared/interfaces/marker.interface';
 import { AgmMap, AgmMarker, MapsAPILoader } from '@agm/core';
 import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { ShareDataService } from '../../shared/services/shared-data.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { Team } from '../../shared/interfaces/team.interface';
 import { NgForm } from '@angular/forms';
@@ -56,9 +55,8 @@ export class BasicInfoComponent implements OnInit {
   @Input() newid: number = null;
 
   constructor(private _googlemapsService: GooglemapsService, private _teamService: TeamService,
-    public modal: Modal, private modalCropperService: ShareDataService, public toastr: ToastsManager,
+    public modal: Modal, private modalCropperService: ShareDataService,
     vcr: ViewContainerRef) {
-      this.toastr.setRootViewContainerRef(vcr);
       this.teamDetails = { name: '', id: 0, playerList: [], pictureLogo: {}, stadium: {}, city: null};
   }
 
@@ -132,7 +130,7 @@ export class BasicInfoComponent implements OnInit {
         (data: boolean) => {
 
           this._teamService.setCurrentTeam(team);
-          this.toastr.success('Team details successfully saved', 'Success!');
+          alert('Team details successfully saved');
         },
         (err: any) => {
         }

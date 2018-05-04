@@ -5,7 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Player } from '../../shared/interfaces/player.interface';
 import { Component, OnInit, Input, ViewContainerRef, OnChanges } from '@angular/core';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
-import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { DetailsMenuData } from '../../shared/interfaces/details-menu-data.interface';
 
 @Component({
@@ -22,7 +21,7 @@ export class PlayerDetailComponent implements OnInit, OnChanges {
   @Input() newid: number = null;
 
   constructor(private sharedService: ShareDataService, private playerService: PlayerService,
-    private route: ActivatedRoute, public toastr: ToastsManager) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     setTimeout(() => {
@@ -55,7 +54,7 @@ export class PlayerDetailComponent implements OnInit, OnChanges {
       // player.pictureLogo = this.teamLogo;
       this.playerService.savePlayerDetails(player).subscribe(
         (data: boolean) => {
-          this.toastr.success('Player details successfully saved', 'Success!');
+          alert('Player details successfully saved');
         },
         (err: any) => {
         }

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subject } from 'rxjs';
 import { Team } from '../shared/interfaces/team.interface';
 import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
 import { ShareDataService } from '../shared/services/shared-data.service';
-import { Subject } from 'rxjs/Subject';
 import { HttpClient } from '@angular/common/http';
 import { Competition } from '../shared/interfaces/competition.interface';
+import { map, filter, catchError, mergeMap, switchMap, combineLatest } from 'rxjs/operators';
 
 @Injectable()
 export class CompetitionService extends BaseService {
@@ -75,8 +75,8 @@ export class CompetitionService extends BaseService {
     const url = 'team/clasification/' + teamId +
     '/competition/' + competitionId;
 
-    return this.get<any>(url)
-    .map(res => this.convertToChartData(res));
+    return this.get<any>(url).pipe(
+    map(res => this.convertToChartData(res)));
   }
 
   private convertToChartData(data: any): any {

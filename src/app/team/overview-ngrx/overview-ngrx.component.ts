@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Team } from '../../shared/interfaces/team.interface';
 import { TeamActions } from '../../core/actions/teamAction';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-overview-ngrx',
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class OverviewNgrxComponent implements OnInit {
 
-  public teams$: Observable<Team[]>;
+  public teams$: Store<Team[]>;
 
   public textToSearch = '';
 

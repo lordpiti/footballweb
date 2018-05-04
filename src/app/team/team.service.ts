@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Team } from '../shared/interfaces/team.interface';
 import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
+import { Subject ,  Observable } from 'rxjs';
+
+import { map, filter, catchError, mergeMap, switchMap, combineLatest } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -28,7 +27,7 @@ export class TeamService extends BaseService {
   getTeamsByName(name: string) {
     const url = 'team/teams/';
 
-    return this.get<Team[]>(url).map(teamList => teamList.filter(y => y.name.includes(name)));
+    return this.get<Team[]>(url).pipe(map(teamList => teamList.filter(y => y.name.includes(name))));
   }
 
   getTeamDetails(id: number) {
@@ -61,7 +60,7 @@ export class TeamService extends BaseService {
     '/competition/' + competitionName + '/season/' + season;
 
     return this.get<any>(url)
-    .map(res => this.convertToChartData(res));
+    .pipe(map(res => this.convertToChartData(res)));
   }
 
   getClasificationData(competitionId: number, round: string) {

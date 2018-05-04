@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/toArray';
+import { map, filter, catchError, mergeMap, switchMap, combineLatest } from 'rxjs/operators';
+
+
+
+
+
 import { BlogActions } from '../actions/blogAction';
 import { ActionWithPayload } from '../actions/actionWithPayload';
 import { BlogService } from '../../team/blog-test/services/blog.service';
@@ -18,22 +18,25 @@ export class BlogEffects {
     @Effect()
     loadBlogs$: Observable<Action> = this.actions$
         .ofType('REQUEST_BLOGS')
-        .switchMap(action => this.blogService.loadBlogs(action.payload))
-        .map((blogs: any) => this.blogActions.loadBlogsSuccess(blogs)
-        );
+        .pipe(
+        switchMap(action => this.blogService.loadBlogs(action.payload)),
+        map((blogs: any) => this.blogActions.loadBlogsSuccess(blogs)
+        ));
 
     @Effect() addBlog$ = this.actions$
         .ofType('ADD_BLOG')
-        .map(action => action.payload)
-        .switchMap(blog => this.blogService.addBlog(blog))
-        .map(blog => this.blogActions.addBlogSuccess(blog));
+        .pipe(
+        map(action => action.payload),
+        switchMap(blog => this.blogService.addBlog(blog)),
+        map(blog => this.blogActions.addBlogSuccess(blog)));
 
 
     @Effect() deleteBlog$ = this.actions$
         .ofType('DELETE_BLOG')
-        .map(action => action.payload)
-        .switchMap(blog => this.blogService.deleteBlog(blog))
-        .map(blog => this.blogActions.deleteBlogSuccess(blog));
+        .pipe(
+        map(action => action.payload),
+        switchMap(blog => this.blogService.deleteBlog(blog)),
+        map(blog => this.blogActions.deleteBlogSuccess(blog)));
 
     constructor(
         private actions$: Actions<ActionWithPayload<any>>,

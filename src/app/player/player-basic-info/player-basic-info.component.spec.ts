@@ -7,7 +7,6 @@ import { NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Injectable, ViewContainerRef } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs/Rx';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { CustomFormInputComponent } from '../../shared/components/custom-form-input/custom-form-input.component';
 import { CustomFormSelectComponent } from '../../shared/components/custom-form-select/custom-form-select.component';
 import { SharedModule } from '../../shared/shared.module';
@@ -61,7 +60,7 @@ export class ViewContainerRefStub {
 fdescribe('PlayerBasicInfoComponent', () => {
   let component: PlayerBasicInfoComponent;
   let fixture: ComponentFixture<PlayerBasicInfoComponent>;
-  let mockActivatedRoute, mockToastManager, mockViewContainerRef;
+  let mockActivatedRoute;
   const mockDate = new Date();
 
   const playerMock = {
@@ -77,8 +76,6 @@ fdescribe('PlayerBasicInfoComponent', () => {
 
   beforeEach(async(() => {
     mockActivatedRoute = new ActivatedRouteStub();
-    mockToastManager = new ToastManagerStub();
-    mockViewContainerRef = new ViewContainerRefStub();
 
     TestBed.configureTestingModule({
       imports: [    CommonModule,
@@ -89,11 +86,8 @@ fdescribe('PlayerBasicInfoComponent', () => {
         HttpHandler,
         HttpClient,
         PlayerService,
-        ToastsManager,
         ViewContainerRef,
         {provide: ActivatedRoute, useValue: mockActivatedRoute},
-        {provide: ToastsManager, useValue: mockToastManager},
-        {provide: ViewContainerRef, useValue: mockViewContainerRef}
       ]
     })
     .compileComponents();
@@ -128,11 +122,9 @@ fdescribe('PlayerBasicInfoComponent', () => {
     spyOn(testForm, 'valid').and.returnValue(true);
     spyOn(component.playerService, 'getCurrentPlayer').and.returnValue(currentPlayer);
     spyOn(component.playerService, 'savePlayerDetails').and.returnValue(jejejeje);
-    spyOn(component.toastr, 'success');
 
     component.savePlayerDetails(playerMock, testForm);
     expect(component.playerService.savePlayerDetails).toHaveBeenCalledWith(playerMock);
-    expect(component.toastr.success).toHaveBeenCalled();
 
     expect(component).toBeTruthy();
   });

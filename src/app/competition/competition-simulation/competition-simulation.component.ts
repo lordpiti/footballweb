@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { HubConnection } from '@aspnet/signalr-client';
+import { Observable } from 'rxjs';
+import { HubConnection } from '@aspnet/signalr';
 import { environment } from '../../../environments/environment';
 import { MatchEvent } from '../../shared/interfaces/match-event.interface';
 import { Match } from '../../shared/interfaces/match.interface';
