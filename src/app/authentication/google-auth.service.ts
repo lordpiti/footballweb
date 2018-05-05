@@ -6,6 +6,7 @@ declare const gapi: any;
 
 @Injectable()
 export class GoogleAuthService {
+
   constructor() { }
 
   /**
@@ -35,7 +36,7 @@ export class GoogleAuthService {
 
           callback(true);
         }, function (error) {
-          this.error = (JSON.stringify(error, undefined, 2));
+          console.log(JSON.stringify(error, undefined, 2));
         });
     });
   }

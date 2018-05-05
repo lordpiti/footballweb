@@ -2,3 +2,19 @@
   width: 40px;
   height:40px;
 }
+
+.loginButton {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 191px;
+  display: inline-block;
+
+  &.facebook {
+    height: 40px;
+    background-image: url("/assets/img/fb-logo-signup.png");
+  }
+  &.google {
+    height: 46px;
+    background-image: url("/assets/img/btn_google.png");
+  }
+}
