@@ -7,7 +7,12 @@
    </mat-nav-list>
   </div>
   <div class="visible-xs" style="margin-top: 120px; padding: 20px;">
-    HAHAHA VEAMOS
+    <mat-form-field [floatLabel]="true">
+      <mat-select [(value)]="selectedOption"  (selectionChange)="changeSelectedRound($event)">
+        <mat-option *ngFor="let item of detailsMenuData.itemsList" value="{{item.link}}">{{item.title}}</mat-option>
+      </mat-select>
+      <mat-placeholder>Select option</mat-placeholder>
+    </mat-form-field>
   </div>
   <div class="mainDetails">
     <router-outlet></router-outlet>
