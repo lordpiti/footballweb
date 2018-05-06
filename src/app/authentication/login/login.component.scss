@@ -3,18 +3,37 @@
   height:40px;
 }
 
+.loginName {
+  padding: 20px;
+}
+
 .loginButton {
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  width: 191px;
   display: inline-block;
 
-  &.facebook {
-    height: 40px;
-    background-image: url("/assets/img/fb-logo-signup.png");
+  @media only screen and (min-width: 600px) {
+    width: 191px;
+    &.facebook {
+      height: 40px;
+      background-image: url("/assets/img/fb-logo-signup.png");
+    }
+    &.google {
+      height: 46px;
+      background-image: url("/assets/img/btn_google.png");
+    }
   }
-  &.google {
-    height: 46px;
-    background-image: url("/assets/img/btn_google.png");
+  
+  @media only screen and (max-width: 600px) {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    &.facebook {     
+      background-image: url("/assets/img/facebook.png");
+    }
+    &.google {
+      background-image: url("/assets/img/google.png");
+    }
   }
 }

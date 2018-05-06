@@ -8,3 +8,9 @@
 .example-spacer {
     flex: 1 1 auto;
 }
+
+@media only screen and (min-width: 600px) {
+    .main-route-container {
+        margin-top:60px
+    }
+}
