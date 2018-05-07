@@ -23,7 +23,7 @@ import { DetailsLayoutComponent } from './components/details-layout/details-layo
 import { RouterModule } from '@angular/router';
 import { MatListModule,
   MatDialogModule, MatButtonModule, MatButtonToggleModule, MatMenuModule,
-  MatIconModule, MatFormFieldModule, MatSelectModule } from '@angular/material';
+  MatIconModule, MatFormFieldModule, MatSelectModule, MatSliderModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -50,7 +50,8 @@ import { MatListModule,
     MatIconModule,
     MatMenuModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSliderModule
   ],
   declarations: [
     MatchComponent,
@@ -85,7 +86,8 @@ import { MatListModule,
     MatMenuModule,
     MatIconModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSliderModule
   ]
 })
 export class SharedModule {

@@ -1,16 +1,23 @@
 <h1>Player basic info</h1>
+
 <img src="{{playerDetails.picture.url}}" height="100px" width="100px"/>
 <form #playerForm="ngForm" id="playerForm" name="playerForm">
   <app-custom-form-input [label]="'Name'" [(model)]="playerDetails.name">
   </app-custom-form-input>
   <app-custom-form-input [label]="'Surname'" [(model)]="playerDetails.surname" >
-</app-custom-form-input>
+  </app-custom-form-input>
   <app-custom-form-select [label]="'Position'" [(model)]="playerDetails.position" 
     [collection]="positions">
-  </app-custom-form-select> 
+  </app-custom-form-select>
+  <mat-slider style="width: 400px"
+    [max]="2" name="height"
+    [min]="1"
+    [step]="0.01"
+    [thumbLabel]="true"
+    [(ngModel)]="playerDetails.height">
+  </mat-slider>
 </form>
 
-  <button mat-raised-button (click)="openDialog()">Pick one</button>
-
+<button mat-raised-button (click)="openDialog()">Pick one</button>
 <button class="btn btn-primary" (click)="savePlayerDetails(playerDetails, playerForm)">Save changes!</button>
 

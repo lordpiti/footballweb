@@ -53,14 +53,22 @@ export class PlayerBasicInfoComponent implements OnInit {
 
     const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
 
-    this.playerService.addBase64Image(this.playerDetails.picture.url, cropperImageName)
-    .switchMap(data => {
-        player.picture = data;
-        return this.playerService.savePlayerDetails(player);
-    }).subscribe( x => {
-      alert('Player details successfully saved');
-    },
-    (err: any) => {});
+    if (this.playerDetails.picture.url.includes(';base64')) {
+      this.playerService.addBase64Image(this.playerDetails.picture.url, cropperImageName)
+      .switchMap(data => {
+          player.picture = data;
+          return this.playerService.savePlayerDetails(player);
+      }).subscribe( x => {
+        alert('Player details successfully saved');
+      },
+      (err: any) => {});
+    } else {
+      this.playerService.savePlayerDetails(player).subscribe( x => {
+        alert('Player details successfully saved');
+      },
+      (err: any) => {});
+    }
+
   }
 
   openDialog(): void {

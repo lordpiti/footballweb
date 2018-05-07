@@ -17,6 +17,7 @@
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.2",
+    "@angular-devkit/build-optimizer": "^0.6.0",
     "@angular/animations": "6.0.0",
     "@angular/cdk": "6.0.0",
     "@angular/cli": "6.0.0",
@@ -55,9 +56,8 @@
     "ngx-popover": "^0.0.16",
     "rxjs": "^6.1.0",
     "rxjs-compat": "^6.1.0",
-    "zone.js": "^0.8.26",
     "webpack": "4.7.0",
-    "@angular-devkit/build-optimizer": "^0.6.0"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular/cli": "6.0.0",
