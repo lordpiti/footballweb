@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HubConnection } from '@aspnet/signalr';
+import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { environment } from '../../../environments/environment';
 import { MatchEvent } from '../../shared/interfaces/match-event.interface';
 import { Match } from '../../shared/interfaces/match.interface';
@@ -31,7 +31,10 @@ public sendMessage(): void {
 }
 
 ngOnInit() {
-    this._hubConnection = new HubConnection(environment.hubUrl + '/loopy');
+
+    this._hubConnection = new HubConnectionBuilder()
+    .withUrl(environment.hubUrl + '/loopy')
+    .build();
 
     this._hubConnection.on('StartSimulation', (data: any) => {
         this.matches = [];

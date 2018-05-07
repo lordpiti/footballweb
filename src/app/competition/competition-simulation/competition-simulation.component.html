@@ -1,14 +1,13 @@
-<div class="container-fluid">
- 
-  <h1>Competition Simulation</h1>
+<div class="overview-container">
+    <h1>Competition Simulation</h1>
 
-  <div class="row">
-      <div class="col-sm-6" *ngFor="let match of matches">
-        <app-competition-simulation-match [match]="match">
-        </app-competition-simulation-match>
+    <div class="row">
+        <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let match of matches">
+            <app-competition-simulation-match [match]="match">
+            </app-competition-simulation-match>
         </div>
     </div>
-
+</div>
 
   <!-- <div class="row">
       <form class="form-inline" (ngSubmit)="sendMessage()" #messageForm="ngForm">
