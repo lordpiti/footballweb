@@ -39,12 +39,10 @@ export class PlayerBasicInfoComponent implements OnInit {
 
     if (this.playerService.currentPlayer) {
       this.playerDetails = this.playerService.currentPlayer;
-      this.playerDetails.position = 'Striker';
     }
 
     this.playerService.getCurrentPlayer().subscribe(data => {
       this.playerDetails = data;
-      this.playerDetails.position = 'Striker';
     });
 
   }
