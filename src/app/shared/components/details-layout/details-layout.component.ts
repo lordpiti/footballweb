@@ -15,7 +15,7 @@ export class DetailsLayoutComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
+    this.selectedOption = this.detailsMenuData.itemsList[0].link;
   }
 
   changeSelectedRound(a: any) {

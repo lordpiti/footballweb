@@ -7,4 +7,7 @@ export interface Player {
     playerId: number;
     position: string;
     birthDate: Date;
+    birthPlace: string;
+    height: number;
+    picture: any;
 }

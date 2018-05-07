@@ -59,4 +59,10 @@ export class PlayerService extends BaseService {
   public getCurrentPlayer(): Observable<Player> {
       return this.currentPlayerSubject.asObservable();
   }
+
+  public addBase64Image(image: string, fileName: string) {
+    const url = 'GlobalMedia/UploadBase64Image';
+
+    return this.post<any>(url, { Base64String: image, FileName: fileName });
+  }
 }

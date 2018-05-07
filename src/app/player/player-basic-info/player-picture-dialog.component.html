@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Player picture</h1>
+<div>
+  <p>Select picture:</p>
+  <div class="row" *ngIf="model">
+    <div class="col-sm-6">
+        <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+    </div>
+    <div class="col-sm-6">
+      <div class="previewCroppedImage centeredContainer">
+        <div class="centeredItem">
+          <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row margin-top1 margin-bottom1 text-right"> 
+    <div class="col-sm-12">
+      <button class="btn btn-danger" (click)="closeDialog(null)">Close</button>
+      <button class="btn btn-primary" (click)="updatePlayerPicture()">Select</button>
+    </div>
+  </div> -->
+</div>
+<div mat-dialog-actions class="text-right" style="display: block">
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.image" cdkFocusInitial>Ok</button>
+</div>
