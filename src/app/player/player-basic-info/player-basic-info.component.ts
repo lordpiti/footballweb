@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CropperSettings } from 'ngx-img-cropper';
 import { CropperPictureDialogComponent } from '../../shared/components/cropper-picture-dialog/cropper-picture-dialog.component';
+import { BlobDataService } from '../../shared/services/blob-data.service';
 
 @Component({
   selector: 'app-player-basic-info',
@@ -30,7 +31,7 @@ export class PlayerBasicInfoComponent implements OnInit {
 
   positions: Array<any> = [{ value: 'Defender', text: 'Defender'}, { value: 'Striker', text: 'Striker'}];
 
-  constructor( public playerService: PlayerService,
+  constructor( public playerService: PlayerService, private blobDataService: BlobDataService,
     private route: ActivatedRoute, public dialog: MatDialog) {
 
     }
@@ -52,7 +53,7 @@ export class PlayerBasicInfoComponent implements OnInit {
     const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
 
     if (this.playerDetails.picture.url.includes(';base64')) {
-      this.playerService.addBase64Image(this.playerDetails.picture.url, cropperImageName)
+      this.blobDataService.addBase64Image(this.playerDetails.picture.url, cropperImageName)
       .switchMap(data => {
           player.picture = data;
           return this.playerService.savePlayerDetails(player);

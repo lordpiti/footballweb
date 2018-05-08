@@ -14,3 +14,13 @@
         margin-top: 120px;
     }
 }
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.main-route-container {
+    @media only screen and (min-width: 600px) {
+        margin-top:60px
+    }
+}
