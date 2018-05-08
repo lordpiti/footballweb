@@ -1,3 +1,23 @@
-<p>
-  competition-summary works!
-</p>
+<h1>Competition basic info</h1>
+
+<form #competitionForm="ngForm" id="competitionForm" name="competitionForm">
+  <div class="row">
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput placeholder="Name" name="name" [(ngModel)]="competitionDetails.name">
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field>
+        <input matInput placeholder="Season" name="season" [(ngModel)]="competitionDetails.season">
+      </mat-form-field>
+    </div>
+    <div class="col-sm-6">
+       <img src="{{competitionDetails.logo.url}}" height="100px" width="100px"/>
+       <button mat-raised-button (click)="openDialog()">Select image</button>
+    </div>
+  </div>
+</form>
+
+<button mat-raised-button color="primary" (click)="saveCompetitionDetails(competitionDetails, competitionForm)">Save</button>
+

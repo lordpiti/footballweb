@@ -5,7 +5,7 @@ import { Player } from '../../shared/interfaces/player.interface';
 import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CropperSettings } from 'ngx-img-cropper';
-import { PlayerPictureDialogComponent } from './player-picture-dialog/player-picture-dialog.component';
+import { CropperPictureDialogComponent } from '../../shared/components/cropper-picture-dialog/cropper-picture-dialog.component';
 
 @Component({
   selector: 'app-player-basic-info',
@@ -70,7 +70,7 @@ export class PlayerBasicInfoComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(PlayerPictureDialogComponent, {
+    const dialogRef = this.dialog.open(CropperPictureDialogComponent, {
       // width: '550px',
       // minHeight: '600px';
       data: this.playerDetails.picture

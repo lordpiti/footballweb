@@ -3,4 +3,5 @@ export interface Competition {
     name: string;
     season: string;
     type: string;
+    logo: any;
 }

@@ -9,7 +9,6 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule, MatSortModule, MatButtonModule,
   MatPaginatorModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule } from '@angular/material';
-import { PlayerPictureDialogComponent } from './player-basic-info/player-picture-dialog/player-picture-dialog.component';
 
 
 const playerRoutes: Routes = [
@@ -40,8 +39,7 @@ const playerRoutes: Routes = [
     PlayerService
   ],
   declarations: [PlayerOverviewComponent, PlayerDetailComponent,
-    PlayerBasicInfoComponent, PlayerPictureDialogComponent],
-  entryComponents: [PlayerPictureDialogComponent]
+    PlayerBasicInfoComponent]
 })
 export class PlayerModule { }
 

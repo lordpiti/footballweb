@@ -3,11 +3,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Inject, Component } from '@angular/core';
 
 @Component({
-    selector: 'app-player-picture-dialog',
-    templateUrl: 'player-picture-dialog.component.html',
-    styleUrls: ['./player-picture-dialog.component.scss']
+    selector: 'app-cropper-picture-dialog',
+    templateUrl: 'cropper-picture-dialog.component.html',
+    styleUrls: ['./cropper-picture-dialog.component.scss']
   })
-  export class PlayerPictureDialogComponent {
+  export class CropperPictureDialogComponent {
 
     private cropperSettings: CropperSettings;
 
@@ -17,7 +17,7 @@ import { Inject, Component } from '@angular/core';
     public isEditing = false;
 
     constructor(
-      public dialogRef: MatDialogRef<PlayerPictureDialogComponent>,
+      public dialogRef: MatDialogRef<CropperPictureDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any) {
         if (data) {
           Object.assign(this.model, data);

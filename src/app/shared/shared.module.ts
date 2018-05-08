@@ -23,7 +23,9 @@ import { DetailsLayoutComponent } from './components/details-layout/details-layo
 import { RouterModule } from '@angular/router';
 import { MatListModule,
   MatDialogModule, MatButtonModule, MatButtonToggleModule, MatMenuModule,
-  MatIconModule, MatFormFieldModule, MatSelectModule, MatSliderModule } from '@angular/material';
+  MatIconModule, MatFormFieldModule, MatSelectModule, MatSliderModule, MatInputModule } from '@angular/material';
+import { CropperPictureDialogComponent } from './components/cropper-picture-dialog/cropper-picture-dialog.component';
+import { BlobDataService } from './services/blob-data.service';
 
 @NgModule({
   imports: [
@@ -51,7 +53,8 @@ import { MatListModule,
     MatMenuModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatSliderModule
+    MatSliderModule,
+    MatInputModule
   ],
   declarations: [
     MatchComponent,
@@ -61,10 +64,11 @@ import { MatListModule,
     CustomFormInputComponent,
     CustomFormSelectComponent,
     ValuesPipe,
-    DetailsLayoutComponent
+    DetailsLayoutComponent, CropperPictureDialogComponent
   ],
+  entryComponents: [CropperPictureDialogComponent],
   providers: [
-    MatchService
+    MatchService, BlobDataService
   ],
   exports: [
     // BusyModule,
@@ -87,6 +91,7 @@ import { MatListModule,
     MatIconModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatInputModule,
     MatSliderModule
   ]
 })
