@@ -48,12 +48,6 @@ export class TeamService extends BaseService {
     return this.post<any>(url, teamDetails);
   }
 
-  addBase64Image(image: string, fileName: string) {
-    const url = 'GlobalMedia/UploadBase64Image';
-
-    return this.post<any>(url, { Base64String: image, FileName: fileName });
-  }
-
   getChartData(teamId: number, competitionName: string, season: string) {
 
     const url = 'team/clasification/' + teamId +

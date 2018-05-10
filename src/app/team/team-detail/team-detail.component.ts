@@ -35,8 +35,7 @@ export class TeamDetailComponent implements OnInit {
   // busy: Subscription;
 
   constructor(private router: Router, private _teamService: TeamService,
-    private route: ActivatedRoute, public modal: Modal,
-    private modalCropperService: ShareDataService, vcr: ViewContainerRef) {
+    private route: ActivatedRoute, public modal: Modal, vcr: ViewContainerRef) {
       this.teamDetails = { name: '', id: 0, playerList: [], pictureLogo: {}, stadium: {}, city: null };
   }
 
@@ -48,10 +47,10 @@ export class TeamDetailComponent implements OnInit {
     // the data to be updated in this component when the data in the
     // service changes
     this._teamService.getCurrentTeam().subscribe(data => {
-      this.teamDetails = data;
+      this.teamDetails = Object.assign({}, data);
       this.teamDetailsMenuData = {
-        title: data.name,
-        imageUrl: data.pictureLogo,
+        title: this.teamDetails.name,
+        imageUrl: this.teamDetails.pictureLogo.url,
         entityName: 'Teams',
         itemsList: [
           {

@@ -63,62 +63,17 @@ export class TeamDetailsEditModalComponent implements ModalComponent<TeamDetails
         });
     }
 
-    updateTeamLogo() {
-        const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
-        this._teamService.addBase64Image(this.data.image, cropperImageName).subscribe(
-          (data: any) => {
-            this.shareDataService.setData({ fileName: data.fileName, url: data.url });
-            this.dialog.close();
-            this.dialog.onDestroy.subscribe((value: any) => {
-            });
-          },
-          (err: any) => {
-          }
-        );
-      }
-
-
-    // notifyImageUploaded(mediaItem: any)
-    // {
-    //     this.model.Picture = mediaItem;
-    //     this.model.EventMedia = mediaItem;
-    // }
-
-
-    // removeImage() {
-    //     this.model.Picture = null;
-    //     this.model.EventMedia = null;
-    // }
-
-
-
-    // createEvent(form: NgForm) {
-
-    //     if (form.valid) {
-    //         var _data = this.parseDates(this.model);
-    //         if (_data.TweetThis) _data.PostUpdate = _data.TweetThis;
-    //         this.hiveService.createEvent(_data).subscribe(
-    //             data => {
-    //                 if (!this.isEditing) {
-    //                     _data.Id = data;
-    //                     this.shareDataService.setData(_data);
-    //                 } else {
-    //                     for (var attr in _data) {
-    //                         this.eventSelected[attr] = _data[attr];
-    //                     }
-    //                 }
-    //                 this.closeDialog(function () { });
-    //                 toastr.options = { "timeOut": "3000" };
-    //                 toastr['success']('Changes successfully saved');
-    //             }, err => {
-    //                 toastr['error']('A problem has occurred.Please try again or contact support@spacehive.com for support.', 'Error');
+    // updateTeamLogo() {
+    //     const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
+    //     this._teamService.addBase64Image(this.data.image, cropperImageName).subscribe(
+    //       (data: any) => {
+    //         this.shareDataService.setData({ fileName: data.fileName, url: data.url });
+    //         this.dialog.close();
+    //         this.dialog.onDestroy.subscribe((value: any) => {
     //         });
-    //     } else {
-
-
-
-    //         this.displayErrors = true;
-    //     }
-    // }
-
+    //       },
+    //       (err: any) => {
+    //       }
+    //     );
+    //   }
 }

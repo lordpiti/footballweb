@@ -51,10 +51,10 @@ export class CompetitionSummaryComponent implements OnInit {
     if (this.competitionDetails.logo.url.includes(';base64')) {
       this.blobDataService.addBase64Image(this.competitionDetails.logo.url, cropperImageName)
       .switchMap(data => {
-        debugger;
           competition.logo = data;
           return this.competitionService.savePlayerDetails(competition);
       }).subscribe( x => {
+        this.competitionService.setCurrentCompetition(competition);
         alert('Competition details successfully saved');
       },
       (err: any) => {});

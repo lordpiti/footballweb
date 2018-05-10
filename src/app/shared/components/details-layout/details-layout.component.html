@@ -1,6 +1,6 @@
 <div *ngIf="detailsMenuData.dataLoaded">
   <div class="sidenavDetails hidden-xs">
-    <img *ngIf="detailsMenuData.imageUrl" src="{{detailsMenuData.imageUrl.url}}" width="100" height="100" />
+    <img *ngIf="detailsMenuData.imageUrl" src="{{detailsMenuData.imageUrl}}" width="100" height="100" />
     <label>{{detailsMenuData.title}}</label>
     <mat-nav-list>
       <a mat-list-item *ngFor="let item of detailsMenuData.itemsList" routerLink="{{item.link}}" routerLinkActive="activeDetailsNavOption" > {{ item.title }} </a>

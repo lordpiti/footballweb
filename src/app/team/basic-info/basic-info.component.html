@@ -12,16 +12,16 @@
     </form>
   </div>
   <div class="col-sm-3">
-    <div *ngIf="teamLogo" class="text-center">
-      <img src="{{teamLogo.url}}" width="100" height="100">
-      <button class="btn btn-primary" (click)="showModalEvent(teamDetails)">Edit team logo</button>
+    <div *ngIf="teamDetails.pictureLogo" class="text-center">
+      <img src="{{teamDetails.pictureLogo.url}}" width="100" height="100">
+      <button mat-raised-button (click)="openDialog()">Select image</button>
     </div>
   </div>
 </div>
 
   <!-- <dropzone [config]="config" [message]="'Click or drag images here to upload'" (error)="onUploadError($event)" (success)="onUploadSuccess($event)"></dropzone>
    -->
-<button class="btn btn-primary" (click)="saveTeamDetails(teamDetails, hiveMatchingCriteriaForm)">Save changes!</button>
+<button mat-raised-button color="primary" (click)="saveTeamDetails(teamDetails, teamForm)">Save</button>
 
 <div *ngIf="stadium">
   {{stadium.name}}

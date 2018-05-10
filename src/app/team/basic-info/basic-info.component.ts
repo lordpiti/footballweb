@@ -10,6 +10,9 @@ import { Team } from '../../shared/interfaces/team.interface';
 import { NgForm } from '@angular/forms';
 import { TeamDetailsEditModalComponent } from '../team-edit-modal/team-edit-modal.component';
 import { overlayConfigFactory } from 'ngx-modialog';
+import { BlobDataService } from '../../shared/services/blob-data.service';
+import { MatDialog } from '@angular/material';
+import { CropperPictureDialogComponent } from '../../shared/components/cropper-picture-dialog/cropper-picture-dialog.component';
 
 @Component({
   selector: 'app-basic-info',
@@ -28,35 +31,15 @@ export class BasicInfoComponent implements OnInit {
 
   location: any;
   stadium: any;
-  markers: Marker[] = [
-  // {
-  //   lat: 51.673858,
-  //   lng: 7.815982,
-  //   label: 'A',
-  //   draggable: true
-  // },
-  // {
-  //   lat: 51.373858,
-  //   lng: 7.215982,
-  //   label: 'B',
-  //   draggable: false
-  // },
-  // {
-  //   lat: 51.723858,
-  //   lng: 7.895982,
-  //   label: 'C',
-  //   draggable: true
-  // }
-  ];
+  markers: Marker[] = [];
 
   public teamDetails: Team;
-  public teamLogo: any;
 
   @Input() newid: number = null;
 
   constructor(private _googlemapsService: GooglemapsService, private _teamService: TeamService,
-    public modal: Modal, private modalCropperService: ShareDataService,
-    vcr: ViewContainerRef) {
+    public modal: Modal, private modalCropperService: ShareDataService, private blobDataService: BlobDataService,
+    public dialog: MatDialog, vcr: ViewContainerRef) {
       this.teamDetails = { name: '', id: 0, playerList: [], pictureLogo: {}, stadium: {}, city: null};
   }
 
@@ -69,19 +52,13 @@ export class BasicInfoComponent implements OnInit {
     if (this._teamService.currentTeam) {
       this.teamDetails = Object.assign({}, this._teamService.currentTeam);
       this.stadium = this._teamService.currentTeam.stadium;
-      this.teamLogo = this._teamService.currentTeam.pictureLogo;
       this.loadGoogleMapsData(this.stadium.name);
     }
 
     this._teamService.getCurrentTeam().subscribe(data => {
       this.teamDetails = Object.assign({}, data);
-      this.teamLogo = data.pictureLogo;
       this.stadium = data.stadium;
       this.loadGoogleMapsData(this.stadium.name);
-    });
-
-    this.modalCropperService.getData().subscribe(data => {
-      this.teamLogo = data;
     });
 
   }
@@ -124,25 +101,42 @@ export class BasicInfoComponent implements OnInit {
 
   saveTeamDetails(team: Team, form: NgForm) {
 
-    if (form.valid) {
-      team.pictureLogo = this.teamLogo;
-      this._teamService.saveTeamDetails(team).subscribe(
-        (data: boolean) => {
+    const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
 
-          this._teamService.setCurrentTeam(team);
-          alert('Team details successfully saved');
-        },
-        (err: any) => {
-        }
-      );
+    if (this.teamDetails.pictureLogo.url.includes(';base64')) {
+      this.blobDataService.addBase64Image(this.teamDetails.pictureLogo.url, cropperImageName)
+      .switchMap(data => {
+          team.pictureLogo = data;
+          return this._teamService.saveTeamDetails(team);
+      }).subscribe( x => {
+        this._teamService.setCurrentTeam(team);
+        alert('Competition details successfully saved');
+      },
+      (err: any) => {});
+    } else {
+      this._teamService.saveTeamDetails(team).subscribe( x => {
+        alert('Competition details successfully saved');
+      },
+      (err: any) => {});
     }
+
   }
 
-  showModalEvent(team: Team) {
-    this.modal.open(TeamDetailsEditModalComponent,
-      overlayConfigFactory({ teamDetails: team }, BSModalContext));
-  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CropperPictureDialogComponent, {
+      // width: '550px',
+      // minHeight: '600px';
+      data: this.teamDetails.pictureLogo
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+      if (result) {
+        this.teamDetails.pictureLogo.url = result;
+      }
+    });
+  }
 
   onUploadError($event) {
   }
@@ -150,5 +144,4 @@ export class BasicInfoComponent implements OnInit {
   onUploadSuccess($event) {
 
   }
-
 }
