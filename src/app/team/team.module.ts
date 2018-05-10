@@ -4,7 +4,6 @@ import { TeamService } from './team.service';
 import { OverviewComponent } from './overview/overview.component';
 import { RouterModule, Routes } from '@angular/router';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
-import { TeamDetailsEditModalComponent } from './team-edit-modal/team-edit-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TeamChartComponent } from './team-chart/team-chart.component';
 import { SquadComponent } from './squad/squad.component';
@@ -58,7 +57,6 @@ const teamRoutes: Routes = [
   declarations: [
     OverviewComponent,
     TeamDetailComponent,
-    TeamDetailsEditModalComponent,
     TeamChartComponent,
     SquadComponent,
     BasicInfoComponent,
@@ -76,7 +74,6 @@ const teamRoutes: Routes = [
   ],
   exports: [
     RouterModule
-  ],
-  entryComponents: [TeamDetailsEditModalComponent]
+  ]
 })
 export class TeamModule { }

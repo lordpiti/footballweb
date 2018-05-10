@@ -60,6 +60,7 @@ export class CompetitionSummaryComponent implements OnInit {
       (err: any) => {});
     } else {
       this.competitionService.savePlayerDetails(competition).subscribe( x => {
+        this.competitionService.setCurrentCompetition(competition);
         alert('Competition details successfully saved');
       },
       (err: any) => {});

@@ -8,7 +8,6 @@ import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { Team } from '../../shared/interfaces/team.interface';
 import { NgForm } from '@angular/forms';
-import { TeamDetailsEditModalComponent } from '../team-edit-modal/team-edit-modal.component';
 import { overlayConfigFactory } from 'ngx-modialog';
 import { BlobDataService } from '../../shared/services/blob-data.service';
 import { MatDialog } from '@angular/material';

@@ -11,8 +11,8 @@ import { map, filter, catchError, mergeMap, switchMap, combineLatest } from 'rxj
 @Injectable()
 export class CompetitionService extends BaseService {
 
-  public currentCompetition: any;
-  private currentCompetitionSubject: Subject<any> = new Subject<any>();
+  public currentCompetition: Competition;
+  private currentCompetitionSubject: Subject<Competition> = new Subject<Competition>();
 
   constructor(public httpClient: HttpClient) {
     super(httpClient);
@@ -31,12 +31,12 @@ export class CompetitionService extends BaseService {
     return this.get<Team[]>(url);
   }
 
-  public setCurrentCompetition(_data: any) {
+  public setCurrentCompetition(_data: Competition) {
       this.currentCompetition = _data;
       this.currentCompetitionSubject.next(_data);
   }
 
-  public getCurrentCompetition(): Observable<any> {
+  public getCurrentCompetition(): Observable<Competition> {
       return this.currentCompetitionSubject.asObservable();
   }
 
