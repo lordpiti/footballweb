@@ -1,51 +1,38 @@
-<div class="panel panel-default">
-  <div class="panel-heading">Players overview</div>
-  <div class="panel-body">
-    <!-- <div *ngFor="let player of playerList | paginate: { itemsPerPage: 10, currentPage: p }" class="row">
-        <div class="col-sm-6">
-          <a routerLink="/players/detail/{{player.playerId}}">{{player.name}} {{player.surname}}</a>
-        </div>
-        <div class="col-sm-6">
-          <a routerLink="/teams/detail/{{player.teamId}}">{{player.teamName}}</a>
-        </div>
-      </div>
-      
-      <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+<div class="overview-container">
+  <div class="example-container mat-elevation-z8" >
+    <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+    <mat-table #table [dataSource]="playerListForTable" *ngIf="playerList" matSort>  
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <a routerLink="/players/detail/{{element.playerId}}" routerLinkActive="active">{{element.name}}</a>
+        </mat-cell>
+      </ng-container>
 
-      <div class="example-container mat-elevation-z8" [hidden]="!playerList" >
-        <div class="example-header">
-          <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-          </mat-form-field>
-        </div>
-        <mat-table #table [dataSource]="playerListForTable" *ngIf="playerListForTable" matSort>  
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <a routerLink="/players/detail/{{element.playerId}}" routerLinkActive="active">{{element.name}}</a>
-            </mat-cell>
-          </ng-container>
-      
-          <ng-container matColumnDef="surname">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Surname </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.surname}} </mat-cell>
-          </ng-container>
-      
-          <ng-container matColumnDef="teamName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Team Name </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.teamName}} </mat-cell>
-          </ng-container>
-      
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
-        <mat-paginator #paginator [length]="100"
-              [pageSize]="10"
-              [pageSizeOptions]="[5, 10, 25, 100]">
-        </mat-paginator>
-      </div>
-      <div *ngIf="!playerList" >
-        <mat-spinner style="margin:0 auto;"></mat-spinner>
-      </div>
+      <ng-container matColumnDef="surname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Surname </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.surname}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="teamName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Team Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.teamName}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <div *ngIf="!playerList" >
+      <mat-spinner style="margin:0 auto;"></mat-spinner>
+    </div>
+    <mat-paginator #paginator [length]="100"
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
   </div>
 </div>
+

@@ -25,9 +25,12 @@ export class CompetitionDetailComponent implements OnInit {
       this.sharedService.setCurrentArea(AppAreas.Competitions);
     }, 0);
 
-
+    // Use observables here because the team data lives on a service,
+    // and that's being modified via other components. We only want
+    // the data to be updated in this component when the data in the
+    // service changes
     this._competitionService.getCurrentCompetition().subscribe(
-      (competitionData: any) => {
+      (competitionData: Competition) => {
         this.competitionDetails = Object.assign({}, competitionData);
         this.competitionDetailsMenuData = {
           title: this.competitionDetails.name,

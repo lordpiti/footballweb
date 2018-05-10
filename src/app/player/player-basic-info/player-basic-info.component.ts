@@ -58,11 +58,13 @@ export class PlayerBasicInfoComponent implements OnInit {
           player.picture = data;
           return this.playerService.savePlayerDetails(player);
       }).subscribe( x => {
+        this.playerService.setCurrentPlayer(player);
         alert('Player details successfully saved');
       },
       (err: any) => {});
     } else {
       this.playerService.savePlayerDetails(player).subscribe( x => {
+        this.playerService.setCurrentPlayer(player);
         alert('Player details successfully saved');
       },
       (err: any) => {});

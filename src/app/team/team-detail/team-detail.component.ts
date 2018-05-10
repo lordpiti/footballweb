@@ -28,17 +28,16 @@ export class TeamDetailComponent implements OnInit {
   public teamDetails: Team;
   public teamDetailsMenuData: DetailsMenuData;
 
-  @Input() newid: number = null;
-
-  // busy: Subscription;
-
-  constructor(private router: Router, private _teamService: TeamService,
+  constructor(private router: Router, private _teamService: TeamService, private sharedService: ShareDataService,
     private route: ActivatedRoute, public modal: Modal, vcr: ViewContainerRef) {
       this.teamDetails = { name: '', id: 0, playerList: [], pictureLogo: {}, stadium: {}, city: null };
   }
 
 
   ngOnInit() {
+    setTimeout(() => {
+      this.sharedService.setCurrentArea(AppAreas.Teams);
+    }, 0);
 
     // Use observables here because the team data lives on a service,
     // and that's being modified via other components. We only want
@@ -72,18 +71,12 @@ export class TeamDetailComponent implements OnInit {
       };
     });
 
-    if (!this.newid) {
-      // let id = this.route.snapshot.params['id'];
+    this.route.params.subscribe(params => {
+      const teamId = +params['id']; // (+) converts string 'id' to a number
 
-      this.route.params.subscribe(params => {
-        this.newid = +params['id']; // (+) converts string 'id' to a number
+      this.getData(teamId);
+    });
 
-        this.getData(this.newid);
-      });
-
-    } else {
-      this.getData(this.newid);
-    }
   }
 
   private getData(id: number): void {
