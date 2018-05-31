@@ -5,7 +5,7 @@
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
       </mat-form-field>
     </div>
-    <mat-table #table [dataSource]="playerListForTable" *ngIf="playerList" matSort>  
+    <mat-table #table [dataSource]="playerListForTable" *ngIf="playerListForTable" matSort>  
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
         <mat-cell *matCellDef="let element">

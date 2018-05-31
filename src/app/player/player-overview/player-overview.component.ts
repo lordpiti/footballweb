@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { PlayerService } from '../player.service';
@@ -10,7 +10,7 @@ import { MatTableDataSource, MatSort, PageEvent, MatPaginator } from '@angular/m
   templateUrl: './player-overview.component.html',
   styleUrls: ['./player-overview.component.scss']
 })
-export class PlayerOverviewComponent implements OnInit {
+export class PlayerOverviewComponent implements OnInit, AfterViewInit {
 
   public playerList: Array<Player>;
   public playerListForTable = new MatTableDataSource([]);
@@ -20,8 +20,16 @@ export class PlayerOverviewComponent implements OnInit {
 
   constructor(private sharedService: ShareDataService, private playerService: PlayerService) { }
 
-  @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  /**
+   * Set the sort after the view init since this component will
+   * be able to query its view for the initialized sort.
+   */
+  ngAfterViewInit() {
+    this.playerListForTable.sort = this.sort;
+  }
 
   ngOnInit() {
     setTimeout(() => {
