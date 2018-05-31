@@ -12,6 +12,8 @@ import { overlayConfigFactory } from 'ngx-modialog';
 import { BlobDataService } from '../../shared/services/blob-data.service';
 import { MatDialog } from '@angular/material';
 import { CropperPictureDialogComponent } from '../../shared/components/cropper-picture-dialog/cropper-picture-dialog.component';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-basic-info',
@@ -104,10 +106,10 @@ export class BasicInfoComponent implements OnInit {
 
     if (this.teamDetails.pictureLogo.url.includes(';base64')) {
       this.blobDataService.addBase64Image(this.teamDetails.pictureLogo.url, cropperImageName)
-      .switchMap(data => {
+      .pipe(switchMap(data => {
           team.pictureLogo = data;
           return this._teamService.saveTeamDetails(team);
-      }).subscribe( x => {
+      })).subscribe( x => {
         this._teamService.setCurrentTeam(team);
         alert('Competition details successfully saved');
       },

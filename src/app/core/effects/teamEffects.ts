@@ -3,11 +3,6 @@ import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { map, filter, catchError, mergeMap, switchMap } from 'rxjs/operators';
-
-
-
-
-
 import { ActionWithPayload } from '../actions/actionWithPayload';
 import { TeamService } from '../../team/team.service';
 import { TeamActions } from '../actions/teamAction';

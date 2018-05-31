@@ -7,6 +7,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CropperSettings } from 'ngx-img-cropper';
 import { CropperPictureDialogComponent } from '../../shared/components/cropper-picture-dialog/cropper-picture-dialog.component';
 import { BlobDataService } from '../../shared/services/blob-data.service';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-player-basic-info',
@@ -54,10 +56,10 @@ export class PlayerBasicInfoComponent implements OnInit {
 
     if (this.playerDetails.picture.url.includes(';base64')) {
       this.blobDataService.addBase64Image(this.playerDetails.picture.url, cropperImageName)
-      .switchMap(data => {
+      .pipe(switchMap(data => {
           player.picture = data;
           return this.playerService.savePlayerDetails(player);
-      }).subscribe( x => {
+      })).subscribe( x => {
         this.playerService.setCurrentPlayer(player);
         alert('Player details successfully saved');
       },

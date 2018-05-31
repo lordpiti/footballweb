@@ -5,6 +5,8 @@ import { CompetitionService } from '../competition.service';
 import { CropperPictureDialogComponent } from '../../shared/components/cropper-picture-dialog/cropper-picture-dialog.component';
 import { MatDialog } from '@angular/material';
 import { BlobDataService } from '../../shared/services/blob-data.service';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-competition-summary',
@@ -50,10 +52,10 @@ export class CompetitionSummaryComponent implements OnInit {
 
     if (this.competitionDetails.logo.url.includes(';base64')) {
       this.blobDataService.addBase64Image(this.competitionDetails.logo.url, cropperImageName)
-      .switchMap(data => {
+      .pipe(switchMap(data => {
           competition.logo = data;
           return this.competitionService.savePlayerDetails(competition);
-      }).subscribe( x => {
+      })).subscribe( x => {
         this.competitionService.setCurrentCompetition(competition);
         alert('Competition details successfully saved');
       },
