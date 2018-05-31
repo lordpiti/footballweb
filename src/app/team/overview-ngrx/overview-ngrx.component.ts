@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class OverviewNgrxComponent implements OnInit {
 
-  public teams$: Store<Team[]>;
+  public teams$: Observable<Team[]>;
 
   public textToSearch = '';
 
