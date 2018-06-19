@@ -38,20 +38,27 @@ export class PlayerBasicInfoComponent implements OnInit {
 
     }
 
+  userSettings: any = {};
+
+  autoCompleteCallback1(selectedData: any) {
+    this.playerDetails.birthPlace = selectedData.data.description;
+  }
+
   ngOnInit() {
 
     if (this.playerService.currentPlayer) {
       this.playerDetails = this.playerService.currentPlayer;
+      this.userSettings.inputString = this.playerDetails.birthPlace;
     }
 
     this.playerService.getCurrentPlayer().subscribe(data => {
       this.playerDetails = data;
+      this.userSettings.inputString = this.playerDetails.birthPlace;
     });
 
   }
 
   savePlayerDetails(player: Player, form: NgForm) {
-
     const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
 
     if (this.playerDetails.picture.url.includes(';base64')) {

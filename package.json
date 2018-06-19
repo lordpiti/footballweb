@@ -56,7 +56,8 @@
     "ngx-popover": "^0.0.16",
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.2.0",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "ng4-geoautocomplete": "^0.1.0"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^6.0.3",

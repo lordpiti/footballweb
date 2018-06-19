@@ -48,6 +48,8 @@
     </div>
   </div>
 
+  <ng4geo-autocomplete [userSettings]="userSettings" (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete>
+
 </form>
 
 <button mat-raised-button color="primary" (click)="savePlayerDetails(playerDetails, playerForm)">Save</button>

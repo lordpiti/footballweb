@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule, MatSortModule, MatButtonModule,
   MatPaginatorModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 
 
 const playerRoutes: Routes = [
@@ -33,7 +34,8 @@ const playerRoutes: Routes = [
     MatButtonModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatFormFieldModule, MatInputModule
+    MatFormFieldModule, MatInputModule,
+    Ng4GeoautocompleteModule.forRoot()
   ],
   providers: [
     PlayerService
