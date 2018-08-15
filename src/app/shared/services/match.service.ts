@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
 import { BaseService } from './base.service';
 import { HttpClient } from '@angular/common/http';
 import { MatchPlayedStatistics } from '../interfaces/match-played-statistics.interface';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class MatchService extends BaseService {
@@ -14,8 +14,7 @@ export class MatchService extends BaseService {
   public getMatch(matchId: number) {
     const url = 'competition/match/' + matchId;
 
-    return this.get<any>(url)
-      .map(data => this.convertToMatchData(data));
+    return this.get<any>(url).pipe(map(data => this.convertToMatchData(data)));
   }
 
   public getMatchPlayerStatistics(playerId: number, matchId: number) {
