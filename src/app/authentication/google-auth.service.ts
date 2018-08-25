@@ -29,12 +29,11 @@ export class GoogleAuthService {
           const profile = userDetails.getBasicProfile();
 
           // Setting data to localstorage.
-          localStorage.setItem('token', userDetails.getAuthResponse().id_token);
           localStorage.setItem('image', profile.getImageUrl());
           localStorage.setItem('name', profile.getName());
           localStorage.setItem('email', profile.getEmail());
 
-          callback(true);
+          callback(userDetails.getAuthResponse().id_token);
         }, function (error) {
           console.log(JSON.stringify(error, undefined, 2));
         });

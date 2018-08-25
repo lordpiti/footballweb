@@ -15,7 +15,6 @@ export class TeamActions {
     }
 
     searchTeams(filter): ActionWithPayload<any> {
-        debugger;
         return {
             type: TeamActions.SEARCH_TEAMS,
             payload: filter
@@ -23,7 +22,6 @@ export class TeamActions {
     }
 
     loadTeamsSuccess(teams):  ActionWithPayload<any> {
-        debugger;
         return {
             type: TeamActions.LOAD_TEAMS_SUCCESS,
             payload: teams

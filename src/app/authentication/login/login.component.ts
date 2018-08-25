@@ -100,6 +100,7 @@ export class LoginComponent implements AfterViewInit, OnInit {
     setTimeout(() => {
       this._googleAuth.authenticateUser((result) => {
         localStorage.setItem('authenticationType', '2');
+        this.token = result;
         // Using Angular2 Zone dependency to manage the scope of variables
         this.zone.run(() => {
           this.getData();
@@ -114,7 +115,7 @@ export class LoginComponent implements AfterViewInit, OnInit {
 
   getData() {
     setTimeout(() => {
-      this.token = localStorage.getItem('token');
+
       this.imageURL = localStorage.getItem('image');
       this.name = localStorage.getItem('name');
       this.email = localStorage.getItem('email');
@@ -126,11 +127,15 @@ export class LoginComponent implements AfterViewInit, OnInit {
           if (data) {
             this.role = data.role;
             localStorage.setItem('role', data.role);
+            localStorage.setItem('token', data.token);
           } else {
             this.token = null;
             this.clearLocalStorage();
           }
         });
+      } else {
+        const existingToken = localStorage.getItem('token');
+        this.token = existingToken;
       }
 
     }, 50);
