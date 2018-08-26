@@ -1,19 +1,18 @@
+# FootballWeb Reloaded Angular
+
 This is an Angular app used as a sandbox to consume a REST api and test many of the features in the framework.
 
 Architecture is pretty basic and it's all organised in modules representing each of the areas in the app.
 
-Some of the functionality the app provides include:
-HttpClientModule to use the Angular 5 HttpClient service to make API calls and the HttpInterceptor interface for http calls interceptors
-Use of google and facebook authentication
-Use of google maps service
-Use of ng2-charts npm package to display different graphs
-Use of websockets for live updates with the signalR npm package provided by Microsoft
-Use of ngrx/store for redux approach in some areas of the app
-Basic e2e tests using protractor
-
-# AngularCliHeroku
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.3.
+## Some of the functionality the app provides include:
+* Use of google maps service
+* Authentication using Facebook and Google APIs
+* Use of interceptors for HTTP requests to access the API and guards to protect routes in the app
+* Real-time web functionality via sockets using the signalR npm package provided by Microsoft
+* Use of Material UI components
+* Display of graphics using components based on Chart.js
+* Use of ngrx/store for redux approach in some areas of the app
+* Basic e2e tests using protractor
 
 ## Development server
 
