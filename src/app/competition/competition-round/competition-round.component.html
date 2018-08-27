@@ -19,7 +19,7 @@
           <div class="row small" *ngFor="let match of roundData.matchList">
             <div class="col-sm-5">{{match.localTeam.name}}</div>
             <div class="col-sm-2">
-              <a routerLink="../match/{{match.matchId}}">{{match.goalsLocal}}-{{match.goalsVisitor}}</a>
+              <a routerLink="./match/{{match.matchId}}">{{match.goalsLocal}}-{{match.goalsVisitor}}</a>
             </div>
             <div class="col-sm-5">{{match.visitorTeam.name}}</div>
           </div>

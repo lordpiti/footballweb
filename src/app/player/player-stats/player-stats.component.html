@@ -1,0 +1,14 @@
+<h1>Matches played</h1>
+<div *ngIf="loading">
+  Loading...
+</div>
+<div *ngIf="error">
+  Error :(
+</div>
+<div *ngIf="matches">
+  <div *ngFor="let match of matches">
+    <a routerLink="./match/{{match.id}}">
+    {{match.localTeamName}} {{match.localGoals}} - {{match.visitorGoals}} {{match.visitorTeamName}}
+    </a>
+  </div>
+</div>

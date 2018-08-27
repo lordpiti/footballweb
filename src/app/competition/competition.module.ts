@@ -26,8 +26,8 @@ const competitionRoutes: Routes = [
   { path: 'detail/:id', component: CompetitionDetailComponent, children: [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
     { path: 'summary', component: CompetitionSummaryComponent },
+    { path: 'rounds/match/:id', component: MatchComponent },
     { path: 'rounds', component: CompetitionMatchesComponent },
-    { path: 'match/:id', component: MatchComponent },
     { path: 'teams', component: CompetitionTeamsComponent }
   ] },
   { path: 'simulation', component: CompetitionSimulationComponent },

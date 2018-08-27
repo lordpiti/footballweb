@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { PlayerOverviewComponent } from './player-overview/player-overview.component';
@@ -10,13 +10,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule, MatSortModule, MatButtonModule,
   MatPaginatorModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
+import { PlayerStatsComponent } from './player-stats/player-stats.component';
+import { MatchComponent } from '../shared/components/match/match.component';
 
 
 const playerRoutes: Routes = [
   { path: '',  component: PlayerOverviewComponent },
   { path: 'detail/:id', component: PlayerDetailComponent, children: [
     { path: '',   redirectTo: 'summary', pathMatch: 'full' },
-    { path: 'summary', component: PlayerBasicInfoComponent }
+    { path: 'summary', component: PlayerBasicInfoComponent },
+    { path: 'stats/match/:id', component: MatchComponent },
+    { path: 'stats', component: PlayerStatsComponent }
   ] },
   { path: '**',  component: PlayerOverviewComponent }
 ];
@@ -41,7 +45,8 @@ const playerRoutes: Routes = [
     PlayerService
   ],
   declarations: [PlayerOverviewComponent, PlayerDetailComponent,
-    PlayerBasicInfoComponent]
+    PlayerBasicInfoComponent,
+    PlayerStatsComponent]
 })
 export class PlayerModule { }
 

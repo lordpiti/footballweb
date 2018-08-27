@@ -34,6 +34,7 @@ import { TeamActions } from './core/actions/teamAction';
 import { TeamEffects } from './core/effects/teamEffects';
 import { MatButtonModule, MatToolbarModule } from '@angular/material';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { ApolloBoostModule, ApolloBoost } from 'apollo-angular-boost';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
     }),
-    environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : []
+    environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : [],
+    ApolloBoostModule
   ],
   providers: [
     ShareDataService,
@@ -82,4 +84,10 @@ import { OverlayModule } from '@angular/cdk/overlay';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(boost: ApolloBoost) {
+    boost.create({
+      uri: 'https://footballsandbox.azurewebsites.net/graphql'
+    });
+  }
+}

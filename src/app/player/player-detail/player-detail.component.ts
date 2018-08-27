@@ -38,7 +38,7 @@ export class PlayerDetailComponent implements OnInit {
           },
           {
             title: 'Statistics',
-            link: 'statistics'
+            link: 'stats'
           }
         ],
         dataLoaded: true
