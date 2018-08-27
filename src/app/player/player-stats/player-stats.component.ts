@@ -9,6 +9,8 @@ import {Apollo, gql} from 'apollo-angular-boost';
 export class PlayerStatsComponent implements OnInit {
 
   matches: any[];
+  loading: boolean;
+  error: any;
 
   constructor(private apollo: Apollo) {}
 
