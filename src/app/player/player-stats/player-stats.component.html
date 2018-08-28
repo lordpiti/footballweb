@@ -5,10 +5,21 @@
 <div *ngIf="error">
   Error :(
 </div>
-<div *ngIf="matches">
-  <div *ngFor="let match of matches">
-    <a routerLink="./match/{{match.id}}">
-    {{match.localTeamName}} {{match.localGoals}} - {{match.visitorGoals}} {{match.visitorTeamName}}
-    </a>
-  </div>
+<div *ngIf="matchesGrouped">
+  <mat-expansion-panel *ngFor="let group of matchesGrouped">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{group.competition.name}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{group.competition.season}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div *ngFor="let match of group.data">
+        <a routerLink="./match/{{match.id}}">
+          {{match.localTeamName}} {{match.localGoals}} - {{match.visitorGoals}} {{match.visitorTeamName}}
+        </a>
+    </div>
+  </mat-expansion-panel>
 </div>

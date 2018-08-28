@@ -14,7 +14,8 @@
     "lib": [
       "es2016",
       "dom",
-      "esnext.asynciterable"
+      "esnext.asynciterable",
+      "es2017"
     ]
   }
 }

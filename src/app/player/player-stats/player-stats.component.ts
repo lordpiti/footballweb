@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Apollo, gql} from 'apollo-angular-boost';
+import Helpers from '../../shared/utils/helpers';
 
 @Component({
   selector: 'app-player-stats',
@@ -8,9 +9,10 @@ import {Apollo, gql} from 'apollo-angular-boost';
 })
 export class PlayerStatsComponent implements OnInit {
 
-  matches: any[];
+  matchesGrouped: any[];
   loading: boolean;
   error: any;
+  panelOpenState = false;
 
   constructor(private apollo: Apollo) {}
 
@@ -22,15 +24,36 @@ export class PlayerStatsComponent implements OnInit {
             player(id: 1) {
                 name, surname
                 playerMatchesPlayed {
-                    localTeamName, visitorTeamName, id, localGoals, visitorGoals, date
+                    localTeamName, visitorTeamName, id, localGoals, visitorGoals, date,
+                    competition {
+                      id, name, season, type
+                    }
                 }
             }
         }
     `,
       })
       .valueChanges.subscribe((result: any) => {
-        this.matches = result.data.player.playerMatchesPlayed;
+        const matches = result.data.player.playerMatchesPlayed;
+        this.matchesGrouped = this.transformData(matches);
       });
+  }
+
+  private transformData(gamesList: any) {
+    const groupedCompetitions = Helpers.groupBy(gamesList, 'competition.id');
+
+    const allCompetitions = gamesList.map(x => x.competition);
+
+    const uniqueCompetitions = Helpers.removeDuplicates(allCompetitions, 'id');
+
+    const matchListGroupedByCompetition = Object.entries(groupedCompetitions).map(group => {
+      return {
+        competition: uniqueCompetitions.find(x => group[0] === x.id.toString()),
+        data: group[1]
+      };
+    });
+
+    return matchListGroupedByCompetition;
   }
 
 }
