@@ -5,7 +5,7 @@
     "installMode": "prefetch",
     "resources": {
       "files": [
-        "/favicon.ico",
+        "/ballbig.ico",
         "/index.html"
       ],
       "versionedFiles": [
