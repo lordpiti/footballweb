@@ -12,6 +12,7 @@ Architecture is pretty basic and it's all organised in modules representing each
 * Use of Material UI components
 * Display of graphics using components based on Chart.js
 * Use of ngrx/store for redux approach in some areas of the app
+* Available for android and iOS as PWA
 * Basic e2e tests using protractor
 
 ## Development server
