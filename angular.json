@@ -18,6 +18,7 @@
             "polyfills": "src/polyfills.ts",
             "assets": [
               "src/assets",
+              "src/js",
               "src/ballbig.ico",
               "src/manifest.json"
             ],
@@ -79,6 +80,7 @@
             ],
             "assets": [
               "src/assets",
+              "src/js",
               "src/ballbig.ico",
               "src/manifest.json",
               "src/manifest.json"

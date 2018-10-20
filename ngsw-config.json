@@ -8,6 +8,7 @@
         "files": [
           "/ballbig.ico",
           "/index.html",
+          "/js/**",
           "/*.css",
           "/*.js"
         ]
