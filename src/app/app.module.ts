@@ -29,12 +29,12 @@ import { AuthorService } from './team/blog-test/services/author.service';
 import { BlogService } from './team/blog-test/services/blog.service';
 import { BlogActions } from './core/actions/blogAction';
 import { environment } from '../environments/environment';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { TeamActions } from './core/actions/teamAction';
 import { TeamEffects } from './core/effects/teamEffects';
 import { MatButtonModule, MatToolbarModule } from '@angular/material';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ApolloBoostModule, ApolloBoost } from 'apollo-angular-boost';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -66,8 +66,8 @@ import { ApolloBoostModule, ApolloBoost } from 'apollo-angular-boost';
     StoreDevtoolsModule.instrument({
       maxAge: 25 //  Retains last 25 states
     }),
-    environment.production ? ServiceWorkerModule.register('ngsw-worker.js') : [],
-    ApolloBoostModule
+    ApolloBoostModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     ShareDataService,
