@@ -7,10 +7,10 @@
   "scope": "/",
   "start_url": "/",
   "icons": [
-    {
-      "src": "ballbig.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+    {  
+      "src": "assets/img/splash/splash-640x640.png",  
+      "sizes": "640x640",
+      "type": "image/png"  
     },
     {
       "src": "assets/icons/icon-72x72.png",
