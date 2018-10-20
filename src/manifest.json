@@ -1,12 +1,17 @@
 {
-  "name": "angular-cli-heroku",
-  "short_name": "angular-cli-heroku",
+  "name": "FootballWeb Angular",
+  "short_name": "FootballWeb Angular",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
   "icons": [
+    {
+      "src": "assets/icons/ballbig.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
     {
       "src": "assets/icons/icon-72x72.png",
       "sizes": "72x72",
