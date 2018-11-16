@@ -15,7 +15,7 @@ export class GooglemapsService {
     this._requestOptions = new RequestOptions({
         headers: myHeaders
     });
-    this._apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json?';
+    this._apiUrl = 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAG7ddPMubaOTHEZTqB0s4ZV4830cIJyCU&';
   }
 
   getData(address: string) {

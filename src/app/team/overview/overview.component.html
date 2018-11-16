@@ -1,5 +1,5 @@
-<div class="overview-container">
-  <p>Teams</p>
+<div class="overview-container text-center">
+  <h1>Teams</h1>
   <div class="row">
     <div class="col-sm-2 text-center" *ngFor="let item of teamList;let i=index">
       <a routerLink="/teams/detail/{{item.id}}" routerLinkActive="active">
@@ -7,10 +7,5 @@
         <div>{{item.name}}</div>
       </a>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <a class="btn btn-primary" routerLink="./blog-test-ngrx">Ngrx test</a>
-    </div>     
   </div>
 </div>
