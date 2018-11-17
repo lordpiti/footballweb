@@ -1,25 +1,27 @@
-<h1>Squad</h1>
+<div class="text-center">
+  <h1>Squad</h1>
 
-<div class="row">
-  <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let item of playerList" style="margin-bottom:10px">
-    <mat-card class="example-card" routerLink="/players/detail/{{item.playerId}}">
-      <mat-card-header>
-        <!-- <div mat-card-avatar class="example-header-image"></div> -->
-        <mat-card-title>
-          {{item.name}} {{item.surname}}
-        </mat-card-title>
-        <mat-card-subtitle>{{item.position}}</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          {{today | amDifference: item.birthDate :'years' : false}} years
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
+  <div class="row">
+    <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let item of playerList" style="margin-bottom:10px">
+      <mat-card class="example-card" routerLink="/players/detail/{{item.playerId}}">
+        <mat-card-header>
+          <!-- <div mat-card-avatar class="example-header-image"></div> -->
+          <mat-card-title>
+            {{item.name}} {{item.surname}}
+          </mat-card-title>
+          <mat-card-subtitle>{{item.position}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image class="media" src="{{item.picture.url}}" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            {{today | amDifference: item.birthDate :'years' : false}} years
+          </p>
+        </mat-card-content>
+        <!-- <mat-card-actions>
         <button mat-button>LIKE</button>
         <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
+      </mat-card-actions> -->
+      </mat-card>
+    </div>
   </div>
 </div>
