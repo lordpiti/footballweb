@@ -10,12 +10,6 @@ import { SquadComponent } from './squad/squad.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { GooglemapsService } from './googlemaps.service';
 import { SharedModule } from '../shared/shared.module';
-import { BlogSectionComponent } from './blog-test/blog-section/blog-section.component';
-import { BlogListComponent } from './blog-test/blog-list/blog-list.component';
-import { AuthorSectionComponent } from './blog-test/author-section/author-section.component';
-import { HomeComponent } from './blog-test/home/home.component';
-import { AddBlogComponent } from './blog-test/add-blog/add-blog.component';
-import { BlogTestComponent } from './blog-test/blog-test.component';
 import { OverviewNgrxComponent } from './overview-ngrx/overview-ngrx.component';
 
 import {
@@ -60,12 +54,6 @@ const teamRoutes: Routes = [
     TeamChartComponent,
     SquadComponent,
     BasicInfoComponent,
-    BlogSectionComponent,
-    BlogListComponent,
-    BlogTestComponent,
-    HomeComponent,
-    AuthorSectionComponent,
-    AddBlogComponent,
     OverviewNgrxComponent
   ],
   providers: [

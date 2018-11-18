@@ -24,14 +24,6 @@ export class OverviewNgrxComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.teams$ = Observable.combineLatest(
-    //   this.store.select(x => x.team),
-    //   this.store.select(x => x.authorFilter),
-    //   (blogs: any, authorFilter: any) => {
-    //     console.log(blogs.data);
-    //     return blogs.data ? blogs.data.filter(authorFilter) : [];
-    //   }
-    // );
     this.teams$ = this.store.select(x => x.team);
 
     this.loadTeams();

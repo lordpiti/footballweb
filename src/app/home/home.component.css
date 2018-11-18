@@ -1,11 +1,4 @@
-.jumbotron {
-  margin-top: 20px;
-}
-
-.jumbotron hr {
+.homeBackground {
   border-color: #999;
-}
-
-.instructions {
-  float: none;
+  background-color: #eee;
 }

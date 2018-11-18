@@ -23,9 +23,10 @@ import { DetailsLayoutComponent } from './components/details-layout/details-layo
 import { RouterModule } from '@angular/router';
 import { MatListModule,
   MatDialogModule, MatButtonModule, MatButtonToggleModule, MatMenuModule,
-  MatIconModule, MatFormFieldModule, MatSelectModule, MatSliderModule, MatInputModule } from '@angular/material';
+  MatIconModule, MatFormFieldModule, MatSelectModule, MatSliderModule, MatInputModule, MatCardModule } from '@angular/material';
 import { CropperPictureDialogComponent } from './components/cropper-picture-dialog/cropper-picture-dialog.component';
 import { BlobDataService } from './services/blob-data.service';
+import { RssReaderComponent } from './components/rss-reader/rss-reader.component';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { BlobDataService } from './services/blob-data.service';
     MatFormFieldModule,
     MatSelectModule,
     MatSliderModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ],
   declarations: [
     MatchComponent,
@@ -64,7 +66,9 @@ import { BlobDataService } from './services/blob-data.service';
     CustomFormInputComponent,
     CustomFormSelectComponent,
     ValuesPipe,
-    DetailsLayoutComponent, CropperPictureDialogComponent
+    DetailsLayoutComponent,
+    CropperPictureDialogComponent,
+    RssReaderComponent
   ],
   entryComponents: [CropperPictureDialogComponent],
   providers: [
@@ -92,7 +96,8 @@ import { BlobDataService } from './services/blob-data.service';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatSliderModule
+    MatSliderModule,
+    RssReaderComponent
   ]
 })
 export class SharedModule {

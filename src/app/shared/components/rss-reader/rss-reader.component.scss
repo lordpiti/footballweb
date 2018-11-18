@@ -1,0 +1,20 @@
+.example-card {
+    max-width: 345px;
+    height: 400px;
+    overflow-y: hidden;
+    cursor: pointer;
+
+    &:hover mat-card {
+        background-color: lightgray;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .media {
+        height: 200px;;
+    }
+}
+
+
