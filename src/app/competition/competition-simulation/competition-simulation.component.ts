@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { MatchEvent } from '../../shared/interfaces/match-event.interface';
 import { Match } from '../../shared/interfaces/match.interface';
 import { MatchEventTypes } from '../../shared/enums/match-event-types';
+import { CompetitionService } from '../competition.service';
 
 @Component({
   selector: 'app-competition-simulation',
@@ -19,8 +20,12 @@ message = '';
 messages: string[] = [];
 
 public matches: Match[] = [];
+public timeLeft: any = {
+    
+};
+public live = false;
 
-constructor() {
+constructor(private competitionService: CompetitionService) {
 }
 
 public sendMessage(): void {
@@ -32,12 +37,25 @@ public sendMessage(): void {
 
 ngOnInit() {
 
+    this.competitionService.getNextSimulationDateTime().subscribe(data => {
+        this.timeLeft = {
+            template: '$!h!:$!m!:$!s!',
+            leftTime: data.secondsLeft
+        };
+    });
+
     this._hubConnection = new HubConnectionBuilder()
     .withUrl(environment.hubUrl + '/loopy')
     .build();
 
     this._hubConnection.on('StartSimulation', (data: any) => {
         this.matches = [];
+        this.live = true;
+    });
+
+    this._hubConnection.on("EndSimulation", data => {
+        this.live = false;
+        this.timeLeft.leftTime = data.secondsLeft;
     });
 
     this._hubConnection.on('SendCreateMatch', (data: any) => {

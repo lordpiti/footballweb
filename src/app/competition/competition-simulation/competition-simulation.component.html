@@ -1,42 +1,28 @@
 <div class="overview-container">
-    <h1>Competition Simulation</h1>
+    <div class="text-center">
+        <h1>Competition Simulation</h1>
 
-    <div class="row">
+        <div *ngIf="live">
+            Simulation on course. Please wait a few seconds until it's finished and the remaining time till next one will show up		
+        </div>
+        <div *ngIf="timeLeft.leftTime && !live">
+            <div>
+                Time remaining for the next simulation:
+            </div>
+            <div style="font-size: x-large">
+                <countdown [config]="timeLeft" >
+                    <!-- (start)="onStart()"
+                    (finished)="onFinished()"
+                    (notify)="onNotify($event)"> -->
+                </countdown>
+            </div>
+        </div>
+    </div>
+
+    <div class="row margin-top2">
         <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let match of matches">
             <app-competition-simulation-match [match]="match">
             </app-competition-simulation-match>
         </div>
     </div>
 </div>
-
-  <!-- <div class="row">
-      <form class="form-inline" (ngSubmit)="sendMessage()" #messageForm="ngForm">
-          <div class="form-group">
-              <label class="sr-only" for="message">Message</label>
-              <input type="text" class="form-control" id="message" placeholder="your message..." name="message" [(ngModel)]="message" required>
-          </div>
-          <button type="submit" class="btn btn-primary" [disabled]="!messageForm.valid">Send SignalR Message</button>
-      </form>
-  </div>
-  <div class="row" *ngIf="messages.length > 0">
-      <div class="table-responsive">
-          <table class="table table-striped">
-              <thead>
-                  <tr>
-                      <th>#</th>
-                      <th>Messages</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let message of messages; let i = index">
-                      <td>{{i + 1}}</td>
-                      <td>{{message}}</td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>
-  <div class="row" *ngIf="messages.length <= 0">
-      <span>No messages</span>
-  </div>
-</div> -->

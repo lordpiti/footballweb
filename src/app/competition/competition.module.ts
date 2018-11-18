@@ -20,6 +20,7 @@ import { DrawMatchComponent } from './competition-basic-info/draw-match/draw-mat
 // tslint:disable-next-line:max-line-length
 import { CompetitionSimulationMatchComponent } from './competition-simulation/competition-simulation-match/competition-simulation-match.component';
 import { MatTableModule, MatSortModule, MatButtonModule, MatSelectModule, MatFormFieldModule, MatCardModule } from '@angular/material';
+import { CountdownModule } from 'ngx-countdown';
 
 const competitionRoutes: Routes = [
   { path: '',  component: CompetitionOverviewComponent },
@@ -36,7 +37,7 @@ const competitionRoutes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule, SharedModule,
+    CommonModule,
     RouterModule.forChild(competitionRoutes),
     FormsModule,
     ReactiveFormsModule,
@@ -46,13 +47,18 @@ const competitionRoutes: Routes = [
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
-    SharedModule
+    SharedModule,
+    CountdownModule
   ],
   providers: [
     CompetitionService
   ],
-  declarations: [CompetitionRoundComponent, CompetitionOverviewComponent, CompetitionDetailComponent,
-    CompetitionBasicInfoComponent, CompetitionTeamsComponent,
+  declarations: [
+    CompetitionRoundComponent,
+    CompetitionOverviewComponent,
+    CompetitionDetailComponent,
+    CompetitionBasicInfoComponent,
+    CompetitionTeamsComponent,
     CompetitionSimulationComponent,
     CompetitionChartComponent,
     CompetitionSimulationEventComponent,

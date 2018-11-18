@@ -85,6 +85,10 @@ export class CompetitionService extends BaseService {
     return this.post<any>(url, competitionDetails);
   }
 
+  getNextSimulationDateTime() {
+    return this.get<any>('competition/nextSimulation');
+  }
+
   private convertToChartData(data: any): any {
     const positionList = [],
     goalsForList = [],
