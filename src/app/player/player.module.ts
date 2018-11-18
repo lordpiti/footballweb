@@ -9,7 +9,8 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule, MatSortModule, MatButtonModule,
   MatPaginatorModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule,
-  MatExpansionModule } from '@angular/material';
+  MatExpansionModule, 
+  MatCardModule} from '@angular/material';
 import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 import { PlayerStatsComponent } from './player-stats/player-stats.component';
 import { MatchComponent } from '../shared/components/match/match.component';
@@ -39,7 +40,9 @@ const playerRoutes: Routes = [
     MatButtonModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatFormFieldModule, MatInputModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
     MatExpansionModule,
     Ng4GeoautocompleteModule.forRoot()
   ],

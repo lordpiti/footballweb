@@ -1,13 +1,16 @@
-<h3>League</h3>
+<div class="text-center">
+<h1>Competition results</h1>
 <div *ngIf="roundData">
   <div class="row">
     <div class="col-sm-12">
+      <mat-card>
       <mat-form-field [floatLabel]="true">
         <mat-select [(value)]="roundId"  (selectionChange)="changeSelectedRound($event)">
           <mat-option *ngFor="let item of competitionData.roundList" value="{{item}}">{{item}}</mat-option>
         </mat-select>
         <mat-placeholder>Select round</mat-placeholder>
       </mat-form-field>
+    </mat-card>
     </div>
   </div>
   <br/>
@@ -53,6 +56,7 @@
       </div>
     </div>
     <div class="col-sm-7">
+        <mat-card>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -79,6 +83,8 @@
           </tr>
         </tbody>
       </table>
+    </mat-card>
     </div>
   </div>
+</div>
 </div>

@@ -4,12 +4,15 @@
     overflow-y: hidden;
     cursor: pointer;
 
-    &:hover mat-card {
+    &:hover {
         background-color: lightgray;
     }
 
-    a:hover {
-        text-decoration: none;
+    a {
+        color: black;
+        &:hover {
+            text-decoration: none;
+        }
     }
 
     .media {

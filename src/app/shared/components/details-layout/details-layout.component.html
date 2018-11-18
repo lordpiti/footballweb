@@ -1,14 +1,18 @@
 <div *ngIf="detailsMenuData.dataLoaded" class="overview-container">
   <div class="sidenavDetails hidden-xs">
-    <img *ngIf="detailsMenuData.imageUrl" src="{{detailsMenuData.imageUrl}}" width="100" height="100" />
-    <label>{{detailsMenuData.title}}</label>
-    <mat-nav-list>
-      <a mat-list-item *ngFor="let item of detailsMenuData.itemsList" routerLink="{{item.link}}" routerLinkActive="activeDetailsNavOption" > {{ item.title }} </a>
-   </mat-nav-list>
+    <mat-card>
+      <img *ngIf="detailsMenuData.imageUrl" src="{{detailsMenuData.imageUrl}}" width="100" height="100" />
+      <label>{{detailsMenuData.title}}</label>
+
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let item of detailsMenuData.itemsList" routerLink="{{item.link}}" routerLinkActive="activeDetailsNavOption">
+          {{ item.title }} </a>
+      </mat-nav-list>
+    </mat-card>
   </div>
   <div class="visible-xs" style="margin-top: 120px; padding: 20px;">
     <mat-form-field [floatLabel]="true">
-      <mat-select [(value)]="selectedOption"  (selectionChange)="changeSelectedRound($event)">
+      <mat-select [(value)]="selectedOption" (selectionChange)="changeSelectedRound($event)">
         <mat-option *ngFor="let item of detailsMenuData.itemsList" value="{{item.link}}">{{item.title}}</mat-option>
       </mat-select>
       <mat-placeholder>Select option</mat-placeholder>

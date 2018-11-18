@@ -13,6 +13,10 @@
     padding: 0px 20px;
 }
 
+.overview-container {
+    background-color: #eee;
+}
+
 @media only screen and (min-width: 600px) {
     .mainDetails {
         margin-left: 300px; /* Same as the width of the sidebar */

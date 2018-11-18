@@ -1,25 +1,30 @@
-<h1>Matches played</h1>
-<div *ngIf="loading">
-  Loading...
-</div>
-<div *ngIf="error">
-  Error :(
-</div>
-<div *ngIf="matchesGrouped">
-  <mat-expansion-panel *ngFor="let group of matchesGrouped">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        {{group.competition.name}}
-      </mat-panel-title>
-      <mat-panel-description>
-        {{group.competition.season}}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+<div class="text-center">
+  <h1>Matches played</h1>
+  <mat-card>
 
-    <div *ngFor="let match of group.data">
-        <a routerLink="./match/{{match.id}}">
-          {{match.localTeamName}} {{match.localGoals}} - {{match.visitorGoals}} {{match.visitorTeamName}}
-        </a>
+    <div *ngIf="loading">
+      Loading...
     </div>
-  </mat-expansion-panel>
+    <div *ngIf="error">
+      Error :(
+    </div>
+    <div *ngIf="matchesGrouped">
+      <mat-expansion-panel *ngFor="let group of matchesGrouped" style="margin-bottom: 10px">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{group.competition.name}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{group.competition.season}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div *ngFor="let match of group.data">
+          <a routerLink="./match/{{match.id}}">
+            {{match.localTeamName}} {{match.localGoals}} - {{match.visitorGoals}} {{match.visitorTeamName}}
+          </a>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </mat-card>
 </div>
