@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RssReaderService } from '../../services/rss-reader.service';
 import { Item } from '../../interfaces/rss-feed.interface';
 
@@ -9,12 +9,14 @@ import { Item } from '../../interfaces/rss-feed.interface';
 })
 export class RssReaderComponent implements OnInit {
 
+  @Input() feedUrl : string;
+
   constructor(private rssReaderService: RssReaderService ) { }
 
   feedList: Item[];
 
   ngOnInit() {
-    this.rssReaderService.getFeedContent('https://e00-marca.uecdn.es/rss/portada.xml')
+    this.rssReaderService.getFeedContent(this.feedUrl)
       .subscribe(data => {
         this.feedList = data.items;
       }

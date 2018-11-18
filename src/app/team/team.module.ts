@@ -11,6 +11,7 @@ import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { GooglemapsService } from './googlemaps.service';
 import { SharedModule } from '../shared/shared.module';
 import { OverviewNgrxComponent } from './overview-ngrx/overview-ngrx.component';
+import { TeamNewsComponent } from './team-news/team-news.component';
 
 import {
   MatSidenavModule,
@@ -25,10 +26,11 @@ import {
 const teamRoutes: Routes = [
   { path: '',  component: OverviewComponent },
   { path: 'detail/:id', component: TeamDetailComponent, children: [
-    { path: '',   redirectTo: 'summary', pathMatch: 'full' },
+    { path: '',   redirectTo: 'team-news', pathMatch: 'full' },
     { path: 'summary', component: BasicInfoComponent },
     { path: 'squad', component: SquadComponent },
-    { path: 'competitions', component: TeamChartComponent }
+    { path: 'competitions', component: TeamChartComponent },
+    { path: 'team-news', component: TeamNewsComponent }
   ] },
   { path: 'test-ngrx',  component: OverviewNgrxComponent },
   { path: '**',  component: OverviewComponent }
@@ -54,7 +56,8 @@ const teamRoutes: Routes = [
     TeamChartComponent,
     SquadComponent,
     BasicInfoComponent,
-    OverviewNgrxComponent
+    OverviewNgrxComponent,
+    TeamNewsComponent
   ],
   providers: [
     TeamService,

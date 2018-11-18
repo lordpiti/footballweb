@@ -5,28 +5,28 @@
     <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let item of feedList" style="margin-bottom:10px">
       <div class="example-card">
         <a href="{{item.link}}" target="_blank">
-      <mat-card>
-        <mat-card-header>
-          <!-- <div mat-card-avatar class="example-header-image"></div> -->
-          <mat-card-title>
-            {{item.title}}
-          </mat-card-title>
-          <mat-card-subtitle>{{item.categories[0]}}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image class="media" src="{{item.enclosure.thumbnail}}" alt="news">
-        <mat-card-content>
-          {{item.author}}
-          <br/>
-          {{item.pubDate}}
-        </mat-card-content>
-        <!-- <mat-card-actions>
+          <mat-card>
+            <mat-card-header>
+              <!-- <div mat-card-avatar class="example-header-image"></div> -->
+              <mat-card-title>
+                {{item.title}}
+              </mat-card-title>
+              <mat-card-subtitle>{{item.categories[0]}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image class="media" src="{{item.enclosure.thumbnail}}" alt="news">
+            <mat-card-content>
+              {{item.author}}
+              <br />
+              {{item.pubDate}}
+            </mat-card-content>
+            <!-- <mat-card-actions>
         <button mat-button>LIKE</button>
         <button mat-button>SHARE</button>
       </mat-card-actions> -->
-    
-      </mat-card>
-    </a>
-  </div>
+
+          </mat-card>
+        </a>
+      </div>
     </div>
   </div>
 </div>

@@ -51,6 +51,10 @@ export class TeamDetailComponent implements OnInit {
         entityName: 'Teams',
         itemsList: [
           {
+            title: 'News',
+            link: 'team-news'
+          },
+          {
             title: 'Summary',
             link: 'summary'
           },
@@ -61,10 +65,6 @@ export class TeamDetailComponent implements OnInit {
           {
             title: 'Competitions',
             link: 'competitions'
-          },
-          {
-            title: 'News',
-            link: 'news'
           }
         ],
         dataLoaded: true
