@@ -9,7 +9,7 @@ import { RSSResponse } from '../interfaces/rss-feed.interface';
 })
 export class RssReaderService extends BaseService {
 
-  private rssToJsonServiceBaseUrl: string = 'https://api.rss2json.com/v1/api.json?rss_url=';
+  private rssToJsonServiceBaseUrl: string = 'https://cors-anywhere.herokuapp.com/https://api.rss2json.com/v1/api.json?rss_url=';
 
   constructor(public httpNew: HttpClient) {
     super(httpNew);
