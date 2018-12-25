@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../player.service';
 import { Player } from '../../shared/interfaces/player.interface';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { BlobDataService } from '../../shared/services/blob-data.service';
 import { switchMap } from 'rxjs/operators';
 import { PlayerInfoModalComponent } from './player-info-modal/player-info-modal.component';
@@ -28,30 +28,19 @@ export class PlayerBasicInfoComponent implements OnInit {
   };
 
   constructor( public playerService: PlayerService, private blobDataService: BlobDataService,
-    public dialog: MatDialog, public snackBar: MatSnackBar) {
-
-    }
-
-  userSettings: any = {};
-
-  autoCompleteCallback1(selectedData: any) {
-    this.playerDetails.birthPlace = selectedData.data.description;
-  }
+    public dialog: MatDialog, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
     if (this.playerService.currentPlayer) {
       this.playerDetails = this.playerService.currentPlayer;
-      this.userSettings.inputString = this.playerDetails.birthPlace;
     }
 
     this.playerService.getCurrentPlayer().subscribe(data => {
       this.playerDetails = data;
-      this.userSettings.inputString = this.playerDetails.birthPlace;
     });
 
   }
-
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PlayerInfoModalComponent, {
@@ -86,9 +75,11 @@ export class PlayerBasicInfoComponent implements OnInit {
     });
   }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-    });
+  private openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.panelClass = ['custom-class'];
+    config.duration = 3000;
+    config.horizontalPosition = 'right';
+    this.snackBar.open(message, null, config);
   }
 }

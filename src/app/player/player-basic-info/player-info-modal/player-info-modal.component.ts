@@ -13,9 +13,7 @@ export class PlayerInfoModalComponent {
   public model: any = {};
   public displayErrors = false;
   public isEditing = false;
-  positions: Array<any> = [{ value: 'Defender', text: 'Defender'}, { value: 'Striker', text: 'Striker'}];
-
-  public type = 'component';
+  public positions: Array<any> = [{ value: 'Defender', text: 'Defender'}, { value: 'Striker', text: 'Striker'}];
 
   public disabled = false;
 
@@ -51,9 +49,7 @@ export class PlayerInfoModalComponent {
   }
 
   public resetDropzoneUploads(): void {
-    if (this.type === 'directive' && this.directiveRef) {
-      this.directiveRef.reset();
-    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
+    if (this.componentRef && this.componentRef.directiveRef) {
       this.componentRef.directiveRef.reset();
     }
   }
