@@ -9,11 +9,13 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule, MatSortModule, MatButtonModule,
   MatPaginatorModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule,
-  MatExpansionModule, 
-  MatCardModule} from '@angular/material';
+  MatExpansionModule,
+  MatCardModule, MatSnackBarModule } from '@angular/material';
 import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 import { PlayerStatsComponent } from './player-stats/player-stats.component';
 import { MatchComponent } from '../shared/components/match/match.component';
+import { PlayerInfoModalComponent } from './player-basic-info/player-info-modal/player-info-modal.component';
+import { DROPZONE_CONFIG, DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 
 const playerRoutes: Routes = [
@@ -27,6 +29,12 @@ const playerRoutes: Routes = [
   { path: '**',  component: PlayerOverviewComponent }
 ];
 
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
+  // Change this to your upload POST address:
+  url: 'https://httpbin.org/post',
+  acceptedFiles: 'image/*',
+  createImageThumbnails: true
+};
 
 @NgModule({
   imports: [
@@ -43,15 +51,23 @@ const playerRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
+    MatSnackBarModule,
     MatExpansionModule,
+    DropzoneModule,
     Ng4GeoautocompleteModule.forRoot()
   ],
   providers: [
-    PlayerService
+    PlayerService,
+    {
+      provide: DROPZONE_CONFIG,
+      useValue: DEFAULT_DROPZONE_CONFIG
+    }
   ],
   declarations: [PlayerOverviewComponent, PlayerDetailComponent,
     PlayerBasicInfoComponent,
-    PlayerStatsComponent]
+    PlayerStatsComponent,
+    PlayerInfoModalComponent],
+  entryComponents: [PlayerInfoModalComponent]
 })
 export class PlayerModule { }
 

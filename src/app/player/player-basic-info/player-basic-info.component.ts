@@ -1,14 +1,10 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../player.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Player } from '../../shared/interfaces/player.interface';
-import { NgForm } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { CropperSettings } from 'ngx-img-cropper';
-import { CropperPictureDialogComponent } from '../../shared/components/cropper-picture-dialog/cropper-picture-dialog.component';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { BlobDataService } from '../../shared/services/blob-data.service';
 import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { PlayerInfoModalComponent } from './player-info-modal/player-info-modal.component';
 
 @Component({
   selector: 'app-player-basic-info',
@@ -31,10 +27,8 @@ export class PlayerBasicInfoComponent implements OnInit {
     teamName: null
   };
 
-  positions: Array<any> = [{ value: 'Defender', text: 'Defender'}, { value: 'Striker', text: 'Striker'}];
-
   constructor( public playerService: PlayerService, private blobDataService: BlobDataService,
-    private route: ActivatedRoute, public dialog: MatDialog) {
+    public dialog: MatDialog, public snackBar: MatSnackBar) {
 
     }
 
@@ -58,43 +52,43 @@ export class PlayerBasicInfoComponent implements OnInit {
 
   }
 
-  savePlayerDetails(player: Player, form: NgForm) {
-    const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
-
-    if (this.playerDetails.picture.url.includes(';base64')) {
-      this.blobDataService.addBase64Image(this.playerDetails.picture.url, cropperImageName)
-      .pipe(switchMap(data => {
-          player.picture = data;
-          return this.playerService.savePlayerDetails(player);
-      })).subscribe( x => {
-        this.playerService.setCurrentPlayer(player);
-        alert('Player details successfully saved');
-      },
-      (err: any) => {});
-    } else {
-      this.playerService.savePlayerDetails(player).subscribe( x => {
-        this.playerService.setCurrentPlayer(player);
-        alert('Player details successfully saved');
-      },
-      (err: any) => {});
-    }
-
-  }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(CropperPictureDialogComponent, {
+    const dialogRef = this.dialog.open(PlayerInfoModalComponent, {
       // width: '550px',
       // minHeight: '600px';
-      data: this.playerDetails.picture
+      data: this.playerDetails
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
 
       if (result) {
-        this.playerDetails.picture.url = result;
+        this.playerDetails = result;
+        const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
+        if (this.playerDetails.picture.url.includes(';base64')) {
+          this.blobDataService.addBase64Image(this.playerDetails.picture.url, cropperImageName)
+          .pipe(switchMap(data => {
+              result.picture = data;
+              return this.playerService.savePlayerDetails(this.playerDetails);
+          })).subscribe( x => {
+            this.playerService.setCurrentPlayer(this.playerDetails);
+            this.openSnackBar('Player details successfully saved', 'close');
+          },
+          (err: any) => {});
+        } else {
+        this.playerService.savePlayerDetails(this.playerDetails).subscribe( x => {
+          this.playerService.setCurrentPlayer(this.playerDetails);
+          this.openSnackBar('Player details successfully saved', 'close');
+          },
+          (err: any) => {});
+        }
       }
     });
   }
-}
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+}

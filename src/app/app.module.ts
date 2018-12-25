@@ -30,6 +30,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { ApolloBoostModule, ApolloBoost } from 'apollo-angular-boost';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SharedModule } from './shared/shared.module';
+import { DropzoneModule, DROPZONE_CONFIG, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+
+
 
 @NgModule({
   declarations: [

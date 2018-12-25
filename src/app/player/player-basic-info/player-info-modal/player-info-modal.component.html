@@ -1,0 +1,71 @@
+<h1 mat-dialog-title>Player details</h1>
+
+<form #playerForm="ngForm" id="playerForm" name="playerForm">
+  <div class="row">
+    <div class="col-sm-3">
+    <!-- <app-custom-form-input [label]="'Name'" [(model)]="playerDetails.name">
+    </app-custom-form-input> -->
+      <mat-form-field>
+        <input matInput placeholder="Name" name="name" [(ngModel)]="model.name" required>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <!-- <app-custom-form-input [label]="'Surname'" [(model)]="playerDetails.surname" >
+      </app-custom-form-input> -->
+      <mat-form-field>
+        <input matInput placeholder="Surname" name="surname" [(ngModel)]="model.surname" required>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-6">
+       <!-- <img src="{{model.picture.url}}" height="100px" width="100px"/> -->
+      <div class="action-button" (click)='resetDropzoneUploads()'>Reset upload area</div>
+      <dropzone
+        *ngIf="type === 'component'"
+        class="dropzone-container"
+        [config]="config"
+        [disabled]="disabled"
+        fxLayout="row"
+        fxLayoutAlign="start strech"
+        fxFlex="auto"
+        [message]="'Click or drag images here to upload'"
+        (error)="onUploadError($event)"
+        (success)="onUploadSuccess($event)">
+      </dropzone>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <!-- <app-custom-form-select [label]="'Position'" [(model)]="playerDetails.position" 
+        [collection]="positions">
+      </app-custom-form-select> -->
+      <mat-form-field>
+        <mat-select [(value)]="model.position" >
+          <mat-option *ngFor="let item of positions" value="{{item.value}}">{{item.text}}</mat-option>
+        </mat-select>
+        <mat-placeholder>Select position</mat-placeholder>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-slider
+        [max]="2" name="height"
+        [min]="1.5"
+        [step]="0.01"
+        [thumbLabel]="true"
+        [(ngModel)]="model.height">
+      </mat-slider>{{model.height}}
+    </div>
+    <div class="col-sm-6">
+
+    </div>
+  </div>
+
+  <!-- <ng4geo-autocomplete [userSettings]="userSettings" (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete> -->
+
+</form>
+
+<div mat-dialog-actions class="text-right" style="display: block">
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button mat-button (click)="saveAndClose(playerForm)" cdkFocusInitial>Save</button>
+  <!-- <button mat-button [mat-dialog-close]="model" cdkFocusInitial>Save</button> -->
+</div>
