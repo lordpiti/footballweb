@@ -4,7 +4,6 @@ import { PlayerService } from '../player.service';
 import { ActivatedRoute } from '@angular/router';
 import { Player } from '../../shared/interfaces/player.interface';
 import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
-import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { DetailsMenuData } from '../../shared/interfaces/details-menu-data.interface';
 
 @Component({

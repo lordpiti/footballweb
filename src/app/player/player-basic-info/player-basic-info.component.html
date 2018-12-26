@@ -8,8 +8,8 @@
     {{playerDetails.surname}}
   </div>
   <div class="col-sm-6">
-      <img src="{{playerDetails.picture.url}}" height="300px" width="300px"/>
-      <button mat-raised-button (click)="openDialog()">Edit Player</button>
+    <img src="{{playerDetails.picture.url}}" height="300px" width="300px"/>
+    <button *ngIf="userRole === 'Admin'" mat-raised-button (click)="openDialog()">Edit Player</button>
   </div>
 </div>
 

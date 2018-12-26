@@ -27,6 +27,8 @@ export class PlayerBasicInfoComponent implements OnInit {
     teamName: null
   };
 
+  userRole = localStorage.role;
+
   constructor( public playerService: PlayerService, private blobDataService: BlobDataService,
     public dialog: MatDialog, public snackBar: MatSnackBar) { }
 
