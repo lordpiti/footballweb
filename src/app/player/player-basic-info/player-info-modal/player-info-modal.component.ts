@@ -13,7 +13,11 @@ export class PlayerInfoModalComponent {
   public model: any = {};
   public displayErrors = false;
   public isEditing = false;
-  public positions: Array<any> = [{ value: 'Defender', text: 'Defender'}, { value: 'Striker', text: 'Striker'}];
+  public positions: Array<any> = [
+    { value: 'Goalkeeper', text: 'Goalkeeper'},
+    { value: 'Defender', text: 'Defender'},
+    { value: 'Midfielder', text: 'Midfielder'},
+    { value: 'Striker', text: 'Striker'}];
 
   public disabled = false;
 
