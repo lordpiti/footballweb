@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule, MatSortModule, MatButtonModule,
   MatPaginatorModule, MatProgressSpinnerModule, MatFormFieldModule, MatInputModule,
   MatExpansionModule,
-  MatCardModule, MatSnackBarModule } from '@angular/material';
+  MatCardModule, MatSnackBarModule, MatDatepickerModule } from '@angular/material';
 import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 import { PlayerStatsComponent } from './player-stats/player-stats.component';
 import { MatchComponent } from '../shared/components/match/match.component';
@@ -53,6 +53,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatCardModule,
     MatSnackBarModule,
     MatExpansionModule,
+    MatDatepickerModule,
     DropzoneModule,
     Ng4GeoautocompleteModule.forRoot()
   ],

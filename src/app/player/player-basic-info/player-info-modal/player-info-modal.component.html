@@ -50,6 +50,12 @@
     </div>
   </div>
 
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Select the date of birth" name="birthDate" [(ngModel)]="model.birthDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
   <!-- <ng4geo-autocomplete [userSettings]="userSettings" (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete> -->
 
 </form>

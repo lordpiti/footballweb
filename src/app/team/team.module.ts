@@ -24,12 +24,12 @@ import {
 
 
 const teamRoutes: Routes = [
-  { path: '',  component: OverviewComponent },
+  { path: '',  component: OverviewNgrxComponent },
   { path: 'detail/:id', component: TeamDetailComponent, children: [
     { path: '',   redirectTo: 'team-news', pathMatch: 'full' },
     { path: 'summary', component: BasicInfoComponent },
     { path: 'squad', component: SquadComponent },
-    { path: 'competitions', component: TeamChartComponent },
+    // { path: 'competitions', component: TeamChartComponent },
     { path: 'team-news', component: TeamNewsComponent }
   ] },
   { path: 'test-ngrx',  component: OverviewNgrxComponent },

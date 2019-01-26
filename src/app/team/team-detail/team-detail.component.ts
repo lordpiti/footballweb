@@ -4,12 +4,12 @@ import { TeamService} from '../team.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Overlay, overlayConfigFactory } from 'ngx-modialog';
 import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
-import { NgForm } from '@angular/forms';
-// import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
-import { environment } from '../../../environments/environment';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { DetailsMenuData } from '../../shared/interfaces/details-menu-data.interface';
+import { Store } from '@ngrx/store';
+import { TeamActions } from '../../core/actions/teamAction';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-team-detail',
@@ -18,17 +18,16 @@ import { DetailsMenuData } from '../../shared/interfaces/details-menu-data.inter
 })
 export class TeamDetailComponent implements OnInit {
 
-  // public config: DropzoneConfigInterface = {
-  //   url: environment.api_url+'globalmedia/UploadDocument',
-  //   maxFilesize: 50,
-  //   acceptedFiles: 'image/*',
-  //   paramName: 'files'
-  // };
-
   public teamDetails: Team;
   public teamDetailsMenuData: DetailsMenuData;
+  private teamDetails$: Observable<Team>;
 
   constructor(private router: Router, private _teamService: TeamService, private sharedService: ShareDataService,
+    private store: Store<{ team:{
+      current: Team,
+      loadingSpinner: boolean
+    }  }>,
+    private teamActions: TeamActions,
     private route: ActivatedRoute, public modal: Modal, vcr: ViewContainerRef) {
       this.teamDetails = { name: '', id: 0, playerList: [], pictureLogo: {}, stadium: {}, city: null };
   }
@@ -39,53 +38,43 @@ export class TeamDetailComponent implements OnInit {
       this.sharedService.setCurrentArea(AppAreas.Teams);
     }, 0);
 
-    // Use observables here because the team data lives on a service,
-    // and that's being modified via other components. We only want
-    // the data to be updated in this component when the data in the
-    // service changes
-    this._teamService.getCurrentTeam().subscribe(data => {
-      this.teamDetails = Object.assign({}, data);
-      this.teamDetailsMenuData = {
-        title: this.teamDetails.name,
-        imageUrl: this.teamDetails.pictureLogo.url,
-        entityName: 'Teams',
-        itemsList: [
-          {
-            title: 'News',
-            link: 'team-news'
-          },
-          {
-            title: 'Summary',
-            link: 'summary'
-          },
-          {
-            title: 'Squad',
-            link: 'squad'
-          },
-          {
-            title: 'Competitions',
-            link: 'competitions'
-          }
-        ],
-        dataLoaded: true
-      };
-    });
-
     this.route.params.subscribe(params => {
       const teamId = +params['id']; // (+) converts string 'id' to a number
 
-      this.getData(teamId);
+      this.store.dispatch(this.teamActions.loadTeamDetails(teamId));
     });
 
-  }
+    this.teamDetails$ = this.store.select(x=>x.team.current);
 
-  private getData(id: number): void {
-    this._teamService.getTeamDetails(id).subscribe(
-      (teamData: Team) => {
-          this._teamService.setCurrentTeam(teamData);
-      },
-      (err: any) => {
+    this.teamDetails$.subscribe(data => {
+      if (data) {
+        this.teamDetails = Object.assign({}, data);
+        this.teamDetailsMenuData = {
+          title: this.teamDetails.name,
+          imageUrl: this.teamDetails.pictureLogo.url,
+          entityName: 'Teams',
+          itemsList: [
+            {
+              title: 'News',
+              link: 'team-news'
+            },
+            {
+              title: 'Summary',
+              link: 'summary'
+            },
+            {
+              title: 'Squad',
+              link: 'squad'
+            },
+            // {
+            //   title: 'Competitions',
+            //   link: 'competitions'
+            // }
+          ],
+          dataLoaded: true
+        };
       }
-    );
+
+    });
   }
 }

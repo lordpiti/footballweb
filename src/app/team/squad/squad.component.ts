@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TeamService} from '../team.service';
+import { Store } from '@ngrx/store';
+import { Team } from '../../shared/interfaces/team.interface';
+import { Observable } from 'rxjs';
+import { Player } from '../../shared/interfaces/player.interface';
 
 @Component({
   selector: 'app-squad',
@@ -8,22 +12,18 @@ import { TeamService} from '../team.service';
 })
 export class SquadComponent implements OnInit {
 
-  public playerList: any;
   public today: Date = new Date();
+  public players$: Observable<Player[]>;
 
-  constructor(private _teamService: TeamService) {
+  constructor(private store: Store<{ team:{
+    current: Team,
+    loadingSpinner: boolean
+  }  }>,) {
 
   }
 
   ngOnInit() {
-    // Preguntar como hacer esto solamente con subscribe ... no parece q se pueda
-    if (this._teamService.currentTeam) {
-      this.playerList = this._teamService.currentTeam.playerList;
-    }
-
-    this._teamService.getCurrentTeam().subscribe(data => {
-      this.playerList = data.playerList;
-    });
+    this.players$ = this.store.select(x=>x.team.current.playerList);
   }
 
 }

@@ -2,18 +2,17 @@ import { Component, OnInit, Input, ViewContainerRef, OnChanges } from '@angular/
 import { GooglemapsService } from '../googlemaps.service';
 import {TeamService} from '../team.service';
 import { Marker } from '../../shared/interfaces/marker.interface';
-import { AgmMap, AgmMarker, MapsAPILoader } from '@agm/core';
-import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
+import { Modal } from 'ngx-modialog/plugins/bootstrap';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { Team } from '../../shared/interfaces/team.interface';
 import { NgForm } from '@angular/forms';
-import { overlayConfigFactory } from 'ngx-modialog';
 import { BlobDataService } from '../../shared/services/blob-data.service';
 import { MatDialog } from '@angular/material';
 import { CropperPictureDialogComponent } from '../../shared/components/cropper-picture-dialog/cropper-picture-dialog.component';
-import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { TeamActions } from '../../core/actions/teamAction';
 
 @Component({
   selector: 'app-basic-info',
@@ -33,12 +32,17 @@ export class BasicInfoComponent implements OnInit {
   location: any;
   stadium: any;
   markers: Marker[] = [];
-
+  public teamDetails$: Observable<Team>;
   public teamDetails: Team;
 
   @Input() newid: number = null;
 
   constructor(private _googlemapsService: GooglemapsService, private _teamService: TeamService,
+    private store: Store<{ team:{
+      current: Team,
+      loadingSpinner: boolean
+    }  }>,
+    private teamActions: TeamActions,
     public modal: Modal, private modalCropperService: ShareDataService, private blobDataService: BlobDataService,
     public dialog: MatDialog, vcr: ViewContainerRef) {
       this.teamDetails = { name: '', id: 0, playerList: [], pictureLogo: {}, stadium: {}, city: null};
@@ -50,16 +54,14 @@ export class BasicInfoComponent implements OnInit {
       this.modalCropperService.setCurrentArea(AppAreas.Teams);
     }, 0);
 
-    if (this._teamService.currentTeam) {
-      this.teamDetails = Object.assign({}, this._teamService.currentTeam);
-      this.stadium = this._teamService.currentTeam.stadium;
-      this.loadGoogleMapsData(this.stadium.name);
-    }
+    this.teamDetails$ = this.store.select(x=>x.team.current);
 
-    this._teamService.getCurrentTeam().subscribe(data => {
-      this.teamDetails = Object.assign({}, data);
-      this.stadium = data.stadium;
-      this.loadGoogleMapsData(this.stadium.name);
+    this.teamDetails$.subscribe(data => {
+      if (data) {
+        this.teamDetails = Object.assign({}, data);
+        this.stadium = data.stadium;
+        this.loadGoogleMapsData(this.stadium.name);
+      }
     });
 
   }
@@ -67,7 +69,6 @@ export class BasicInfoComponent implements OnInit {
   loadGoogleMapsData(stadiumName: string) {
     this._googlemapsService.getData(stadiumName).subscribe(
       (data: any) => {
-        // console.log(data);
         if (data && data.status === 'OK' && data.results) {
           this.location = data.results[0].geometry.location;
           this.markers.push({
@@ -102,24 +103,26 @@ export class BasicInfoComponent implements OnInit {
 
   saveTeamDetails(team: Team, form: NgForm) {
 
-    const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
+    this.store.dispatch(this.teamActions.saveTeamDetails(team));
 
-    if (this.teamDetails.pictureLogo.url.includes(';base64')) {
-      this.blobDataService.addBase64Image(this.teamDetails.pictureLogo.url, cropperImageName)
-      .pipe(switchMap(data => {
-          team.pictureLogo = data;
-          return this._teamService.saveTeamDetails(team);
-      })).subscribe( x => {
-        this._teamService.setCurrentTeam(team);
-        alert('Competition details successfully saved');
-      },
-      (err: any) => {});
-    } else {
-      this._teamService.saveTeamDetails(team).subscribe( x => {
-        alert('Competition details successfully saved');
-      },
-      (err: any) => {});
-    }
+    // const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
+
+    // if (this.teamDetails.pictureLogo.url.includes(';base64')) {
+    //   this.blobDataService.addBase64Image(this.teamDetails.pictureLogo.url, cropperImageName)
+    //   .pipe(switchMap(data => {
+    //       team.pictureLogo = data;
+    //       return this._teamService.saveTeamDetails(team);
+    //   })).subscribe( x => {
+    //     this._teamService.setCurrentTeam(team);
+    //     alert('Competition details successfully saved');
+    //   },
+    //   (err: any) => {});
+    // } else {
+    //   this._teamService.saveTeamDetails(team).subscribe( x => {
+    //     alert('Competition details successfully saved');
+    //   },
+    //   (err: any) => {});
+    // }
 
   }
 

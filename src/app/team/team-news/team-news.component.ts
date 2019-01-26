@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../team.service';
+import { Store } from '@ngrx/store';
+import { Team } from '../../shared/interfaces/team.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-team-news',
@@ -8,21 +11,25 @@ import { TeamService } from '../team.service';
 })
 export class TeamNewsComponent implements OnInit {
 
-  constructor(private _teamService: TeamService) { 
+  constructor(private _teamService: TeamService, private store: Store<{ team:{
+    current: Team,
+    loadingSpinner: boolean
+  }  }>) { 
 
   }
 
   feedUrl: string;
+  teamDetails$: Observable<Team>;
 
   ngOnInit() {
 
-    if (this._teamService.currentTeam) {
-      this.feedUrl = this.getFeedUrl(this._teamService.currentTeam.name);
-    }
+    this.teamDetails$ = this.store.select(x=>x.team.current);
 
-    this._teamService.getCurrentTeam().subscribe(team => {     
-      this.feedUrl = this.getFeedUrl(team.name);
-    })
+    this.teamDetails$.subscribe(teamData => {
+      if (teamData) {
+        this.feedUrl = this.getFeedUrl(teamData.name);
+      }
+    });
   }
 
   private getFeedUrl(teamName: string) {
