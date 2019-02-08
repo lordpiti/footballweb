@@ -1,22 +1,22 @@
 <h1>Player basic info</h1>
 <mat-card>
-<div class="row">
-  <div class="col-sm-7 text-center">
-    <div style="font-size: large">
-      <div>First Name: {{playerDetails.name}}</div>
-      <div>Last Name: {{playerDetails.surname}}</div>
-      <div>Position: {{playerDetails.position}}</div>
-      <div>Height: {{playerDetails.height}} m</div>
-      <div>Place of Birth: {{playerDetails.birthPlace}}</div>
-      <div>Date of Birth: {{playerDetails.birthDate | date:'MMM d, y'}}</div>    
-    </div>
+  <div class="row">
+    <div class="col-sm-7 text-center">
+      <div style="font-size: large">
+        <div>First Name: {{playerDetails.name}}</div>
+        <div>Last Name: {{playerDetails.surname}}</div>
+        <div>Position: {{playerDetails.position}}</div>
+        <div>Height: {{playerDetails.height}} m</div>
+        <div>Place of Birth: {{playerDetails.birthPlace}}</div>
+        <div>Date of Birth: {{playerDetails.birthDate | date:'MMM d, y'}}</div>    
+      </div>
 
-    <button class="margin-top1" *ngIf="userRole === 'Admin'" mat-raised-button (click)="openDialog()">Edit Player</button>
+      <button class="margin-top1" *ngIf="userRole === 'Admin'" mat-raised-button (click)="openDialog()">Edit Player</button>
+    </div>
+    <div class="col-sm-5 text-right">
+      <img src="{{playerDetails.picture.url}}" height="300px" width="300px"/>  
+    </div>
   </div>
-  <div class="col-sm-5 text-right">
-    <img src="{{playerDetails.picture.url}}" height="300px" width="300px"/>  
-  </div>
-</div>
 
 </mat-card>
 
