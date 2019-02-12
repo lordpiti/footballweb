@@ -4,13 +4,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "build": "ng build",
+    "build": "ng build --aot --prod",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start": "node server.js",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
-    "postinstall": "ng build --aot --prod",
     "deploy": "git push origin master && git push heroku master",
     "doc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json"
   },
@@ -19,7 +18,7 @@
     "@agm/core": "^1.0.0-beta.5",
     "@angular-devkit/build-optimizer": "^0.13.1",
     "@angular/animations": "7.2.4",
-    "@angular/cdk": "7.3.1",
+    "@angular/cdk": "7.3.2",
     "@angular/cli": "7.3.1",
     "@angular/common": "7.2.4",
     "@angular/compiler": "7.2.4",
@@ -28,8 +27,8 @@
     "@angular/forms": "7.2.4",
     "@angular/http": "7.2.4",
     "@angular/language-service": "7.2.4",
-    "@angular/material": "7.3.1",
-    "@angular/material-moment-adapter": "7.3.1",
+    "@angular/material": "7.3.2",
+    "@angular/material-moment-adapter": "7.3.2",
     "@angular/platform-browser": "7.2.4",
     "@angular/platform-browser-dynamic": "7.2.4",
     "@angular/pwa": "^0.13.1",
@@ -68,7 +67,7 @@
     "@angular/compiler-cli": "^7.2.4",
     "@types/jasmine": "^3.3.8",
     "@types/jasminewd2": "^2.0.6",
-    "@types/node": "^10.12.23",
+    "@types/node": "^10.12.24",
     "codelyzer": "^4.5.0",
     "jasmine-core": "^3.3.0",
     "jasmine-spec-reporter": "^4.2.1",
@@ -86,5 +85,6 @@
   },
   "engines": {
     "node": "8.9.4"
-  }
+  },
+  "heroku-run-build-script": true
 }
