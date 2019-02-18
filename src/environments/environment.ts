@@ -11,5 +11,7 @@ export const environment = {
   GOOGLE_CLIENT_ID: '357813264391-bc51b2u0ohaeb6v78k2b2tpr5pdi6c09.apps.googleusercontent.com',
   home_url: 'http://localhost:4200',
   //hubUrl: 'http://localhost:57544',
-  hubUrl: 'https://footballsandbox.azurewebsites.net'
+  hubUrl: 'https://footballsandbox.azurewebsites.net',
+  home_rss_feed_url: 'http://newsrss.bbc.co.uk/rss/sportonline_uk_edition/football/rss.xml',
+  rss2json_base_url: 'https://cors-anywhere.herokuapp.com/https://api.rss2json.com/v1/api.json?rss_url='
 };

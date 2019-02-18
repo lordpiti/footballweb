@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BaseService } from './base.service';
 import { RSSResponse } from '../interfaces/rss-feed.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RssReaderService extends BaseService {
 
-  private rssToJsonServiceBaseUrl: string = 'https://cors-anywhere.herokuapp.com/https://api.rss2json.com/v1/api.json?rss_url=';
+  private rssToJsonServiceBaseUrl: string = environment.rss2json_base_url;
 
   constructor(public httpNew: HttpClient) {
     super(httpNew);
