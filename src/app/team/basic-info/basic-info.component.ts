@@ -1,13 +1,11 @@
-import { Component, OnInit, Input, ViewContainerRef, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GooglemapsService } from '../googlemaps.service';
-import {TeamService} from '../team.service';
 import { Marker } from '../../shared/interfaces/marker.interface';
 import { Modal } from 'ngx-modialog/plugins/bootstrap';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { Team } from '../../shared/interfaces/team.interface';
 import { NgForm } from '@angular/forms';
-import { BlobDataService } from '../../shared/services/blob-data.service';
 import { MatDialog, MatSnackBarConfig, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';

@@ -59,7 +59,7 @@ export class TeamInfoModalComponent {
 
   public onUploadSuccess(args: any): void {
     console.log('onUploadSuccess:', args);
-    this.model.picture.url = args[0].dataURL;
+    this.model.pictureLogo.url = args[0].dataURL;
   }
 
 }

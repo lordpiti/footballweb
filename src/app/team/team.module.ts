@@ -12,7 +12,6 @@ import { GooglemapsService } from './googlemaps.service';
 import { SharedModule } from '../shared/shared.module';
 import { OverviewNgrxComponent } from './overview-ngrx/overview-ngrx.component';
 import { TeamNewsComponent } from './team-news/team-news.component';
-
 import {
   MatSidenavModule,
   MatCheckboxModule,
@@ -23,7 +22,7 @@ import {
   MatCardModule
 } from '@angular/material';
 import { TeamInfoModalComponent } from './basic-info/team-info-modal/team-info-modal.component';
-import { DROPZONE_CONFIG, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { DROPZONE_CONFIG, DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 
 const teamRoutes: Routes = [
@@ -59,7 +58,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatButtonToggleModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    DropzoneModule
   ],
   declarations: [
     OverviewComponent,

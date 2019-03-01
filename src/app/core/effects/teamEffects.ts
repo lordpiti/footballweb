@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { map, filter, catchError, mergeMap, switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { ActionWithPayload } from '../actions/actionWithPayload';
 import { TeamService } from '../../team/team.service';
 import { TeamActions } from '../actions/teamAction';
 import { BlobDataService } from '../../shared/services/blob-data.service';
 import { Team } from '../../shared/interfaces/team.interface';
-import { dispatch } from 'rxjs/internal/observable/pairs';
-import { of } from 'zen-observable';
 
 @Injectable()
 export class TeamEffects {
@@ -35,7 +33,6 @@ export class TeamEffects {
         .ofType('LOAD_TEAM_DETAILS').pipe(
         switchMap(action => this.teamService.getTeamDetails(action.payload)),
         map((teams: any) => {
-            debugger;
             return this.teamActions.loadTeamSuccess(teams);
          }
         ));
