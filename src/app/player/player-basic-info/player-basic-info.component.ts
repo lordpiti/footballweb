@@ -19,7 +19,13 @@ export class PlayerBasicInfoComponent implements OnInit {
     dorsal: null,
     height: null,
     name: null,
-    picture: {bytes: null, base64String: null, fileName: null, url: null, containerReference: null},
+    picture: {
+      bytes: null,
+      base64String: null,
+      fileName: null,
+      url: null,
+      containerReference: null
+    },
     playerId: null,
     position: null,
     surname: null,

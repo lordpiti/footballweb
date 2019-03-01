@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Team details</h1>
+
+<form #teamForm="ngForm" id="teamForm" name="teamForm">
+  <app-custom-form-input [(model)]="model.name" [label]="'Name'">
+  </app-custom-form-input>
+  <app-custom-form-input [(model)]="model.city" [label]="'City'">
+  </app-custom-form-input>
+</form>
+
+<div mat-dialog-actions class="text-right" style="display: block">
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button mat-button (click)="saveAndClose(teamForm)" cdkFocusInitial>Save</button>
+  <!-- <button mat-button [mat-dialog-close]="model" cdkFocusInitial>Save</button> -->
+</div>

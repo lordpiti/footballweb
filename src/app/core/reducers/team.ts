@@ -36,7 +36,14 @@ export function team(state: any = [], action) {
             return {
                 ...state,
                 current: action.payload,
+                snackbar: 'Team details have been successfully saved',
                 loadingSpinner: false
+            }
+        }
+        case 'SHOW_SNACKBAR': {
+            return {
+                ...state,
+                snackbar: action.payload
             }
         }
         default: {

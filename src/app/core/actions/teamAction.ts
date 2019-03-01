@@ -11,6 +11,8 @@ export class TeamActions {
     static LOAD_TEAM_DETAILS_SUCCESS = 'LOAD_TEAM_DETAILS_SUCCESS';
     static SAVE_TEAM_DETAILS = 'SAVE_TEAM_DETAILS';
     static SAVE_TEAM_DETAILS_SUCCESS = 'SAVE_TEAM_DETAILS_SUCCESS';
+    static SHOW_SNACKBAR = 'SHOW_SNACKBAR';
+    static HIDE_SNACKBAR = 'HIDE_SNACKBAR';
 
     loadTeams(filter): ActionWithPayload<any> {
         return {
@@ -58,6 +60,20 @@ export class TeamActions {
         return {
             type: TeamActions.SAVE_TEAM_DETAILS_SUCCESS,
             payload: team
+        };
+    }
+
+    showSnackbar(message: string):  ActionWithPayload<any> {
+        return {
+            type: TeamActions.SHOW_SNACKBAR,
+            payload: message
+        };
+    }
+
+    hideSnackbar(message: string):  ActionWithPayload<any> {
+        return {
+            type: TeamActions.HIDE_SNACKBAR,
+            payload: message
         };
     }
 }

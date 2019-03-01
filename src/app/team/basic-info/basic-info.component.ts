@@ -8,11 +8,11 @@ import { AppAreas } from '../../shared/enums/app-areas';
 import { Team } from '../../shared/interfaces/team.interface';
 import { NgForm } from '@angular/forms';
 import { BlobDataService } from '../../shared/services/blob-data.service';
-import { MatDialog } from '@angular/material';
-import { CropperPictureDialogComponent } from '../../shared/components/cropper-picture-dialog/cropper-picture-dialog.component';
+import { MatDialog, MatSnackBarConfig, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { TeamActions } from '../../core/actions/teamAction';
+import { TeamInfoModalComponent } from './team-info-modal/team-info-modal.component';
 
 @Component({
   selector: 'app-basic-info',
@@ -33,19 +33,30 @@ export class BasicInfoComponent implements OnInit {
   stadium: any;
   markers: Marker[] = [];
   public teamDetails$: Observable<Team>;
+  public snackbar$: Observable<string>;
   public teamDetails: Team;
 
   @Input() newid: number = null;
 
-  constructor(private _googlemapsService: GooglemapsService, private _teamService: TeamService,
+  userRole = localStorage.role;
+
+  constructor(private _googlemapsService: GooglemapsService,
     private store: Store<{ team:{
       current: Team,
-      loadingSpinner: boolean
+      loadingSpinner: boolean,
+      snackbar: string
     }  }>,
     private teamActions: TeamActions,
-    public modal: Modal, private modalCropperService: ShareDataService, private blobDataService: BlobDataService,
-    public dialog: MatDialog, vcr: ViewContainerRef) {
-      this.teamDetails = { name: '', id: 0, playerList: [], pictureLogo: {}, stadium: {}, city: null};
+    public modal: Modal, private modalCropperService: ShareDataService,
+    public dialog: MatDialog, public snackBar: MatSnackBar) {
+      this.teamDetails = {
+        name: '',
+        id: 0,
+        playerList: [],
+        pictureLogo: {},
+        stadium: {},
+        city: null
+      };
   }
 
   ngOnInit() {
@@ -61,6 +72,14 @@ export class BasicInfoComponent implements OnInit {
         this.teamDetails = Object.assign({}, data);
         this.stadium = data.stadium;
         this.loadGoogleMapsData(this.stadium.name);
+      }
+    });
+
+    this.snackbar$ = this.store.select(x => x.team.snackbar);
+    this.snackbar$.subscribe(value => {
+      if (value) {
+        this.openSnackBar(value, '');
+        this.store.dispatch(this.teamActions.showSnackbar(null));
       }
     });
 
@@ -105,47 +124,28 @@ export class BasicInfoComponent implements OnInit {
 
     this.store.dispatch(this.teamActions.saveTeamDetails(team));
 
-    // const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
-
-    // if (this.teamDetails.pictureLogo.url.includes(';base64')) {
-    //   this.blobDataService.addBase64Image(this.teamDetails.pictureLogo.url, cropperImageName)
-    //   .pipe(switchMap(data => {
-    //       team.pictureLogo = data;
-    //       return this._teamService.saveTeamDetails(team);
-    //   })).subscribe( x => {
-    //     this._teamService.setCurrentTeam(team);
-    //     alert('Competition details successfully saved');
-    //   },
-    //   (err: any) => {});
-    // } else {
-    //   this._teamService.saveTeamDetails(team).subscribe( x => {
-    //     alert('Competition details successfully saved');
-    //   },
-    //   (err: any) => {});
-    // }
-
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(CropperPictureDialogComponent, {
+    const dialogRef = this.dialog.open(TeamInfoModalComponent, {
       // width: '550px',
       // minHeight: '600px';
-      data: this.teamDetails.pictureLogo
+      data: this.teamDetails
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
 
       if (result) {
-        this.teamDetails.pictureLogo.url = result;
+        this.store.dispatch(this.teamActions.saveTeamDetails(result));
       }
     });
   }
 
-  onUploadError($event) {
-  }
-
-  onUploadSuccess($event) {
-
+  private openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.panelClass = ['custom-class'];
+    config.duration = 3000;
+    config.horizontalPosition = 'right';
+    this.snackBar.open(message, null, config);
   }
 }

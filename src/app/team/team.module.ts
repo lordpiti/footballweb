@@ -19,8 +19,11 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatProgressSpinnerModule,
+  MatSnackBarModule,
   MatCardModule
 } from '@angular/material';
+import { TeamInfoModalComponent } from './basic-info/team-info-modal/team-info-modal.component';
+import { DROPZONE_CONFIG, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 
 const teamRoutes: Routes = [
@@ -36,6 +39,13 @@ const teamRoutes: Routes = [
   { path: '**',  component: OverviewComponent }
 ];
 
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
+  // Change this to your upload POST address:
+  url: 'https://httpbin.org/post',
+  acceptedFiles: 'image/*',
+  createImageThumbnails: true
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -48,7 +58,8 @@ const teamRoutes: Routes = [
     MatButtonModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
   ],
   declarations: [
     OverviewComponent,
@@ -57,11 +68,17 @@ const teamRoutes: Routes = [
     SquadComponent,
     BasicInfoComponent,
     OverviewNgrxComponent,
-    TeamNewsComponent
+    TeamNewsComponent,
+    TeamInfoModalComponent
   ],
+  entryComponents: [TeamInfoModalComponent],
   providers: [
     TeamService,
-    GooglemapsService
+    GooglemapsService,
+    {
+      provide: DROPZONE_CONFIG,
+      useValue: DEFAULT_DROPZONE_CONFIG
+    }
   ],
   exports: [
     RouterModule

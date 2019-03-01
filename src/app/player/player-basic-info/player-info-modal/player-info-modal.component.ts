@@ -57,7 +57,7 @@ export class PlayerInfoModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) {
       if (data) {
         Object.assign(this.model, data);
-        this.model.image = ''; // data.url;
+        this.model.image = '';
         this.isEditing = true;
       }
     }

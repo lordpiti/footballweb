@@ -2,40 +2,39 @@
   Team basic info
 </h1>
 
-<div class="row margin-top2">
-  <div class="col-sm-9">
-    <form #teamForm="ngForm" id="teamForm" name="teamForm">
-      <app-custom-form-input [(model)]="teamDetails.name" [label]="'Name'">
-      </app-custom-form-input>
-      <app-custom-form-input [(model)]="teamDetails.city" [label]="'City'">
-      </app-custom-form-input>
-    </form>
-  </div>
-  <div class="col-sm-3">
-    <div *ngIf="teamDetails.pictureLogo" class="text-center">
-      <img src="{{teamDetails.pictureLogo.url}}" width="100" height="100">
-      <button mat-raised-button (click)="openDialog()">Select image</button>
+<mat-card>
+  <div class="row">
+    <div class="col-sm-4 text-center">
+      <div style="font-size: large">
+        <div>Team name: {{teamDetails.name}}</div>
+        <div>City: {{teamDetails.city}}</div>
+      </div>
+
+      <button class="margin-top1" *ngIf="userRole === 'Admin'" mat-raised-button (click)="openDialog()">Edit Team</button>
+    </div>
+    <div class="col-sm-4">
+      <div *ngIf="stadium">
+        {{stadium.name}}
+        Capacity: {{stadium.capacity}} people
+      </div>
+      <agm-map *ngIf="location" [zoom]="zoom"
+        [disableDefaultUI]="false"
+        [latitude]="location.lat"
+        [longitude]="location.lng" [zoomControl]="true"
+        (mapClick)="mapClicked($event)">
+        <agm-marker *ngFor="let m of markers; let i = index"
+          (markerClick)="clickedMarker(m.label, i)"
+          [latitude]="m.lat"
+          [longitude]="m.lng"
+          [label]="m.label"
+          [markerDraggable]="m.draggable"
+          (dragEnd)="markerDragEnd(m, $event)">
+        </agm-marker>
+      </agm-map>
+    </div>
+    <div class="col-sm-4 text-right">
+      <img src="{{teamDetails.pictureLogo.url}}" height="300px" width="300px">
     </div>
   </div>
-</div>
 
-<button mat-raised-button color="primary" (click)="saveTeamDetails(teamDetails, teamForm)">Save</button>
-
-<div *ngIf="stadium">
-  {{stadium.name}}
-  {{stadium.capacity}}
-</div>
-<agm-map *ngIf="location" [zoom]="zoom"
-  [disableDefaultUI]="false"
-  [latitude]="location.lat"
-  [longitude]="location.lng" [zoomControl]="true"
-  (mapClick)="mapClicked($event)">
-  <agm-marker *ngFor="let m of markers; let i = index"
-    (markerClick)="clickedMarker(m.label, i)"
-    [latitude]="m.lat"
-    [longitude]="m.lng"
-    [label]="m.label"
-    [markerDraggable]="m.draggable"
-    (dragEnd)="markerDragEnd(m, $event)">
-  </agm-marker>
-</agm-map>
+</mat-card>
