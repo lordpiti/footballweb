@@ -28,6 +28,7 @@ import { CropperPictureDialogComponent } from './components/cropper-picture-dial
 import { BlobDataService } from './services/blob-data.service';
 import { RssReaderComponent } from './components/rss-reader/rss-reader.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { IsAuthenticatedWithRolesDirective } from './directives/is-authenticated-with-roles/is-authenticated-with-roles.directive';
 
 @NgModule({
   imports: [
@@ -70,7 +71,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     DetailsLayoutComponent,
     CropperPictureDialogComponent,
     RssReaderComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    IsAuthenticatedWithRolesDirective
   ],
   entryComponents: [CropperPictureDialogComponent, LoadingSpinnerComponent],
   providers: [
@@ -100,7 +102,8 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     MatInputModule,
     MatSliderModule,
     RssReaderComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    IsAuthenticatedWithRolesDirective
   ]
 })
 export class SharedModule {

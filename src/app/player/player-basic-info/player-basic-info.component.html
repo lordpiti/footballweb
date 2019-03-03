@@ -11,7 +11,13 @@
         <div>Date of Birth: {{playerDetails.birthDate | date:'MMM d, y'}}</div>    
       </div>
 
-      <button class="margin-top1" *ngIf="userRole === 'Admin'" mat-raised-button (click)="openDialog()">Edit Player</button>
+      <div *appIsAuthenticatedWithRoles="['Admin']">
+        <button class="margin-top1"
+          mat-raised-button
+          (click)="openDialog()">
+            Edit Player
+        </button>
+      </div>
     </div>
     <div class="col-sm-5 text-right">
       <img src="{{playerDetails.picture.url}}" height="300px" width="300px"/>  
