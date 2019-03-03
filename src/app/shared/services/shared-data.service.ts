@@ -5,18 +5,19 @@ import { Subject ,  Observable } from 'rxjs';
 @Injectable()
 export class ShareDataService {
     public data: any;
-    private subject: Subject<any> = new Subject<any>();
+    public showSpinner: boolean;
+    private subject: Subject<boolean> = new Subject<boolean>();
     public authenticationToken: string;
 
     public currentArea: AppAreas;
     private currentAreaSubject: Subject<AppAreas> = new Subject<AppAreas>();
 
-    public setData(_data: any) {
-        this.data = _data;
+    public setData(_data: boolean) {
+        this.showSpinner = _data;
         this.subject.next(_data);
     }
 
-    public getData(): Observable<any> {
+    public getData(): Observable<boolean> {
         return this.subject.asObservable();
     }
 

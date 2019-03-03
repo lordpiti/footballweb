@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ValuesPipe implements PipeTransform {
 
     transform(value: any, args?: any[]): Object[] {
-        const keyArr: any[] = Object.keys(value),
+        const keyArr = Object.keys(value),
             dataArr = [];
 
         keyArr.forEach((key: any) => {

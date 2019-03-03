@@ -38,7 +38,9 @@ export class CompetitionOverviewComponent implements OnInit, AfterViewInit {
 
       this.competitionList = this._competitionService.getAllCompetitions();
 
+      this.sharedService.setData(true);
       this._competitionService.getAllCompetitions().subscribe( response => {
+        this.sharedService.setData(false);
         this.competitionListForTable = new MatTableDataSource(response);
         this.competitionListForTable.sort = this.sort;
       });

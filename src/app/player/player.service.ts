@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, RequestOptions } from '@angular/http';
-import { map, filter, catchError, mergeMap, switchMap, combineLatest } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 import { BaseService } from '../shared/services/base.service';
-import { ShareDataService } from '../shared/services/shared-data.service';
 import { Player } from '../shared/interfaces/player.interface';
 import { Subject ,  Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';

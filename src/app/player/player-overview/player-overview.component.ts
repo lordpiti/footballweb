@@ -36,8 +36,11 @@ export class PlayerOverviewComponent implements OnInit, AfterViewInit {
       this.sharedService.setCurrentArea(AppAreas.Players);
     }, 0);
 
+    this.sharedService.setData(true);
+
     this.playerService.getPlayers().subscribe(
       (response: Array<Player>) => {
+        this.sharedService.setData(false);
           this.playerList = response;
           this.playerListForTable = new MatTableDataSource(response);
           this.playerListForTable.sort = this.sort;

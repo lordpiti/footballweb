@@ -27,6 +27,7 @@ import { MatListModule,
 import { CropperPictureDialogComponent } from './components/cropper-picture-dialog/cropper-picture-dialog.component';
 import { BlobDataService } from './services/blob-data.service';
 import { RssReaderComponent } from './components/rss-reader/rss-reader.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   imports: [
@@ -68,9 +69,10 @@ import { RssReaderComponent } from './components/rss-reader/rss-reader.component
     ValuesPipe,
     DetailsLayoutComponent,
     CropperPictureDialogComponent,
-    RssReaderComponent
+    RssReaderComponent,
+    LoadingSpinnerComponent
   ],
-  entryComponents: [CropperPictureDialogComponent],
+  entryComponents: [CropperPictureDialogComponent, LoadingSpinnerComponent],
   providers: [
     MatchService, BlobDataService
   ],
@@ -97,16 +99,10 @@ import { RssReaderComponent } from './components/rss-reader/rss-reader.component
     MatSelectModule,
     MatInputModule,
     MatSliderModule,
-    RssReaderComponent
+    RssReaderComponent,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule {
-  // static forRoot() {
-  //   return {
-  //     ngModule: SharedModule,
-  //     providers: [
-  //       MatchService
-  //     ]
-  //   };
-  // }
- }
+
+}

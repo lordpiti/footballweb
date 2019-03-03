@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Apollo, gql} from 'apollo-angular-boost';
 import Helpers from '../../shared/utils/helpers';
+import { ShareDataService } from '../../shared/services/shared-data.service';
 
 @Component({
   selector: 'app-player-stats',
@@ -14,9 +15,10 @@ export class PlayerStatsComponent implements OnInit {
   error: any;
   panelOpenState = false;
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo, private sharedService: ShareDataService) {}
 
   ngOnInit() {
+    this.sharedService.setData(true);
     this.apollo
       .watchQuery({
         query: gql`
@@ -34,6 +36,7 @@ export class PlayerStatsComponent implements OnInit {
     `,
       })
       .valueChanges.subscribe((result: any) => {
+        this.sharedService.setData(false);
         const matches = result.data.player.playerMatchesPlayed;
         this.matchesGrouped = this.transformData(matches);
       });
