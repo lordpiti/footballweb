@@ -21,6 +21,8 @@ import { DrawMatchComponent } from './competition-basic-info/draw-match/draw-mat
 import { CompetitionSimulationMatchComponent } from './competition-simulation/competition-simulation-match/competition-simulation-match.component';
 import { MatTableModule, MatSortModule, MatButtonModule, MatSelectModule, MatFormFieldModule, MatCardModule } from '@angular/material';
 import { CountdownModule } from 'ngx-countdown';
+import { CompetitionInfoModalComponent } from './competition-summary/competition-info-modal/competition-info-modal.component';
+import { DROPZONE_CONFIG, DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 const competitionRoutes: Routes = [
   { path: '',  component: CompetitionOverviewComponent },
@@ -35,6 +37,13 @@ const competitionRoutes: Routes = [
   { path: '**',  component: CompetitionOverviewComponent }
 ];
 
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
+  // Change this to your upload POST address:
+  url: 'https://httpbin.org/post',
+  acceptedFiles: 'image/*',
+  createImageThumbnails: true
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -48,10 +57,15 @@ const competitionRoutes: Routes = [
     MatSelectModule,
     MatCardModule,
     SharedModule,
-    CountdownModule
+    CountdownModule,
+    DropzoneModule
   ],
   providers: [
-    CompetitionService
+    CompetitionService,
+    {
+      provide: DROPZONE_CONFIG,
+      useValue: DEFAULT_DROPZONE_CONFIG
+    }
   ],
   declarations: [
     CompetitionRoundComponent,
@@ -64,7 +78,9 @@ const competitionRoutes: Routes = [
     CompetitionSimulationEventComponent,
     CompetitionMatchesComponent,
     CompetitionSummaryComponent, DrawMatchComponent,
-    CompetitionSimulationMatchComponent
-]
+    CompetitionSimulationMatchComponent,
+    CompetitionInfoModalComponent
+  ],
+  entryComponents: [CompetitionInfoModalComponent]
 })
 export class CompetitionModule { }

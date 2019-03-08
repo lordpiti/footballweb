@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>Competition details</h1>
+
+<form #playerForm="ngForm" id="playerForm" name="playerForm">
+  <div class="row">
+    <div class="col-sm-6">
+      <mat-form-field>
+        <input matInput placeholder="Name" name="name" [(ngModel)]="model.name">
+      </mat-form-field> 
+
+      <mat-form-field>
+        <input matInput placeholder="Season" name="season" [(ngModel)]="model.season">
+      </mat-form-field>     
+    </div>
+    <div class="col-sm-6">
+       <!-- <img src="{{model.picture.url}}" height="100px" width="100px"/> -->
+      <dropzone
+        class="dropzone-container"
+        [config]="config"
+        [disabled]="disabled"
+        [message]="'Click or drag images here to upload'"
+        (error)="onUploadError($event)"
+        (success)="onUploadSuccess($event)">
+      </dropzone>
+      <div class="action-button delete-dropzone-image"
+        (click)='resetDropzoneUploads()'>
+        Remove image
+      </div>
+    </div>
+  </div>
+</form>
+
+<div mat-dialog-actions class="text-right" style="display: block">
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button mat-button (click)="saveAndClose(playerForm)" cdkFocusInitial>Save</button>
+</div>

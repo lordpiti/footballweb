@@ -79,7 +79,7 @@ export class CompetitionService extends BaseService {
     map(res => this.convertToChartData(res)));
   }
 
-  savePlayerDetails(competitionDetails: Competition) {
+  saveCompetitionDetails(competitionDetails: Competition) {
     const url = 'competition/saveCompetitionDetails';
 
     return this.post<any>(url, competitionDetails);
