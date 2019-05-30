@@ -21,7 +21,7 @@ export class CompetitionOverviewComponent implements OnInit, AfterViewInit {
 
     }
 
-    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatSort, null) sort: MatSort;
 
     /**
      * Set the sort after the view init since this component will

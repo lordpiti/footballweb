@@ -20,8 +20,8 @@ export class PlayerOverviewComponent implements OnInit, AfterViewInit {
 
   constructor(private sharedService: ShareDataService, private playerService: PlayerService) { }
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, null) paginator: MatPaginator;
+  @ViewChild(MatSort, null) sort: MatSort;
 
   /**
    * Set the sort after the view init since this component will

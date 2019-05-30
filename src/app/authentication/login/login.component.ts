@@ -1,5 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { Component, OnInit, NgZone, AfterViewInit } from '@angular/core';
 import { InitParams } from 'ngx-facebook/dist/esm/models/init-params';
 import { FacebookService } from 'ngx-facebook/dist/esm/providers/facebook';
 import { GoogleAuthService } from '../google-auth.service';

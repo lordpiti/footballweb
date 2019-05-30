@@ -24,8 +24,8 @@ export class TeamInfoModalComponent {
     cancelReset: null
   };
 
-  @ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
-  @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
+  @ViewChild(DropzoneComponent, null) componentRef?: DropzoneComponent;
+  @ViewChild(DropzoneDirective, null) directiveRef?: DropzoneDirective;
 
   constructor(
     public dialogRef: MatDialogRef<TeamInfoModalComponent>,
