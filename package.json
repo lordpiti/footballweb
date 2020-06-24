@@ -86,7 +86,7 @@
     "@angular-devkit/build-angular": "~0.800.6"
   },
   "engines": {
-    "node": "10.9"
-  },
-  "heroku-run-build-script": true
+    "node": "~8.12.0",
+    "npm": "~6.9.2"
+  }
 }
