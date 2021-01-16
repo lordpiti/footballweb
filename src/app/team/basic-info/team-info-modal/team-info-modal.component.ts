@@ -1,14 +1,17 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { DropzoneComponent, DropzoneDirective, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { Component, OnInit, Inject, ViewChild } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import {
+  DropzoneComponent,
+  DropzoneDirective,
+  DropzoneConfigInterface,
+} from "ngx-dropzone-wrapper";
 
 @Component({
-  selector: 'app-team-info-modal',
-  templateUrl: './team-info-modal.component.html',
-  styleUrls: ['./team-info-modal.component.scss']
+  selector: "app-team-info-modal",
+  templateUrl: "./team-info-modal.component.html",
+  styleUrls: ["./team-info-modal.component.scss"],
 })
 export class TeamInfoModalComponent {
-
   public published = false;
   public model: any = {};
   public displayErrors = false;
@@ -21,7 +24,7 @@ export class TeamInfoModalComponent {
     maxFiles: 1,
     autoReset: null,
     errorReset: null,
-    cancelReset: null
+    cancelReset: null,
   };
 
   @ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
@@ -29,13 +32,14 @@ export class TeamInfoModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<TeamInfoModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      if (data) {
-        Object.assign(this.model, data);
-        this.model.image = '';
-        this.isEditing = true;
-      }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    if (data) {
+      Object.assign(this.model, data);
+      this.model.image = "";
+      this.isEditing = true;
     }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -54,12 +58,11 @@ export class TeamInfoModalComponent {
   }
 
   public onUploadError(args: any): void {
-    console.log('onUploadError:', args);
+    console.log("onUploadError:", args);
   }
 
   public onUploadSuccess(args: any): void {
-    console.log('onUploadSuccess:', args);
+    console.log("onUploadSuccess:", args);
     this.model.pictureLogo.url = args[0].dataURL;
   }
-
 }

@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Competition } from '../../shared/interfaces/competition.interface';
 import { CompetitionService } from '../competition.service';
 import { BlobDataService } from '../../shared/services/blob-data.service';
-import { MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { switchMap } from 'rxjs/operators';
 import { CompetitionInfoModalComponent } from './competition-info-modal/competition-info-modal.component';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-competition-summary',
   templateUrl: './competition-summary.component.html',
-  styleUrls: ['./competition-summary.component.scss']
+  styleUrls: ['./competition-summary.component.scss'],
 })
 export class CompetitionSummaryComponent implements OnInit {
-
   competitionDetails: Competition = null;
 
   // constructor(private competitionService: CompetitionService, private blobDataService: BlobDataService, public dialog: MatDialog) { }
@@ -68,8 +68,12 @@ export class CompetitionSummaryComponent implements OnInit {
 
   // }
 
-  constructor( public competitionService: CompetitionService, private blobDataService: BlobDataService,
-    public dialog: MatDialog, public snackBar: MatSnackBar) { }
+  constructor(
+    public competitionService: CompetitionService,
+    private blobDataService: BlobDataService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {
     debugger;
@@ -77,41 +81,62 @@ export class CompetitionSummaryComponent implements OnInit {
       this.competitionDetails = this.competitionService.currentCompetition;
     }
 
-    this.competitionService.getCurrentCompetition().subscribe(data => {
+    this.competitionService.getCurrentCompetition().subscribe((data) => {
       debugger;
       this.competitionDetails = data;
     });
-
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CompetitionInfoModalComponent, {
       // width: '550px',
       // minHeight: '600px';
-      data: this.competitionDetails
+      data: this.competitionDetails,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.competitionDetails = result;
-        const cropperImageName = Math.floor(Math.random() * 2000).toString() + '.jpg';
+        const cropperImageName =
+          Math.floor(Math.random() * 2000).toString() + '.jpg';
         if (this.competitionDetails.logo.url.includes(';base64')) {
-          this.blobDataService.addBase64Image(this.competitionDetails.logo.url, cropperImageName)
-          .pipe(switchMap(data => {
-              result.picture = data;
-              return this.competitionService.saveCompetitionDetails(this.competitionDetails);
-          })).subscribe( x => {
-            this.competitionService.setCurrentCompetition(this.competitionDetails);
-            this.openSnackBar('Competition details successfully saved', 'close');
-          },
-          (err: any) => {});
+          this.blobDataService
+            .addBase64Image(this.competitionDetails.logo.url, cropperImageName)
+            .pipe(
+              switchMap((data) => {
+                result.picture = data;
+                return this.competitionService.saveCompetitionDetails(
+                  this.competitionDetails
+                );
+              })
+            )
+            .subscribe(
+              (x) => {
+                this.competitionService.setCurrentCompetition(
+                  this.competitionDetails
+                );
+                this.openSnackBar(
+                  'Competition details successfully saved',
+                  'close'
+                );
+              },
+              (err: any) => {}
+            );
         } else {
-        this.competitionService.saveCompetitionDetails(this.competitionDetails).subscribe( x => {
-          this.competitionService.setCurrentCompetition(this.competitionDetails);
-          this.openSnackBar('Competition details successfully saved', 'close');
-          },
-          (err: any) => {});
+          this.competitionService
+            .saveCompetitionDetails(this.competitionDetails)
+            .subscribe(
+              (x) => {
+                this.competitionService.setCurrentCompetition(
+                  this.competitionDetails
+                );
+                this.openSnackBar(
+                  'Competition details successfully saved',
+                  'close'
+                );
+              },
+              (err: any) => {}
+            );
         }
       }
     });
@@ -124,5 +149,4 @@ export class CompetitionSummaryComponent implements OnInit {
     config.horizontalPosition = 'right';
     this.snackBar.open(message, null, config);
   }
-
 }

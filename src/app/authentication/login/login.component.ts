@@ -1,21 +1,21 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { InitParams } from 'ngx-facebook/dist/esm/models/init-params';
-import { FacebookService } from 'ngx-facebook/dist/esm/providers/facebook';
+import { Component, OnInit, NgZone, AfterViewInit } from '@angular/core';
 import { GoogleAuthService } from '../google-auth.service';
 import { AppGlobals } from '../app-globals';
-import { LoginOptions } from 'ngx-facebook/dist/esm/models/login-options';
-import { LoginResponse } from 'ngx-facebook/dist/esm/models/login-response';
 import { environment } from '../../../environments/environment';
 import { UserService } from '../user.service';
+import {
+  FacebookService,
+  InitParams,
+  LoginOptions,
+  LoginResponse,
+} from 'ngx-facebook';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements AfterViewInit, OnInit {
-
   imageURL: string;
   email: string;
   name: string;
@@ -23,16 +23,19 @@ export class LoginComponent implements AfterViewInit, OnInit {
   authenticationType: string;
   role: string;
 
-  constructor(private fb: FacebookService,
-    private userService: UserService, private _googleAuth: GoogleAuthService, private zone: NgZone) {
+  constructor(
+    private fb: FacebookService,
+    private userService: UserService,
+    private _googleAuth: GoogleAuthService,
+    private zone: NgZone
+  ) {
     const initParams: InitParams = {
       appId: environment.FACEBOOK_APP_ID,
       xfbml: true,
-      version: 'v2.8'
+      version: 'v2.8',
     };
 
     fb.init(initParams);
-
   }
 
   ngOnInit() {
@@ -52,16 +55,19 @@ export class LoginComponent implements AfterViewInit, OnInit {
     const loginOptions: LoginOptions = {
       enable_profile_selector: true,
       return_scopes: true,
-      scope: 'public_profile,user_friends,email'
+      scope: 'public_profile,user_friends,email',
     };
 
-
-    this.fb.login(loginOptions)
+    this.fb
+      .login(loginOptions)
       .then((response: LoginResponse) => {
         console.log(response);
-        this.userService.loginUserFacebook(response.authResponse.userID, response.authResponse.accessToken)
-          .subscribe(data => {
-
+        this.userService
+          .loginUserFacebook(
+            response.authResponse.userID,
+            response.authResponse.accessToken
+          )
+          .subscribe((data) => {
             if (data) {
               // Setting data to localstorage.
               localStorage.setItem('token', response.authResponse.accessToken);
@@ -80,16 +86,15 @@ export class LoginComponent implements AfterViewInit, OnInit {
               this.token = null;
               this.clearLocalStorage();
             }
-
           });
         this.getProfile();
       })
       .catch((error: any) => console.error(error));
-
   }
 
   getProfile() {
-    this.fb.api('/me')
+    this.fb
+      .api('/me')
       .then((res: any) => {
         console.log('Got the users profile', res);
       })
@@ -115,15 +120,13 @@ export class LoginComponent implements AfterViewInit, OnInit {
 
   getData() {
     setTimeout(() => {
-
       this.imageURL = localStorage.getItem('image');
       this.name = localStorage.getItem('name');
       this.email = localStorage.getItem('email');
       this.authenticationType = localStorage.getItem('authenticationType');
 
       if (this.token) {
-        this.userService.loginUserGoogle(this.token)
-        .subscribe(data => {
+        this.userService.loginUserGoogle(this.token).subscribe((data) => {
           if (data) {
             this.role = data.role;
             localStorage.setItem('role', data.role);
@@ -137,7 +140,6 @@ export class LoginComponent implements AfterViewInit, OnInit {
         const existingToken = localStorage.getItem('token');
         this.token = existingToken;
       }
-
     }, 50);
   }
 
@@ -151,11 +153,10 @@ export class LoginComponent implements AfterViewInit, OnInit {
         scopeReference.clearLocalStorage();
       });
     } else {
-      this.fb.logout().then(data => {
+      this.fb.logout().then((data) => {
         this.clearLocalStorage();
       });
     }
-
   }
 
   /**
@@ -169,5 +170,4 @@ export class LoginComponent implements AfterViewInit, OnInit {
     localStorage.removeItem('authenticationType');
     localStorage.removeItem('role');
   }
-
 }

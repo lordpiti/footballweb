@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { MatchService } from './services/match.service';
 import { MatchComponent } from './components/match/match.component';
 import { Ng2FilterPipeModule } from 'ng2-filter-pipe';
-// import { BusyModule, BusyDirective } from 'angular2-busy';
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core';
 // import { DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { ChartsModule } from 'ng2-charts';
- import { ImageCropperComponent, CropperSettings, ImageCropperModule } from 'ngx-img-cropper';
+import {
+  ImageCropperComponent,
+  CropperSettings,
+  ImageCropperModule,
+} from 'ngx-img-cropper';
 import { MatchPlayersComponent } from './components/match/match-players/match-players.component';
-import { PopoverModule } from 'ngx-popover';
+// import { PopoverModule } from 'ngx-popover';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatchPlayerStatisticsComponent } from './components/match-player-statistics/match-player-statistics.component';
 import { MatchPlayersSingleComponent } from './components/match/match-players/match-players-single/match-players-single.component';
@@ -21,14 +24,22 @@ import { MomentModule } from 'angular2-moment';
 import { OrderModule } from 'ngx-order-pipe';
 import { DetailsLayoutComponent } from './components/details-layout/details-layout.component';
 import { RouterModule } from '@angular/router';
-import { MatListModule,
-  MatDialogModule, MatButtonModule, MatButtonToggleModule, MatMenuModule,
-  MatIconModule, MatFormFieldModule, MatSelectModule, MatSliderModule, MatInputModule, MatCardModule } from '@angular/material';
 import { CropperPictureDialogComponent } from './components/cropper-picture-dialog/cropper-picture-dialog.component';
 import { BlobDataService } from './services/blob-data.service';
 import { RssReaderComponent } from './components/rss-reader/rss-reader.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { IsAuthenticatedWithRolesDirective } from './directives/is-authenticated-with-roles/is-authenticated-with-roles.directive';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   imports: [
@@ -36,14 +47,14 @@ import { IsAuthenticatedWithRolesDirective } from './directives/is-authenticated
     FormsModule,
     ReactiveFormsModule,
     // BusyModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAhnlVo62cLGyWwCM6JS3I32hZE5AoBfHI'
-    }),
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyAhnlVo62cLGyWwCM6JS3I32hZE5AoBfHI',
+    // }),
     // DropzoneModule,
     ChartsModule,
-     ImageCropperModule,
+    ImageCropperModule,
     Ng2FilterPipeModule,
-    PopoverModule,
+    // PopoverModule,
     NgxPaginationModule,
     MomentModule,
     OrderModule,
@@ -58,7 +69,7 @@ import { IsAuthenticatedWithRolesDirective } from './directives/is-authenticated
     MatSelectModule,
     MatSliderModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
   ],
   declarations: [
     MatchComponent,
@@ -72,15 +83,13 @@ import { IsAuthenticatedWithRolesDirective } from './directives/is-authenticated
     CropperPictureDialogComponent,
     RssReaderComponent,
     LoadingSpinnerComponent,
-    IsAuthenticatedWithRolesDirective
+    IsAuthenticatedWithRolesDirective,
   ],
   entryComponents: [CropperPictureDialogComponent, LoadingSpinnerComponent],
-  providers: [
-    MatchService, BlobDataService
-  ],
+  providers: [MatchService, BlobDataService],
   exports: [
     // BusyModule,
-    AgmCoreModule,
+    // AgmCoreModule,
     ChartsModule,
     // DropzoneModule,
     ImageCropperModule,
@@ -103,9 +112,7 @@ import { IsAuthenticatedWithRolesDirective } from './directives/is-authenticated
     MatSliderModule,
     RssReaderComponent,
     LoadingSpinnerComponent,
-    IsAuthenticatedWithRolesDirective
-  ]
+    IsAuthenticatedWithRolesDirective,
+  ],
 })
-export class SharedModule {
-
-}
+export class SharedModule {}

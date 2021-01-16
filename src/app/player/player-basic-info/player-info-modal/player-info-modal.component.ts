@@ -1,7 +1,16 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
-import {MomentDateAdapter} from '@angular/material-moment-adapter';
-import { DropzoneConfigInterface, DropzoneDirective, DropzoneComponent } from 'ngx-dropzone-wrapper';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  DropzoneConfigInterface,
+  DropzoneDirective,
+  DropzoneComponent,
+} from 'ngx-dropzone-wrapper';
 
 export const MY_FORMATS = {
   parse: {
@@ -23,21 +32,25 @@ export const MY_FORMATS = {
     // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
     // application's root module. We provide it at the component level here, due to limitations of
     // our example generation script.
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ],
 })
 export class PlayerInfoModalComponent {
-
   public published = false;
   public model: any = {};
   public displayErrors = false;
   public isEditing = false;
   public positions: Array<any> = [
-    { value: 'Goalkeeper', text: 'Goalkeeper'},
-    { value: 'Defender', text: 'Defender'},
-    { value: 'Midfielder', text: 'Midfielder'},
-    { value: 'Striker', text: 'Striker'}];
+    { value: 'Goalkeeper', text: 'Goalkeeper' },
+    { value: 'Defender', text: 'Defender' },
+    { value: 'Midfielder', text: 'Midfielder' },
+    { value: 'Striker', text: 'Striker' },
+  ];
 
   public disabled = false;
 
@@ -46,7 +59,7 @@ export class PlayerInfoModalComponent {
     maxFiles: 1,
     autoReset: null,
     errorReset: null,
-    cancelReset: null
+    cancelReset: null,
   };
 
   @ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
@@ -54,13 +67,14 @@ export class PlayerInfoModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<PlayerInfoModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      if (data) {
-        Object.assign(this.model, data);
-        this.model.image = '';
-        this.isEditing = true;
-      }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    if (data) {
+      Object.assign(this.model, data);
+      this.model.image = '';
+      this.isEditing = true;
     }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -86,5 +100,4 @@ export class PlayerInfoModalComponent {
     console.log('onUploadSuccess:', args);
     this.model.picture.url = args[0].dataURL;
   }
-
 }

@@ -1,24 +1,28 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
-import {MomentDateAdapter} from '@angular/material-moment-adapter';
-import { DropzoneConfigInterface, DropzoneDirective, DropzoneComponent } from 'ngx-dropzone-wrapper';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  DropzoneConfigInterface,
+  DropzoneDirective,
+  DropzoneComponent,
+} from 'ngx-dropzone-wrapper';
 
 @Component({
   selector: 'app-competition-info-modal',
   templateUrl: './competition-info-modal.component.html',
-  styleUrls: ['./competition-info-modal.component.scss']
+  styleUrls: ['./competition-info-modal.component.scss'],
 })
 export class CompetitionInfoModalComponent {
-
   public published = false;
   public model: any = {};
   public displayErrors = false;
   public isEditing = false;
   public positions: Array<any> = [
-    { value: 'Goalkeeper', text: 'Goalkeeper'},
-    { value: 'Defender', text: 'Defender'},
-    { value: 'Midfielder', text: 'Midfielder'},
-    { value: 'Striker', text: 'Striker'}];
+    { value: 'Goalkeeper', text: 'Goalkeeper' },
+    { value: 'Defender', text: 'Defender' },
+    { value: 'Midfielder', text: 'Midfielder' },
+    { value: 'Striker', text: 'Striker' },
+  ];
 
   public disabled = false;
 
@@ -27,7 +31,7 @@ export class CompetitionInfoModalComponent {
     maxFiles: 1,
     autoReset: null,
     errorReset: null,
-    cancelReset: null
+    cancelReset: null,
   };
 
   @ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
@@ -35,13 +39,14 @@ export class CompetitionInfoModalComponent {
 
   constructor(
     public dialogRef: MatDialogRef<CompetitionInfoModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      if (data) {
-        Object.assign(this.model, data);
-        this.model.image = '';
-        this.isEditing = true;
-      }
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    if (data) {
+      Object.assign(this.model, data);
+      this.model.image = '';
+      this.isEditing = true;
     }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -67,5 +72,4 @@ export class CompetitionInfoModalComponent {
     console.log('onUploadSuccess:', args);
     this.model.picture.url = args[0].dataURL;
   }
-
 }

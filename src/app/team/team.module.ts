@@ -1,48 +1,53 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TeamService } from './team.service';
-import { OverviewComponent } from './overview/overview.component';
-import { RouterModule, Routes } from '@angular/router';
-import { TeamDetailComponent } from './team-detail/team-detail.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TeamChartComponent } from './team-chart/team-chart.component';
-import { SquadComponent } from './squad/squad.component';
-import { BasicInfoComponent } from './basic-info/basic-info.component';
-import { GooglemapsService } from './googlemaps.service';
-import { SharedModule } from '../shared/shared.module';
-import { OverviewNgrxComponent } from './overview-ngrx/overview-ngrx.component';
-import { TeamNewsComponent } from './team-news/team-news.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { TeamService } from "./team.service";
+import { OverviewComponent } from "./overview/overview.component";
+import { RouterModule, Routes } from "@angular/router";
+import { TeamDetailComponent } from "./team-detail/team-detail.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { TeamChartComponent } from "./team-chart/team-chart.component";
+import { SquadComponent } from "./squad/squad.component";
+import { BasicInfoComponent } from "./basic-info/basic-info.component";
+import { GooglemapsService } from "./googlemaps.service";
+import { SharedModule } from "../shared/shared.module";
+import { OverviewNgrxComponent } from "./overview-ngrx/overview-ngrx.component";
+import { TeamNewsComponent } from "./team-news/team-news.component";
+import { MatCardModule } from "@angular/material/card";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatButtonModule } from "@angular/material/button";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { TeamInfoModalComponent } from "./basic-info/team-info-modal/team-info-modal.component";
 import {
-  MatSidenavModule,
-  MatCheckboxModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatProgressSpinnerModule,
-  MatSnackBarModule,
-  MatCardModule
-} from '@angular/material';
-import { TeamInfoModalComponent } from './basic-info/team-info-modal/team-info-modal.component';
-import { DROPZONE_CONFIG, DropzoneModule, DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
-
+  DROPZONE_CONFIG,
+  DropzoneModule,
+  DropzoneConfigInterface,
+} from "ngx-dropzone-wrapper";
 
 const teamRoutes: Routes = [
-  { path: '',  component: OverviewNgrxComponent },
-  { path: 'detail/:id', component: TeamDetailComponent, children: [
-    { path: '',   redirectTo: 'team-news', pathMatch: 'full' },
-    { path: 'summary', component: BasicInfoComponent },
-    { path: 'squad', component: SquadComponent },
-    // { path: 'competitions', component: TeamChartComponent },
-    { path: 'team-news', component: TeamNewsComponent }
-  ] },
-  { path: 'test-ngrx',  component: OverviewNgrxComponent },
-  { path: '**',  component: OverviewComponent }
+  { path: "", component: OverviewNgrxComponent },
+  {
+    path: "detail/:id",
+    component: TeamDetailComponent,
+    children: [
+      { path: "", redirectTo: "team-news", pathMatch: "full" },
+      { path: "summary", component: BasicInfoComponent },
+      { path: "squad", component: SquadComponent },
+      // { path: 'competitions', component: TeamChartComponent },
+      { path: "team-news", component: TeamNewsComponent },
+    ],
+  },
+  { path: "test-ngrx", component: OverviewNgrxComponent },
+  { path: "**", component: OverviewComponent },
 ];
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
-  url: 'https://httpbin.org/post',
-  acceptedFiles: 'image/*',
-  createImageThumbnails: true
+  url: "https://httpbin.org/post",
+  acceptedFiles: "image/*",
+  createImageThumbnails: true,
 };
 
 @NgModule({
@@ -59,7 +64,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MatProgressSpinnerModule,
     MatCardModule,
     MatSnackBarModule,
-    DropzoneModule
+    DropzoneModule,
   ],
   declarations: [
     OverviewComponent,
@@ -69,7 +74,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     BasicInfoComponent,
     OverviewNgrxComponent,
     TeamNewsComponent,
-    TeamInfoModalComponent
+    TeamInfoModalComponent,
   ],
   entryComponents: [TeamInfoModalComponent],
   providers: [
@@ -77,11 +82,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     GooglemapsService,
     {
       provide: DROPZONE_CONFIG,
-      useValue: DEFAULT_DROPZONE_CONFIG
-    }
+      useValue: DEFAULT_DROPZONE_CONFIG,
+    },
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: [RouterModule],
 })
-export class TeamModule { }
+export class TeamModule {}

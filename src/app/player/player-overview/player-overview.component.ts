@@ -3,22 +3,26 @@ import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { PlayerService } from '../player.service';
 import { Player } from '../../shared/interfaces/player.interface';
-import { MatTableDataSource, MatSort, PageEvent, MatPaginator } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-player-overview',
   templateUrl: './player-overview.component.html',
-  styleUrls: ['./player-overview.component.scss']
+  styleUrls: ['./player-overview.component.scss'],
 })
 export class PlayerOverviewComponent implements OnInit, AfterViewInit {
-
   public playerList: Array<Player>;
   public playerListForTable = new MatTableDataSource([]);
   public displayedColumns = ['name', 'surname', 'teamName'];
   public p = 1;
   pageEvent: PageEvent;
 
-  constructor(private sharedService: ShareDataService, private playerService: PlayerService) { }
+  constructor(
+    private sharedService: ShareDataService,
+    private playerService: PlayerService
+  ) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -41,20 +45,26 @@ export class PlayerOverviewComponent implements OnInit, AfterViewInit {
     this.playerService.getPlayers().subscribe(
       (response: Array<Player>) => {
         this.sharedService.setData(false);
-          this.playerList = response;
-          this.playerListForTable = new MatTableDataSource(response);
-          this.playerListForTable.sort = this.sort;
-          this.playerListForTable.paginator = this.paginator;
-          this.playerListForTable.filterPredicate =
-          (data: Player, filter: string) => {
-            const trimmedLowerCasedFilterName = data.name.trim().toLowerCase();
-            const trimmedLowerCasedFilterSurname = data.surname.trim().toLowerCase();
+        this.playerList = response;
+        this.playerListForTable = new MatTableDataSource(response);
+        this.playerListForTable.sort = this.sort;
+        this.playerListForTable.paginator = this.paginator;
+        this.playerListForTable.filterPredicate = (
+          data: Player,
+          filter: string
+        ) => {
+          const trimmedLowerCasedFilterName = data.name.trim().toLowerCase();
+          const trimmedLowerCasedFilterSurname = data.surname
+            .trim()
+            .toLowerCase();
 
-            return trimmedLowerCasedFilterName.includes(filter) || trimmedLowerCasedFilterSurname.includes(filter);
-          };
+          return (
+            trimmedLowerCasedFilterName.includes(filter) ||
+            trimmedLowerCasedFilterSurname.includes(filter)
+          );
+        };
       },
-      (err: any) => {
-      }
+      (err: any) => {}
     );
   }
 
@@ -64,5 +74,4 @@ export class PlayerOverviewComponent implements OnInit, AfterViewInit {
 
     this.playerListForTable.filter = filterValue;
   }
-
 }
