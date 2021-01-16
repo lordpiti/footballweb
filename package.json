@@ -16,7 +16,7 @@
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.5",
-    "@angular-devkit/build-optimizer": "^0.13.6",
+    "@angular-devkit/build-optimizer": "0.13.6",
     "@angular/animations": "7.2.10",
     "@angular/cdk": "7.3.5",
     "@angular/cli": "7.3.6",
@@ -48,6 +48,7 @@
     "hammerjs": "^2.0.8",
     "msgpack5": "^4.2.1",
     "ng2-charts": "^1.6.0",
+    "node-sass": "4.14.1",
     "ng2-filter-pipe": "^0.1.10",
     "ng4-geoautocomplete": "^0.1.0",
     "ngx-bootstrap": "^3.2.0",
@@ -64,12 +65,12 @@
     "zone.js": "^0.9.0"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^7.2.10",
-    "@types/jasmine": "^3.3.12",
-    "@types/jasminewd2": "^2.0.6",
-    "@types/node": "^11.11.7",
-    "codelyzer": "^5.0.0-beta.2",
-    "jasmine-core": "^3.3.0",
+    "@angular/compiler-cli": "7.2.10",
+    "@types/jasmine": "3.3.12",
+    "@types/jasminewd2": "2.0.6",
+    "@types/node": "11.11.7",
+    "codelyzer": "5.0.0-beta.2",
+    "jasmine-core": "3.3.0",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^4.0.1",
     "karma-chrome-launcher": "~2.2.0",
@@ -78,10 +79,10 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~6.0.0",
-    "ts-node": "~7.0.1",
+    "ts-node": "7.0.1",
     "tslint": "^5.14.0",
     "typescript": "3.1.6",
-    "@angular-devkit/build-angular": "~0.13.6"
+    "@angular-devkit/build-angular": "0.13.6"
   },
   "engines": {
     "node": "8.9.4"
