@@ -1,31 +1,51 @@
 <div class="row match-player-single">
-  <div class="col-sm-1">{{player.dorsal}}</div>
+  <div class="col-sm-1">{{ player.dorsal }}</div>
   <div class="col-sm-5" [popover]="myPopover" (click)="loadData()">
-    {{player.name}} {{player.surname}}
+    {{ player.name }} {{ player.surname }}
   </div>
   <div class="col-sm-1">
-      <span *ngIf="player.substitutionIn" class="glyphicon glyphicon-arrow-left"></span>
-      <span *ngIf="player.substitutionIn">{{player.substitutionIn.minute}}</span>
-      <span *ngIf="player.substitutionOut" class="glyphicon glyphicon-arrow-right"></span>
-      <span *ngIf="player.substitutionOut">{{player.substitutionOut.minute}}</span>
+    <span
+      *ngIf="player.substitutionIn"
+      class="glyphicon glyphicon-arrow-left"
+    ></span>
+    <span *ngIf="player.substitutionIn">{{
+      player.substitutionIn.minute
+    }}</span>
+    <span
+      *ngIf="player.substitutionOut"
+      class="glyphicon glyphicon-arrow-right"
+    ></span>
+    <span *ngIf="player.substitutionOut">{{
+      player.substitutionOut.minute
+    }}</span>
   </div>
   <div class="col-sm-2">
-    <div *ngFor="let booking of player.bookings" >
-      <img *ngIf="booking.type=='Amarilla'" src="/assets/img/yellow_card-512.png" width="20" height="20"/>
-      <img *ngIf="booking.type!='Amarilla'" src="/assets/img/red_card-512.png" width="20" height="20"/>
-      <label class="small">{{booking.minute}}</label>
+    <div *ngFor="let booking of player.bookings">
+      <img
+        *ngIf="booking.type == 'Amarilla'"
+        src="/assets/img/yellow_card-512.png"
+        width="20"
+        height="20"
+      />
+      <img
+        *ngIf="booking.type != 'Amarilla'"
+        src="/assets/img/red_card-512.png"
+        width="20"
+        height="20"
+      />
+      <label class="small">{{ booking.minute }}</label>
     </div>
   </div>
   <div class="col-sm-2">
     <span *ngFor="let goal of player.goals">
-        <img src="/assets/img/ball.png" width="20" height="20"/>
-        <label class="small">{{goal.minute}}</label>
+      <img src="/assets/img/ball.png" width="20" height="20" />
+      <label class="small">{{ goal.minute }}</label>
     </span>
   </div>
 </div>
-<popover-content #myPopover title="Player statistics" placement="bottom" [closeOnClickOutside]="true">
-    <!-- <b>Very</b> <span style="color: #C21F39">Dynamic</span> <span style="color: #00b3ee">Reusable</span>
-    <b><i><span style="color: #ffc520">Popover With</span></i></b> <small>Html support</small>. Click outside of this popover and it will be dismissed automatically.
-    <u (click)="myPopover.hide()">Or click here to close it</u>. -->
-    <app-match-player-statistics *ngIf="selectPlayer" [matchId]="matchId" [playerId]="player.playerId"></app-match-player-statistics>
-</popover-content>
+
+<app-match-player-statistics
+  *ngIf="selectPlayer"
+  [matchId]="matchId"
+  [playerId]="player.playerId"
+></app-match-player-statistics>
