@@ -9,16 +9,18 @@ import { Competition } from '../../shared/interfaces/competition.interface';
 @Component({
   selector: 'app-competition-detail',
   templateUrl: './competition-detail.component.html',
-  styleUrls: ['./competition-detail.component.scss']
+  styleUrls: ['./competition-detail.component.scss'],
 })
 export class CompetitionDetailComponent implements OnInit {
-
   public competitionDetails: Competition;
   public competitionDetailsMenuData: DetailsMenuData;
 
-  constructor(private router: Router, private _competitionService: CompetitionService,
+  constructor(
+    private router: Router,
+    private _competitionService: CompetitionService,
     private sharedService: ShareDataService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     setTimeout(() => {
@@ -31,33 +33,34 @@ export class CompetitionDetailComponent implements OnInit {
     // service changes
     this._competitionService.getCurrentCompetition().subscribe(
       (competitionData: Competition) => {
-        this.competitionDetails = Object.assign({}, competitionData);
-        this.competitionDetailsMenuData = {
-          title: this.competitionDetails.name,
-          imageUrl: this.competitionDetails.logo.url,
-          entityName: 'Competitions',
-          itemsList: [
-            {
-              title: 'Summary',
-              link: 'summary'
-            },
-            {
-              title: 'Rounds',
-              link: 'rounds'
-            },
-            {
-              title: 'Teams',
-              link: 'teams'
-            }
-          ],
-          dataLoaded: true
-        };
+        if (competitionData) {
+          this.competitionDetails = Object.assign({}, competitionData);
+          this.competitionDetailsMenuData = {
+            title: this.competitionDetails.name,
+            imageUrl: this.competitionDetails.logo.url,
+            entityName: 'Competitions',
+            itemsList: [
+              {
+                title: 'Summary',
+                link: 'summary',
+              },
+              {
+                title: 'Rounds',
+                link: 'rounds',
+              },
+              {
+                title: 'Teams',
+                link: 'teams',
+              },
+            ],
+            dataLoaded: true,
+          };
+        }
       },
-      (err: any) => {
-      }
+      (err: any) => {}
     );
 
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       const competitionId = +params['id']; // (+) converts string 'id' to a number
 
       this.getData(competitionId);
@@ -67,11 +70,9 @@ export class CompetitionDetailComponent implements OnInit {
   private getData(id: number): void {
     this._competitionService.getCompetitionDetails(id).subscribe(
       (competitionData: Competition) => {
-          this._competitionService.setCurrentCompetition(competitionData);
+        this._competitionService.setCurrentCompetition(competitionData);
       },
-      (err: any) => {
-      }
+      (err: any) => {}
     );
   }
-
 }

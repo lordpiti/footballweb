@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Observable ,  Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Team } from '../shared/interfaces/team.interface';
-import { environment } from '../../environments/environment';
 import { BaseService } from '../shared/services/base.service';
-import { ShareDataService } from '../shared/services/shared-data.service';
 import { HttpClient } from '@angular/common/http';
 import { Competition } from '../shared/interfaces/competition.interface';
-import { map, filter, catchError, mergeMap, switchMap, combineLatest } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class CompetitionService extends BaseService {
-
   public currentCompetition: Competition;
-  private currentCompetitionSubject: Subject<Competition> = new Subject<Competition>();
+  private currentCompetitionSubject: BehaviorSubject<Competition> = new BehaviorSubject<Competition>(
+    null
+  );
 
   constructor(public httpClient: HttpClient) {
     super(httpClient);
   }
-
 
   getAllCompetitions(): Observable<Competition[]> {
     const url = 'competition';
@@ -32,12 +30,12 @@ export class CompetitionService extends BaseService {
   }
 
   public setCurrentCompetition(_data: Competition) {
-      this.currentCompetition = _data;
-      this.currentCompetitionSubject.next(_data);
+    this.currentCompetition = _data;
+    this.currentCompetitionSubject.next(_data);
   }
 
   public getCurrentCompetition(): Observable<Competition> {
-      return this.currentCompetitionSubject.asObservable();
+    return this.currentCompetitionSubject.asObservable();
   }
 
   public getCompetitionDetails(id: number) {
@@ -71,12 +69,10 @@ export class CompetitionService extends BaseService {
   }
 
   getChartDataTeamCompetition(teamId: number, competitionId: number) {
+    const url =
+      'team/clasification/' + teamId + '/competition/' + competitionId;
 
-    const url = 'team/clasification/' + teamId +
-    '/competition/' + competitionId;
-
-    return this.get<any>(url).pipe(
-    map(res => this.convertToChartData(res)));
+    return this.get<any>(url).pipe(map((res) => this.convertToChartData(res)));
   }
 
   saveCompetitionDetails(competitionDetails: Competition) {
@@ -91,11 +87,11 @@ export class CompetitionService extends BaseService {
 
   private convertToChartData(data: any): any {
     const positionList = [],
-    goalsForList = [],
-    goalsAgainstList = [],
-    roundList = [];
+      goalsForList = [],
+      goalsAgainstList = [],
+      roundList = [];
 
-    data.clasificationSeasonData.forEach(element => {
+    data.clasificationSeasonData.forEach((element) => {
       positionList.push(element.position);
       goalsForList.push(element.goalsFor);
       goalsAgainstList.push(element.goalsAgainst);
@@ -107,10 +103,9 @@ export class CompetitionService extends BaseService {
       goalsForList: { label: 'Goals For', data: goalsForList },
       goalsAgainstList: { label: 'Goals Against', data: goalsAgainstList },
       roundList: roundList,
-      teamName: data.teamName
+      teamName: data.teamName,
     };
 
     return lineChartData;
   }
-
 }

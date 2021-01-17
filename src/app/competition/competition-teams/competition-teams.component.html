@@ -4,16 +4,27 @@
 <div class="row competition-teams-component">
   <div class="col-sm-4">
     <mat-card>
-      <div *ngFor="let item of teamList" class="selectableTeam" [ngClass]="{'selectedTeam': item.id == selectedTeamId }"
-        (click)="setSelectedTeam(item.id)">
-        {{item.name}}
+      <div
+        *ngFor="let item of teamList$ | async"
+        class="selectableTeam"
+        [ngClass]="{ selectedTeam: item.id == selectedTeamId }"
+        (click)="setSelectedTeam(item.id)"
+      >
+        {{ item.name }}
       </div>
     </mat-card>
   </div>
   <div class="col-sm-8">
     <mat-card>
-      <app-competition-chart *ngIf="selectedTeamId" [teamId]="selectedTeamId" [competitionId]="2"></app-competition-chart>
-      <div *ngIf="!selectedTeamId">Select a team from the list to see its evolution on the current competition</div>
+      <app-competition-chart
+        *ngIf="selectedTeamId"
+        [teamId]="selectedTeamId"
+        [competitionId]="competitionData.id"
+      ></app-competition-chart>
+      <div *ngIf="!selectedTeamId">
+        Select a team from the list to see its evolution on the current
+        competition
+      </div>
     </mat-card>
   </div>
 </div>

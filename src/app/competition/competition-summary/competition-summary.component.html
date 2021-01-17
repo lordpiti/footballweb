@@ -1,22 +1,24 @@
 <h1 class="text-center">Competition basic info</h1>
 <mat-card>
-  <div class="row">
+  <div class="row" *ngIf="competitionDetails$ | async as competitionDetails">
     <div class="col-sm-7 text-center">
       <div style="font-size: large">
-        <div>Name: {{competitionDetails.name}}</div>
-        <div>Season: {{competitionDetails.season}}</div> 
+        <div>Name: {{ competitionDetails.name }}</div>
+        <div>Season: {{ competitionDetails.season }}</div>
       </div>
 
       <div *appIsAuthenticatedWithRoles="['Admin']">
-        <button class="margin-top1"
-          mat-raised-button
-          (click)="openDialog()">
-            Edit Competition
+        <button class="margin-top1" mat-raised-button (click)="openDialog()">
+          Edit Competition
         </button>
       </div>
     </div>
     <div class="col-sm-5 text-right">
-      <img src="{{competitionDetails.logo.url}}" height="300px" width="300px"/>  
+      <img
+        src="{{ competitionDetails.logo.url }}"
+        height="300px"
+        width="300px"
+      />
     </div>
   </div>
 </mat-card>
