@@ -6,6 +6,7 @@ import { MatSnackBar, MatSnackBarConfig } from "@angular/material/snack-bar";
 import { BlobDataService } from "../../shared/services/blob-data.service";
 import { switchMap } from "rxjs/operators";
 import { PlayerInfoModalComponent } from "./player-info-modal/player-info-modal.component";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-player-basic-info",
@@ -13,25 +14,7 @@ import { PlayerInfoModalComponent } from "./player-info-modal/player-info-modal.
   styleUrls: ["./player-basic-info.component.scss"],
 })
 export class PlayerBasicInfoComponent implements OnInit {
-  playerDetails: Player = {
-    birthDate: null,
-    birthPlace: null,
-    dorsal: null,
-    height: null,
-    name: null,
-    picture: {
-      bytes: null,
-      base64String: null,
-      fileName: null,
-      url: null,
-      containerReference: null,
-    },
-    playerId: null,
-    position: null,
-    surname: null,
-    teamId: null,
-    teamName: null,
-  };
+  playerDetails$: Observable<Player>;
 
   userRole = localStorage.role;
 
@@ -43,47 +26,40 @@ export class PlayerBasicInfoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.playerService.currentPlayer) {
-      this.playerDetails = this.playerService.currentPlayer;
-    }
-
-    this.playerService.getCurrentPlayer().subscribe((data) => {
-      this.playerDetails = data;
-    });
+    this.playerDetails$ = this.playerService.getCurrentPlayer();
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PlayerInfoModalComponent, {
       // width: '550px',
       // minHeight: '600px';
-      data: this.playerDetails,
+      data: this.playerService.currentPlayer,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.playerDetails = result;
         const cropperImageName =
           Math.floor(Math.random() * 2000).toString() + ".jpg";
-        if (this.playerDetails.picture.url.includes(";base64")) {
+        if (result.picture.url.includes(";base64")) {
           this.blobDataService
-            .addBase64Image(this.playerDetails.picture.url, cropperImageName)
+            .addBase64Image(result.picture.url, cropperImageName)
             .pipe(
               switchMap((data) => {
                 result.picture = data;
-                return this.playerService.savePlayerDetails(this.playerDetails);
+                return this.playerService.savePlayerDetails(result);
               })
             )
             .subscribe(
               (x) => {
-                this.playerService.setCurrentPlayer(this.playerDetails);
+                this.playerService.setCurrentPlayer(result);
                 this.openSnackBar("Player details successfully saved", "close");
               },
               (err: any) => {}
             );
         } else {
-          this.playerService.savePlayerDetails(this.playerDetails).subscribe(
+          this.playerService.savePlayerDetails(result).subscribe(
             (x) => {
-              this.playerService.setCurrentPlayer(this.playerDetails);
+              this.playerService.setCurrentPlayer(result);
               this.openSnackBar("Player details successfully saved", "close");
             },
             (err: any) => {}

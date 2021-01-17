@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Competition } from '../../shared/interfaces/competition.interface';
-import { CompetitionService } from '../competition.service';
-import { BlobDataService } from '../../shared/services/blob-data.service';
-import { switchMap } from 'rxjs/operators';
-import { CompetitionInfoModalComponent } from './competition-info-modal/competition-info-modal.component';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnInit } from "@angular/core";
+import { Competition } from "../../shared/interfaces/competition.interface";
+import { CompetitionService } from "../competition.service";
+import { BlobDataService } from "../../shared/services/blob-data.service";
+import { switchMap } from "rxjs/operators";
+import { CompetitionInfoModalComponent } from "./competition-info-modal/competition-info-modal.component";
+import { MatSnackBar, MatSnackBarConfig } from "@angular/material/snack-bar";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-competition-summary',
-  templateUrl: './competition-summary.component.html',
-  styleUrls: ['./competition-summary.component.scss'],
+  selector: "app-competition-summary",
+  templateUrl: "./competition-summary.component.html",
+  styleUrls: ["./competition-summary.component.scss"],
 })
 export class CompetitionSummaryComponent implements OnInit {
   competitionDetails: Competition = null;
@@ -76,13 +76,11 @@ export class CompetitionSummaryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    debugger;
     if (this.competitionService.currentCompetition) {
       this.competitionDetails = this.competitionService.currentCompetition;
     }
 
     this.competitionService.getCurrentCompetition().subscribe((data) => {
-      debugger;
       this.competitionDetails = data;
     });
   }
@@ -98,8 +96,8 @@ export class CompetitionSummaryComponent implements OnInit {
       if (result) {
         this.competitionDetails = result;
         const cropperImageName =
-          Math.floor(Math.random() * 2000).toString() + '.jpg';
-        if (this.competitionDetails.logo.url.includes(';base64')) {
+          Math.floor(Math.random() * 2000).toString() + ".jpg";
+        if (this.competitionDetails.logo.url.includes(";base64")) {
           this.blobDataService
             .addBase64Image(this.competitionDetails.logo.url, cropperImageName)
             .pipe(
@@ -116,8 +114,8 @@ export class CompetitionSummaryComponent implements OnInit {
                   this.competitionDetails
                 );
                 this.openSnackBar(
-                  'Competition details successfully saved',
-                  'close'
+                  "Competition details successfully saved",
+                  "close"
                 );
               },
               (err: any) => {}
@@ -131,8 +129,8 @@ export class CompetitionSummaryComponent implements OnInit {
                   this.competitionDetails
                 );
                 this.openSnackBar(
-                  'Competition details successfully saved',
-                  'close'
+                  "Competition details successfully saved",
+                  "close"
                 );
               },
               (err: any) => {}
@@ -144,9 +142,9 @@ export class CompetitionSummaryComponent implements OnInit {
 
   private openSnackBar(message: string, action: string) {
     const config = new MatSnackBarConfig();
-    config.panelClass = ['custom-class'];
+    config.panelClass = ["custom-class"];
     config.duration = 3000;
-    config.horizontalPosition = 'right';
+    config.horizontalPosition = "right";
     this.snackBar.open(message, null, config);
   }
 }
