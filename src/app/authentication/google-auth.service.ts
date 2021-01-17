@@ -6,8 +6,7 @@ declare const gapi: any;
 
 @Injectable()
 export class GoogleAuthService {
-
-  constructor() { }
+  constructor() {}
 
   /**
    * Calling Google login API and fetching account details.
@@ -19,11 +18,13 @@ export class GoogleAuthService {
       auth2 = gapi.auth2.init({
         client_id: AppGlobals.GOOGLE_CLIENT_ID,
         cookiepolicy: 'single_host_origin',
-        scope: 'profile email'
+        scope: 'profile email',
       });
       // Login button reference
       const loginButton: any = document.getElementById('google-login-button');
-      auth2.attachClickHandler(loginButton, {},
+      auth2.attachClickHandler(
+        loginButton,
+        {},
         function (userDetails) {
           // Getting profile object
           const profile = userDetails.getBasicProfile();
@@ -34,9 +35,11 @@ export class GoogleAuthService {
           localStorage.setItem('email', profile.getEmail());
 
           callback(userDetails.getAuthResponse().id_token);
-        }, function (error) {
+        },
+        function (error) {
           console.log(JSON.stringify(error, undefined, 2));
-        });
+        }
+      );
     });
   }
 
@@ -46,9 +49,15 @@ export class GoogleAuthService {
    */
   userLogout(callback) {
     // You will be redirected to this URL after logging out from Google.
-    const homeUrl = environment.home_url;
-    const logoutUrl = 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=' + homeUrl;
-    document.location.href = logoutUrl;
-    callback();
+    // const homeUrl = environment.home_url;
+    // const logoutUrl = 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=' + homeUrl;
+    // document.location.href = logoutUrl;
+    let auth2: any;
+    gapi.load('auth2', () => {
+      auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        callback();
+      });
+    });
   }
 }

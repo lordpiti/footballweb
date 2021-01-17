@@ -1,26 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./assets/scss/_spacers.scss";
-@import "./assets/scss/_general.scss";
-@import "./assets/scss/draw.scss";
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import './assets/scss/_spacers.scss';
+@import './assets/scss/_general.scss';
+@import './assets/scss/draw.scss';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .overview-container {
-    padding: 20px;
-    @media only screen and (max-width: 600px) {
-        margin-top: 120px;
-    }
+  padding: 20px;
+  @media only screen and (max-width: 600px) {
+    margin-top: 120px;
+  }
+  background-color: #eee;
 }
 
 .example-spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .main-route-container {
-    @media only screen and (min-width: 600px) {
-        margin-top:60px
-    }
+  @media only screen and (min-width: 600px) {
+    margin-top: 60px;
+  }
 }

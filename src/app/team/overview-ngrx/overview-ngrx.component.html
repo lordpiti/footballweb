@@ -1,10 +1,13 @@
-<input type="text" id="brlz" name="brlz" [(ngModel)]="textToSearch" (input)="onSearchChange($event.target.value)" />
-<div *ngIf="!(teams$ | async).loadingSpinner">
+<!-- <input type="text" id="brlz" name="brlz" [(ngModel)]="textToSearch" (input)="onSearchChange($event.target.value)" /> -->
+<div class="overview-container" *ngIf="!(teams$ | async).loadingSpinner">
   <div class="row">
-    <div class="col-sm-2 text-center" *ngFor="let item of (teams$ | async).data">
-      <a routerLink="/teams/detail/{{item.id}}" routerLinkActive="active">
-        <img src="{{item.pictureLogo.url}}" width="50" height="50"/>
-        <div>{{item.name}}</div>
+    <div
+      class="col-sm-2 text-center"
+      *ngFor="let item of (teams$ | async).data"
+    >
+      <a routerLink="/teams/detail/{{ item.id }}" routerLinkActive="active">
+        <img src="{{ item.pictureLogo.url }}" width="50" height="50" />
+        <div>{{ item.name }}</div>
       </a>
     </div>
   </div>
