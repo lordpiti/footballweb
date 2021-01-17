@@ -1,6 +1,14 @@
-<app-competition-round *ngIf="competitionData && competitionData.type=='Liga'" [competitionData]="competitionData">
+<app-competition-round
+  *ngIf="
+    (competitionData$ | async) && (competitionData$ | async).type == 'Liga'
+  "
+  [competitionData]="competitionData$ | async"
+>
 </app-competition-round>
-
-<app-competition-basic-info *ngIf="competitionData && competitionData.type=='Playoff'" [competitionData]="competitionData">
+<app-competition-basic-info
+  *ngIf="
+    (competitionData$ | async) && (competitionData$ | async).type == 'Playoff'
+  "
+  [competitionData]="competitionData$ | async"
+>
 </app-competition-basic-info>
-

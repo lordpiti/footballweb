@@ -1,22 +1,23 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CompetitionService } from '../competition.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-competition-round',
   templateUrl: './competition-round.component.html',
-  styleUrls: ['./competition-round.component.scss']
+  styleUrls: ['./competition-round.component.scss'],
 })
 export class CompetitionRoundComponent implements OnInit {
-
-
-  public roundData: any;
+  public roundData$: Observable<any>;
   public roundId: string;
   @Input() competitionData: any;
 
-  constructor(private _competitionService: CompetitionService, private router: Router, private route: ActivatedRoute) {
-
-  }
+  constructor(
+    private _competitionService: CompetitionService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.roundId = '1';
@@ -29,22 +30,13 @@ export class CompetitionRoundComponent implements OnInit {
       roundId = '1';
       this.roundId = roundId;
     }
-    this._competitionService.getCompetitionRoundGames(this.competitionData.id, roundId).subscribe(
-      (data: any) => {
-          this.roundData = data;
-      },
-      (err: any) => {
-      }
+    this.roundData$ = this._competitionService.getCompetitionRoundGames(
+      this.competitionData.id,
+      roundId
     );
   }
 
   public changeSelectedRound(event: Event) {
-    // let absoluteLink = '/competitions/detail/'+this.competitionData.id+'/rounds/' + this.roundId;
-    // this.router.navigate(absoluteLink);
-
-    // let relativeLink = '../'+this.roundId;
-    // this.router.navigate([relativeLink], {relativeTo: this.route});
-
     this.loadRound(this.roundId);
   }
 }

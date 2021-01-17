@@ -1,18 +1,29 @@
 <h1>Match details</h1>
-<div class="row" *ngIf="matchDetails">
+<div class="row" *ngIf="matchDetails$ | async as matchDetails">
   <div class="col-sm-5">
-    <div class="text-center" style="background-color:blueviolet; color:white;">
-      <h1>{{matchDetails.matchGeneralInfo.localTeam.name}}</h1>
-    </div>  
-    <app-match-players [matchId]="matchId" [players]="matchDetails.players" [team]="matchDetails.matchGeneralInfo.localTeam"></app-match-players>
+    <div class="text-center" style="background-color: blueviolet; color: white">
+      <h1>{{ matchDetails.matchGeneralInfo.localTeam.name }}</h1>
+    </div>
+    <app-match-players
+      [matchId]="matchId"
+      [players]="matchDetails.players"
+      [team]="matchDetails.matchGeneralInfo.localTeam"
+    ></app-match-players>
   </div>
   <div class="col-sm-2 text-center">
-      <h1 style="background-color:black;color:white;">{{matchDetails.matchGeneralInfo.goalsLocal}} - {{matchDetails.matchGeneralInfo.goalsVisitor}}</h1>
+    <h1 style="background-color: black; color: white">
+      {{ matchDetails.matchGeneralInfo.goalsLocal }} -
+      {{ matchDetails.matchGeneralInfo.goalsVisitor }}
+    </h1>
   </div>
   <div class="col-sm-5">
-    <div class="text-center" style="background-color:blueviolet; color:white;">
-      <h1>{{matchDetails.matchGeneralInfo.visitorTeam.name}}</h1>
-    </div>  
-    <app-match-players [matchId]="matchId" [players]="matchDetails.players" [team]="matchDetails.matchGeneralInfo.visitorTeam"></app-match-players>
+    <div class="text-center" style="background-color: blueviolet; color: white">
+      <h1>{{ matchDetails.matchGeneralInfo.visitorTeam.name }}</h1>
+    </div>
+    <app-match-players
+      [matchId]="matchId"
+      [players]="matchDetails.players"
+      [team]="matchDetails.matchGeneralInfo.visitorTeam"
+    ></app-match-players>
   </div>
 </div>
