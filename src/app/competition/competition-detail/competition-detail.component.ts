@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CompetitionService } from '../competition.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { DetailsMenuData } from '../../shared/interfaces/details-menu-data.interface';
 import { Competition } from '../../shared/interfaces/competition.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-competition-detail',
@@ -12,11 +13,10 @@ import { Competition } from '../../shared/interfaces/competition.interface';
   styleUrls: ['./competition-detail.component.scss'],
 })
 export class CompetitionDetailComponent implements OnInit {
-  public competitionDetails: Competition;
+  public competitionDetails$: Observable<Competition>;
   public competitionDetailsMenuData: DetailsMenuData;
 
   constructor(
-    private router: Router,
     private _competitionService: CompetitionService,
     private sharedService: ShareDataService,
     private route: ActivatedRoute
@@ -31,34 +31,31 @@ export class CompetitionDetailComponent implements OnInit {
     // and that's being modified via other components. We only want
     // the data to be updated in this component when the data in the
     // service changes
-    this._competitionService.getCurrentCompetition().subscribe(
-      (competitionData: Competition) => {
-        if (competitionData) {
-          this.competitionDetails = Object.assign({}, competitionData);
-          this.competitionDetailsMenuData = {
-            title: this.competitionDetails.name,
-            imageUrl: this.competitionDetails.logo.url,
-            entityName: 'Competitions',
-            itemsList: [
-              {
-                title: 'Summary',
-                link: 'summary',
-              },
-              {
-                title: 'Rounds',
-                link: 'rounds',
-              },
-              {
-                title: 'Teams',
-                link: 'teams',
-              },
-            ],
-            dataLoaded: true,
-          };
-        }
-      },
-      (err: any) => {}
-    );
+    this.competitionDetails$ = this._competitionService.getCurrentCompetition();
+    this.competitionDetails$.subscribe((competitionData: Competition) => {
+      if (competitionData) {
+        this.competitionDetailsMenuData = {
+          title: competitionData.name,
+          imageUrl: competitionData.logo.url,
+          entityName: 'Competitions',
+          itemsList: [
+            {
+              title: 'Summary',
+              link: 'summary',
+            },
+            {
+              title: 'Rounds',
+              link: 'rounds',
+            },
+            {
+              title: 'Teams',
+              link: 'teams',
+            },
+          ],
+          dataLoaded: true,
+        };
+      }
+    });
 
     this.route.params.subscribe((params) => {
       const competitionId = +params['id']; // (+) converts string 'id' to a number

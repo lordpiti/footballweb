@@ -1,0 +1,37 @@
+.top-app-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 500;
+}
+
+.active {
+  background-color: white;
+  color: black;
+}
+
+.appTitle {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 20px;
+}
+
+.navbar-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+
+  & a {
+    font-weight: bold;
+    &:hover {
+      color: black;
+      background-color: white;
+      text-decoration: none;
+    }
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}

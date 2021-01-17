@@ -1,37 +1,46 @@
 <div class="text-center">
-<h1>Competition results</h1>
-<div *ngIf="roundData">
-  <div class="row">
-    <div class="col-sm-12">
-      <mat-card>
-      <mat-form-field [floatLabel]="true">
-        <mat-select [(value)]="roundId"  (selectionChange)="changeSelectedRound($event)">
-          <mat-option *ngFor="let item of competitionData.roundList" value="{{item}}">{{item}}</mat-option>
-        </mat-select>
-        <mat-placeholder>Select round</mat-placeholder>
-      </mat-form-field>
-    </mat-card>
+  <h1>Competition results</h1>
+  <div *ngIf="roundData$ | async as roundData">
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-card>
+          <mat-form-field [floatLabel]="true">
+            <mat-select
+              [(value)]="roundId"
+              (selectionChange)="changeSelectedRound($event)"
+            >
+              <mat-option
+                *ngFor="let item of competitionData.roundList"
+                value="{{ item }}"
+                >{{ item }}</mat-option
+              >
+            </mat-select>
+            <mat-placeholder>Select round</mat-placeholder>
+          </mat-form-field>
+        </mat-card>
+      </div>
     </div>
-  </div>
-  <br/>
-  <div class="row">
-    <div class="col-sm-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">Games</div>
-        <div class="panel-body">
-          <div class="row small" *ngFor="let match of roundData.matchList">
-            <div class="col-sm-5">{{match.localTeam.name}}</div>
-            <div class="col-sm-2">
-              <a routerLink="./match/{{match.matchId}}">{{match.goalsLocal}}-{{match.goalsVisitor}}</a>
+    <br />
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="panel panel-default">
+          <div class="panel-heading">Games</div>
+          <div class="panel-body">
+            <div class="row small" *ngFor="let match of roundData.matchList">
+              <div class="col-sm-5">{{ match.localTeam.name }}</div>
+              <div class="col-sm-2">
+                <a routerLink="./match/{{ match.matchId }}"
+                  >{{ match.goalsLocal }}-{{ match.goalsVisitor }}</a
+                >
+              </div>
+              <div class="col-sm-5">{{ match.visitorTeam.name }}</div>
             </div>
-            <div class="col-sm-5">{{match.visitorTeam.name}}</div>
           </div>
         </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">Scorers</div>
-        <div class="panel-body">
-          <div class="small">
+        <div class="panel panel-default">
+          <div class="panel-heading">Scorers</div>
+          <div class="panel-body">
+            <div class="small">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -41,50 +50,67 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let scorer of roundData.scorers | paginate: { itemsPerPage: 10, currentPage: p }">
-                    <td>{{scorer.player.name}} {{scorer.player.surname}}</td>
+                  <tr
+                    *ngFor="
+                      let scorer of roundData.scorers
+                        | paginate: { itemsPerPage: 10, currentPage: p }
+                    "
+                  >
                     <td>
-                      {{scorer.player.teamName}}
+                      {{ scorer.player.name }} {{ scorer.player.surname }}
                     </td>
-                    <td>{{scorer.goals}}</td>
+                    <td>
+                      {{ scorer.player.teamName }}
+                    </td>
+                    <td>{{ scorer.goals }}</td>
                   </tr>
                 </tbody>
               </table>
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              <pagination-controls
+                (pageChange)="p = $event"
+              ></pagination-controls>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-7">
+      <div class="col-sm-7">
         <mat-card>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <td>Position</td>
-            <td>Team</td>
-            <td>MW</td>
-            <td>MD</td>
-            <td>ML</td>
-            <td>Points</td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let teamClasification of roundData.teamStatsRoundList">
-            <td>{{teamClasification.position}}</td>
-            <td>
-              <a routerLink="/teams/detail/{{teamClasification.teamId}}">
-                <img src="{{teamClasification.teamLogo.url}}" width="20" height="20">{{teamClasification.teamName}}
-              </a>
-            </td>
-            <td>{{teamClasification.matchesWon}}</td>
-            <td>{{teamClasification.matchesDraw}}</td>
-            <td>{{teamClasification.matchesLost}}</td>
-            <td><strong>{{teamClasification.points}}</strong></td>
-          </tr>
-        </tbody>
-      </table>
-    </mat-card>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <td>Position</td>
+                <td>Team</td>
+                <td>MW</td>
+                <td>MD</td>
+                <td>ML</td>
+                <td>Points</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let teamClasification of roundData.teamStatsRoundList"
+              >
+                <td>{{ teamClasification.position }}</td>
+                <td>
+                  <a routerLink="/teams/detail/{{ teamClasification.teamId }}">
+                    <img
+                      src="{{ teamClasification.teamLogo.url }}"
+                      width="20"
+                      height="20"
+                    />{{ teamClasification.teamName }}
+                  </a>
+                </td>
+                <td>{{ teamClasification.matchesWon }}</td>
+                <td>{{ teamClasification.matchesDraw }}</td>
+                <td>{{ teamClasification.matchesLost }}</td>
+                <td>
+                  <strong>{{ teamClasification.points }}</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-card>
+      </div>
     </div>
   </div>
-</div>
 </div>

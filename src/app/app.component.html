@@ -1,21 +1,23 @@
-<div style="position: fixed; top: 0;width: 100%; z-index: 500">
-  <mat-toolbar color="primary" >
-    <span style="margin-right: 20px">FootballWeb Reloaded</span>
-    <div class="hidden-xs">
+<div class="top-app-container">
+  <mat-toolbar color="primary">
+    <a class="appTitle" routerLink="/">FootballWeb Reloaded</a>
+    <div class="navbar-items hidden-xs">
       <a mat-button routerLink="/teams" routerLinkActive="active">TEAMS</a>
-      <a mat-button routerLink="/competitions" routerLinkActive="active">COMPETITIONS</a>
+      <a mat-button routerLink="/competitions" routerLinkActive="active">
+        COMPETITIONS
+      </a>
       <a mat-button routerLink="/players" routerLinkActive="active">PLAYERS</a>
     </div>
     <div class="example-spacer text-right">
       <app-login></app-login>
     </div>
   </mat-toolbar>
-  <mat-toolbar color="primary" class="visible-xs" >
-    <a mat-button color="currentColor" routerLink="/teams" >TEAMS</a>
+  <mat-toolbar color="primary" class="visible-xs">
+    <a mat-button color="currentColor" routerLink="/teams">TEAMS</a>
     <a mat-button routerLink="/competitions">COMPETITIONS</a>
     <a mat-button routerLink="/players">PLAYERS</a>
   </mat-toolbar>
 </div>
-<div class="main-route-container" >
+<div class="main-route-container">
   <router-outlet></router-outlet>
 </div>
