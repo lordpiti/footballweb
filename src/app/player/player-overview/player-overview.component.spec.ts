@@ -1,4 +1,12 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
+import { ShareDataService } from '../../shared/services/shared-data.service';
+import { PlayerService } from '../player.service';
 
 import { PlayerOverviewComponent } from './player-overview.component';
 
@@ -6,12 +14,14 @@ describe('PlayerOverviewComponent', () => {
   let component: PlayerOverviewComponent;
   let fixture: ComponentFixture<PlayerOverviewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PlayerOverviewComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [PlayerOverviewComponent],
+        providers: [HttpClient, HttpHandler, ShareDataService, PlayerService],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlayerOverviewComponent);

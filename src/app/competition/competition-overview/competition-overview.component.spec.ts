@@ -1,4 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ShareDataService } from '../../shared/services/shared-data.service';
+import { CompetitionService } from '../competition.service';
 
 import { CompetitionOverviewComponent } from './competition-overview.component';
 
@@ -6,12 +9,19 @@ describe('CompetitionOverviewComponent', () => {
   let component: CompetitionOverviewComponent;
   let fixture: ComponentFixture<CompetitionOverviewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CompetitionOverviewComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [CompetitionOverviewComponent],
+        providers: [
+          HttpClient,
+          HttpHandler,
+          CompetitionService,
+          ShareDataService,
+        ],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CompetitionOverviewComponent);

@@ -1,4 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MatchService } from '../../services/match.service';
 
 import { MatchPlayerStatisticsComponent } from './match-player-statistics.component';
 
@@ -6,12 +8,14 @@ describe('MatchPlayerStatisticsComponent', () => {
   let component: MatchPlayerStatisticsComponent;
   let fixture: ComponentFixture<MatchPlayerStatisticsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MatchPlayerStatisticsComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [MatchPlayerStatisticsComponent],
+        providers: [HttpClient, HttpHandler, MatchService],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MatchPlayerStatisticsComponent);

@@ -1,3 +1,4 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { MatchService } from './match.service';
@@ -5,7 +6,7 @@ import { MatchService } from './match.service';
 describe('MatchService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MatchService]
+      providers: [HttpClient, HttpHandler, MatchService],
     });
   });
 

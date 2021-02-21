@@ -1,4 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { CompetitionService } from '../competition.service';
 
 import { CompetitionTeamsComponent } from './competition-teams.component';
 
@@ -6,12 +8,14 @@ describe('CompetitionTeamsComponent', () => {
   let component: CompetitionTeamsComponent;
   let fixture: ComponentFixture<CompetitionTeamsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CompetitionTeamsComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [CompetitionTeamsComponent],
+        providers: [HttpClient, HttpHandler, CompetitionService],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CompetitionTeamsComponent);

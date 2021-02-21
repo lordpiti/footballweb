@@ -1,38 +1,39 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
-import { AppRoutingModule} from './app-routes.module';
+import { TestBed, async, waitForAsync } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { AppRoutingModule } from './app-routes.module';
 import { AppComponent } from './app.component';
+import { ShareDataService } from './shared/services/shared-data.service';
 
 describe('AppComponent', () => {
+  class MatDialogStub {
+    open() {
+      return {
+        afterClosed: () => Observable.of({}),
+      };
+    }
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AppRoutingModule
-      ],
-      declarations: [
-        AppComponent
+      imports: [AppRoutingModule],
+      declarations: [AppComponent],
+      providers: [
+        ShareDataService,
+        { provide: MatDialog, useClass: MatDialogStub },
       ],
     });
     TestBed.compileComponents();
   });
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-
-  it(`should have as title 'app works!'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
-  }));
-
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
-  }));
+  it(
+    'should create the app',
+    waitForAsync(() => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.componentInstance;
+      expect(app).toBeTruthy();
+    })
+  );
 });

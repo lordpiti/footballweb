@@ -1,9 +1,6 @@
-import { Component, OnInit, Input, ViewContainerRef, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Team } from '../../shared/interfaces/team.interface';
-import { TeamService} from '../team.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Overlay, overlayConfigFactory } from 'ngx-modialog';
-import { Modal, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
+import { ActivatedRoute } from '@angular/router';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { DetailsMenuData } from '../../shared/interfaces/details-menu-data.interface';
@@ -14,39 +11,48 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-team-detail',
   templateUrl: './team-detail.component.html',
-  styleUrls: ['./team-detail.component.scss']
+  styleUrls: ['./team-detail.component.scss'],
 })
 export class TeamDetailComponent implements OnInit {
-
   public teamDetails: Team;
   public teamDetailsMenuData: DetailsMenuData;
   private teamDetails$: Observable<Team>;
 
-  constructor(private router: Router, private _teamService: TeamService, private sharedService: ShareDataService,
-    private store: Store<{ team:{
-      current: Team,
-      loadingSpinner: boolean
-    }  }>,
+  constructor(
+    private sharedService: ShareDataService,
+    private store: Store<{
+      team: {
+        current: Team;
+        loadingSpinner: boolean;
+      };
+    }>,
     private teamActions: TeamActions,
-    private route: ActivatedRoute, public modal: Modal, vcr: ViewContainerRef) {
-      this.teamDetails = { name: '', id: 0, playerList: [], pictureLogo: {}, stadium: {}, city: null };
+    private route: ActivatedRoute
+  ) {
+    this.teamDetails = {
+      name: '',
+      id: 0,
+      playerList: [],
+      pictureLogo: {},
+      stadium: {},
+      city: null,
+    };
   }
-
 
   ngOnInit() {
     setTimeout(() => {
       this.sharedService.setCurrentArea(AppAreas.Teams);
     }, 0);
 
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       const teamId = +params['id']; // (+) converts string 'id' to a number
 
       this.store.dispatch(this.teamActions.loadTeamDetails(teamId));
     });
 
-    this.teamDetails$ = this.store.select(x=>x.team.current);
+    this.teamDetails$ = this.store.select((x) => x.team.current);
 
-    this.teamDetails$.subscribe(data => {
+    this.teamDetails$.subscribe((data) => {
       if (data) {
         this.teamDetails = Object.assign({}, data);
         this.teamDetailsMenuData = {
@@ -56,25 +62,24 @@ export class TeamDetailComponent implements OnInit {
           itemsList: [
             {
               title: 'News',
-              link: 'team-news'
+              link: 'team-news',
             },
             {
               title: 'Summary',
-              link: 'summary'
+              link: 'summary',
             },
             {
               title: 'Squad',
-              link: 'squad'
+              link: 'squad',
             },
             // {
             //   title: 'Competitions',
             //   link: 'competitions'
             // }
           ],
-          dataLoaded: true
+          dataLoaded: true,
         };
       }
-
     });
   }
 }

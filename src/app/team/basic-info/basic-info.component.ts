@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GooglemapsService } from '../googlemaps.service';
 import { Marker } from '../../shared/interfaces/marker.interface';
-import { Modal } from 'ngx-modialog/plugins/bootstrap';
 import { ShareDataService } from '../../shared/services/shared-data.service';
 import { AppAreas } from '../../shared/enums/app-areas';
 import { Team } from '../../shared/interfaces/team.interface';
@@ -49,7 +48,6 @@ export class BasicInfoComponent implements OnInit {
       };
     }>,
     private teamActions: TeamActions,
-    public modal: Modal,
     private modalCropperService: ShareDataService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar

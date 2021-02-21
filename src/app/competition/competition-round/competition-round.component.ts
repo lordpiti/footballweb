@@ -13,11 +13,7 @@ export class CompetitionRoundComponent implements OnInit {
   public roundId: string;
   @Input() competitionData: any;
 
-  constructor(
-    private _competitionService: CompetitionService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private _competitionService: CompetitionService) {}
 
   ngOnInit() {
     this.roundId = '1';

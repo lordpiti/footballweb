@@ -1,4 +1,6 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RssReaderService } from '../../services/rss-reader.service';
 
 import { RssReaderComponent } from './rss-reader.component';
 
@@ -8,9 +10,9 @@ describe('RssReaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RssReaderComponent ]
-    })
-    .compileComponents();
+      declarations: [RssReaderComponent],
+      providers: [HttpClient, HttpHandler, RssReaderService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

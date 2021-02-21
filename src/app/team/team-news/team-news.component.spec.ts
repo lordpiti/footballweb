@@ -1,4 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { TeamService } from '../team.service';
 
 import { TeamNewsComponent } from './team-news.component';
 
@@ -6,12 +8,14 @@ describe('TeamNewsComponent', () => {
   let component: TeamNewsComponent;
   let fixture: ComponentFixture<TeamNewsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TeamNewsComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TeamNewsComponent],
+        providers: [HttpClient, HttpHandler, TeamService],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TeamNewsComponent);

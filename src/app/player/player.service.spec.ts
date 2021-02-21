@@ -7,7 +7,7 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 describe('PlayerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [HttpHandler, HttpClient, PlayerService]
+      providers: [HttpHandler, HttpClient, PlayerService],
     });
   });
 
@@ -22,7 +22,10 @@ describe('PlayerService', () => {
         teamId: 2,
         playerId: 4,
         position: 'Striker',
-        birthDate: mockDate
+        birthDate: mockDate,
+        birthPlace: '',
+        height: 2,
+        picture: null,
       },
       {
         name: 'jaja',
@@ -32,8 +35,11 @@ describe('PlayerService', () => {
         teamId: 2,
         playerId: 4,
         position: 'Striker',
-        birthDate: mockDate
-       },
+        birthDate: mockDate,
+        birthPlace: '',
+        height: 2,
+        picture: null,
+      },
     ];
 
     const expected: Array<Player> = [
@@ -45,7 +51,10 @@ describe('PlayerService', () => {
         teamId: 2,
         playerId: 4,
         position: 'Striker',
-        birthDate: mockDate
+        birthDate: mockDate,
+        birthPlace: '',
+        height: 2,
+        picture: null,
       },
       {
         name: 'jaja',
@@ -55,14 +64,17 @@ describe('PlayerService', () => {
         teamId: 2,
         playerId: 4,
         position: 'Striker',
-        birthDate: mockDate
-       },
+        birthDate: mockDate,
+        birthPlace: '',
+        height: 2,
+        picture: null,
+      },
     ];
 
     const test = Observable.of(new Object()).mapTo(response);
     spyOn(service, 'get').and.returnValue(test);
 
-    service.getPlayers().subscribe(data => {
+    service.getPlayers().subscribe((data) => {
       expect(data).toEqual(expected);
     });
   }));

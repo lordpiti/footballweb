@@ -1,4 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ShareDataService } from '../../shared/services/shared-data.service';
+import { PlayerService } from '../player.service';
 
 import { PlayerDetailComponent } from './player-detail.component';
 
@@ -6,12 +11,25 @@ describe('PlayerDetailComponent', () => {
   let component: PlayerDetailComponent;
   let fixture: ComponentFixture<PlayerDetailComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PlayerDetailComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [PlayerDetailComponent],
+        providers: [
+          HttpClient,
+          HttpHandler,
+          PlayerService,
+          ShareDataService,
+          {
+            provide: ActivatedRoute,
+            useValue: {
+              params: Observable.from([{ id: 1 }]),
+            },
+          },
+        ],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlayerDetailComponent);

@@ -1,4 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+  waitForAsync,
+} from '@angular/core/testing';
+import { CompetitionService } from '../competition.service';
 
 import { CompetitionRoundComponent } from './competition-round.component';
 
@@ -6,16 +13,19 @@ describe('CompetitionRoundComponent', () => {
   let component: CompetitionRoundComponent;
   let fixture: ComponentFixture<CompetitionRoundComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CompetitionRoundComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [CompetitionRoundComponent],
+        providers: [HttpClient, HttpHandler, CompetitionService],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CompetitionRoundComponent);
     component = fixture.componentInstance;
+    component.competitionData = { id: 1 };
     fixture.detectChanges();
   });
 

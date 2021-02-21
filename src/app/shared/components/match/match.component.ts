@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatchService } from '../../services/match.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,7 +13,6 @@ export class MatchComponent implements OnInit {
   public matchId: number;
 
   constructor(
-    private router: Router,
     private _matchService: MatchService,
     private route: ActivatedRoute
   ) {}

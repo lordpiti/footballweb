@@ -1,4 +1,6 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TeamService } from '../team.service';
 
 import { TeamChartComponent } from './team-chart.component';
 
@@ -8,9 +10,9 @@ describe('TeamChartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TeamChartComponent ]
-    })
-    .compileComponents();
+      declarations: [TeamChartComponent],
+      providers: [HttpClient, HttpHandler, TeamService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

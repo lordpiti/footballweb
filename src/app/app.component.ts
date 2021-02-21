@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShareDataService } from './shared/services/shared-data.service';
 import { AppAreas } from './shared/enums/app-areas';
-// import { SampleService } from 'angular-piti-module-test';
 import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
