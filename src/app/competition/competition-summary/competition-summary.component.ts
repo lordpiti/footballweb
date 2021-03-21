@@ -36,14 +36,12 @@ export class CompetitionSummaryComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        const cropperImageName =
-          Math.floor(Math.random() * 2000).toString() + '.jpg';
-        if (result.logo.url.includes(';base64')) {
+        if (result.file) {
           this.blobDataService
-            .addBase64Image(result.logo.url, cropperImageName)
+            .saveDocument(result.file)
             .pipe(
               switchMap((data) => {
-                result.picture = data;
+                result.logo = data;
                 return this.competitionService.saveCompetitionDetails(result);
               })
             )

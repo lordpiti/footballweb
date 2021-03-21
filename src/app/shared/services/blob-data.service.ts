@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class BlobDataService extends BaseService {
@@ -13,6 +13,13 @@ export class BlobDataService extends BaseService {
     const url = 'GlobalMedia/UploadBase64Image';
 
     return this.post<any>(url, { Base64String: image, FileName: fileName });
+  }
+
+  public saveDocument(document: File) {
+    const formData = new FormData();
+    formData.append("files", document);
+
+    return this.post<any>('GlobalMedia/UploadDocument', formData);
   }
 
 }

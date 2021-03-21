@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   DropzoneConfigInterface,
@@ -68,8 +67,7 @@ export class CompetitionInfoModalComponent {
     console.log('onUploadError:', args);
   }
 
-  public onUploadSuccess(args: any): void {
-    console.log('onUploadSuccess:', args);
-    this.model.picture.url = args[0].dataURL;
+  public onUploadSuccess(file: File): void {
+    this.model.file = file;
   }
 }

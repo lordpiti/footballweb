@@ -55,6 +55,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   url: 'https://httpbin.org/post',
   acceptedFiles: 'image/*',
   createImageThumbnails: true,
+  autoProcessQueue: false
 };
 
 @NgModule({

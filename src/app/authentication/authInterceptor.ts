@@ -25,11 +25,9 @@ export class AuthInterceptor implements HttpInterceptor {
     const tokenAndTypeJSON = JSON.stringify(tokenAndType);
 
     const headers = token ? new HttpHeaders({
-        'Content-Type': 'application/json',
         'authenticationToken': tokenAndTypeJSON
       }) :
       new HttpHeaders({
-        'Content-Type': 'application/json'
       });
 
       return headers;
