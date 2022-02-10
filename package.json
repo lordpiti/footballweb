@@ -48,7 +48,7 @@
     "msgpack5": "^5.0.0",
     "ng2-charts": "^2.4.2",
     "chart.js": "2.9.4",
-    "node-sass": "4.14.1",
+    "node-sass": "7.0.0",
     "ng2-filter-pipe": "^0.1.10",
     "ng4-geoautocomplete": "^0.1.0",
     "ngx-bootstrap": "^6.2.0",
